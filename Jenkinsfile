@@ -44,7 +44,7 @@ pipeline {
             sshCommand remote: getServer("${deploy_host}"), command: "ls -l  ./${JOB_NAME}/admin-ui"
             sshCommand remote: getServer("${deploy_host}"), command: "docker build --build-arg REACT_APP_SERVER_URL='${params.REACT_APP_SERVER_URL}' -t ccict/${JOB_NAME} ${JOB_NAME}/admin-ui",failOnError:false  
             sshCommand remote: getServer("${deploy_host}"), command: "docker stop ${JOB_NAME} &&  docker rm ${JOB_NAME}",failOnError:false                
-            sshCommand remote: getServer("${deploy_host}"), command: "docker run -d -p ${params.ADMIN_PORT):80  --name ${JOB_NAME} --restart=always  ccict/${JOB_NAME} ",failOnError:false              
+            sshCommand remote: getServer("${deploy_host}"), command: "docker run -d -p ${params.ADMIN_PORT}:80  --name ${JOB_NAME} --restart=always  ccict/${JOB_NAME} ",failOnError:false              
           }
         }
       }
