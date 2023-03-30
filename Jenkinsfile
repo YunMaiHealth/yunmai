@@ -39,7 +39,7 @@ pipeline {
         }
         stage("启动admin-ui") {
           steps {
-            sh "sleep 90"
+            sh "sleep 60"
             sshPut remote: getServer("${deploy_host}"), from: "./admin-ui", into: "./${JOB_NAME}"
             sshCommand remote: getServer("${deploy_host}"), command: "ls -l  ./${JOB_NAME}/admin-ui"
             sshCommand remote: getServer("${deploy_host}"), command: "docker build --build-arg REACT_APP_SERVER_URL='${params.REACT_APP_SERVER_URL}' -t ccict/${JOB_NAME} ${JOB_NAME}/admin-ui",failOnError:false  
