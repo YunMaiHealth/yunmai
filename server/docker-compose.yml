@@ -6,7 +6,7 @@ services:
       args:
         NPM_LOG_LEVEL: notice
     ports:
-      - ${PORT}:3000
+      - ${PORT}:3020
     environment:
       BCRYPT_SALT: ${BCRYPT_SALT}
       JWT_SECRET_KEY: ${JWT_SECRET_KEY}
