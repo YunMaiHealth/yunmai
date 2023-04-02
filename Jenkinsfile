@@ -49,15 +49,16 @@ pipeline {
             sshCommand remote: getServer("${deploy_host}"), command: "docker run -d -p ${params.ADMIN_PORT}:80  --name ${JOB_NAME} --restart=always  ccict/${JOB_NAME} ",failOnError:false              
           }
           // https://open.feishu.cn/open-apis/bot/v2/hook/3fc1a923-3f8e-4224-b134-33774c7ef8cd
+          //  https://jenkinsci.github.io/dingtalk-plugin/guide/pipeline.html
           post {
             success {
-                FeiShu(webhook:'${feiShu_webhook}',proxy:'',type:'POST',msg:'[${JOB_NAME}](${JOB_URL})----[${BUILD_DISPLAY_NAME}](${BUILD_URL})---${currentBuild.duration} ms',atAll:false)        
+                FeiShu(webhook:'${feiShu_webhook}',proxy:'',type:'MARKDOWN',msg:{title:'[${JOB_NAME}](${JOB_URL})',text:['[${BUILD_DISPLAY_NAME}](${BUILD_URL})','${currentBuild.duration} ms']},atAll:false)  
             }
             failure {
-                FeiShu(webhook:'${feiShu_webhook}',proxy:'',message:'',atAll:false)
+                FeiShu(webhook:'${feiShu_webhook}',proxy:'',type:'MARKDOWN',msg:{title:'[${JOB_NAME}](${JOB_URL})',text:['[${BUILD_DISPLAY_NAME}](${BUILD_URL})','${currentBuild.duration} ms']},atAll:false)  
             }
-            abort {
-                FeiShu(webhook:'${feiShu_webhook}',proxy:'',message:'',atAll:false)
+            aborted {
+                FeiShu(webhook:'${feiShu_webhook}',proxy:'',type:'MARKDOWN',msg:{title:'[${JOB_NAME}](${JOB_URL})',text:['[${BUILD_DISPLAY_NAME}](${BUILD_URL})','${currentBuild.duration} ms']},atAll:false)  
             }
           }            
         }
