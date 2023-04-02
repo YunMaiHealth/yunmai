@@ -52,7 +52,7 @@ pipeline {
           //  https://jenkinsci.github.io/dingtalk-plugin/guide/pipeline.html
           post {
             success {
-                FeiShu(webhook:"${feiShu_webhook}",proxy:'',type:'ACTION_CARD ',msg:'title:"${JOB_NAME}"',atAll:false)  
+                FeiShu(webhook:"${feiShu_webhook}",proxy:'',type:'ACTION_CARD ',msg:"{title:${JOB_NAME}}",atAll:false)  
             }
 //             failure {
 //                 FeiShu(webhook:'${feiShu_webhook}',proxy:'',type:'MARKDOWN',msg:{title:'',text:['[${BUILD_DISPLAY_NAME}](${BUILD_URL})','${currentBuild.duration} ms']},atAll:false)  
