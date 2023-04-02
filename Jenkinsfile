@@ -15,6 +15,8 @@ def getServer(ip){
 // 此处使用参数化构建，需要在Jenkins的Job中指定构建参数deploy_host
 def deploy_host="${params.deploy_host}"
 
+def feiShu_webhook="https://open.feishu.cn/open-apis/bot/v2/hook/3fc1a923-3f8e-4224-b134-33774c7ef8cd"
+
 pipeline {
   agent any
   options {
@@ -46,17 +48,17 @@ pipeline {
             sshCommand remote: getServer("${deploy_host}"), command: "docker stop ${JOB_NAME} &&  docker rm ${JOB_NAME}",failOnError:false                
             sshCommand remote: getServer("${deploy_host}"), command: "docker run -d -p ${params.ADMIN_PORT}:80  --name ${JOB_NAME} --restart=always  ccict/${JOB_NAME} ",failOnError:false              
           }
-            // https://open.feishu.cn/open-apis/bot/v2/hook/3fc1a923-3f8e-4224-b134-33774c7ef8cd
+          // https://open.feishu.cn/open-apis/bot/v2/hook/3fc1a923-3f8e-4224-b134-33774c7ef8cd
           post {
             success {
-                FeiShu(webhook:'https://open.feishu.cn/open-apis/bot/v2/hook/3fc1a923-3f8e-4224-b134-33774c7ef8cd',proxy:'',type:'POST',msg:'[${JOB_NAME}](${JOB_URL})----[${BUILD_DISPLAY_NAME}](${BUILD_URL})---${currentBuild.duration} ms',atAll:false)        
+                FeiShu(webhook:'${feiShu_webhook}',proxy:'',type:'POST',msg:'[${JOB_NAME}](${JOB_URL})----[${BUILD_DISPLAY_NAME}](${BUILD_URL})---${currentBuild.duration} ms',atAll:false)        
             }
-//             failure {
-//                 FeiShu(webhook:'',proxy:'',message:'',atAll:false)
-//             }
-//             abort {
-//                 FeiShu(webhook:'',proxy:'',message:'',atAll:false)
-//             }
+            failure {
+                FeiShu(webhook:'${feiShu_webhook}',proxy:'',message:'',atAll:false)
+            }
+            abort {
+                FeiShu(webhook:'${feiShu_webhook}',proxy:'',message:'',atAll:false)
+            }
           }            
         }
       }
