@@ -15,7 +15,7 @@ def getServer(ip){
 // 此处使用参数化构建，需要在Jenkins的Job中指定构建参数deploy_host
 def deploy_host="${params.deploy_host}"
 
-def feiShu_webhook="https://open.feishu.cn/open-apis/bot/v2/hook/3fc1a923-3f8e-4224-b134-33774c7ef8cd"
+def feiShu_webhook="${params.feishu_webhook}"
 
 pipeline {
   agent any
@@ -53,7 +53,6 @@ pipeline {
           post {
             success {
                 FeiShu(webhook:"${feiShu_webhook}",proxy:'',type:'ACTION_CARD ',msg:"",atAll:false)  
-                FeiShu(webhook:"${feiShu_webhook}",proxy:'',type:'MARKDOWN ',msg:"",atAll:false)  
             }
 //             failure {
 //                 FeiShu(webhook:'${feiShu_webhook}',proxy:'',type:'MARKDOWN',msg:{title:'',text:['[${BUILD_DISPLAY_NAME}](${BUILD_URL})','${currentBuild.duration} ms']},atAll:false)  
