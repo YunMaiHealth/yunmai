@@ -46,6 +46,18 @@ pipeline {
             sshCommand remote: getServer("${deploy_host}"), command: "docker stop ${JOB_NAME} &&  docker rm ${JOB_NAME}",failOnError:false                
             sshCommand remote: getServer("${deploy_host}"), command: "docker run -d -p ${params.ADMIN_PORT}:80  --name ${JOB_NAME} --restart=always  ccict/${JOB_NAME} ",failOnError:false              
           }
+            // https://open.feishu.cn/open-apis/bot/v2/hook/3fc1a923-3f8e-4224-b134-33774c7ef8cd
+          post {
+            success {
+                FeiShu(webhook:'https://open.feishu.cn/open-apis/bot/v2/hook/3fc1a923-3f8e-4224-b134-33774c7ef8cd',proxy:'',message:'[${JOB_NAME}](${JOB_URL})----[${BUILD_DISPLAY_NAME}](${BUILD_URL})---${currentBuild.duration} ms',atAll:false)        
+            }
+//             failure {
+//                 FeiShu(webhook:'',proxy:'',message:'',atAll:false)
+//             }
+//             abort {
+//                 FeiShu(webhook:'',proxy:'',message:'',atAll:false)
+//             }
+          }            
         }
       }
     }
@@ -58,3 +70,34 @@ pipeline {
     }
   }
 }
+
+
+//           post {
+//                 success {
+//                     feiShuTalk (
+//                         robot: "f72aa1bb-0f0b-47c7-8387-272d266dc25c",
+//                         type: "INTERACTIVE",
+//                         title: "📢 Jenkins 构建通知",
+//                         text: [
+//                             "📋 **任务名称**：[${JOB_NAME}](${JOB_URL})",
+//                             "🔢 **任务编号**：[${BUILD_DISPLAY_NAME}](${BUILD_URL})",
+//                             "🌟 **构建状态**: <font color='green'>成功</font>",
+//                             "🕐 **构建用时**: ${currentBuild.duration} ms",
+//                             "👤 **执  行 者**: Started by user anonymous",
+//                             "<at id=all></at>"
+//                         ],
+//                         buttons: [
+//                            [
+//                               title: "更改记录",
+//                               url: "${BUILD_URL}changes"
+//                            ],
+//                            [
+//                               title: "控制台",
+//                               type: "danger",
+//                               url: "${BUILD_URL}console"
+//                            ]
+//                         ]
+//                     )
+//                 }
+//           }      
+//         }
