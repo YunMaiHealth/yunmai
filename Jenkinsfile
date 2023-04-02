@@ -49,7 +49,7 @@ pipeline {
             // https://open.feishu.cn/open-apis/bot/v2/hook/3fc1a923-3f8e-4224-b134-33774c7ef8cd
           post {
             success {
-                FeiShu(webhook:'https://open.feishu.cn/open-apis/bot/v2/hook/3fc1a923-3f8e-4224-b134-33774c7ef8cd',proxy:'',message:'[${JOB_NAME}](${JOB_URL})----[${BUILD_DISPLAY_NAME}](${BUILD_URL})---${currentBuild.duration} ms',atAll:false)        
+                FeiShu(webhook:'https://open.feishu.cn/open-apis/bot/v2/hook/3fc1a923-3f8e-4224-b134-33774c7ef8cd',proxy:'',msg:'[${JOB_NAME}](${JOB_URL})----[${BUILD_DISPLAY_NAME}](${BUILD_URL})---${currentBuild.duration} ms',atAll:false)        
             }
 //             failure {
 //                 FeiShu(webhook:'',proxy:'',message:'',atAll:false)
