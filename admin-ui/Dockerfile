@@ -6,9 +6,8 @@ ENV REACT_APP_SERVER_URL=$REACT_APP_SERVER_URL
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-
-RUN npm ci
+COPY package.json ./
+RUN npm install
 
 COPY . .
 
