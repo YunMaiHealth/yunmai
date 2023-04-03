@@ -13,8 +13,8 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
-  IsJSON,
   IsOptional,
+  IsJSON,
   IsEnum,
   IsDate,
   ValidateNested,
@@ -28,9 +28,22 @@ import { HubitusCheckupCreateNestedManyWithoutUsersInput } from "./HubitusChecku
 import { MessageNotifyCreateNestedManyWithoutUsersInput } from "./MessageNotifyCreateNestedManyWithoutUsersInput";
 import { UserQuestionCreateNestedManyWithoutUsersInput } from "./UserQuestionCreateNestedManyWithoutUsersInput";
 import { ReplyQuestionCreateNestedManyWithoutUsersInput } from "./ReplyQuestionCreateNestedManyWithoutUsersInput";
+import { UsePointCreateNestedManyWithoutUsersInput } from "./UsePointCreateNestedManyWithoutUsersInput";
+import { GetPointCreateNestedManyWithoutUsersInput } from "./GetPointCreateNestedManyWithoutUsersInput";
 
 @InputType()
 class UserCreateInput {
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  language?: string | null;
+
   @ApiProperty({
     required: true,
     type: String,
@@ -208,17 +221,6 @@ class UserCreateInput {
   country?: string | null;
 
   @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  language?: string | null;
-
-  @ApiProperty({
     required: true,
   })
   @IsDate()
@@ -293,6 +295,30 @@ class UserCreateInput {
     nullable: true,
   })
   replyQuestions?: ReplyQuestionCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => UsePointCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => UsePointCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => UsePointCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  usePoints?: UsePointCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => GetPointCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => GetPointCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => GetPointCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  getPoints?: GetPointCreateNestedManyWithoutUsersInput;
 }
 
 export { UserCreateInput as UserCreateInput };

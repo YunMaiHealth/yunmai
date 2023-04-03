@@ -28,9 +28,22 @@ import { HubitusCheckupUpdateManyWithoutUsersInput } from "./HubitusCheckupUpdat
 import { MessageNotifyUpdateManyWithoutUsersInput } from "./MessageNotifyUpdateManyWithoutUsersInput";
 import { UserQuestionUpdateManyWithoutUsersInput } from "./UserQuestionUpdateManyWithoutUsersInput";
 import { ReplyQuestionUpdateManyWithoutUsersInput } from "./ReplyQuestionUpdateManyWithoutUsersInput";
+import { UsePointUpdateManyWithoutUsersInput } from "./UsePointUpdateManyWithoutUsersInput";
+import { GetPointUpdateManyWithoutUsersInput } from "./GetPointUpdateManyWithoutUsersInput";
 
 @InputType()
 class UserUpdateInput {
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  language?: string | null;
+
   @ApiProperty({
     required: false,
     type: String,
@@ -230,17 +243,6 @@ class UserUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  language?: string | null;
-
-  @ApiProperty({
-    required: false,
   })
   @IsDate()
   @Type(() => Date)
@@ -320,6 +322,30 @@ class UserUpdateInput {
     nullable: true,
   })
   replyQuestions?: ReplyQuestionUpdateManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => UsePointUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => UsePointUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => UsePointUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  usePoints?: UsePointUpdateManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => GetPointUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => GetPointUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => GetPointUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  getPoints?: GetPointUpdateManyWithoutUsersInput;
 }
 
 export { UserUpdateInput as UserUpdateInput };

@@ -8,6 +8,7 @@ generator client {
 }
 
 model User {
+  language        String?
   id              String           @id @default(cuid())
   username        String           @unique
   password        String
@@ -27,7 +28,6 @@ model User {
   city            String?
   userIdCard      String?
   country         String?
-  language        String?
   creatTime       DateTime         @default(now())
   lastLoginTime   DateTime
   userStatuses    UserStatus[]
@@ -35,6 +35,8 @@ model User {
   messageNotifies MessageNotify[]
   healthQuestions UserQuestion[]
   replyQuestions  ReplyQuestion[]
+  usePoints       UsePoint[]
+  getPoints       GetPoint[]
 }
 
 model HubitusCheckup {
@@ -106,6 +108,24 @@ model ReplyQuestion {
   replyUserId    String
   userQuestion   UserQuestion? @relation(fields: [userQuestionId], references: [id])
   userQuestionId String?
+}
+
+model UsePoint {
+  id           String   @id @default(cuid())
+  usePointTime DateTime @default(now())
+  usePoint     Int
+  usePointType String
+  user         User?    @relation(fields: [userId], references: [id])
+  userId       String?
+}
+
+model GetPoint {
+  id           String   @id @default(cuid())
+  getPointTime DateTime @default(now())
+  getPoint     Int?
+  getPointType String?
+  user         User?    @relation(fields: [userId], references: [id])
+  userId       String?
 }
 
 enum EnumUserGender {

@@ -4,8 +4,11 @@ import { HubitusCheckupCreateNestedManyWithoutUsersInput } from "./HubitusChecku
 import { MessageNotifyCreateNestedManyWithoutUsersInput } from "./MessageNotifyCreateNestedManyWithoutUsersInput";
 import { UserQuestionCreateNestedManyWithoutUsersInput } from "./UserQuestionCreateNestedManyWithoutUsersInput";
 import { ReplyQuestionCreateNestedManyWithoutUsersInput } from "./ReplyQuestionCreateNestedManyWithoutUsersInput";
+import { UsePointCreateNestedManyWithoutUsersInput } from "./UsePointCreateNestedManyWithoutUsersInput";
+import { GetPointCreateNestedManyWithoutUsersInput } from "./GetPointCreateNestedManyWithoutUsersInput";
 
 export type UserCreateInput = {
+  language?: string | null;
   username: string;
   password: string;
   roles: InputJsonValue;
@@ -24,7 +27,6 @@ export type UserCreateInput = {
   city?: string | null;
   userIdCard?: string | null;
   country?: string | null;
-  language?: string | null;
   creatTime: Date;
   lastLoginTime: Date;
   userStatuses?: UserStatusCreateNestedManyWithoutUsersInput;
@@ -32,4 +34,6 @@ export type UserCreateInput = {
   messageNotifies?: MessageNotifyCreateNestedManyWithoutUsersInput;
   healthQuestions?: UserQuestionCreateNestedManyWithoutUsersInput;
   replyQuestions?: ReplyQuestionCreateNestedManyWithoutUsersInput;
+  usePoints?: UsePointCreateNestedManyWithoutUsersInput;
+  getPoints?: GetPointCreateNestedManyWithoutUsersInput;
 };

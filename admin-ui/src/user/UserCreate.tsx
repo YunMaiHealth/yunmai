@@ -18,12 +18,15 @@ import { HubitusCheckupTitle } from "../hubitusCheckup/HubitusCheckupTitle";
 import { MessageNotifyTitle } from "../messageNotify/MessageNotifyTitle";
 import { UserQuestionTitle } from "../userQuestion/UserQuestionTitle";
 import { ReplyQuestionTitle } from "../replyQuestion/ReplyQuestionTitle";
+import { UsePointTitle } from "../usePoint/UsePointTitle";
+import { GetPointTitle } from "../getPoint/GetPointTitle";
 import { ROLES_OPTIONS } from "../user/RolesOptions";
 
 export const UserCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
+        <TextInput label="语言" source="language" />
         <TextInput label="Username" source="username" />
         <PasswordInput label="Password" source="password" />
         <SelectArrayInput
@@ -58,7 +61,6 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
         <TextInput label="城市" source="city" />
         <TextInput label="用户身份证号" source="userIdCard" />
         <TextInput label="国家" source="country" />
-        <TextInput label="语言" source="language" />
         <DateTimeInput label="创建时间" source="creatTime" disabled />
         <DateTimeInput label="最近一次登录时间" source="lastLoginTime" />
         <ReferenceArrayInput
@@ -100,6 +102,22 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
           <SelectArrayInput optionText={ReplyQuestionTitle} />
+        </ReferenceArrayInput>
+        <ReferenceArrayInput
+          source="usePoints"
+          reference="UsePoint"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={UsePointTitle} />
+        </ReferenceArrayInput>
+        <ReferenceArrayInput
+          source="getPoints"
+          reference="GetPoint"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={GetPointTitle} />
         </ReferenceArrayInput>
       </SimpleForm>
     </Create>

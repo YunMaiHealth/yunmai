@@ -1,13 +1,16 @@
-import { StringFilter } from "../../util/StringFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { StringFilter } from "../../util/StringFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { UserStatusListRelationFilter } from "../userStatus/UserStatusListRelationFilter";
 import { HubitusCheckupListRelationFilter } from "../hubitusCheckup/HubitusCheckupListRelationFilter";
 import { MessageNotifyListRelationFilter } from "../messageNotify/MessageNotifyListRelationFilter";
 import { UserQuestionListRelationFilter } from "../userQuestion/UserQuestionListRelationFilter";
 import { ReplyQuestionListRelationFilter } from "../replyQuestion/ReplyQuestionListRelationFilter";
+import { UsePointListRelationFilter } from "../usePoint/UsePointListRelationFilter";
+import { GetPointListRelationFilter } from "../getPoint/GetPointListRelationFilter";
 
 export type UserWhereInput = {
+  language?: StringNullableFilter;
   id?: StringFilter;
   username?: StringFilter;
   oauthType?: StringFilter;
@@ -25,10 +28,11 @@ export type UserWhereInput = {
   city?: StringNullableFilter;
   userIdCard?: StringNullableFilter;
   country?: StringNullableFilter;
-  language?: StringNullableFilter;
   userStatuses?: UserStatusListRelationFilter;
   hubitusCheckups?: HubitusCheckupListRelationFilter;
   messageNotifies?: MessageNotifyListRelationFilter;
   healthQuestions?: UserQuestionListRelationFilter;
   replyQuestions?: ReplyQuestionListRelationFilter;
+  usePoints?: UsePointListRelationFilter;
+  getPoints?: GetPointListRelationFilter;
 };

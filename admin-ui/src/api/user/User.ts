@@ -4,8 +4,11 @@ import { HubitusCheckup } from "../hubitusCheckup/HubitusCheckup";
 import { MessageNotify } from "../messageNotify/MessageNotify";
 import { UserQuestion } from "../userQuestion/UserQuestion";
 import { ReplyQuestion } from "../replyQuestion/ReplyQuestion";
+import { UsePoint } from "../usePoint/UsePoint";
+import { GetPoint } from "../getPoint/GetPoint";
 
 export type User = {
+  language: string | null;
   id: string;
   username: string;
   roles: JsonValue;
@@ -24,7 +27,6 @@ export type User = {
   city: string | null;
   userIdCard: string | null;
   country: string | null;
-  language: string | null;
   creatTime: Date;
   lastLoginTime: Date;
   userStatuses?: Array<UserStatus>;
@@ -32,4 +34,6 @@ export type User = {
   messageNotifies?: Array<MessageNotify>;
   healthQuestions?: Array<UserQuestion>;
   replyQuestions?: Array<ReplyQuestion>;
+  usePoints?: Array<UsePoint>;
+  getPoints?: Array<GetPoint>;
 };
