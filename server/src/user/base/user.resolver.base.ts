@@ -25,6 +25,8 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
+import { UserStatusFindManyArgs } from "../../userStatus/base/UserStatusFindManyArgs";
+import { UserStatus } from "../../userStatus/base/UserStatus";
 import { HubitusCheckupFindManyArgs } from "../../hubitusCheckup/base/HubitusCheckupFindManyArgs";
 import { HubitusCheckup } from "../../hubitusCheckup/base/HubitusCheckup";
 import { UserService } from "../user.service";
@@ -135,6 +137,26 @@ export class UserResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [UserStatus])
+  @nestAccessControl.UseRoles({
+    resource: "UserStatus",
+    action: "read",
+    possession: "any",
+  })
+  async userStatuses(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: UserStatusFindManyArgs
+  ): Promise<UserStatus[]> {
+    const results = await this.service.findUserStatuses(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)

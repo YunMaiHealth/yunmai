@@ -12,37 +12,22 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
-  IsDate,
   IsString,
   IsJSON,
   IsOptional,
   IsEnum,
+  IsDate,
   ValidateNested,
 } from "class-validator";
-import { Type } from "class-transformer";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
 import { EnumUserGender } from "./EnumUserGender";
+import { Type } from "class-transformer";
+import { UserStatusCreateNestedManyWithoutUsersInput } from "./UserStatusCreateNestedManyWithoutUsersInput";
 import { HubitusCheckupCreateNestedManyWithoutUsersInput } from "./HubitusCheckupCreateNestedManyWithoutUsersInput";
 
 @InputType()
 class UserCreateInput {
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  creatTime!: Date;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  lastLoginTime!: Date;
-
   @ApiProperty({
     required: true,
     type: String,
@@ -107,6 +92,17 @@ class UserCreateInput {
   @Field(() => String, {
     nullable: true,
   })
+  trueName?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   inviterId?: string | null;
 
   @ApiProperty({
@@ -129,7 +125,7 @@ class UserCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  trueName?: string | null;
+  province?: string | null;
 
   @ApiProperty({
     required: false,
@@ -184,6 +180,17 @@ class UserCreateInput {
   @Field(() => String, {
     nullable: true,
   })
+  city?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   userIdCard?: string | null;
 
   @ApiProperty({
@@ -206,29 +213,35 @@ class UserCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  province?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  city?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   language?: string | null;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  creatTime!: Date;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  lastLoginTime!: Date;
+
+  @ApiProperty({
+    required: false,
+    type: () => UserStatusCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => UserStatusCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => UserStatusCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  userStatuses?: UserStatusCreateNestedManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,

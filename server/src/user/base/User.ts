@@ -13,16 +13,17 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
-  IsDate,
   IsJSON,
   IsOptional,
   IsEnum,
+  IsDate,
   ValidateNested,
 } from "class-validator";
-import { Type } from "class-transformer";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
 import { EnumUserGender } from "./EnumUserGender";
+import { Type } from "class-transformer";
+import { UserStatus } from "../../userStatus/base/UserStatus";
 import { HubitusCheckup } from "../../hubitusCheckup/base/HubitusCheckup";
 
 @ObjectType()
@@ -34,22 +35,6 @@ class User {
   @IsString()
   @Field(() => String)
   id!: string;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  creatTime!: Date;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  lastLoginTime!: Date;
 
   @ApiProperty({
     required: true,
@@ -107,6 +92,17 @@ class User {
   @Field(() => String, {
     nullable: true,
   })
+  trueName!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   inviterId!: string | null;
 
   @ApiProperty({
@@ -129,7 +125,7 @@ class User {
   @Field(() => String, {
     nullable: true,
   })
-  trueName!: string | null;
+  province!: string | null;
 
   @ApiProperty({
     required: false,
@@ -184,6 +180,17 @@ class User {
   @Field(() => String, {
     nullable: true,
   })
+  city!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   userIdCard!: string | null;
 
   @ApiProperty({
@@ -206,29 +213,32 @@ class User {
   @Field(() => String, {
     nullable: true,
   })
-  province!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  city!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   language!: string | null;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  creatTime!: Date;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  lastLoginTime!: Date;
+
+  @ApiProperty({
+    required: false,
+    type: () => [UserStatus],
+  })
+  @ValidateNested()
+  @Type(() => UserStatus)
+  @IsOptional()
+  userStatuses?: Array<UserStatus>;
 
   @ApiProperty({
     required: false,

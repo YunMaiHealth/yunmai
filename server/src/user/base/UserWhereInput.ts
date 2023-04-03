@@ -17,6 +17,7 @@ import { IsOptional, IsEnum, ValidateNested } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { EnumUserGender } from "./EnumUserGender";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
+import { UserStatusListRelationFilter } from "../../userStatus/base/UserStatusListRelationFilter";
 import { HubitusCheckupListRelationFilter } from "../../hubitusCheckup/base/HubitusCheckupListRelationFilter";
 
 @InputType()
@@ -96,6 +97,17 @@ class UserWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
+  trueName?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
   inviterId?: StringNullableFilter;
 
   @ApiProperty({
@@ -118,7 +130,7 @@ class UserWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  trueName?: StringNullableFilter;
+  province?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -173,6 +185,17 @@ class UserWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
+  city?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
   userIdCard?: StringNullableFilter;
 
   @ApiProperty({
@@ -195,29 +218,19 @@ class UserWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  province?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  city?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
   language?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => UserStatusListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => UserStatusListRelationFilter)
+  @IsOptional()
+  @Field(() => UserStatusListRelationFilter, {
+    nullable: true,
+  })
+  userStatuses?: UserStatusListRelationFilter;
 
   @ApiProperty({
     required: false,

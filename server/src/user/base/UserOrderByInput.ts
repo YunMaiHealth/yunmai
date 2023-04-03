@@ -34,24 +34,6 @@ class UserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  creatTime?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  lastLoginTime?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   username?: SortOrder;
 
   @ApiProperty({
@@ -115,6 +97,15 @@ class UserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  trueName?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   inviterId?: SortOrder;
 
   @ApiProperty({
@@ -133,7 +124,7 @@ class UserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  trueName?: SortOrder;
+  province?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -178,6 +169,15 @@ class UserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  city?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   userIdCard?: SortOrder;
 
   @ApiProperty({
@@ -196,25 +196,25 @@ class UserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  province?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  city?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   language?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  creatTime?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  lastLoginTime?: SortOrder;
 }
 
 export { UserOrderByInput as UserOrderByInput };

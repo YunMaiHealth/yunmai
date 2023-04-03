@@ -9,8 +9,6 @@ generator client {
 
 model User {
   id              String           @id @default(cuid())
-  creatTime       DateTime         @default(now())
-  lastLoginTime   DateTime
   username        String           @unique
   password        String
   roles           Json
@@ -18,18 +16,21 @@ model User {
   openId          String
   sessionKey      String
   unionId         String
+  trueName        String?
   inviterId       String?
   phone           String?
-  trueName        String?
+  province        String?
   nickName        String?
   avatarUrl       String?
   gender          EnumUserGender?
   birthday        DateTime?
+  city            String?
   userIdCard      String?
   country         String?
-  province        String?
-  city            String?
   language        String?
+  creatTime       DateTime         @default(now())
+  lastLoginTime   DateTime
+  userStatuses    UserStatus[]
   hubitusCheckups HubitusCheckup[]
 }
 
@@ -42,6 +43,22 @@ model HubitusCheckup {
   testTime       DateTime
   user           User     @relation(fields: [userId], references: [id])
   userId         String
+}
+
+model UserStatus {
+  id          String    @id @default(cuid())
+  createdAt   DateTime  @default(now())
+  updateTime  DateTime  @updatedAt
+  status      String?
+  intValue    Int?
+  doubleValue Float?
+  stringValue String?
+  dateValue   DateTime?
+  jsonValue   Json?
+  blobValue   String?
+  streamId    String?
+  user        User?     @relation(fields: [userId], references: [id])
+  userId      String?
 }
 
 enum EnumUserGender {

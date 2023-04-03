@@ -27,6 +27,9 @@ import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserUpdateInput } from "./UserUpdateInput";
 import { User } from "./User";
+import { UserStatusFindManyArgs } from "../../userStatus/base/UserStatusFindManyArgs";
+import { UserStatus } from "../../userStatus/base/UserStatus";
+import { UserStatusWhereUniqueInput } from "../../userStatus/base/UserStatusWhereUniqueInput";
 import { HubitusCheckupFindManyArgs } from "../../hubitusCheckup/base/HubitusCheckupFindManyArgs";
 import { HubitusCheckup } from "../../hubitusCheckup/base/HubitusCheckup";
 import { HubitusCheckupWhereUniqueInput } from "../../hubitusCheckup/base/HubitusCheckupWhereUniqueInput";
@@ -54,26 +57,26 @@ export class UserControllerBase {
       data: data,
       select: {
         id: true,
-        creatTime: true,
-        lastLoginTime: true,
         username: true,
         roles: true,
         oauthType: true,
         openId: true,
         sessionKey: true,
         unionId: true,
+        trueName: true,
         inviterId: true,
         phone: true,
-        trueName: true,
+        province: true,
         nickName: true,
         avatarUrl: true,
         gender: true,
         birthday: true,
+        city: true,
         userIdCard: true,
         country: true,
-        province: true,
-        city: true,
         language: true,
+        creatTime: true,
+        lastLoginTime: true,
       },
     });
   }
@@ -96,26 +99,26 @@ export class UserControllerBase {
       ...args,
       select: {
         id: true,
-        creatTime: true,
-        lastLoginTime: true,
         username: true,
         roles: true,
         oauthType: true,
         openId: true,
         sessionKey: true,
         unionId: true,
+        trueName: true,
         inviterId: true,
         phone: true,
-        trueName: true,
+        province: true,
         nickName: true,
         avatarUrl: true,
         gender: true,
         birthday: true,
+        city: true,
         userIdCard: true,
         country: true,
-        province: true,
-        city: true,
         language: true,
+        creatTime: true,
+        lastLoginTime: true,
       },
     });
   }
@@ -139,26 +142,26 @@ export class UserControllerBase {
       where: params,
       select: {
         id: true,
-        creatTime: true,
-        lastLoginTime: true,
         username: true,
         roles: true,
         oauthType: true,
         openId: true,
         sessionKey: true,
         unionId: true,
+        trueName: true,
         inviterId: true,
         phone: true,
-        trueName: true,
+        province: true,
         nickName: true,
         avatarUrl: true,
         gender: true,
         birthday: true,
+        city: true,
         userIdCard: true,
         country: true,
-        province: true,
-        city: true,
         language: true,
+        creatTime: true,
+        lastLoginTime: true,
       },
     });
     if (result === null) {
@@ -191,26 +194,26 @@ export class UserControllerBase {
         data: data,
         select: {
           id: true,
-          creatTime: true,
-          lastLoginTime: true,
           username: true,
           roles: true,
           oauthType: true,
           openId: true,
           sessionKey: true,
           unionId: true,
+          trueName: true,
           inviterId: true,
           phone: true,
-          trueName: true,
+          province: true,
           nickName: true,
           avatarUrl: true,
           gender: true,
           birthday: true,
+          city: true,
           userIdCard: true,
           country: true,
-          province: true,
-          city: true,
           language: true,
+          creatTime: true,
+          lastLoginTime: true,
         },
       });
     } catch (error) {
@@ -242,26 +245,26 @@ export class UserControllerBase {
         where: params,
         select: {
           id: true,
-          creatTime: true,
-          lastLoginTime: true,
           username: true,
           roles: true,
           oauthType: true,
           openId: true,
           sessionKey: true,
           unionId: true,
+          trueName: true,
           inviterId: true,
           phone: true,
-          trueName: true,
+          province: true,
           nickName: true,
           avatarUrl: true,
           gender: true,
           birthday: true,
+          city: true,
           userIdCard: true,
           country: true,
-          province: true,
-          city: true,
           language: true,
+          creatTime: true,
+          lastLoginTime: true,
         },
       });
     } catch (error) {
@@ -272,6 +275,115 @@ export class UserControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/userStatuses")
+  @ApiNestedQuery(UserStatusFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "UserStatus",
+    action: "read",
+    possession: "any",
+  })
+  async findManyUserStatuses(
+    @common.Req() request: Request,
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<UserStatus[]> {
+    const query = plainToClass(UserStatusFindManyArgs, request.query);
+    const results = await this.service.findUserStatuses(params.id, {
+      ...query,
+      select: {
+        id: true,
+        createdAt: true,
+        updateTime: true,
+        status: true,
+        intValue: true,
+        doubleValue: true,
+        stringValue: true,
+        dateValue: true,
+        jsonValue: true,
+        blobValue: true,
+        streamId: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/userStatuses")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async connectUserStatuses(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: UserStatusWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      userStatuses: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/userStatuses")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async updateUserStatuses(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: UserStatusWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      userStatuses: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/userStatuses")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectUserStatuses(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: UserStatusWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      userStatuses: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
