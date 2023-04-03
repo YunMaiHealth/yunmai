@@ -66,18 +66,18 @@ export class MessageNotifyControllerBase {
           : undefined,
       },
       select: {
+        messageSource: true,
+        id: true,
+        sendTime: true,
+        isNew: true,
+        messageContent: true,
+        messageType: true,
+
         event: {
           select: {
             id: true,
           },
         },
-
-        id: true,
-        isNew: true,
-        messageContent: true,
-        messageSource: true,
-        messageType: true,
-        sendTime: true,
 
         user: {
           select: {
@@ -105,18 +105,18 @@ export class MessageNotifyControllerBase {
     return this.service.findMany({
       ...args,
       select: {
+        messageSource: true,
+        id: true,
+        sendTime: true,
+        isNew: true,
+        messageContent: true,
+        messageType: true,
+
         event: {
           select: {
             id: true,
           },
         },
-
-        id: true,
-        isNew: true,
-        messageContent: true,
-        messageSource: true,
-        messageType: true,
-        sendTime: true,
 
         user: {
           select: {
@@ -145,18 +145,18 @@ export class MessageNotifyControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
+        messageSource: true,
+        id: true,
+        sendTime: true,
+        isNew: true,
+        messageContent: true,
+        messageType: true,
+
         event: {
           select: {
             id: true,
           },
         },
-
-        id: true,
-        isNew: true,
-        messageContent: true,
-        messageSource: true,
-        messageType: true,
-        sendTime: true,
 
         user: {
           select: {
@@ -208,18 +208,18 @@ export class MessageNotifyControllerBase {
             : undefined,
         },
         select: {
+          messageSource: true,
+          id: true,
+          sendTime: true,
+          isNew: true,
+          messageContent: true,
+          messageType: true,
+
           event: {
             select: {
               id: true,
             },
           },
-
-          id: true,
-          isNew: true,
-          messageContent: true,
-          messageSource: true,
-          messageType: true,
-          sendTime: true,
 
           user: {
             select: {
@@ -256,18 +256,18 @@ export class MessageNotifyControllerBase {
       return await this.service.delete({
         where: params,
         select: {
+          messageSource: true,
+          id: true,
+          sendTime: true,
+          isNew: true,
+          messageContent: true,
+          messageType: true,
+
           event: {
             select: {
               id: true,
             },
           },
-
-          id: true,
-          isNew: true,
-          messageContent: true,
-          messageSource: true,
-          messageType: true,
-          sendTime: true,
 
           user: {
             select: {

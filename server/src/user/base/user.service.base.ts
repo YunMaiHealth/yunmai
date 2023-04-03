@@ -10,13 +10,17 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
+
 import {
   Prisma,
   User,
+  UserStatus,
   HubitusCheckup,
   MessageNotify,
-  UserStatus,
+  UserQuestion,
+  ReplyQuestion,
 } from "@prisma/client";
+
 import { PasswordService } from "../../auth/password.service";
 import { transformStringFieldUpdateInput } from "../../prisma.util";
 
@@ -78,6 +82,17 @@ export class UserServiceBase {
     return this.prisma.user.delete(args);
   }
 
+  async findUserStatuses(
+    parentId: string,
+    args: Prisma.UserStatusFindManyArgs
+  ): Promise<UserStatus[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .userStatuses(args);
+  }
+
   async findHubitusCheckups(
     parentId: string,
     args: Prisma.HubitusCheckupFindManyArgs
@@ -100,14 +115,25 @@ export class UserServiceBase {
       .messageNotifies(args);
   }
 
-  async findUserStatuses(
+  async findHealthQuestions(
     parentId: string,
-    args: Prisma.UserStatusFindManyArgs
-  ): Promise<UserStatus[]> {
+    args: Prisma.UserQuestionFindManyArgs
+  ): Promise<UserQuestion[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .userStatuses(args);
+      .healthQuestions(args);
+  }
+
+  async findReplyQuestions(
+    parentId: string,
+    args: Prisma.ReplyQuestionFindManyArgs
+  ): Promise<ReplyQuestion[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .replyQuestions(args);
   }
 }

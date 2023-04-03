@@ -11,30 +11,40 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { EventLogWhereUniqueInput } from "../../eventLog/base/EventLogWhereUniqueInput";
 import {
-  ValidateNested,
-  IsOptional,
-  IsBoolean,
   IsString,
+  IsOptional,
   IsDate,
+  IsBoolean,
+  ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
+import { EventLogWhereUniqueInput } from "../../eventLog/base/EventLogWhereUniqueInput";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 
 @InputType()
 class MessageNotifyUpdateInput {
   @ApiProperty({
     required: false,
-    type: () => EventLogWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => EventLogWhereUniqueInput)
+  @IsString()
   @IsOptional()
-  @Field(() => EventLogWhereUniqueInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  event?: EventLogWhereUniqueInput | null;
+  messageSource?: string;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  sendTime?: Date;
 
   @ApiProperty({
     required: false,
@@ -67,29 +77,19 @@ class MessageNotifyUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  messageSource?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   messageType?: string;
 
   @ApiProperty({
     required: false,
+    type: () => EventLogWhereUniqueInput,
   })
-  @IsDate()
-  @Type(() => Date)
+  @ValidateNested()
+  @Type(() => EventLogWhereUniqueInput)
   @IsOptional()
-  @Field(() => Date, {
+  @Field(() => EventLogWhereUniqueInput, {
     nullable: true,
   })
-  sendTime?: Date;
+  event?: EventLogWhereUniqueInput | null;
 
   @ApiProperty({
     required: false,

@@ -4,8 +4,8 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  TextInput,
   DateTimeInput,
+  TextInput,
   ReferenceArrayInput,
   SelectArrayInput,
 } from "react-admin";
@@ -16,10 +16,11 @@ export const EventLogCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <TextInput label="事件名称" source="eventName" />
-        <div />
         <DateTimeInput label="事件发生时间" source="eventTime" disabled />
         <TextInput label="事件类型" source="eventType" />
+        <TextInput label="事件名称" source="eventName" />
+        <div />
+        <div />
         <ReferenceArrayInput
           source="messageNotifies"
           reference="MessageNotify"
@@ -28,7 +29,6 @@ export const EventLogCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={MessageNotifyTitle} />
         </ReferenceArrayInput>
-        <div />
       </SimpleForm>
     </Create>
   );

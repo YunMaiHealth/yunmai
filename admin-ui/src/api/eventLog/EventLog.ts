@@ -2,11 +2,11 @@ import { JsonValue } from "type-fest";
 import { MessageNotify } from "../messageNotify/MessageNotify";
 
 export type EventLog = {
-  eventName: string | null;
-  eventParam: JsonValue;
+  id: string;
   eventTime: Date;
   eventType: string;
-  id: string;
-  messageNotifies?: Array<MessageNotify>;
+  eventName: string | null;
+  eventParam: JsonValue;
   relateUser: JsonValue;
+  messageNotifies?: Array<MessageNotify>;
 };

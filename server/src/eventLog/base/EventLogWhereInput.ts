@@ -11,15 +11,37 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { JsonFilter } from "../../util/JsonFilter";
-import { StringFilter } from "../../util/StringFilter";
 import { MessageNotifyListRelationFilter } from "../../messageNotify/base/MessageNotifyListRelationFilter";
 
 @InputType()
 class EventLogWhereInput {
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  id?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  eventType?: StringFilter;
+
   @ApiProperty({
     required: false,
     type: StringNullableFilter,
@@ -44,25 +66,14 @@ class EventLogWhereInput {
 
   @ApiProperty({
     required: false,
-    type: StringFilter,
+    type: JsonFilter,
   })
-  @Type(() => StringFilter)
+  @Type(() => JsonFilter)
   @IsOptional()
-  @Field(() => StringFilter, {
+  @Field(() => JsonFilter, {
     nullable: true,
   })
-  eventType?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  id?: StringFilter;
+  relateUser?: JsonFilter;
 
   @ApiProperty({
     required: false,
@@ -75,17 +86,6 @@ class EventLogWhereInput {
     nullable: true,
   })
   messageNotifies?: MessageNotifyListRelationFilter;
-
-  @ApiProperty({
-    required: false,
-    type: JsonFilter,
-  })
-  @Type(() => JsonFilter)
-  @IsOptional()
-  @Field(() => JsonFilter, {
-    nullable: true,
-  })
-  relateUser?: JsonFilter;
 }
 
 export { EventLogWhereInput as EventLogWhereInput };

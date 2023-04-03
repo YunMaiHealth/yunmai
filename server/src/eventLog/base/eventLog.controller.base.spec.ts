@@ -19,30 +19,30 @@ import { EventLogService } from "../eventLog.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  eventName: "exampleEventName",
+  id: "exampleId",
   eventTime: new Date(),
   eventType: "exampleEventType",
-  id: "exampleId",
+  eventName: "exampleEventName",
 };
 const CREATE_RESULT = {
-  eventName: "exampleEventName",
+  id: "exampleId",
   eventTime: new Date(),
   eventType: "exampleEventType",
-  id: "exampleId",
+  eventName: "exampleEventName",
 };
 const FIND_MANY_RESULT = [
   {
-    eventName: "exampleEventName",
+    id: "exampleId",
     eventTime: new Date(),
     eventType: "exampleEventType",
-    id: "exampleId",
+    eventName: "exampleEventName",
   },
 ];
 const FIND_ONE_RESULT = {
-  eventName: "exampleEventName",
+  id: "exampleId",
   eventTime: new Date(),
   eventType: "exampleEventType",
-  id: "exampleId",
+  eventName: "exampleEventName",
 };
 
 const service = {

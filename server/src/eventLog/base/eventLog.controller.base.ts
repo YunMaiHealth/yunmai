@@ -53,11 +53,11 @@ export class EventLogControllerBase {
     return await this.service.create({
       data: data,
       select: {
-        eventName: true,
-        eventParam: true,
+        id: true,
         eventTime: true,
         eventType: true,
-        id: true,
+        eventName: true,
+        eventParam: true,
         relateUser: true,
       },
     });
@@ -80,11 +80,11 @@ export class EventLogControllerBase {
     return this.service.findMany({
       ...args,
       select: {
-        eventName: true,
-        eventParam: true,
+        id: true,
         eventTime: true,
         eventType: true,
-        id: true,
+        eventName: true,
+        eventParam: true,
         relateUser: true,
       },
     });
@@ -108,11 +108,11 @@ export class EventLogControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
-        eventName: true,
-        eventParam: true,
+        id: true,
         eventTime: true,
         eventType: true,
-        id: true,
+        eventName: true,
+        eventParam: true,
         relateUser: true,
       },
     });
@@ -145,11 +145,11 @@ export class EventLogControllerBase {
         where: params,
         data: data,
         select: {
-          eventName: true,
-          eventParam: true,
+          id: true,
           eventTime: true,
           eventType: true,
-          id: true,
+          eventName: true,
+          eventParam: true,
           relateUser: true,
         },
       });
@@ -181,11 +181,11 @@ export class EventLogControllerBase {
       return await this.service.delete({
         where: params,
         select: {
-          eventName: true,
-          eventParam: true,
+          id: true,
           eventTime: true,
           eventType: true,
-          id: true,
+          eventName: true,
+          eventParam: true,
           relateUser: true,
         },
       });
@@ -215,18 +215,18 @@ export class EventLogControllerBase {
     const results = await this.service.findMessageNotifies(params.id, {
       ...query,
       select: {
+        messageSource: true,
+        id: true,
+        sendTime: true,
+        isNew: true,
+        messageContent: true,
+        messageType: true,
+
         event: {
           select: {
             id: true,
           },
         },
-
-        id: true,
-        isNew: true,
-        messageContent: true,
-        messageSource: true,
-        messageType: true,
-        sendTime: true,
 
         user: {
           select: {

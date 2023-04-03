@@ -25,7 +25,7 @@ class MessageNotifyOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  eventId?: SortOrder;
+  messageSource?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -35,6 +35,15 @@ class MessageNotifyOrderByInput {
     nullable: true,
   })
   id?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  sendTime?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,15 +70,6 @@ class MessageNotifyOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  messageSource?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   messageType?: SortOrder;
 
   @ApiProperty({
@@ -79,7 +79,7 @@ class MessageNotifyOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  sendTime?: SortOrder;
+  eventId?: SortOrder;
 
   @ApiProperty({
     required: false,

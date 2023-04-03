@@ -1,14 +1,14 @@
-import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { DateTimeFilter } from "../../util/DateTimeFilter";
 import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type HubitusCheckupWhereInput = {
-  countResult?: StringNullableFilter;
-  currentHabitus?: StringNullableFilter;
   id?: StringFilter;
-  suggest?: StringNullableFilter;
+  currentHabitus?: StringNullableFilter;
   testResult?: StringNullableFilter;
+  countResult?: StringNullableFilter;
+  suggest?: StringNullableFilter;
   testTime?: DateTimeFilter;
   user?: UserWhereUniqueInput;
 };

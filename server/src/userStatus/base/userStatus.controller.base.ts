@@ -60,16 +60,16 @@ export class UserStatusControllerBase {
           : undefined,
       },
       select: {
-        blobValue: true,
-        dateValue: true,
-        doubleValue: true,
         id: true,
-        intValue: true,
-        jsonValue: true,
         status: true,
-        streamId: true,
+        intValue: true,
+        doubleValue: true,
         stringValue: true,
+        dateValue: true,
+        jsonValue: true,
+        blobValue: true,
         updateTime: true,
+        streamId: true,
 
         user: {
           select: {
@@ -97,16 +97,16 @@ export class UserStatusControllerBase {
     return this.service.findMany({
       ...args,
       select: {
-        blobValue: true,
-        dateValue: true,
-        doubleValue: true,
         id: true,
-        intValue: true,
-        jsonValue: true,
         status: true,
-        streamId: true,
+        intValue: true,
+        doubleValue: true,
         stringValue: true,
+        dateValue: true,
+        jsonValue: true,
+        blobValue: true,
         updateTime: true,
+        streamId: true,
 
         user: {
           select: {
@@ -135,16 +135,16 @@ export class UserStatusControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
-        blobValue: true,
-        dateValue: true,
-        doubleValue: true,
         id: true,
-        intValue: true,
-        jsonValue: true,
         status: true,
-        streamId: true,
+        intValue: true,
+        doubleValue: true,
         stringValue: true,
+        dateValue: true,
+        jsonValue: true,
+        blobValue: true,
         updateTime: true,
+        streamId: true,
 
         user: {
           select: {
@@ -190,16 +190,16 @@ export class UserStatusControllerBase {
             : undefined,
         },
         select: {
-          blobValue: true,
-          dateValue: true,
-          doubleValue: true,
           id: true,
-          intValue: true,
-          jsonValue: true,
           status: true,
-          streamId: true,
+          intValue: true,
+          doubleValue: true,
           stringValue: true,
+          dateValue: true,
+          jsonValue: true,
+          blobValue: true,
           updateTime: true,
+          streamId: true,
 
           user: {
             select: {
@@ -236,16 +236,16 @@ export class UserStatusControllerBase {
       return await this.service.delete({
         where: params,
         select: {
-          blobValue: true,
-          dateValue: true,
-          doubleValue: true,
           id: true,
-          intValue: true,
-          jsonValue: true,
           status: true,
-          streamId: true,
+          intValue: true,
+          doubleValue: true,
           stringValue: true,
+          dateValue: true,
+          jsonValue: true,
+          blobValue: true,
           updateTime: true,
+          streamId: true,
 
           user: {
             select: {

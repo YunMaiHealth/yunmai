@@ -1,14 +1,14 @@
-import { EventLogWhereUniqueInput } from "../eventLog/EventLogWhereUniqueInput";
 import { StringFilter } from "../../util/StringFilter";
 import { BooleanFilter } from "../../util/BooleanFilter";
+import { EventLogWhereUniqueInput } from "../eventLog/EventLogWhereUniqueInput";
 import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type MessageNotifyWhereInput = {
-  event?: EventLogWhereUniqueInput;
+  messageSource?: StringFilter;
   id?: StringFilter;
   isNew?: BooleanFilter;
   messageContent?: StringFilter;
-  messageSource?: StringFilter;
   messageType?: StringFilter;
+  event?: EventLogWhereUniqueInput;
   user?: UserWhereUniqueInput;
 };

@@ -4,11 +4,11 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  ReferenceInput,
-  SelectInput,
-  BooleanInput,
   TextInput,
   DateTimeInput,
+  BooleanInput,
+  ReferenceInput,
+  SelectInput,
 } from "react-admin";
 
 import { EventLogTitle } from "../eventLog/EventLogTitle";
@@ -18,6 +18,11 @@ export const MessageNotifyEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <TextInput label="消息来源" source="messageSource" />
+        <DateTimeInput label="消息发送时间" source="sendTime" disabled />
+        <BooleanInput label="是否已读" source="isNew" />
+        <TextInput label="消息内容" source="messageContent" />
+        <TextInput label="消息类别" source="messageType" />
         <ReferenceInput
           source="eventlog.id"
           reference="EventLog"
@@ -25,11 +30,6 @@ export const MessageNotifyEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectInput optionText={EventLogTitle} />
         </ReferenceInput>
-        <BooleanInput label="是否已读" source="isNew" />
-        <TextInput label="消息内容" source="messageContent" />
-        <TextInput label="消息来源" source="messageSource" />
-        <TextInput label="消息类别" source="messageType" />
-        <DateTimeInput label="消息发送时间" source="sendTime" disabled />
         <ReferenceInput source="user.id" reference="User" label="用户">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>

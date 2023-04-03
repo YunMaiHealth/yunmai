@@ -13,22 +13,134 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
-  IsOptional,
-  IsDate,
-  IsEnum,
-  ValidateNested,
   IsJSON,
+  IsOptional,
+  IsEnum,
+  IsDate,
+  ValidateNested,
 } from "class-validator";
-import { Type } from "class-transformer";
-import { EnumUserGender } from "./EnumUserGender";
-import { HubitusCheckup } from "../../hubitusCheckup/base/HubitusCheckup";
-import { MessageNotify } from "../../messageNotify/base/MessageNotify";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
+import { EnumUserGender } from "./EnumUserGender";
+import { Type } from "class-transformer";
 import { UserStatus } from "../../userStatus/base/UserStatus";
+import { HubitusCheckup } from "../../hubitusCheckup/base/HubitusCheckup";
+import { MessageNotify } from "../../messageNotify/base/MessageNotify";
+import { UserQuestion } from "../../userQuestion/base/UserQuestion";
+import { ReplyQuestion } from "../../replyQuestion/base/ReplyQuestion";
 
 @ObjectType()
 class User {
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  username!: string;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsJSON()
+  @Field(() => GraphQLJSON)
+  roles!: JsonValue;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  oauthType!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  openId!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  sessionKey!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  unionId!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  trueName!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  inviterId!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  phone!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  province!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  nickName!: string | null;
+
   @ApiProperty({
     required: false,
     type: String,
@@ -39,6 +151,17 @@ class User {
     nullable: true,
   })
   avatarUrl!: string | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumUserGender,
+  })
+  @IsEnum(EnumUserGender)
+  @IsOptional()
+  @Field(() => EnumUserGender, {
+    nullable: true,
+  })
+  gender?: "Unknown" | "Male" | "Female" | null;
 
   @ApiProperty({
     required: false,
@@ -71,43 +194,7 @@ class User {
   @Field(() => String, {
     nullable: true,
   })
-  country!: string | null;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  creatTime!: Date;
-
-  @ApiProperty({
-    required: false,
-    enum: EnumUserGender,
-  })
-  @IsEnum(EnumUserGender)
-  @IsOptional()
-  @Field(() => EnumUserGender, {
-    nullable: true,
-  })
-  gender?: "Unknown" | "Male" | "Female" | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => [HubitusCheckup],
-  })
-  @ValidateNested()
-  @Type(() => HubitusCheckup)
-  @IsOptional()
-  hubitusCheckups?: Array<HubitusCheckup>;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
+  userIdCard!: string | null;
 
   @ApiProperty({
     required: false,
@@ -118,7 +205,7 @@ class User {
   @Field(() => String, {
     nullable: true,
   })
-  inviterId!: string | null;
+  country!: string | null;
 
   @ApiProperty({
     required: false,
@@ -137,7 +224,33 @@ class User {
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
+  creatTime!: Date;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
   lastLoginTime!: Date;
+
+  @ApiProperty({
+    required: false,
+    type: () => [UserStatus],
+  })
+  @ValidateNested()
+  @Type(() => UserStatus)
+  @IsOptional()
+  userStatuses?: Array<UserStatus>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [HubitusCheckup],
+  })
+  @ValidateNested()
+  @Type(() => HubitusCheckup)
+  @IsOptional()
+  hubitusCheckups?: Array<HubitusCheckup>;
 
   @ApiProperty({
     required: false,
@@ -150,114 +263,21 @@ class User {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  nickName!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  oauthType!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  openId!: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  phone!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  province!: string | null;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsJSON()
-  @Field(() => GraphQLJSON)
-  roles!: JsonValue;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  sessionKey!: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  trueName!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  unionId!: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  userIdCard!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  username!: string;
-
-  @ApiProperty({
-    required: false,
-    type: () => [UserStatus],
+    type: () => [UserQuestion],
   })
   @ValidateNested()
-  @Type(() => UserStatus)
+  @Type(() => UserQuestion)
   @IsOptional()
-  userStatuses?: Array<UserStatus>;
+  healthQuestions?: Array<UserQuestion>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [ReplyQuestion],
+  })
+  @ValidateNested()
+  @Type(() => ReplyQuestion)
+  @IsOptional()
+  replyQuestions?: Array<ReplyQuestion>;
 }
 
 export { User as User };

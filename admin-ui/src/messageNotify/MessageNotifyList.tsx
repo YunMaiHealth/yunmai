@@ -4,10 +4,10 @@ import {
   List,
   Datagrid,
   ListProps,
-  ReferenceField,
   TextField,
-  BooleanField,
   DateField,
+  BooleanField,
+  ReferenceField,
 } from "react-admin";
 
 import Pagination from "../Components/Pagination";
@@ -24,6 +24,12 @@ export const MessageNotifyList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="消息来源" source="messageSource" />
+        <TextField label="ID" source="id" />
+        <DateField source="sendTime" label="消息发送时间" />
+        <BooleanField label="是否已读" source="isNew" />
+        <TextField label="消息内容" source="messageContent" />
+        <TextField label="消息类别" source="messageType" />
         <ReferenceField
           label="事件日志"
           source="eventlog.id"
@@ -31,12 +37,6 @@ export const MessageNotifyList = (props: ListProps): React.ReactElement => {
         >
           <TextField source={EVENTLOG_TITLE_FIELD} />
         </ReferenceField>
-        <TextField label="ID" source="id" />
-        <BooleanField label="是否已读" source="isNew" />
-        <TextField label="消息内容" source="messageContent" />
-        <TextField label="消息来源" source="messageSource" />
-        <TextField label="消息类别" source="messageType" />
-        <DateField source="sendTime" label="消息发送时间" />
         <ReferenceField label="用户" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>

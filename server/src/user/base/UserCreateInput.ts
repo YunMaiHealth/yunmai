@@ -13,22 +13,134 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
-  IsOptional,
-  IsDate,
-  IsEnum,
-  ValidateNested,
   IsJSON,
+  IsOptional,
+  IsEnum,
+  IsDate,
+  ValidateNested,
 } from "class-validator";
-import { Type } from "class-transformer";
-import { EnumUserGender } from "./EnumUserGender";
-import { HubitusCheckupCreateNestedManyWithoutUsersInput } from "./HubitusCheckupCreateNestedManyWithoutUsersInput";
-import { MessageNotifyCreateNestedManyWithoutUsersInput } from "./MessageNotifyCreateNestedManyWithoutUsersInput";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
+import { EnumUserGender } from "./EnumUserGender";
+import { Type } from "class-transformer";
 import { UserStatusCreateNestedManyWithoutUsersInput } from "./UserStatusCreateNestedManyWithoutUsersInput";
+import { HubitusCheckupCreateNestedManyWithoutUsersInput } from "./HubitusCheckupCreateNestedManyWithoutUsersInput";
+import { MessageNotifyCreateNestedManyWithoutUsersInput } from "./MessageNotifyCreateNestedManyWithoutUsersInput";
+import { UserQuestionCreateNestedManyWithoutUsersInput } from "./UserQuestionCreateNestedManyWithoutUsersInput";
+import { ReplyQuestionCreateNestedManyWithoutUsersInput } from "./ReplyQuestionCreateNestedManyWithoutUsersInput";
 
 @InputType()
 class UserCreateInput {
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  username!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  password!: string;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsJSON()
+  @Field(() => GraphQLJSON)
+  roles!: InputJsonValue;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  oauthType!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  openId!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  sessionKey!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  unionId!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  trueName?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  inviterId?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  phone?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  province?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  nickName?: string | null;
+
   @ApiProperty({
     required: false,
     type: String,
@@ -39,6 +151,17 @@ class UserCreateInput {
     nullable: true,
   })
   avatarUrl?: string | null;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumUserGender,
+  })
+  @IsEnum(EnumUserGender)
+  @IsOptional()
+  @Field(() => EnumUserGender, {
+    nullable: true,
+  })
+  gender?: "Unknown" | "Male" | "Female" | null;
 
   @ApiProperty({
     required: false,
@@ -71,38 +194,7 @@ class UserCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  country?: string | null;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  creatTime!: Date;
-
-  @ApiProperty({
-    required: false,
-    enum: EnumUserGender,
-  })
-  @IsEnum(EnumUserGender)
-  @IsOptional()
-  @Field(() => EnumUserGender, {
-    nullable: true,
-  })
-  gender?: "Unknown" | "Male" | "Female" | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => HubitusCheckupCreateNestedManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => HubitusCheckupCreateNestedManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => HubitusCheckupCreateNestedManyWithoutUsersInput, {
-    nullable: true,
-  })
-  hubitusCheckups?: HubitusCheckupCreateNestedManyWithoutUsersInput;
+  userIdCard?: string | null;
 
   @ApiProperty({
     required: false,
@@ -113,7 +205,7 @@ class UserCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  inviterId?: string | null;
+  country?: string | null;
 
   @ApiProperty({
     required: false,
@@ -132,7 +224,39 @@ class UserCreateInput {
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
+  creatTime!: Date;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
   lastLoginTime!: Date;
+
+  @ApiProperty({
+    required: false,
+    type: () => UserStatusCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => UserStatusCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => UserStatusCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  userStatuses?: UserStatusCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => HubitusCheckupCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => HubitusCheckupCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => HubitusCheckupCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  hubitusCheckups?: HubitusCheckupCreateNestedManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,
@@ -148,125 +272,27 @@ class UserCreateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  nickName?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  oauthType!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  openId!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  password!: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  phone?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  province?: string | null;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsJSON()
-  @Field(() => GraphQLJSON)
-  roles!: InputJsonValue;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  sessionKey!: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  trueName?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  unionId!: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  userIdCard?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  username!: string;
-
-  @ApiProperty({
-    required: false,
-    type: () => UserStatusCreateNestedManyWithoutUsersInput,
+    type: () => UserQuestionCreateNestedManyWithoutUsersInput,
   })
   @ValidateNested()
-  @Type(() => UserStatusCreateNestedManyWithoutUsersInput)
+  @Type(() => UserQuestionCreateNestedManyWithoutUsersInput)
   @IsOptional()
-  @Field(() => UserStatusCreateNestedManyWithoutUsersInput, {
+  @Field(() => UserQuestionCreateNestedManyWithoutUsersInput, {
     nullable: true,
   })
-  userStatuses?: UserStatusCreateNestedManyWithoutUsersInput;
+  healthQuestions?: UserQuestionCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => ReplyQuestionCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => ReplyQuestionCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => ReplyQuestionCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  replyQuestions?: ReplyQuestionCreateNestedManyWithoutUsersInput;
 }
 
 export { UserCreateInput as UserCreateInput };

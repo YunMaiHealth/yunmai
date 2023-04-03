@@ -13,18 +13,42 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
+  IsDate,
   IsOptional,
   IsJSON,
-  IsDate,
   ValidateNested,
 } from "class-validator";
+import { Type } from "class-transformer";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
-import { Type } from "class-transformer";
 import { MessageNotify } from "../../messageNotify/base/MessageNotify";
 
 @ObjectType()
 class EventLog {
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  id!: string;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  eventTime!: Date;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  eventType!: string;
+
   @ApiProperty({
     required: false,
     type: String,
@@ -47,28 +71,14 @@ class EventLog {
   eventParam!: JsonValue;
 
   @ApiProperty({
-    required: true,
+    required: false,
   })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  eventTime!: Date;
-
-  @ApiProperty({
-    required: true,
-    type: String,
+  @IsJSON()
+  @IsOptional()
+  @Field(() => GraphQLJSON, {
+    nullable: true,
   })
-  @IsString()
-  @Field(() => String)
-  eventType!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
+  relateUser!: JsonValue;
 
   @ApiProperty({
     required: false,
@@ -78,16 +88,6 @@ class EventLog {
   @Type(() => MessageNotify)
   @IsOptional()
   messageNotifies?: Array<MessageNotify>;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSON()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  relateUser!: JsonValue;
 }
 
 export { EventLog as EventLog };
