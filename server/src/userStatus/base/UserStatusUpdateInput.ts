@@ -14,9 +14,9 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
   IsOptional,
-  IsDate,
-  IsNumber,
   IsInt,
+  IsNumber,
+  IsDate,
   IsJSON,
   ValidateNested,
 } from "class-validator";
@@ -36,29 +36,7 @@ class UserStatusUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  blobValue?: string | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  dateValue?: Date | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  doubleValue?: number | null;
+  status?: string | null;
 
   @ApiProperty({
     required: false,
@@ -73,35 +51,14 @@ class UserStatusUpdateInput {
 
   @ApiProperty({
     required: false,
+    type: Number,
   })
-  @IsJSON()
+  @IsNumber()
   @IsOptional()
-  @Field(() => GraphQLJSON, {
+  @Field(() => Number, {
     nullable: true,
   })
-  jsonValue?: InputJsonValue;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  status?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  streamId?: string | null;
+  doubleValue?: number | null;
 
   @ApiProperty({
     required: false,
@@ -123,7 +80,50 @@ class UserStatusUpdateInput {
   @Field(() => Date, {
     nullable: true,
   })
+  dateValue?: Date | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsJSON()
+  @IsOptional()
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  jsonValue?: InputJsonValue;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  blobValue?: string | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
   updateTime?: Date;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  streamId?: string | null;
 
   @ApiProperty({
     required: false,

@@ -19,38 +19,38 @@ import { MessageNotifyService } from "../messageNotify.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  messageSource: "exampleMessageSource",
   id: "exampleId",
+  sendTime: new Date(),
   isNew: "true",
   messageContent: "exampleMessageContent",
-  messageSource: "exampleMessageSource",
   messageType: "exampleMessageType",
-  sendTime: new Date(),
 };
 const CREATE_RESULT = {
+  messageSource: "exampleMessageSource",
   id: "exampleId",
+  sendTime: new Date(),
   isNew: "true",
   messageContent: "exampleMessageContent",
-  messageSource: "exampleMessageSource",
   messageType: "exampleMessageType",
-  sendTime: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
+    messageSource: "exampleMessageSource",
     id: "exampleId",
+    sendTime: new Date(),
     isNew: "true",
     messageContent: "exampleMessageContent",
-    messageSource: "exampleMessageSource",
     messageType: "exampleMessageType",
-    sendTime: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
+  messageSource: "exampleMessageSource",
   id: "exampleId",
+  sendTime: new Date(),
   isNew: "true",
   messageContent: "exampleMessageContent",
-  messageSource: "exampleMessageSource",
   messageType: "exampleMessageType",
-  sendTime: new Date(),
 };
 
 const service = {

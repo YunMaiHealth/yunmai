@@ -26,17 +26,6 @@ class HubitusCheckupCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  countResult?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   currentHabitus?: string | null;
 
   @ApiProperty({
@@ -48,7 +37,7 @@ class HubitusCheckupCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  suggest?: string | null;
+  testResult?: string | null;
 
   @ApiProperty({
     required: false,
@@ -59,7 +48,18 @@ class HubitusCheckupCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  testResult?: string | null;
+  countResult?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  suggest?: string | null;
 
   @ApiProperty({
     required: true,

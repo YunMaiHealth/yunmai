@@ -2,14 +2,14 @@ import { InputJsonValue } from "../../types";
 import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type UserStatusUpdateInput = {
-  blobValue?: string | null;
-  dateValue?: Date | null;
-  doubleValue?: number | null;
-  intValue?: number | null;
-  jsonValue?: InputJsonValue;
   status?: string | null;
-  streamId?: string | null;
+  intValue?: number | null;
+  doubleValue?: number | null;
   stringValue?: string | null;
+  dateValue?: Date | null;
+  jsonValue?: InputJsonValue;
+  blobValue?: string | null;
   updateTime?: Date;
+  streamId?: string | null;
   user?: UserWhereUniqueInput | null;
 };

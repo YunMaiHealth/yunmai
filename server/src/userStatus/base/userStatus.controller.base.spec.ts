@@ -19,50 +19,50 @@ import { UserStatusService } from "../userStatus.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  blobValue: "exampleBlobValue",
-  dateValue: new Date(),
-  doubleValue: 42.42,
   id: "exampleId",
-  intValue: 42,
   status: "exampleStatus",
-  streamId: "exampleStreamId",
+  intValue: 42,
+  doubleValue: 42.42,
   stringValue: "exampleStringValue",
+  dateValue: new Date(),
+  blobValue: "exampleBlobValue",
   updateTime: new Date(),
+  streamId: "exampleStreamId",
 };
 const CREATE_RESULT = {
-  blobValue: "exampleBlobValue",
-  dateValue: new Date(),
-  doubleValue: 42.42,
   id: "exampleId",
-  intValue: 42,
   status: "exampleStatus",
-  streamId: "exampleStreamId",
+  intValue: 42,
+  doubleValue: 42.42,
   stringValue: "exampleStringValue",
+  dateValue: new Date(),
+  blobValue: "exampleBlobValue",
   updateTime: new Date(),
+  streamId: "exampleStreamId",
 };
 const FIND_MANY_RESULT = [
   {
-    blobValue: "exampleBlobValue",
-    dateValue: new Date(),
-    doubleValue: 42.42,
     id: "exampleId",
-    intValue: 42,
     status: "exampleStatus",
-    streamId: "exampleStreamId",
+    intValue: 42,
+    doubleValue: 42.42,
     stringValue: "exampleStringValue",
+    dateValue: new Date(),
+    blobValue: "exampleBlobValue",
     updateTime: new Date(),
+    streamId: "exampleStreamId",
   },
 ];
 const FIND_ONE_RESULT = {
-  blobValue: "exampleBlobValue",
-  dateValue: new Date(),
-  doubleValue: 42.42,
   id: "exampleId",
-  intValue: 42,
   status: "exampleStatus",
-  streamId: "exampleStreamId",
+  intValue: 42,
+  doubleValue: 42.42,
   stringValue: "exampleStringValue",
+  dateValue: new Date(),
+  blobValue: "exampleBlobValue",
   updateTime: new Date(),
+  streamId: "exampleStreamId",
 };
 
 const service = {

@@ -1,12 +1,12 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type MessageNotifyOrderByInput = {
-  eventId?: SortOrder;
+  messageSource?: SortOrder;
   id?: SortOrder;
+  sendTime?: SortOrder;
   isNew?: SortOrder;
   messageContent?: SortOrder;
-  messageSource?: SortOrder;
   messageType?: SortOrder;
-  sendTime?: SortOrder;
+  eventId?: SortOrder;
   userId?: SortOrder;
 };

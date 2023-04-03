@@ -2,12 +2,12 @@ import { EventLog } from "../eventLog/EventLog";
 import { User } from "../user/User";
 
 export type MessageNotify = {
-  event?: EventLog | null;
+  messageSource: string;
   id: string;
+  sendTime: Date;
   isNew: boolean;
   messageContent: string;
-  messageSource: string;
   messageType: string;
-  sendTime: Date;
+  event?: EventLog | null;
   user?: User | null;
 };

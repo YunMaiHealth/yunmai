@@ -11,27 +11,26 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { EventLog } from "../../eventLog/base/EventLog";
 import {
+  IsString,
+  IsDate,
+  IsBoolean,
   ValidateNested,
   IsOptional,
-  IsString,
-  IsBoolean,
-  IsDate,
 } from "class-validator";
 import { Type } from "class-transformer";
+import { EventLog } from "../../eventLog/base/EventLog";
 import { User } from "../../user/base/User";
 
 @ObjectType()
 class MessageNotify {
   @ApiProperty({
-    required: false,
-    type: () => EventLog,
+    required: true,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => EventLog)
-  @IsOptional()
-  event?: EventLog | null;
+  @IsString()
+  @Field(() => String)
+  messageSource!: string;
 
   @ApiProperty({
     required: true,
@@ -40,6 +39,14 @@ class MessageNotify {
   @IsString()
   @Field(() => String)
   id!: string;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  sendTime!: Date;
 
   @ApiProperty({
     required: true,
@@ -63,23 +70,16 @@ class MessageNotify {
   })
   @IsString()
   @Field(() => String)
-  messageSource!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
   messageType!: string;
 
   @ApiProperty({
-    required: true,
+    required: false,
+    type: () => EventLog,
   })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  sendTime!: Date;
+  @ValidateNested()
+  @Type(() => EventLog)
+  @IsOptional()
+  event?: EventLog | null;
 
   @ApiProperty({
     required: false,

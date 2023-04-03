@@ -12,19 +12,35 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
+  IsDate,
   IsString,
   IsOptional,
   IsJSON,
-  IsDate,
   ValidateNested,
 } from "class-validator";
+import { Type } from "class-transformer";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
-import { Type } from "class-transformer";
 import { MessageNotifyCreateNestedManyWithoutEventLogsInput } from "./MessageNotifyCreateNestedManyWithoutEventLogsInput";
 
 @InputType()
 class EventLogCreateInput {
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  eventTime!: Date;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  eventType!: string;
+
   @ApiProperty({
     required: false,
     type: String,
@@ -47,20 +63,14 @@ class EventLogCreateInput {
   eventParam?: InputJsonValue;
 
   @ApiProperty({
-    required: true,
+    required: false,
   })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  eventTime!: Date;
-
-  @ApiProperty({
-    required: true,
-    type: String,
+  @IsJSON()
+  @IsOptional()
+  @Field(() => GraphQLJSON, {
+    nullable: true,
   })
-  @IsString()
-  @Field(() => String)
-  eventType!: string;
+  relateUser?: InputJsonValue;
 
   @ApiProperty({
     required: false,
@@ -73,16 +83,6 @@ class EventLogCreateInput {
     nullable: true,
   })
   messageNotifies?: MessageNotifyCreateNestedManyWithoutEventLogsInput;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSON()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  relateUser?: InputJsonValue;
 }
 
 export { EventLogCreateInput as EventLogCreateInput };

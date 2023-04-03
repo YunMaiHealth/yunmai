@@ -14,9 +14,9 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
   IsOptional,
-  IsDate,
-  IsNumber,
   IsInt,
+  IsNumber,
+  IsDate,
   IsJSON,
   ValidateNested,
 } from "class-validator";
@@ -36,18 +36,18 @@ class UserStatusCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  blobValue?: string | null;
+  status?: string | null;
 
   @ApiProperty({
     required: false,
+    type: Number,
   })
-  @IsDate()
-  @Type(() => Date)
+  @IsInt()
   @IsOptional()
-  @Field(() => Date, {
+  @Field(() => Number, {
     nullable: true,
   })
-  dateValue?: Date | null;
+  intValue?: number | null;
 
   @ApiProperty({
     required: false,
@@ -62,14 +62,25 @@ class UserStatusCreateInput {
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsInt()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  intValue?: number | null;
+  stringValue?: string | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  dateValue?: Date | null;
 
   @ApiProperty({
     required: false,
@@ -90,7 +101,15 @@ class UserStatusCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  status?: string | null;
+  blobValue?: string | null;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  updateTime!: Date;
 
   @ApiProperty({
     required: false,
@@ -102,25 +121,6 @@ class UserStatusCreateInput {
     nullable: true,
   })
   streamId?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  stringValue?: string | null;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  updateTime!: Date;
 
   @ApiProperty({
     required: false,

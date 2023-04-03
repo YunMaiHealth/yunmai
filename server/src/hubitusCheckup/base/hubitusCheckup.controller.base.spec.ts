@@ -19,37 +19,37 @@ import { HubitusCheckupService } from "../hubitusCheckup.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  countResult: "exampleCountResult",
-  currentHabitus: "exampleCurrentHabitus",
   id: "exampleId",
-  suggest: "exampleSuggest",
+  currentHabitus: "exampleCurrentHabitus",
   testResult: "exampleTestResult",
+  countResult: "exampleCountResult",
+  suggest: "exampleSuggest",
   testTime: new Date(),
 };
 const CREATE_RESULT = {
-  countResult: "exampleCountResult",
-  currentHabitus: "exampleCurrentHabitus",
   id: "exampleId",
-  suggest: "exampleSuggest",
+  currentHabitus: "exampleCurrentHabitus",
   testResult: "exampleTestResult",
+  countResult: "exampleCountResult",
+  suggest: "exampleSuggest",
   testTime: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
-    countResult: "exampleCountResult",
-    currentHabitus: "exampleCurrentHabitus",
     id: "exampleId",
-    suggest: "exampleSuggest",
+    currentHabitus: "exampleCurrentHabitus",
     testResult: "exampleTestResult",
+    countResult: "exampleCountResult",
+    suggest: "exampleSuggest",
     testTime: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
-  countResult: "exampleCountResult",
-  currentHabitus: "exampleCurrentHabitus",
   id: "exampleId",
-  suggest: "exampleSuggest",
+  currentHabitus: "exampleCurrentHabitus",
   testResult: "exampleTestResult",
+  countResult: "exampleCountResult",
+  suggest: "exampleSuggest",
   testTime: new Date(),
 };
 

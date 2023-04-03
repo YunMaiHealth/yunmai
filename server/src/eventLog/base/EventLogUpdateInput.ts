@@ -12,40 +12,19 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
-  IsString,
-  IsOptional,
-  IsJSON,
   IsDate,
+  IsOptional,
+  IsString,
+  IsJSON,
   ValidateNested,
 } from "class-validator";
+import { Type } from "class-transformer";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
-import { Type } from "class-transformer";
 import { MessageNotifyUpdateManyWithoutEventLogsInput } from "./MessageNotifyUpdateManyWithoutEventLogsInput";
 
 @InputType()
 class EventLogUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  eventName?: string | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSON()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  eventParam?: InputJsonValue;
-
   @ApiProperty({
     required: false,
   })
@@ -70,15 +49,24 @@ class EventLogUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => MessageNotifyUpdateManyWithoutEventLogsInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => MessageNotifyUpdateManyWithoutEventLogsInput)
+  @IsString()
   @IsOptional()
-  @Field(() => MessageNotifyUpdateManyWithoutEventLogsInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  messageNotifies?: MessageNotifyUpdateManyWithoutEventLogsInput;
+  eventName?: string | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsJSON()
+  @IsOptional()
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  eventParam?: InputJsonValue;
 
   @ApiProperty({
     required: false,
@@ -89,6 +77,18 @@ class EventLogUpdateInput {
     nullable: true,
   })
   relateUser?: InputJsonValue;
+
+  @ApiProperty({
+    required: false,
+    type: () => MessageNotifyUpdateManyWithoutEventLogsInput,
+  })
+  @ValidateNested()
+  @Type(() => MessageNotifyUpdateManyWithoutEventLogsInput)
+  @IsOptional()
+  @Field(() => MessageNotifyUpdateManyWithoutEventLogsInput, {
+    nullable: true,
+  })
+  messageNotifies?: MessageNotifyUpdateManyWithoutEventLogsInput;
 }
 
 export { EventLogUpdateInput as EventLogUpdateInput };

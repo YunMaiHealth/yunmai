@@ -29,11 +29,11 @@ async function seed(bcryptSalt: Salt) {
     username: "admin",
     password: await hash("admin", bcryptSalt),
     roles: ["user"],
-    lastLoginTime: new Date(),
     oauthType: "",
     openId: "",
     sessionKey: "",
     unionId: "",
+    lastLoginTime: new Date(),
   };
 
   await client.user.upsert({

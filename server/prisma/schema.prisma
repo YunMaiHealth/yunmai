@@ -8,80 +8,104 @@ generator client {
 }
 
 model User {
-  avatarUrl       String?
-  birthday        DateTime?
-  city            String?
-  country         String?
-  creatTime       DateTime         @default(now())
-  gender          EnumUserGender?
-  hubitusCheckups HubitusCheckup[]
   id              String           @id @default(cuid())
-  inviterId       String?
-  language        String?
-  lastLoginTime   DateTime
-  messageNotifies MessageNotify[]
-  nickName        String?
+  username        String           @unique
+  password        String
+  roles           Json
   oauthType       String
   openId          String
-  password        String
+  sessionKey      String
+  unionId         String
+  trueName        String?
+  inviterId       String?
   phone           String?
   province        String?
-  roles           Json
-  sessionKey      String
-  trueName        String?
-  unionId         String
+  nickName        String?
+  avatarUrl       String?
+  gender          EnumUserGender?
+  birthday        DateTime?
+  city            String?
   userIdCard      String?
-  username        String           @unique
+  country         String?
+  language        String?
+  creatTime       DateTime         @default(now())
+  lastLoginTime   DateTime
   userStatuses    UserStatus[]
+  hubitusCheckups HubitusCheckup[]
+  messageNotifies MessageNotify[]
+  healthQuestions UserQuestion[]
+  replyQuestions  ReplyQuestion[]
 }
 
 model HubitusCheckup {
-  countResult    String?
-  currentHabitus String?
   id             String   @id @default(cuid())
-  suggest        String?
+  currentHabitus String?
   testResult     String?
+  countResult    String?
+  suggest        String?
   testTime       DateTime
   user           User     @relation(fields: [userId], references: [id])
   userId         String
 }
 
 model UserStatus {
-  blobValue   String?
-  dateValue   DateTime?
-  doubleValue Float?
   id          String    @id @default(cuid())
-  intValue    Int?
-  jsonValue   Json?
   status      String?
-  streamId    String?
+  intValue    Int?
+  doubleValue Float?
   stringValue String?
+  dateValue   DateTime?
+  jsonValue   Json?
+  blobValue   String?
   updateTime  DateTime  @updatedAt
+  streamId    String?
   user        User?     @relation(fields: [userId], references: [id])
   userId      String?
 }
 
 model MessageNotify {
-  event          EventLog? @relation(fields: [eventId], references: [id])
-  eventId        String?
+  messageSource  String
   id             String    @id @default(cuid())
+  sendTime       DateTime  @default(now())
   isNew          Boolean
   messageContent String
-  messageSource  String
   messageType    String
-  sendTime       DateTime  @default(now())
+  event          EventLog? @relation(fields: [eventId], references: [id])
+  eventId        String?
   user           User?     @relation(fields: [userId], references: [id])
   userId         String?
 }
 
 model EventLog {
-  eventName       String?
-  eventParam      Json?
+  id              String          @id @default(cuid())
   eventTime       DateTime        @default(now())
   eventType       String
-  id              String          @id @default(cuid())
-  messageNotifies MessageNotify[]
+  eventName       String?
+  eventParam      Json?
   relateUser      Json?
+  messageNotifies MessageNotify[]
+}
+
+model UserQuestion {
+  id              String          @id @default(cuid())
+  questionTime    DateTime        @default(now())
+  questionTitle   String
+  questionContent String?
+  isPublic        String
+  user            User?           @relation(fields: [userId], references: [id])
+  userId          String?
+  replyQuestions  ReplyQuestion[]
+}
+
+model ReplyQuestion {
+  id             String        @id @default(cuid())
+  replyTime      DateTime      @default(now())
+  questionReply  String
+  isPublic       String
+  replyUser      User          @relation(fields: [replyUserId], references: [id])
+  replyUserId    String
+  userQuestion   UserQuestion? @relation(fields: [userQuestionId], references: [id])
+  userQuestionId String?
 }
 
 enum EnumUserGender {

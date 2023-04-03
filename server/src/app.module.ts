@@ -6,6 +6,8 @@ import { HubitusCheckupModule } from "./hubitusCheckup/hubitusCheckup.module";
 import { UserStatusModule } from "./userStatus/userStatus.module";
 import { MessageNotifyModule } from "./messageNotify/messageNotify.module";
 import { EventLogModule } from "./eventLog/eventLog.module";
+import { UserQuestionModule } from "./userQuestion/userQuestion.module";
+import { ReplyQuestionModule } from "./replyQuestion/replyQuestion.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -27,6 +29,8 @@ import { AuthModule } from "./auth/auth.module";
     UserStatusModule,
     MessageNotifyModule,
     EventLogModule,
+    UserQuestionModule,
+    ReplyQuestionModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,
