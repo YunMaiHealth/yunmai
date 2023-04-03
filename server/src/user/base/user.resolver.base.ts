@@ -25,10 +25,12 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
-import { UserStatusFindManyArgs } from "../../userStatus/base/UserStatusFindManyArgs";
-import { UserStatus } from "../../userStatus/base/UserStatus";
 import { HubitusCheckupFindManyArgs } from "../../hubitusCheckup/base/HubitusCheckupFindManyArgs";
 import { HubitusCheckup } from "../../hubitusCheckup/base/HubitusCheckup";
+import { MessageNotifyFindManyArgs } from "../../messageNotify/base/MessageNotifyFindManyArgs";
+import { MessageNotify } from "../../messageNotify/base/MessageNotify";
+import { UserStatusFindManyArgs } from "../../userStatus/base/UserStatusFindManyArgs";
+import { UserStatus } from "../../userStatus/base/UserStatus";
 import { UserService } from "../user.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => User)
@@ -140,26 +142,6 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [UserStatus])
-  @nestAccessControl.UseRoles({
-    resource: "UserStatus",
-    action: "read",
-    possession: "any",
-  })
-  async userStatuses(
-    @graphql.Parent() parent: User,
-    @graphql.Args() args: UserStatusFindManyArgs
-  ): Promise<UserStatus[]> {
-    const results = await this.service.findUserStatuses(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.ResolveField(() => [HubitusCheckup])
   @nestAccessControl.UseRoles({
     resource: "HubitusCheckup",
@@ -171,6 +153,46 @@ export class UserResolverBase {
     @graphql.Args() args: HubitusCheckupFindManyArgs
   ): Promise<HubitusCheckup[]> {
     const results = await this.service.findHubitusCheckups(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [MessageNotify])
+  @nestAccessControl.UseRoles({
+    resource: "MessageNotify",
+    action: "read",
+    possession: "any",
+  })
+  async messageNotifies(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: MessageNotifyFindManyArgs
+  ): Promise<MessageNotify[]> {
+    const results = await this.service.findMessageNotifies(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [UserStatus])
+  @nestAccessControl.UseRoles({
+    resource: "UserStatus",
+    action: "read",
+    possession: "any",
+  })
+  async userStatuses(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: UserStatusFindManyArgs
+  ): Promise<UserStatus[]> {
+    const results = await this.service.findUserStatuses(parent.id, args);
 
     if (!results) {
       return [];

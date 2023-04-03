@@ -25,6 +25,8 @@ import { DeleteEventLogArgs } from "./DeleteEventLogArgs";
 import { EventLogFindManyArgs } from "./EventLogFindManyArgs";
 import { EventLogFindUniqueArgs } from "./EventLogFindUniqueArgs";
 import { EventLog } from "./EventLog";
+import { MessageNotifyFindManyArgs } from "../../messageNotify/base/MessageNotifyFindManyArgs";
+import { MessageNotify } from "../../messageNotify/base/MessageNotify";
 import { EventLogService } from "../eventLog.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => EventLog)
@@ -143,5 +145,25 @@ export class EventLogResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [MessageNotify])
+  @nestAccessControl.UseRoles({
+    resource: "MessageNotify",
+    action: "read",
+    possession: "any",
+  })
+  async messageNotifies(
+    @graphql.Parent() parent: EventLog,
+    @graphql.Args() args: MessageNotifyFindManyArgs
+  ): Promise<MessageNotify[]> {
+    const results = await this.service.findMessageNotifies(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
   }
 }

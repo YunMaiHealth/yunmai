@@ -2,16 +2,15 @@ import { JsonValue } from "type-fest";
 import { User } from "../user/User";
 
 export type UserStatus = {
-  id: string;
-  createdAt: Date;
-  updateTime: Date;
-  status: string | null;
-  intValue: number | null;
-  doubleValue: number | null;
-  stringValue: string | null;
-  dateValue: Date | null;
-  jsonValue: JsonValue;
   blobValue: string | null;
+  dateValue: Date | null;
+  doubleValue: number | null;
+  id: string;
+  intValue: number | null;
+  jsonValue: JsonValue;
+  status: string | null;
   streamId: string | null;
+  stringValue: string | null;
+  updateTime: Date;
   user?: User | null;
 };

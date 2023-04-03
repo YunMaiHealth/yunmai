@@ -12,11 +12,11 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
-  IsDate,
   IsString,
   IsOptional,
-  IsInt,
+  IsDate,
   IsNumber,
+  IsInt,
   IsJSON,
   ValidateNested,
 } from "class-validator";
@@ -28,14 +28,6 @@ import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 @InputType()
 class UserStatusCreateInput {
   @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  updateTime!: Date;
-
-  @ApiProperty({
     required: false,
     type: String,
   })
@@ -44,18 +36,18 @@ class UserStatusCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  status?: string | null;
+  blobValue?: string | null;
 
   @ApiProperty({
     required: false,
-    type: Number,
   })
-  @IsInt()
+  @IsDate()
+  @Type(() => Date)
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => Date, {
     nullable: true,
   })
-  intValue?: number | null;
+  dateValue?: Date | null;
 
   @ApiProperty({
     required: false,
@@ -70,25 +62,14 @@ class UserStatusCreateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: Number,
   })
-  @IsString()
+  @IsInt()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => Number, {
     nullable: true,
   })
-  stringValue?: string | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  dateValue?: Date | null;
+  intValue?: number | null;
 
   @ApiProperty({
     required: false,
@@ -109,7 +90,7 @@ class UserStatusCreateInput {
   @Field(() => String, {
     nullable: true,
   })
-  blobValue?: string | null;
+  status?: string | null;
 
   @ApiProperty({
     required: false,
@@ -121,6 +102,25 @@ class UserStatusCreateInput {
     nullable: true,
   })
   streamId?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  stringValue?: string | null;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  updateTime!: Date;
 
   @ApiProperty({
     required: false,

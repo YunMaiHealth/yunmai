@@ -1,11 +1,11 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type HubitusCheckupOrderByInput = {
-  id?: SortOrder;
-  currentHabitus?: SortOrder;
-  testResult?: SortOrder;
   countResult?: SortOrder;
+  currentHabitus?: SortOrder;
+  id?: SortOrder;
   suggest?: SortOrder;
+  testResult?: SortOrder;
   testTime?: SortOrder;
   userId?: SortOrder;
 };

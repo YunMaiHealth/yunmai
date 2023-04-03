@@ -1,16 +1,15 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type UserStatusOrderByInput = {
-  id?: SortOrder;
-  createdAt?: SortOrder;
-  updateTime?: SortOrder;
-  status?: SortOrder;
-  intValue?: SortOrder;
-  doubleValue?: SortOrder;
-  stringValue?: SortOrder;
-  dateValue?: SortOrder;
-  jsonValue?: SortOrder;
   blobValue?: SortOrder;
+  dateValue?: SortOrder;
+  doubleValue?: SortOrder;
+  id?: SortOrder;
+  intValue?: SortOrder;
+  jsonValue?: SortOrder;
+  status?: SortOrder;
   streamId?: SortOrder;
+  stringValue?: SortOrder;
+  updateTime?: SortOrder;
   userId?: SortOrder;
 };

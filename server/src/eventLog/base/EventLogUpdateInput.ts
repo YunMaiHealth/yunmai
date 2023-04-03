@@ -11,13 +11,41 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsOptional, IsString, IsJSON } from "class-validator";
-import { Type } from "class-transformer";
+import {
+  IsString,
+  IsOptional,
+  IsJSON,
+  IsDate,
+  ValidateNested,
+} from "class-validator";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
+import { Type } from "class-transformer";
+import { MessageNotifyUpdateManyWithoutEventLogsInput } from "./MessageNotifyUpdateManyWithoutEventLogsInput";
 
 @InputType()
 class EventLogUpdateInput {
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  eventName?: string | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsJSON()
+  @IsOptional()
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  eventParam?: InputJsonValue;
+
   @ApiProperty({
     required: false,
   })
@@ -42,24 +70,15 @@ class EventLogUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
+    type: () => MessageNotifyUpdateManyWithoutEventLogsInput,
   })
-  @IsString()
+  @ValidateNested()
+  @Type(() => MessageNotifyUpdateManyWithoutEventLogsInput)
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => MessageNotifyUpdateManyWithoutEventLogsInput, {
     nullable: true,
   })
-  eventName?: string | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSON()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  eventParam?: InputJsonValue;
+  messageNotifies?: MessageNotifyUpdateManyWithoutEventLogsInput;
 
   @ApiProperty({
     required: false,

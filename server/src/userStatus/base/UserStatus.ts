@@ -13,10 +13,10 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
-  IsDate,
   IsOptional,
-  IsInt,
+  IsDate,
   IsNumber,
+  IsInt,
   IsJSON,
   ValidateNested,
 } from "class-validator";
@@ -28,30 +28,6 @@ import { User } from "../../user/base/User";
 @ObjectType()
 class UserStatus {
   @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  createdAt!: Date;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  updateTime!: Date;
-
-  @ApiProperty({
     required: false,
     type: String,
   })
@@ -60,18 +36,18 @@ class UserStatus {
   @Field(() => String, {
     nullable: true,
   })
-  status!: string | null;
+  blobValue!: string | null;
 
   @ApiProperty({
     required: false,
-    type: Number,
   })
-  @IsInt()
+  @IsDate()
+  @Type(() => Date)
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => Date, {
     nullable: true,
   })
-  intValue!: number | null;
+  dateValue!: Date | null;
 
   @ApiProperty({
     required: false,
@@ -85,26 +61,23 @@ class UserStatus {
   doubleValue!: number | null;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: String,
   })
   @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  stringValue!: string | null;
+  @Field(() => String)
+  id!: string;
 
   @ApiProperty({
     required: false,
+    type: Number,
   })
-  @IsDate()
-  @Type(() => Date)
+  @IsInt()
   @IsOptional()
-  @Field(() => Date, {
+  @Field(() => Number, {
     nullable: true,
   })
-  dateValue!: Date | null;
+  intValue!: number | null;
 
   @ApiProperty({
     required: false,
@@ -125,7 +98,7 @@ class UserStatus {
   @Field(() => String, {
     nullable: true,
   })
-  blobValue!: string | null;
+  status!: string | null;
 
   @ApiProperty({
     required: false,
@@ -137,6 +110,25 @@ class UserStatus {
     nullable: true,
   })
   streamId!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  stringValue!: string | null;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  updateTime!: Date;
 
   @ApiProperty({
     required: false,

@@ -1,11 +1,38 @@
 import * as React from "react";
-import { Create, SimpleForm, CreateProps } from "react-admin";
+
+import {
+  Create,
+  SimpleForm,
+  CreateProps,
+  ReferenceInput,
+  SelectInput,
+  BooleanInput,
+  TextInput,
+  DateTimeInput,
+} from "react-admin";
+
+import { EventLogTitle } from "../eventLog/EventLogTitle";
+import { UserTitle } from "../user/UserTitle";
 
 export const MessageNotifyCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <div />
+        <ReferenceInput
+          source="eventlog.id"
+          reference="EventLog"
+          label="事件日志"
+        >
+          <SelectInput optionText={EventLogTitle} />
+        </ReferenceInput>
+        <BooleanInput label="是否已读" source="isNew" />
+        <TextInput label="消息内容" source="messageContent" />
+        <TextInput label="消息来源" source="messageSource" />
+        <TextInput label="消息类别" source="messageType" />
+        <DateTimeInput label="消息发送时间" source="sendTime" disabled />
+        <ReferenceInput source="user.id" reference="User" label="用户">
+          <SelectInput optionText={UserTitle} />
+        </ReferenceInput>
       </SimpleForm>
     </Create>
   );

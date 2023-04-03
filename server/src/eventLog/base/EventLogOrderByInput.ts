@@ -25,7 +25,16 @@ class EventLogOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  eventName?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  eventParam?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -43,15 +52,6 @@ class EventLogOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  updatedAt?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   eventType?: SortOrder;
 
   @ApiProperty({
@@ -61,16 +61,7 @@ class EventLogOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  eventName?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  eventParam?: SortOrder;
+  id?: SortOrder;
 
   @ApiProperty({
     required: false,

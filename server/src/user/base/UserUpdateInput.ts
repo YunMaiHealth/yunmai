@@ -14,17 +14,18 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
   IsOptional,
-  IsJSON,
-  IsEnum,
   IsDate,
+  IsEnum,
   ValidateNested,
+  IsJSON,
 } from "class-validator";
+import { Type } from "class-transformer";
+import { EnumUserGender } from "./EnumUserGender";
+import { HubitusCheckupUpdateManyWithoutUsersInput } from "./HubitusCheckupUpdateManyWithoutUsersInput";
+import { MessageNotifyUpdateManyWithoutUsersInput } from "./MessageNotifyUpdateManyWithoutUsersInput";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
-import { EnumUserGender } from "./EnumUserGender";
-import { Type } from "class-transformer";
 import { UserStatusUpdateManyWithoutUsersInput } from "./UserStatusUpdateManyWithoutUsersInput";
-import { HubitusCheckupUpdateManyWithoutUsersInput } from "./HubitusCheckupUpdateManyWithoutUsersInput";
 
 @InputType()
 class UserUpdateInput {
@@ -37,149 +38,7 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  username?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  password?: string;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSON()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  roles?: InputJsonValue;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  oauthType?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  openId?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  sessionKey?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  unionId?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  trueName?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  inviterId?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  phone?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  province?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  nickName?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   avatarUrl?: string | null;
-
-  @ApiProperty({
-    required: false,
-    enum: EnumUserGender,
-  })
-  @IsEnum(EnumUserGender)
-  @IsOptional()
-  @Field(() => EnumUserGender, {
-    nullable: true,
-  })
-  gender?: "Unknown" | "Male" | "Female" | null;
 
   @ApiProperty({
     required: false,
@@ -212,7 +71,41 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  userIdCard?: string | null;
+  country?: string | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  creatTime?: Date;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumUserGender,
+  })
+  @IsEnum(EnumUserGender)
+  @IsOptional()
+  @Field(() => EnumUserGender, {
+    nullable: true,
+  })
+  gender?: "Unknown" | "Male" | "Female" | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => HubitusCheckupUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => HubitusCheckupUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => HubitusCheckupUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  hubitusCheckups?: HubitusCheckupUpdateManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,
@@ -223,7 +116,7 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  country?: string | null;
+  inviterId?: string | null;
 
   @ApiProperty({
     required: false,
@@ -245,18 +138,150 @@ class UserUpdateInput {
   @Field(() => Date, {
     nullable: true,
   })
-  creatTime?: Date;
+  lastLoginTime?: Date;
+
+  @ApiProperty({
+    required: false,
+    type: () => MessageNotifyUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => MessageNotifyUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => MessageNotifyUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  messageNotifies?: MessageNotifyUpdateManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  nickName?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  oauthType?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  openId?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  password?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  phone?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  province?: string | null;
 
   @ApiProperty({
     required: false,
   })
-  @IsDate()
-  @Type(() => Date)
+  @IsJSON()
   @IsOptional()
-  @Field(() => Date, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  lastLoginTime?: Date;
+  roles?: InputJsonValue;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  sessionKey?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  trueName?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  unionId?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  userIdCard?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  username?: string;
 
   @ApiProperty({
     required: false,
@@ -269,18 +294,6 @@ class UserUpdateInput {
     nullable: true,
   })
   userStatuses?: UserStatusUpdateManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => HubitusCheckupUpdateManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => HubitusCheckupUpdateManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => HubitusCheckupUpdateManyWithoutUsersInput, {
-    nullable: true,
-  })
-  hubitusCheckups?: HubitusCheckupUpdateManyWithoutUsersInput;
 }
 
 export { UserUpdateInput as UserUpdateInput };
