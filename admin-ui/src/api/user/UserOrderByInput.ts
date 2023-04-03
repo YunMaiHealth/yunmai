@@ -2,8 +2,6 @@ import { SortOrder } from "../../util/SortOrder";
 
 export type UserOrderByInput = {
   id?: SortOrder;
-  creatTime?: SortOrder;
-  lastLoginTime?: SortOrder;
   username?: SortOrder;
   password?: SortOrder;
   roles?: SortOrder;
@@ -11,16 +9,18 @@ export type UserOrderByInput = {
   openId?: SortOrder;
   sessionKey?: SortOrder;
   unionId?: SortOrder;
+  trueName?: SortOrder;
   inviterId?: SortOrder;
   phone?: SortOrder;
-  trueName?: SortOrder;
+  province?: SortOrder;
   nickName?: SortOrder;
   avatarUrl?: SortOrder;
   gender?: SortOrder;
   birthday?: SortOrder;
+  city?: SortOrder;
   userIdCard?: SortOrder;
   country?: SortOrder;
-  province?: SortOrder;
-  city?: SortOrder;
   language?: SortOrder;
+  creatTime?: SortOrder;
+  lastLoginTime?: SortOrder;
 };

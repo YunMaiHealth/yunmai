@@ -12,43 +12,22 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
-  IsDate,
-  IsOptional,
   IsString,
+  IsOptional,
   IsJSON,
   IsEnum,
+  IsDate,
   ValidateNested,
 } from "class-validator";
-import { Type } from "class-transformer";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
 import { EnumUserGender } from "./EnumUserGender";
+import { Type } from "class-transformer";
+import { UserStatusUpdateManyWithoutUsersInput } from "./UserStatusUpdateManyWithoutUsersInput";
 import { HubitusCheckupUpdateManyWithoutUsersInput } from "./HubitusCheckupUpdateManyWithoutUsersInput";
 
 @InputType()
 class UserUpdateInput {
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  creatTime?: Date;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  lastLoginTime?: Date;
-
   @ApiProperty({
     required: false,
     type: String,
@@ -134,6 +113,17 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  trueName?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   inviterId?: string | null;
 
   @ApiProperty({
@@ -156,7 +146,7 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  trueName?: string | null;
+  province?: string | null;
 
   @ApiProperty({
     required: false,
@@ -211,6 +201,17 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  city?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   userIdCard?: string | null;
 
   @ApiProperty({
@@ -233,29 +234,41 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  province?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  city?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
   language?: string | null;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  creatTime?: Date;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  lastLoginTime?: Date;
+
+  @ApiProperty({
+    required: false,
+    type: () => UserStatusUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => UserStatusUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => UserStatusUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  userStatuses?: UserStatusUpdateManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,
