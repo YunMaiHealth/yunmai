@@ -11,29 +11,18 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { StringFilter } from "../../util/StringFilter";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
-import { IntNullableFilter } from "../../util/IntNullableFilter";
-import { FloatNullableFilter } from "../../util/FloatNullableFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
+import { FloatNullableFilter } from "../../util/FloatNullableFilter";
+import { StringFilter } from "../../util/StringFilter";
+import { IntNullableFilter } from "../../util/IntNullableFilter";
 import { JsonFilter } from "../../util/JsonFilter";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 
 @InputType()
 class UserStatusWhereInput {
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  id?: StringFilter;
-
   @ApiProperty({
     required: false,
     type: StringNullableFilter,
@@ -43,18 +32,18 @@ class UserStatusWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  status?: StringNullableFilter;
+  blobValue?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
-    type: IntNullableFilter,
+    type: DateTimeNullableFilter,
   })
-  @Type(() => IntNullableFilter)
+  @Type(() => DateTimeNullableFilter)
   @IsOptional()
-  @Field(() => IntNullableFilter, {
+  @Field(() => DateTimeNullableFilter, {
     nullable: true,
   })
-  intValue?: IntNullableFilter;
+  dateValue?: DateTimeNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -69,25 +58,25 @@ class UserStatusWhereInput {
 
   @ApiProperty({
     required: false,
-    type: StringNullableFilter,
+    type: StringFilter,
   })
-  @Type(() => StringNullableFilter)
+  @Type(() => StringFilter)
   @IsOptional()
-  @Field(() => StringNullableFilter, {
+  @Field(() => StringFilter, {
     nullable: true,
   })
-  stringValue?: StringNullableFilter;
+  id?: StringFilter;
 
   @ApiProperty({
     required: false,
-    type: DateTimeNullableFilter,
+    type: IntNullableFilter,
   })
-  @Type(() => DateTimeNullableFilter)
+  @Type(() => IntNullableFilter)
   @IsOptional()
-  @Field(() => DateTimeNullableFilter, {
+  @Field(() => IntNullableFilter, {
     nullable: true,
   })
-  dateValue?: DateTimeNullableFilter;
+  intValue?: IntNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -109,7 +98,7 @@ class UserStatusWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  blobValue?: StringNullableFilter;
+  status?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -121,6 +110,17 @@ class UserStatusWhereInput {
     nullable: true,
   })
   streamId?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  stringValue?: StringNullableFilter;
 
   @ApiProperty({
     required: false,

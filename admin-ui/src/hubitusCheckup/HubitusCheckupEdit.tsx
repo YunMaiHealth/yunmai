@@ -16,10 +16,10 @@ export const HubitusCheckupEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="当前体质" source="currentHabitus" />
-        <TextInput label="测试结果" source="testResult" />
         <TextInput label="计算结果" source="countResult" />
+        <TextInput label="当前体质" source="currentHabitus" />
         <TextInput label="检测建议" source="suggest" />
+        <TextInput label="测试结果" source="testResult" />
         <DateTimeInput label="检测时间" source="testTime" />
         <ReferenceInput source="user.id" reference="User" label="User">
           <SelectInput optionText={UserTitle} />

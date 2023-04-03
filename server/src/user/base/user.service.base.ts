@@ -10,7 +10,13 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, User, UserStatus, HubitusCheckup } from "@prisma/client";
+import {
+  Prisma,
+  User,
+  HubitusCheckup,
+  MessageNotify,
+  UserStatus,
+} from "@prisma/client";
 import { PasswordService } from "../../auth/password.service";
 import { transformStringFieldUpdateInput } from "../../prisma.util";
 
@@ -72,17 +78,6 @@ export class UserServiceBase {
     return this.prisma.user.delete(args);
   }
 
-  async findUserStatuses(
-    parentId: string,
-    args: Prisma.UserStatusFindManyArgs
-  ): Promise<UserStatus[]> {
-    return this.prisma.user
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .userStatuses(args);
-  }
-
   async findHubitusCheckups(
     parentId: string,
     args: Prisma.HubitusCheckupFindManyArgs
@@ -92,5 +87,27 @@ export class UserServiceBase {
         where: { id: parentId },
       })
       .hubitusCheckups(args);
+  }
+
+  async findMessageNotifies(
+    parentId: string,
+    args: Prisma.MessageNotifyFindManyArgs
+  ): Promise<MessageNotify[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .messageNotifies(args);
+  }
+
+  async findUserStatuses(
+    parentId: string,
+    args: Prisma.UserStatusFindManyArgs
+  ): Promise<UserStatus[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .userStatuses(args);
   }
 }

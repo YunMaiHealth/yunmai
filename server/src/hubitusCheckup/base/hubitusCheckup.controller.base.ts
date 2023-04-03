@@ -58,11 +58,11 @@ export class HubitusCheckupControllerBase {
         },
       },
       select: {
-        id: true,
-        currentHabitus: true,
-        testResult: true,
         countResult: true,
+        currentHabitus: true,
+        id: true,
         suggest: true,
+        testResult: true,
         testTime: true,
 
         user: {
@@ -91,11 +91,11 @@ export class HubitusCheckupControllerBase {
     return this.service.findMany({
       ...args,
       select: {
-        id: true,
-        currentHabitus: true,
-        testResult: true,
         countResult: true,
+        currentHabitus: true,
+        id: true,
         suggest: true,
+        testResult: true,
         testTime: true,
 
         user: {
@@ -125,11 +125,11 @@ export class HubitusCheckupControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
-        id: true,
-        currentHabitus: true,
-        testResult: true,
         countResult: true,
+        currentHabitus: true,
+        id: true,
         suggest: true,
+        testResult: true,
         testTime: true,
 
         user: {
@@ -174,11 +174,11 @@ export class HubitusCheckupControllerBase {
           },
         },
         select: {
-          id: true,
-          currentHabitus: true,
-          testResult: true,
           countResult: true,
+          currentHabitus: true,
+          id: true,
           suggest: true,
+          testResult: true,
           testTime: true,
 
           user: {
@@ -216,11 +216,11 @@ export class HubitusCheckupControllerBase {
       return await this.service.delete({
         where: params,
         select: {
-          id: true,
-          currentHabitus: true,
-          testResult: true,
           countResult: true,
+          currentHabitus: true,
+          id: true,
           suggest: true,
+          testResult: true,
           testTime: true,
 
           user: {

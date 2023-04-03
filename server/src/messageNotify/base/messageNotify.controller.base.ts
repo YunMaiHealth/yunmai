@@ -50,11 +50,40 @@ export class MessageNotifyControllerBase {
     @common.Body() data: MessageNotifyCreateInput
   ): Promise<MessageNotify> {
     return await this.service.create({
-      data: data,
+      data: {
+        ...data,
+
+        event: data.event
+          ? {
+              connect: data.event,
+            }
+          : undefined,
+
+        user: data.user
+          ? {
+              connect: data.user,
+            }
+          : undefined,
+      },
       select: {
+        event: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        isNew: true,
+        messageContent: true,
+        messageSource: true,
+        messageType: true,
+        sendTime: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
   }
@@ -76,9 +105,24 @@ export class MessageNotifyControllerBase {
     return this.service.findMany({
       ...args,
       select: {
+        event: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        isNew: true,
+        messageContent: true,
+        messageSource: true,
+        messageType: true,
+        sendTime: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
   }
@@ -101,9 +145,24 @@ export class MessageNotifyControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
+        event: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        isNew: true,
+        messageContent: true,
+        messageSource: true,
+        messageType: true,
+        sendTime: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
     if (result === null) {
@@ -133,11 +192,40 @@ export class MessageNotifyControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          event: data.event
+            ? {
+                connect: data.event,
+              }
+            : undefined,
+
+          user: data.user
+            ? {
+                connect: data.user,
+              }
+            : undefined,
+        },
         select: {
+          event: {
+            select: {
+              id: true,
+            },
+          },
+
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          isNew: true,
+          messageContent: true,
+          messageSource: true,
+          messageType: true,
+          sendTime: true,
+
+          user: {
+            select: {
+              id: true,
+            },
+          },
         },
       });
     } catch (error) {
@@ -168,9 +256,24 @@ export class MessageNotifyControllerBase {
       return await this.service.delete({
         where: params,
         select: {
+          event: {
+            select: {
+              id: true,
+            },
+          },
+
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          isNew: true,
+          messageContent: true,
+          messageSource: true,
+          messageType: true,
+          sendTime: true,
+
+          user: {
+            select: {
+              id: true,
+            },
+          },
         },
       });
     } catch (error) {

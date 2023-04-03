@@ -27,6 +27,9 @@ import { EventLogWhereUniqueInput } from "./EventLogWhereUniqueInput";
 import { EventLogFindManyArgs } from "./EventLogFindManyArgs";
 import { EventLogUpdateInput } from "./EventLogUpdateInput";
 import { EventLog } from "./EventLog";
+import { MessageNotifyFindManyArgs } from "../../messageNotify/base/MessageNotifyFindManyArgs";
+import { MessageNotify } from "../../messageNotify/base/MessageNotify";
+import { MessageNotifyWhereUniqueInput } from "../../messageNotify/base/MessageNotifyWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -50,12 +53,11 @@ export class EventLogControllerBase {
     return await this.service.create({
       data: data,
       select: {
-        id: true,
-        eventTime: true,
-        updatedAt: true,
-        eventType: true,
         eventName: true,
         eventParam: true,
+        eventTime: true,
+        eventType: true,
+        id: true,
         relateUser: true,
       },
     });
@@ -78,12 +80,11 @@ export class EventLogControllerBase {
     return this.service.findMany({
       ...args,
       select: {
-        id: true,
-        eventTime: true,
-        updatedAt: true,
-        eventType: true,
         eventName: true,
         eventParam: true,
+        eventTime: true,
+        eventType: true,
+        id: true,
         relateUser: true,
       },
     });
@@ -107,12 +108,11 @@ export class EventLogControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
-        id: true,
-        eventTime: true,
-        updatedAt: true,
-        eventType: true,
         eventName: true,
         eventParam: true,
+        eventTime: true,
+        eventType: true,
+        id: true,
         relateUser: true,
       },
     });
@@ -145,12 +145,11 @@ export class EventLogControllerBase {
         where: params,
         data: data,
         select: {
-          id: true,
-          eventTime: true,
-          updatedAt: true,
-          eventType: true,
           eventName: true,
           eventParam: true,
+          eventTime: true,
+          eventType: true,
+          id: true,
           relateUser: true,
         },
       });
@@ -182,12 +181,11 @@ export class EventLogControllerBase {
       return await this.service.delete({
         where: params,
         select: {
-          id: true,
-          eventTime: true,
-          updatedAt: true,
-          eventType: true,
           eventName: true,
           eventParam: true,
+          eventTime: true,
+          eventType: true,
+          id: true,
           relateUser: true,
         },
       });
@@ -199,5 +197,115 @@ export class EventLogControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/messageNotifies")
+  @ApiNestedQuery(MessageNotifyFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "MessageNotify",
+    action: "read",
+    possession: "any",
+  })
+  async findManyMessageNotifies(
+    @common.Req() request: Request,
+    @common.Param() params: EventLogWhereUniqueInput
+  ): Promise<MessageNotify[]> {
+    const query = plainToClass(MessageNotifyFindManyArgs, request.query);
+    const results = await this.service.findMessageNotifies(params.id, {
+      ...query,
+      select: {
+        event: {
+          select: {
+            id: true,
+          },
+        },
+
+        id: true,
+        isNew: true,
+        messageContent: true,
+        messageSource: true,
+        messageType: true,
+        sendTime: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/messageNotifies")
+  @nestAccessControl.UseRoles({
+    resource: "EventLog",
+    action: "update",
+    possession: "any",
+  })
+  async connectMessageNotifies(
+    @common.Param() params: EventLogWhereUniqueInput,
+    @common.Body() body: MessageNotifyWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      messageNotifies: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/messageNotifies")
+  @nestAccessControl.UseRoles({
+    resource: "EventLog",
+    action: "update",
+    possession: "any",
+  })
+  async updateMessageNotifies(
+    @common.Param() params: EventLogWhereUniqueInput,
+    @common.Body() body: MessageNotifyWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      messageNotifies: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/messageNotifies")
+  @nestAccessControl.UseRoles({
+    resource: "EventLog",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectMessageNotifies(
+    @common.Param() params: EventLogWhereUniqueInput,
+    @common.Body() body: MessageNotifyWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      messageNotifies: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 }

@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, EventLog } from "@prisma/client";
+import { Prisma, EventLog, MessageNotify } from "@prisma/client";
 
 export class EventLogServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -45,5 +45,16 @@ export class EventLogServiceBase {
     args: Prisma.SelectSubset<T, Prisma.EventLogDeleteArgs>
   ): Promise<EventLog> {
     return this.prisma.eventLog.delete(args);
+  }
+
+  async findMessageNotifies(
+    parentId: string,
+    args: Prisma.MessageNotifyFindManyArgs
+  ): Promise<MessageNotify[]> {
+    return this.prisma.eventLog
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .messageNotifies(args);
   }
 }

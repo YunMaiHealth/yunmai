@@ -20,25 +20,37 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   id: "exampleId",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  isNew: "true",
+  messageContent: "exampleMessageContent",
+  messageSource: "exampleMessageSource",
+  messageType: "exampleMessageType",
+  sendTime: new Date(),
 };
 const CREATE_RESULT = {
   id: "exampleId",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  isNew: "true",
+  messageContent: "exampleMessageContent",
+  messageSource: "exampleMessageSource",
+  messageType: "exampleMessageType",
+  sendTime: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
     id: "exampleId",
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    isNew: "true",
+    messageContent: "exampleMessageContent",
+    messageSource: "exampleMessageSource",
+    messageType: "exampleMessageType",
+    sendTime: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
   id: "exampleId",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  isNew: "true",
+  messageContent: "exampleMessageContent",
+  messageSource: "exampleMessageSource",
+  messageType: "exampleMessageType",
+  sendTime: new Date(),
 };
 
 const service = {
@@ -123,8 +135,7 @@ describe("MessageNotify", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        createdAt: CREATE_RESULT.createdAt.toISOString(),
-        updatedAt: CREATE_RESULT.updatedAt.toISOString(),
+        sendTime: CREATE_RESULT.sendTime.toISOString(),
       });
   });
 
@@ -135,8 +146,7 @@ describe("MessageNotify", () => {
       .expect([
         {
           ...FIND_MANY_RESULT[0],
-          createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
-          updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
+          sendTime: FIND_MANY_RESULT[0].sendTime.toISOString(),
         },
       ]);
   });
@@ -158,8 +168,7 @@ describe("MessageNotify", () => {
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
-        createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
-        updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
+        sendTime: FIND_ONE_RESULT.sendTime.toISOString(),
       });
   });
 
@@ -171,8 +180,7 @@ describe("MessageNotify", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        createdAt: CREATE_RESULT.createdAt.toISOString(),
-        updatedAt: CREATE_RESULT.updatedAt.toISOString(),
+        sendTime: CREATE_RESULT.sendTime.toISOString(),
       })
       .then(function () {
         agent

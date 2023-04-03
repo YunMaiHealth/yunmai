@@ -19,54 +19,50 @@ import { UserStatusService } from "../userStatus.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: "exampleId",
-  createdAt: new Date(),
-  updateTime: new Date(),
-  status: "exampleStatus",
-  intValue: 42,
-  doubleValue: 42.42,
-  stringValue: "exampleStringValue",
-  dateValue: new Date(),
   blobValue: "exampleBlobValue",
+  dateValue: new Date(),
+  doubleValue: 42.42,
+  id: "exampleId",
+  intValue: 42,
+  status: "exampleStatus",
   streamId: "exampleStreamId",
+  stringValue: "exampleStringValue",
+  updateTime: new Date(),
 };
 const CREATE_RESULT = {
-  id: "exampleId",
-  createdAt: new Date(),
-  updateTime: new Date(),
-  status: "exampleStatus",
-  intValue: 42,
-  doubleValue: 42.42,
-  stringValue: "exampleStringValue",
-  dateValue: new Date(),
   blobValue: "exampleBlobValue",
+  dateValue: new Date(),
+  doubleValue: 42.42,
+  id: "exampleId",
+  intValue: 42,
+  status: "exampleStatus",
   streamId: "exampleStreamId",
+  stringValue: "exampleStringValue",
+  updateTime: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
-    id: "exampleId",
-    createdAt: new Date(),
-    updateTime: new Date(),
-    status: "exampleStatus",
-    intValue: 42,
-    doubleValue: 42.42,
-    stringValue: "exampleStringValue",
-    dateValue: new Date(),
     blobValue: "exampleBlobValue",
+    dateValue: new Date(),
+    doubleValue: 42.42,
+    id: "exampleId",
+    intValue: 42,
+    status: "exampleStatus",
     streamId: "exampleStreamId",
+    stringValue: "exampleStringValue",
+    updateTime: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
-  id: "exampleId",
-  createdAt: new Date(),
-  updateTime: new Date(),
-  status: "exampleStatus",
-  intValue: 42,
-  doubleValue: 42.42,
-  stringValue: "exampleStringValue",
-  dateValue: new Date(),
   blobValue: "exampleBlobValue",
+  dateValue: new Date(),
+  doubleValue: 42.42,
+  id: "exampleId",
+  intValue: 42,
+  status: "exampleStatus",
   streamId: "exampleStreamId",
+  stringValue: "exampleStringValue",
+  updateTime: new Date(),
 };
 
 const service = {
@@ -151,9 +147,8 @@ describe("UserStatus", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        createdAt: CREATE_RESULT.createdAt.toISOString(),
-        updateTime: CREATE_RESULT.updateTime.toISOString(),
         dateValue: CREATE_RESULT.dateValue.toISOString(),
+        updateTime: CREATE_RESULT.updateTime.toISOString(),
       });
   });
 
@@ -164,9 +159,8 @@ describe("UserStatus", () => {
       .expect([
         {
           ...FIND_MANY_RESULT[0],
-          createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
-          updateTime: FIND_MANY_RESULT[0].updateTime.toISOString(),
           dateValue: FIND_MANY_RESULT[0].dateValue.toISOString(),
+          updateTime: FIND_MANY_RESULT[0].updateTime.toISOString(),
         },
       ]);
   });
@@ -188,9 +182,8 @@ describe("UserStatus", () => {
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
-        createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
-        updateTime: FIND_ONE_RESULT.updateTime.toISOString(),
         dateValue: FIND_ONE_RESULT.dateValue.toISOString(),
+        updateTime: FIND_ONE_RESULT.updateTime.toISOString(),
       });
   });
 
@@ -202,9 +195,8 @@ describe("UserStatus", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        createdAt: CREATE_RESULT.createdAt.toISOString(),
-        updateTime: CREATE_RESULT.updateTime.toISOString(),
         dateValue: CREATE_RESULT.dateValue.toISOString(),
+        updateTime: CREATE_RESULT.updateTime.toISOString(),
       })
       .then(function () {
         agent

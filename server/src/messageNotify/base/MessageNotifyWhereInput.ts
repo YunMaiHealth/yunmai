@@ -11,12 +11,27 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { StringFilter } from "../../util/StringFilter";
+import { EventLogWhereUniqueInput } from "../../eventLog/base/EventLogWhereUniqueInput";
+import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { IsOptional } from "class-validator";
+import { StringFilter } from "../../util/StringFilter";
+import { BooleanFilter } from "../../util/BooleanFilter";
+import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 
 @InputType()
 class MessageNotifyWhereInput {
+  @ApiProperty({
+    required: false,
+    type: () => EventLogWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => EventLogWhereUniqueInput)
+  @IsOptional()
+  @Field(() => EventLogWhereUniqueInput, {
+    nullable: true,
+  })
+  event?: EventLogWhereUniqueInput;
+
   @ApiProperty({
     required: false,
     type: StringFilter,
@@ -27,6 +42,62 @@ class MessageNotifyWhereInput {
     nullable: true,
   })
   id?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: BooleanFilter,
+  })
+  @Type(() => BooleanFilter)
+  @IsOptional()
+  @Field(() => BooleanFilter, {
+    nullable: true,
+  })
+  isNew?: BooleanFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  messageContent?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  messageSource?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  messageType?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => UserWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => UserWhereUniqueInput)
+  @IsOptional()
+  @Field(() => UserWhereUniqueInput, {
+    nullable: true,
+  })
+  user?: UserWhereUniqueInput;
 }
 
 export { MessageNotifyWhereInput as MessageNotifyWhereInput };

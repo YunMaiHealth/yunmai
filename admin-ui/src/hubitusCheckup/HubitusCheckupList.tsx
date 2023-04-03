@@ -19,11 +19,11 @@ export const HubitusCheckupList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
-        <TextField label="ID" source="id" />
-        <TextField label="当前体质" source="currentHabitus" />
-        <TextField label="测试结果" source="testResult" />
         <TextField label="计算结果" source="countResult" />
+        <TextField label="当前体质" source="currentHabitus" />
+        <TextField label="ID" source="id" />
         <TextField label="检测建议" source="suggest" />
+        <TextField label="测试结果" source="testResult" />
         <TextField label="检测时间" source="testTime" />
         <ReferenceField label="User" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />

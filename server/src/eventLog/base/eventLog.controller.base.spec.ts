@@ -19,34 +19,30 @@ import { EventLogService } from "../eventLog.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  id: "exampleId",
-  eventTime: new Date(),
-  updatedAt: new Date(),
-  eventType: "exampleEventType",
   eventName: "exampleEventName",
+  eventTime: new Date(),
+  eventType: "exampleEventType",
+  id: "exampleId",
 };
 const CREATE_RESULT = {
-  id: "exampleId",
-  eventTime: new Date(),
-  updatedAt: new Date(),
-  eventType: "exampleEventType",
   eventName: "exampleEventName",
+  eventTime: new Date(),
+  eventType: "exampleEventType",
+  id: "exampleId",
 };
 const FIND_MANY_RESULT = [
   {
-    id: "exampleId",
-    eventTime: new Date(),
-    updatedAt: new Date(),
-    eventType: "exampleEventType",
     eventName: "exampleEventName",
+    eventTime: new Date(),
+    eventType: "exampleEventType",
+    id: "exampleId",
   },
 ];
 const FIND_ONE_RESULT = {
-  id: "exampleId",
-  eventTime: new Date(),
-  updatedAt: new Date(),
-  eventType: "exampleEventType",
   eventName: "exampleEventName",
+  eventTime: new Date(),
+  eventType: "exampleEventType",
+  id: "exampleId",
 };
 
 const service = {
@@ -132,7 +128,6 @@ describe("EventLog", () => {
       .expect({
         ...CREATE_RESULT,
         eventTime: CREATE_RESULT.eventTime.toISOString(),
-        updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       });
   });
 
@@ -144,7 +139,6 @@ describe("EventLog", () => {
         {
           ...FIND_MANY_RESULT[0],
           eventTime: FIND_MANY_RESULT[0].eventTime.toISOString(),
-          updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
         },
       ]);
   });
@@ -167,7 +161,6 @@ describe("EventLog", () => {
       .expect({
         ...FIND_ONE_RESULT,
         eventTime: FIND_ONE_RESULT.eventTime.toISOString(),
-        updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
       });
   });
 
@@ -180,7 +173,6 @@ describe("EventLog", () => {
       .expect({
         ...CREATE_RESULT,
         eventTime: CREATE_RESULT.eventTime.toISOString(),
-        updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       })
       .then(function () {
         agent

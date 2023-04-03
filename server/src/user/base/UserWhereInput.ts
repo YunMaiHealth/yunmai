@@ -11,138 +11,18 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { StringFilter } from "../../util/StringFilter";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
 import { IsOptional, IsEnum, ValidateNested } from "class-validator";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
-import { EnumUserGender } from "./EnumUserGender";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
-import { UserStatusListRelationFilter } from "../../userStatus/base/UserStatusListRelationFilter";
+import { EnumUserGender } from "./EnumUserGender";
 import { HubitusCheckupListRelationFilter } from "../../hubitusCheckup/base/HubitusCheckupListRelationFilter";
+import { StringFilter } from "../../util/StringFilter";
+import { MessageNotifyListRelationFilter } from "../../messageNotify/base/MessageNotifyListRelationFilter";
+import { UserStatusListRelationFilter } from "../../userStatus/base/UserStatusListRelationFilter";
 
 @InputType()
 class UserWhereInput {
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  id?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  username?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  oauthType?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  openId?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  sessionKey?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  unionId?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  trueName?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  inviterId?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  phone?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  province?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  nickName?: StringNullableFilter;
-
   @ApiProperty({
     required: false,
     type: StringNullableFilter,
@@ -153,17 +33,6 @@ class UserWhereInput {
     nullable: true,
   })
   avatarUrl?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    enum: EnumUserGender,
-  })
-  @IsEnum(EnumUserGender)
-  @IsOptional()
-  @Field(() => EnumUserGender, {
-    nullable: true,
-  })
-  gender?: "Unknown" | "Male" | "Female";
 
   @ApiProperty({
     required: false,
@@ -196,7 +65,41 @@ class UserWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  userIdCard?: StringNullableFilter;
+  country?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumUserGender,
+  })
+  @IsEnum(EnumUserGender)
+  @IsOptional()
+  @Field(() => EnumUserGender, {
+    nullable: true,
+  })
+  gender?: "Unknown" | "Male" | "Female";
+
+  @ApiProperty({
+    required: false,
+    type: () => HubitusCheckupListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => HubitusCheckupListRelationFilter)
+  @IsOptional()
+  @Field(() => HubitusCheckupListRelationFilter, {
+    nullable: true,
+  })
+  hubitusCheckups?: HubitusCheckupListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  id?: StringFilter;
 
   @ApiProperty({
     required: false,
@@ -207,7 +110,7 @@ class UserWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  country?: StringNullableFilter;
+  inviterId?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -222,6 +125,128 @@ class UserWhereInput {
 
   @ApiProperty({
     required: false,
+    type: () => MessageNotifyListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => MessageNotifyListRelationFilter)
+  @IsOptional()
+  @Field(() => MessageNotifyListRelationFilter, {
+    nullable: true,
+  })
+  messageNotifies?: MessageNotifyListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  nickName?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  oauthType?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  openId?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  phone?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  province?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  sessionKey?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  trueName?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  unionId?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  userIdCard?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  username?: StringFilter;
+
+  @ApiProperty({
+    required: false,
     type: () => UserStatusListRelationFilter,
   })
   @ValidateNested()
@@ -231,18 +256,6 @@ class UserWhereInput {
     nullable: true,
   })
   userStatuses?: UserStatusListRelationFilter;
-
-  @ApiProperty({
-    required: false,
-    type: () => HubitusCheckupListRelationFilter,
-  })
-  @ValidateNested()
-  @Type(() => HubitusCheckupListRelationFilter)
-  @IsOptional()
-  @Field(() => HubitusCheckupListRelationFilter, {
-    nullable: true,
-  })
-  hubitusCheckups?: HubitusCheckupListRelationFilter;
 }
 
 export { UserWhereInput as UserWhereInput };
