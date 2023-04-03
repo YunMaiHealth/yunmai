@@ -4,8 +4,11 @@ import { HubitusCheckupUpdateManyWithoutUsersInput } from "./HubitusCheckupUpdat
 import { MessageNotifyUpdateManyWithoutUsersInput } from "./MessageNotifyUpdateManyWithoutUsersInput";
 import { UserQuestionUpdateManyWithoutUsersInput } from "./UserQuestionUpdateManyWithoutUsersInput";
 import { ReplyQuestionUpdateManyWithoutUsersInput } from "./ReplyQuestionUpdateManyWithoutUsersInput";
+import { UsePointUpdateManyWithoutUsersInput } from "./UsePointUpdateManyWithoutUsersInput";
+import { GetPointUpdateManyWithoutUsersInput } from "./GetPointUpdateManyWithoutUsersInput";
 
 export type UserUpdateInput = {
+  language?: string | null;
   username?: string;
   password?: string;
   roles?: InputJsonValue;
@@ -24,7 +27,6 @@ export type UserUpdateInput = {
   city?: string | null;
   userIdCard?: string | null;
   country?: string | null;
-  language?: string | null;
   creatTime?: Date;
   lastLoginTime?: Date;
   userStatuses?: UserStatusUpdateManyWithoutUsersInput;
@@ -32,4 +34,6 @@ export type UserUpdateInput = {
   messageNotifies?: MessageNotifyUpdateManyWithoutUsersInput;
   healthQuestions?: UserQuestionUpdateManyWithoutUsersInput;
   replyQuestions?: ReplyQuestionUpdateManyWithoutUsersInput;
+  usePoints?: UsePointUpdateManyWithoutUsersInput;
+  getPoints?: GetPointUpdateManyWithoutUsersInput;
 };

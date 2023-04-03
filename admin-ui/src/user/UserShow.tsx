@@ -20,6 +20,7 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="语言" source="language" />
         <TextField label="ID" source="id" />
         <TextField label="Username" source="username" />
         <TextField label="Roles" source="roles" />
@@ -38,7 +39,6 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
         <TextField label="城市" source="city" />
         <TextField label="用户身份证号" source="userIdCard" />
         <TextField label="国家" source="country" />
-        <TextField label="语言" source="language" />
         <DateField source="creatTime" label="创建时间" />
         <TextField label="最近一次登录时间" source="lastLoginTime" />
         <ReferenceManyField
@@ -138,6 +138,36 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
               reference="UserQuestion"
             >
               <TextField source={USERQUESTION_TITLE_FIELD} />
+            </ReferenceField>
+          </Datagrid>
+        </ReferenceManyField>
+        <ReferenceManyField
+          reference="UsePoint"
+          target="UserId"
+          label="UsePoints"
+        >
+          <Datagrid rowClick="show">
+            <TextField label="ID" source="id" />
+            <DateField source="usePointTime" label="元气使用时间" />
+            <TextField label="元气使用值" source="usePoint" />
+            <TextField label="元气使用类型" source="usePointType" />
+            <ReferenceField label="用户" source="user.id" reference="User">
+              <TextField source={USER_TITLE_FIELD} />
+            </ReferenceField>
+          </Datagrid>
+        </ReferenceManyField>
+        <ReferenceManyField
+          reference="GetPoint"
+          target="UserId"
+          label="GetPoints"
+        >
+          <Datagrid rowClick="show">
+            <TextField label="ID" source="id" />
+            <DateField source="getPointTime" label="元气获取时间" />
+            <TextField label="获取元气值" source="getPoint" />
+            <TextField label="元气获取类型" source="getPointType" />
+            <ReferenceField label="用户" source="user.id" reference="User">
+              <TextField source={USER_TITLE_FIELD} />
             </ReferenceField>
           </Datagrid>
         </ReferenceManyField>

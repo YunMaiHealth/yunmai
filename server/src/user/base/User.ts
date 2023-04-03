@@ -13,8 +13,8 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
-  IsJSON,
   IsOptional,
+  IsJSON,
   IsEnum,
   IsDate,
   ValidateNested,
@@ -28,9 +28,22 @@ import { HubitusCheckup } from "../../hubitusCheckup/base/HubitusCheckup";
 import { MessageNotify } from "../../messageNotify/base/MessageNotify";
 import { UserQuestion } from "../../userQuestion/base/UserQuestion";
 import { ReplyQuestion } from "../../replyQuestion/base/ReplyQuestion";
+import { UsePoint } from "../../usePoint/base/UsePoint";
+import { GetPoint } from "../../getPoint/base/GetPoint";
 
 @ObjectType()
 class User {
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  language!: string | null;
+
   @ApiProperty({
     required: true,
     type: String,
@@ -208,17 +221,6 @@ class User {
   country!: string | null;
 
   @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  language!: string | null;
-
-  @ApiProperty({
     required: true,
   })
   @IsDate()
@@ -278,6 +280,24 @@ class User {
   @Type(() => ReplyQuestion)
   @IsOptional()
   replyQuestions?: Array<ReplyQuestion>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [UsePoint],
+  })
+  @ValidateNested()
+  @Type(() => UsePoint)
+  @IsOptional()
+  usePoints?: Array<UsePoint>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [GetPoint],
+  })
+  @ValidateNested()
+  @Type(() => GetPoint)
+  @IsOptional()
+  getPoints?: Array<GetPoint>;
 }
 
 export { User as User };

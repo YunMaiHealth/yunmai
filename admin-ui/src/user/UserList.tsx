@@ -12,6 +12,7 @@ export const UserList = (props: ListProps): React.ReactElement => {
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
+        <TextField label="语言" source="language" />
         <TextField label="ID" source="id" />
         <TextField label="Username" source="username" />
         <TextField label="Roles" source="roles" />
@@ -30,7 +31,6 @@ export const UserList = (props: ListProps): React.ReactElement => {
         <TextField label="城市" source="city" />
         <TextField label="用户身份证号" source="userIdCard" />
         <TextField label="国家" source="country" />
-        <TextField label="语言" source="language" />
         <DateField source="creatTime" label="创建时间" />
         <TextField label="最近一次登录时间" source="lastLoginTime" />
       </Datagrid>

@@ -19,6 +19,8 @@ import {
   MessageNotify,
   UserQuestion,
   ReplyQuestion,
+  UsePoint,
+  GetPoint,
 } from "@prisma/client";
 
 import { PasswordService } from "../../auth/password.service";
@@ -135,5 +137,27 @@ export class UserServiceBase {
         where: { id: parentId },
       })
       .replyQuestions(args);
+  }
+
+  async findUsePoints(
+    parentId: string,
+    args: Prisma.UsePointFindManyArgs
+  ): Promise<UsePoint[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .usePoints(args);
+  }
+
+  async findGetPoints(
+    parentId: string,
+    args: Prisma.GetPointFindManyArgs
+  ): Promise<GetPoint[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .getPoints(args);
   }
 }

@@ -1,6 +1,7 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type UserOrderByInput = {
+  language?: SortOrder;
   id?: SortOrder;
   username?: SortOrder;
   password?: SortOrder;
@@ -20,7 +21,6 @@ export type UserOrderByInput = {
   city?: SortOrder;
   userIdCard?: SortOrder;
   country?: SortOrder;
-  language?: SortOrder;
   creatTime?: SortOrder;
   lastLoginTime?: SortOrder;
 };

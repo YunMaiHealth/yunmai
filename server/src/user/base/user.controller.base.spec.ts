@@ -19,6 +19,7 @@ import { UserService } from "../user.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  language: "exampleLanguage",
   id: "exampleId",
   username: "exampleUsername",
   password: "examplePassword",
@@ -36,11 +37,11 @@ const CREATE_INPUT = {
   city: "exampleCity",
   userIdCard: "exampleUserIdCard",
   country: "exampleCountry",
-  language: "exampleLanguage",
   creatTime: new Date(),
   lastLoginTime: new Date(),
 };
 const CREATE_RESULT = {
+  language: "exampleLanguage",
   id: "exampleId",
   username: "exampleUsername",
   password: "examplePassword",
@@ -58,12 +59,12 @@ const CREATE_RESULT = {
   city: "exampleCity",
   userIdCard: "exampleUserIdCard",
   country: "exampleCountry",
-  language: "exampleLanguage",
   creatTime: new Date(),
   lastLoginTime: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
+    language: "exampleLanguage",
     id: "exampleId",
     username: "exampleUsername",
     password: "examplePassword",
@@ -81,12 +82,12 @@ const FIND_MANY_RESULT = [
     city: "exampleCity",
     userIdCard: "exampleUserIdCard",
     country: "exampleCountry",
-    language: "exampleLanguage",
     creatTime: new Date(),
     lastLoginTime: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
+  language: "exampleLanguage",
   id: "exampleId",
   username: "exampleUsername",
   password: "examplePassword",
@@ -104,7 +105,6 @@ const FIND_ONE_RESULT = {
   city: "exampleCity",
   userIdCard: "exampleUserIdCard",
   country: "exampleCountry",
-  language: "exampleLanguage",
   creatTime: new Date(),
   lastLoginTime: new Date(),
 };
