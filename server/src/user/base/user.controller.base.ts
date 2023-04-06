@@ -27,27 +27,27 @@ import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserUpdateInput } from "./UserUpdateInput";
 import { User } from "./User";
-import { UserStatusFindManyArgs } from "../../userStatus/base/UserStatusFindManyArgs";
-import { UserStatus } from "../../userStatus/base/UserStatus";
-import { UserStatusWhereUniqueInput } from "../../userStatus/base/UserStatusWhereUniqueInput";
-import { HubitusCheckupFindManyArgs } from "../../hubitusCheckup/base/HubitusCheckupFindManyArgs";
-import { HubitusCheckup } from "../../hubitusCheckup/base/HubitusCheckup";
-import { HubitusCheckupWhereUniqueInput } from "../../hubitusCheckup/base/HubitusCheckupWhereUniqueInput";
-import { MessageNotifyFindManyArgs } from "../../messageNotify/base/MessageNotifyFindManyArgs";
-import { MessageNotify } from "../../messageNotify/base/MessageNotify";
-import { MessageNotifyWhereUniqueInput } from "../../messageNotify/base/MessageNotifyWhereUniqueInput";
-import { UserQuestionFindManyArgs } from "../../userQuestion/base/UserQuestionFindManyArgs";
-import { UserQuestion } from "../../userQuestion/base/UserQuestion";
-import { UserQuestionWhereUniqueInput } from "../../userQuestion/base/UserQuestionWhereUniqueInput";
-import { ReplyQuestionFindManyArgs } from "../../replyQuestion/base/ReplyQuestionFindManyArgs";
-import { ReplyQuestion } from "../../replyQuestion/base/ReplyQuestion";
-import { ReplyQuestionWhereUniqueInput } from "../../replyQuestion/base/ReplyQuestionWhereUniqueInput";
-import { UsePointFindManyArgs } from "../../usePoint/base/UsePointFindManyArgs";
-import { UsePoint } from "../../usePoint/base/UsePoint";
-import { UsePointWhereUniqueInput } from "../../usePoint/base/UsePointWhereUniqueInput";
-import { GetPointFindManyArgs } from "../../getPoint/base/GetPointFindManyArgs";
-import { GetPoint } from "../../getPoint/base/GetPoint";
-import { GetPointWhereUniqueInput } from "../../getPoint/base/GetPointWhereUniqueInput";
+import { HubitusFindManyArgs } from "../../hubitus/base/HubitusFindManyArgs";
+import { Hubitus } from "../../hubitus/base/Hubitus";
+import { HubitusWhereUniqueInput } from "../../hubitus/base/HubitusWhereUniqueInput";
+import { StatusFindManyArgs } from "../../status/base/StatusFindManyArgs";
+import { Status } from "../../status/base/Status";
+import { StatusWhereUniqueInput } from "../../status/base/StatusWhereUniqueInput";
+import { MessageFindManyArgs } from "../../message/base/MessageFindManyArgs";
+import { Message } from "../../message/base/Message";
+import { MessageWhereUniqueInput } from "../../message/base/MessageWhereUniqueInput";
+import { QuestionFindManyArgs } from "../../question/base/QuestionFindManyArgs";
+import { Question } from "../../question/base/Question";
+import { QuestionWhereUniqueInput } from "../../question/base/QuestionWhereUniqueInput";
+import { ReplyFindManyArgs } from "../../reply/base/ReplyFindManyArgs";
+import { Reply } from "../../reply/base/Reply";
+import { ReplyWhereUniqueInput } from "../../reply/base/ReplyWhereUniqueInput";
+import { UsepointFindManyArgs } from "../../usepoint/base/UsepointFindManyArgs";
+import { Usepoint } from "../../usepoint/base/Usepoint";
+import { UsepointWhereUniqueInput } from "../../usepoint/base/UsepointWhereUniqueInput";
+import { GetpointFindManyArgs } from "../../getpoint/base/GetpointFindManyArgs";
+import { Getpoint } from "../../getpoint/base/Getpoint";
+import { GetpointWhereUniqueInput } from "../../getpoint/base/GetpointWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -71,27 +71,27 @@ export class UserControllerBase {
     return await this.service.create({
       data: data,
       select: {
-        language: true,
         id: true,
+        creatTime: true,
+        lastLoginTime: true,
         username: true,
         roles: true,
         oauthType: true,
         openId: true,
         sessionKey: true,
         unionId: true,
-        trueName: true,
         inviterId: true,
         phone: true,
-        province: true,
+        trueName: true,
         nickName: true,
         avatarUrl: true,
         gender: true,
         birthday: true,
-        city: true,
         userIdCard: true,
         country: true,
-        creatTime: true,
-        lastLoginTime: true,
+        province: true,
+        city: true,
+        language: true,
       },
     });
   }
@@ -113,27 +113,27 @@ export class UserControllerBase {
     return this.service.findMany({
       ...args,
       select: {
-        language: true,
         id: true,
+        creatTime: true,
+        lastLoginTime: true,
         username: true,
         roles: true,
         oauthType: true,
         openId: true,
         sessionKey: true,
         unionId: true,
-        trueName: true,
         inviterId: true,
         phone: true,
-        province: true,
+        trueName: true,
         nickName: true,
         avatarUrl: true,
         gender: true,
         birthday: true,
-        city: true,
         userIdCard: true,
         country: true,
-        creatTime: true,
-        lastLoginTime: true,
+        province: true,
+        city: true,
+        language: true,
       },
     });
   }
@@ -156,27 +156,27 @@ export class UserControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
-        language: true,
         id: true,
+        creatTime: true,
+        lastLoginTime: true,
         username: true,
         roles: true,
         oauthType: true,
         openId: true,
         sessionKey: true,
         unionId: true,
-        trueName: true,
         inviterId: true,
         phone: true,
-        province: true,
+        trueName: true,
         nickName: true,
         avatarUrl: true,
         gender: true,
         birthday: true,
-        city: true,
         userIdCard: true,
         country: true,
-        creatTime: true,
-        lastLoginTime: true,
+        province: true,
+        city: true,
+        language: true,
       },
     });
     if (result === null) {
@@ -208,27 +208,27 @@ export class UserControllerBase {
         where: params,
         data: data,
         select: {
-          language: true,
           id: true,
+          creatTime: true,
+          lastLoginTime: true,
           username: true,
           roles: true,
           oauthType: true,
           openId: true,
           sessionKey: true,
           unionId: true,
-          trueName: true,
           inviterId: true,
           phone: true,
-          province: true,
+          trueName: true,
           nickName: true,
           avatarUrl: true,
           gender: true,
           birthday: true,
-          city: true,
           userIdCard: true,
           country: true,
-          creatTime: true,
-          lastLoginTime: true,
+          province: true,
+          city: true,
+          language: true,
         },
       });
     } catch (error) {
@@ -259,27 +259,27 @@ export class UserControllerBase {
       return await this.service.delete({
         where: params,
         select: {
-          language: true,
           id: true,
+          creatTime: true,
+          lastLoginTime: true,
           username: true,
           roles: true,
           oauthType: true,
           openId: true,
           sessionKey: true,
           unionId: true,
-          trueName: true,
           inviterId: true,
           phone: true,
-          province: true,
+          trueName: true,
           nickName: true,
           avatarUrl: true,
           gender: true,
           birthday: true,
-          city: true,
           userIdCard: true,
           country: true,
-          creatTime: true,
-          lastLoginTime: true,
+          province: true,
+          city: true,
+          language: true,
         },
       });
     } catch (error) {
@@ -293,127 +293,19 @@ export class UserControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/userStatuses")
-  @ApiNestedQuery(UserStatusFindManyArgs)
+  @common.Get("/:id/hubituses")
+  @ApiNestedQuery(HubitusFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "UserStatus",
+    resource: "Hubitus",
     action: "read",
     possession: "any",
   })
-  async findManyUserStatuses(
+  async findManyHubituses(
     @common.Req() request: Request,
     @common.Param() params: UserWhereUniqueInput
-  ): Promise<UserStatus[]> {
-    const query = plainToClass(UserStatusFindManyArgs, request.query);
-    const results = await this.service.findUserStatuses(params.id, {
-      ...query,
-      select: {
-        id: true,
-        status: true,
-        intValue: true,
-        doubleValue: true,
-        stringValue: true,
-        dateValue: true,
-        jsonValue: true,
-        blobValue: true,
-        updateTime: true,
-        streamId: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results;
-  }
-
-  @common.Post("/:id/userStatuses")
-  @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
-  })
-  async connectUserStatuses(
-    @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: UserStatusWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      userStatuses: {
-        connect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Patch("/:id/userStatuses")
-  @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
-  })
-  async updateUserStatuses(
-    @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: UserStatusWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      userStatuses: {
-        set: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Delete("/:id/userStatuses")
-  @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
-  })
-  async disconnectUserStatuses(
-    @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: UserStatusWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      userStatuses: {
-        disconnect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/hubitusCheckups")
-  @ApiNestedQuery(HubitusCheckupFindManyArgs)
-  @nestAccessControl.UseRoles({
-    resource: "HubitusCheckup",
-    action: "read",
-    possession: "any",
-  })
-  async findManyHubitusCheckups(
-    @common.Req() request: Request,
-    @common.Param() params: UserWhereUniqueInput
-  ): Promise<HubitusCheckup[]> {
-    const query = plainToClass(HubitusCheckupFindManyArgs, request.query);
-    const results = await this.service.findHubitusCheckups(params.id, {
+  ): Promise<Hubitus[]> {
+    const query = plainToClass(HubitusFindManyArgs, request.query);
+    const results = await this.service.findHubituses(params.id, {
       ...query,
       select: {
         id: true,
@@ -438,18 +330,18 @@ export class UserControllerBase {
     return results;
   }
 
-  @common.Post("/:id/hubitusCheckups")
+  @common.Post("/:id/hubituses")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async connectHubitusCheckups(
+  async connectHubituses(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: HubitusCheckupWhereUniqueInput[]
+    @common.Body() body: HubitusWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      hubitusCheckups: {
+      hubituses: {
         connect: body,
       },
     };
@@ -460,18 +352,18 @@ export class UserControllerBase {
     });
   }
 
-  @common.Patch("/:id/hubitusCheckups")
+  @common.Patch("/:id/hubituses")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async updateHubitusCheckups(
+  async updateHubituses(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: HubitusCheckupWhereUniqueInput[]
+    @common.Body() body: HubitusWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      hubitusCheckups: {
+      hubituses: {
         set: body,
       },
     };
@@ -482,18 +374,18 @@ export class UserControllerBase {
     });
   }
 
-  @common.Delete("/:id/hubitusCheckups")
+  @common.Delete("/:id/hubituses")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async disconnectHubitusCheckups(
+  async disconnectHubituses(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: HubitusCheckupWhereUniqueInput[]
+    @common.Body() body: HubitusWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      hubitusCheckups: {
+      hubituses: {
         disconnect: body,
       },
     };
@@ -505,27 +397,135 @@ export class UserControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/messageNotifies")
-  @ApiNestedQuery(MessageNotifyFindManyArgs)
+  @common.Get("/:id/Statuses")
+  @ApiNestedQuery(StatusFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "MessageNotify",
+    resource: "Status",
     action: "read",
     possession: "any",
   })
-  async findManyMessageNotifies(
+  async findManyStatuses(
     @common.Req() request: Request,
     @common.Param() params: UserWhereUniqueInput
-  ): Promise<MessageNotify[]> {
-    const query = plainToClass(MessageNotifyFindManyArgs, request.query);
-    const results = await this.service.findMessageNotifies(params.id, {
+  ): Promise<Status[]> {
+    const query = plainToClass(StatusFindManyArgs, request.query);
+    const results = await this.service.findStatuses(params.id, {
       ...query,
       select: {
-        messageSource: true,
+        id: true,
+        updateTime: true,
+        status: true,
+        intValue: true,
+        doubleValue: true,
+        stringValue: true,
+        dateValue: true,
+        jsonValue: true,
+        blobValue: true,
+        streamId: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/Statuses")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async connectStatuses(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: StatusWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      Statuses: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/Statuses")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async updateStatuses(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: StatusWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      Statuses: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/Statuses")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectStatuses(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: StatusWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      Statuses: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/messages")
+  @ApiNestedQuery(MessageFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "Message",
+    action: "read",
+    possession: "any",
+  })
+  async findManyMessages(
+    @common.Req() request: Request,
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<Message[]> {
+    const query = plainToClass(MessageFindManyArgs, request.query);
+    const results = await this.service.findMessages(params.id, {
+      ...query,
+      select: {
         id: true,
         sendTime: true,
         isNew: true,
         messageContent: true,
         messageType: true,
+        messageSource: true,
 
         event: {
           select: {
@@ -548,18 +548,18 @@ export class UserControllerBase {
     return results;
   }
 
-  @common.Post("/:id/messageNotifies")
+  @common.Post("/:id/messages")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async connectMessageNotifies(
+  async connectMessages(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: MessageNotifyWhereUniqueInput[]
+    @common.Body() body: MessageWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      messageNotifies: {
+      messages: {
         connect: body,
       },
     };
@@ -570,18 +570,18 @@ export class UserControllerBase {
     });
   }
 
-  @common.Patch("/:id/messageNotifies")
+  @common.Patch("/:id/messages")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async updateMessageNotifies(
+  async updateMessages(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: MessageNotifyWhereUniqueInput[]
+    @common.Body() body: MessageWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      messageNotifies: {
+      messages: {
         set: body,
       },
     };
@@ -592,18 +592,18 @@ export class UserControllerBase {
     });
   }
 
-  @common.Delete("/:id/messageNotifies")
+  @common.Delete("/:id/messages")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async disconnectMessageNotifies(
+  async disconnectMessages(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: MessageNotifyWhereUniqueInput[]
+    @common.Body() body: MessageWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      messageNotifies: {
+      messages: {
         disconnect: body,
       },
     };
@@ -615,19 +615,19 @@ export class UserControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/healthQuestions")
-  @ApiNestedQuery(UserQuestionFindManyArgs)
+  @common.Get("/:id/questions")
+  @ApiNestedQuery(QuestionFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "UserQuestion",
+    resource: "Question",
     action: "read",
     possession: "any",
   })
-  async findManyHealthQuestions(
+  async findManyQuestions(
     @common.Req() request: Request,
     @common.Param() params: UserWhereUniqueInput
-  ): Promise<UserQuestion[]> {
-    const query = plainToClass(UserQuestionFindManyArgs, request.query);
-    const results = await this.service.findHealthQuestions(params.id, {
+  ): Promise<Question[]> {
+    const query = plainToClass(QuestionFindManyArgs, request.query);
+    const results = await this.service.findQuestions(params.id, {
       ...query,
       select: {
         id: true,
@@ -651,18 +651,18 @@ export class UserControllerBase {
     return results;
   }
 
-  @common.Post("/:id/healthQuestions")
+  @common.Post("/:id/questions")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async connectHealthQuestions(
+  async connectQuestions(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: UserQuestionWhereUniqueInput[]
+    @common.Body() body: QuestionWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      healthQuestions: {
+      questions: {
         connect: body,
       },
     };
@@ -673,18 +673,18 @@ export class UserControllerBase {
     });
   }
 
-  @common.Patch("/:id/healthQuestions")
+  @common.Patch("/:id/questions")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async updateHealthQuestions(
+  async updateQuestions(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: UserQuestionWhereUniqueInput[]
+    @common.Body() body: QuestionWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      healthQuestions: {
+      questions: {
         set: body,
       },
     };
@@ -695,18 +695,18 @@ export class UserControllerBase {
     });
   }
 
-  @common.Delete("/:id/healthQuestions")
+  @common.Delete("/:id/questions")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async disconnectHealthQuestions(
+  async disconnectQuestions(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: UserQuestionWhereUniqueInput[]
+    @common.Body() body: QuestionWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      healthQuestions: {
+      questions: {
         disconnect: body,
       },
     };
@@ -718,19 +718,19 @@ export class UserControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/replyQuestions")
-  @ApiNestedQuery(ReplyQuestionFindManyArgs)
+  @common.Get("/:id/replys")
+  @ApiNestedQuery(ReplyFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "ReplyQuestion",
+    resource: "Reply",
     action: "read",
     possession: "any",
   })
-  async findManyReplyQuestions(
+  async findManyReplys(
     @common.Req() request: Request,
     @common.Param() params: UserWhereUniqueInput
-  ): Promise<ReplyQuestion[]> {
-    const query = plainToClass(ReplyQuestionFindManyArgs, request.query);
-    const results = await this.service.findReplyQuestions(params.id, {
+  ): Promise<Reply[]> {
+    const query = plainToClass(ReplyFindManyArgs, request.query);
+    const results = await this.service.findReplys(params.id, {
       ...query,
       select: {
         id: true,
@@ -759,18 +759,18 @@ export class UserControllerBase {
     return results;
   }
 
-  @common.Post("/:id/replyQuestions")
+  @common.Post("/:id/replys")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async connectReplyQuestions(
+  async connectReplys(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: ReplyQuestionWhereUniqueInput[]
+    @common.Body() body: ReplyWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      replyQuestions: {
+      replys: {
         connect: body,
       },
     };
@@ -781,18 +781,18 @@ export class UserControllerBase {
     });
   }
 
-  @common.Patch("/:id/replyQuestions")
+  @common.Patch("/:id/replys")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async updateReplyQuestions(
+  async updateReplys(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: ReplyQuestionWhereUniqueInput[]
+    @common.Body() body: ReplyWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      replyQuestions: {
+      replys: {
         set: body,
       },
     };
@@ -803,18 +803,18 @@ export class UserControllerBase {
     });
   }
 
-  @common.Delete("/:id/replyQuestions")
+  @common.Delete("/:id/replys")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async disconnectReplyQuestions(
+  async disconnectReplys(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: ReplyQuestionWhereUniqueInput[]
+    @common.Body() body: ReplyWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      replyQuestions: {
+      replys: {
         disconnect: body,
       },
     };
@@ -826,19 +826,19 @@ export class UserControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/usePoints")
-  @ApiNestedQuery(UsePointFindManyArgs)
+  @common.Get("/:id/usepoints")
+  @ApiNestedQuery(UsepointFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "UsePoint",
+    resource: "Usepoint",
     action: "read",
     possession: "any",
   })
-  async findManyUsePoints(
+  async findManyUsepoints(
     @common.Req() request: Request,
     @common.Param() params: UserWhereUniqueInput
-  ): Promise<UsePoint[]> {
-    const query = plainToClass(UsePointFindManyArgs, request.query);
-    const results = await this.service.findUsePoints(params.id, {
+  ): Promise<Usepoint[]> {
+    const query = plainToClass(UsepointFindManyArgs, request.query);
+    const results = await this.service.findUsepoints(params.id, {
       ...query,
       select: {
         id: true,
@@ -861,18 +861,18 @@ export class UserControllerBase {
     return results;
   }
 
-  @common.Post("/:id/usePoints")
+  @common.Post("/:id/usepoints")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async connectUsePoints(
+  async connectUsepoints(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: UsePointWhereUniqueInput[]
+    @common.Body() body: UsepointWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      usePoints: {
+      usepoints: {
         connect: body,
       },
     };
@@ -883,18 +883,18 @@ export class UserControllerBase {
     });
   }
 
-  @common.Patch("/:id/usePoints")
+  @common.Patch("/:id/usepoints")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async updateUsePoints(
+  async updateUsepoints(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: UsePointWhereUniqueInput[]
+    @common.Body() body: UsepointWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      usePoints: {
+      usepoints: {
         set: body,
       },
     };
@@ -905,18 +905,18 @@ export class UserControllerBase {
     });
   }
 
-  @common.Delete("/:id/usePoints")
+  @common.Delete("/:id/usepoints")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async disconnectUsePoints(
+  async disconnectUsepoints(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: UsePointWhereUniqueInput[]
+    @common.Body() body: UsepointWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      usePoints: {
+      usepoints: {
         disconnect: body,
       },
     };
@@ -928,19 +928,19 @@ export class UserControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/getPoints")
-  @ApiNestedQuery(GetPointFindManyArgs)
+  @common.Get("/:id/getpoints")
+  @ApiNestedQuery(GetpointFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "GetPoint",
+    resource: "Getpoint",
     action: "read",
     possession: "any",
   })
-  async findManyGetPoints(
+  async findManyGetpoints(
     @common.Req() request: Request,
     @common.Param() params: UserWhereUniqueInput
-  ): Promise<GetPoint[]> {
-    const query = plainToClass(GetPointFindManyArgs, request.query);
-    const results = await this.service.findGetPoints(params.id, {
+  ): Promise<Getpoint[]> {
+    const query = plainToClass(GetpointFindManyArgs, request.query);
+    const results = await this.service.findGetpoints(params.id, {
       ...query,
       select: {
         id: true,
@@ -963,18 +963,18 @@ export class UserControllerBase {
     return results;
   }
 
-  @common.Post("/:id/getPoints")
+  @common.Post("/:id/getpoints")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async connectGetPoints(
+  async connectGetpoints(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: GetPointWhereUniqueInput[]
+    @common.Body() body: GetpointWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      getPoints: {
+      getpoints: {
         connect: body,
       },
     };
@@ -985,18 +985,18 @@ export class UserControllerBase {
     });
   }
 
-  @common.Patch("/:id/getPoints")
+  @common.Patch("/:id/getpoints")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async updateGetPoints(
+  async updateGetpoints(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: GetPointWhereUniqueInput[]
+    @common.Body() body: GetpointWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      getPoints: {
+      getpoints: {
         set: body,
       },
     };
@@ -1007,18 +1007,18 @@ export class UserControllerBase {
     });
   }
 
-  @common.Delete("/:id/getPoints")
+  @common.Delete("/:id/getpoints")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async disconnectGetPoints(
+  async disconnectGetpoints(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: GetPointWhereUniqueInput[]
+    @common.Body() body: GetpointWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      getPoints: {
+      getpoints: {
         disconnect: body,
       },
     };

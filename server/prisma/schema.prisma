@@ -8,38 +8,38 @@ generator client {
 }
 
 model User {
-  language        String?
-  id              String           @id @default(cuid())
-  username        String           @unique
-  password        String
-  roles           Json
-  oauthType       String
-  openId          String
-  sessionKey      String
-  unionId         String
-  trueName        String?
-  inviterId       String?
-  phone           String?
-  province        String?
-  nickName        String?
-  avatarUrl       String?
-  gender          EnumUserGender?
-  birthday        DateTime?
-  city            String?
-  userIdCard      String?
-  country         String?
-  creatTime       DateTime         @default(now())
-  lastLoginTime   DateTime
-  userStatuses    UserStatus[]
-  hubitusCheckups HubitusCheckup[]
-  messageNotifies MessageNotify[]
-  healthQuestions UserQuestion[]
-  replyQuestions  ReplyQuestion[]
-  usePoints       UsePoint[]
-  getPoints       GetPoint[]
+  id            String          @id @default(cuid())
+  creatTime     DateTime        @default(now())
+  lastLoginTime DateTime
+  username      String          @unique
+  password      String
+  roles         Json
+  oauthType     String
+  openId        String
+  sessionKey    String
+  unionId       String
+  inviterId     String?
+  phone         String?
+  trueName      String?
+  nickName      String?
+  avatarUrl     String?
+  gender        EnumUserGender?
+  birthday      DateTime?
+  userIdCard    String?
+  country       String?
+  province      String?
+  city          String?
+  language      String?
+  hubituses     Hubitus[]
+  Statuses      Status[]
+  messages      Message[]
+  questions     Question[]
+  replys        Reply[]
+  usepoints     Usepoint[]
+  getpoints     Getpoint[]
 }
 
-model HubitusCheckup {
+model Hubitus {
   id             String   @id @default(cuid())
   currentHabitus String?
   testResult     String?
@@ -50,8 +50,9 @@ model HubitusCheckup {
   userId         String
 }
 
-model UserStatus {
+model Status {
   id          String    @id @default(cuid())
+  updateTime  DateTime  @updatedAt
   status      String?
   intValue    Int?
   doubleValue Float?
@@ -59,58 +60,57 @@ model UserStatus {
   dateValue   DateTime?
   jsonValue   Json?
   blobValue   String?
-  updateTime  DateTime  @updatedAt
   streamId    String?
   user        User?     @relation(fields: [userId], references: [id])
   userId      String?
 }
 
-model MessageNotify {
-  messageSource  String
-  id             String    @id @default(cuid())
-  sendTime       DateTime  @default(now())
+model Message {
+  id             String   @id @default(cuid())
+  sendTime       DateTime @default(now())
   isNew          Boolean
   messageContent String
   messageType    String
-  event          EventLog? @relation(fields: [eventId], references: [id])
+  messageSource  String
+  event          Event?   @relation(fields: [eventId], references: [id])
   eventId        String?
-  user           User?     @relation(fields: [userId], references: [id])
+  user           User?    @relation(fields: [userId], references: [id])
   userId         String?
 }
 
-model EventLog {
-  id              String          @id @default(cuid())
-  eventTime       DateTime        @default(now())
+model Event {
+  id              String    @id @default(cuid())
+  eventTime       DateTime  @default(now())
   eventType       String
   eventName       String?
   eventParam      Json?
   relateUser      Json?
-  messageNotifies MessageNotify[]
+  messageNotifies Message[]
 }
 
-model UserQuestion {
-  id              String          @id @default(cuid())
-  questionTime    DateTime        @default(now())
+model Question {
+  id              String   @id @default(cuid())
+  questionTime    DateTime @default(now())
   questionTitle   String
   questionContent String?
   isPublic        String
-  user            User?           @relation(fields: [userId], references: [id])
+  user            User?    @relation(fields: [userId], references: [id])
   userId          String?
-  replyQuestions  ReplyQuestion[]
+  replyQuestions  Reply[]
 }
 
-model ReplyQuestion {
-  id             String        @id @default(cuid())
-  replyTime      DateTime      @default(now())
+model Reply {
+  id             String    @id @default(cuid())
+  replyTime      DateTime  @default(now())
   questionReply  String
   isPublic       String
-  replyUser      User          @relation(fields: [replyUserId], references: [id])
+  replyUser      User      @relation(fields: [replyUserId], references: [id])
   replyUserId    String
-  userQuestion   UserQuestion? @relation(fields: [userQuestionId], references: [id])
+  userQuestion   Question? @relation(fields: [userQuestionId], references: [id])
   userQuestionId String?
 }
 
-model UsePoint {
+model Usepoint {
   id           String   @id @default(cuid())
   usePointTime DateTime @default(now())
   usePoint     Int
@@ -119,7 +119,7 @@ model UsePoint {
   userId       String?
 }
 
-model GetPoint {
+model Getpoint {
   id           String   @id @default(cuid())
   getPointTime DateTime @default(now())
   getPoint     Int?
