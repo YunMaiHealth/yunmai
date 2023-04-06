@@ -10,6 +10,7 @@ import { UserQuestionModule } from "./userQuestion/userQuestion.module";
 import { ReplyQuestionModule } from "./replyQuestion/replyQuestion.module";
 import { UsePointModule } from "./usePoint/usePoint.module";
 import { GetPointModule } from "./getPoint/getPoint.module";
+import { TestModule } from "./test/test.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -35,6 +36,7 @@ import { AuthModule } from "./auth/auth.module";
     ReplyQuestionModule,
     UsePointModule,
     GetPointModule,
+    TestModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,
