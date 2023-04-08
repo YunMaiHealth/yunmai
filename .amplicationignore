@@ -1,2 +1,10 @@
+# 让AMP在提交PR的时候忽略对需要保护的文件的检查.匹配一下规则的文件或目录不会被AMP覆盖。
+# 参见：https://docs.amplication.com/custom-code/managing-custom-files/
 server/.env
 server/docker-compose.yml
+server/Dockerfile
+admin-ui/.env
+admin-ui/Dockerfile
+# 以下的通配符不知道是否起作用，这是为了防止在AMP中使用自定义的service目录而使用了通配符
+**/.env
+**/Dockerfile
