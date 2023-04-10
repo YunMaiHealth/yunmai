@@ -9,14 +9,6 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { MessageNotifyList } from "./messageNotify/MessageNotifyList";
-import { MessageNotifyCreate } from "./messageNotify/MessageNotifyCreate";
-import { MessageNotifyEdit } from "./messageNotify/MessageNotifyEdit";
-import { MessageNotifyShow } from "./messageNotify/MessageNotifyShow";
-import { EventLogList } from "./eventLog/EventLogList";
-import { EventLogCreate } from "./eventLog/EventLogCreate";
-import { EventLogEdit } from "./eventLog/EventLogEdit";
-import { EventLogShow } from "./eventLog/EventLogShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -49,20 +41,6 @@ const App = (): React.ReactElement => {
           edit={UserEdit}
           create={UserCreate}
           show={UserShow}
-        />
-        <Resource
-          name="MessageNotify"
-          list={MessageNotifyList}
-          edit={MessageNotifyEdit}
-          create={MessageNotifyCreate}
-          show={MessageNotifyShow}
-        />
-        <Resource
-          name="EventLog"
-          list={EventLogList}
-          edit={EventLogEdit}
-          create={EventLogCreate}
-          show={EventLogShow}
         />
       </Admin>
     </div>
