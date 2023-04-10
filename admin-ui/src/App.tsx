@@ -9,10 +9,6 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { HubitusCheckupList } from "./hubitusCheckup/HubitusCheckupList";
-import { HubitusCheckupCreate } from "./hubitusCheckup/HubitusCheckupCreate";
-import { HubitusCheckupEdit } from "./hubitusCheckup/HubitusCheckupEdit";
-import { HubitusCheckupShow } from "./hubitusCheckup/HubitusCheckupShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -45,13 +41,6 @@ const App = (): React.ReactElement => {
           edit={UserEdit}
           create={UserCreate}
           show={UserShow}
-        />
-        <Resource
-          name="HubitusCheckup"
-          list={HubitusCheckupList}
-          edit={HubitusCheckupEdit}
-          create={HubitusCheckupCreate}
-          show={HubitusCheckupShow}
         />
       </Admin>
     </div>
