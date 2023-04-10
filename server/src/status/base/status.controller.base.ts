@@ -59,14 +59,8 @@ export class StatusControllerBase {
       },
       select: {
         id: true,
-        updateTime: true,
-        status: true,
-        intValue: true,
-        doubleValue: true,
-        stringValue: true,
-        dateValue: true,
-        jsonValue: true,
-        streamId: true,
+        createdAt: true,
+        updatedAt: true,
 
         user: {
           select: {
@@ -95,14 +89,8 @@ export class StatusControllerBase {
       ...args,
       select: {
         id: true,
-        updateTime: true,
-        status: true,
-        intValue: true,
-        doubleValue: true,
-        stringValue: true,
-        dateValue: true,
-        jsonValue: true,
-        streamId: true,
+        createdAt: true,
+        updatedAt: true,
 
         user: {
           select: {
@@ -132,14 +120,8 @@ export class StatusControllerBase {
       where: params,
       select: {
         id: true,
-        updateTime: true,
-        status: true,
-        intValue: true,
-        doubleValue: true,
-        stringValue: true,
-        dateValue: true,
-        jsonValue: true,
-        streamId: true,
+        createdAt: true,
+        updatedAt: true,
 
         user: {
           select: {
@@ -186,14 +168,8 @@ export class StatusControllerBase {
         },
         select: {
           id: true,
-          updateTime: true,
-          status: true,
-          intValue: true,
-          doubleValue: true,
-          stringValue: true,
-          dateValue: true,
-          jsonValue: true,
-          streamId: true,
+          createdAt: true,
+          updatedAt: true,
 
           user: {
             select: {
@@ -231,14 +207,8 @@ export class StatusControllerBase {
         where: params,
         select: {
           id: true,
-          updateTime: true,
-          status: true,
-          intValue: true,
-          doubleValue: true,
-          stringValue: true,
-          dateValue: true,
-          jsonValue: true,
-          streamId: true,
+          createdAt: true,
+          updatedAt: true,
 
           user: {
             select: {

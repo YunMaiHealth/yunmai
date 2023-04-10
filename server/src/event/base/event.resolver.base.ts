@@ -150,11 +150,11 @@ export class EventResolverBase {
     action: "read",
     possession: "any",
   })
-  async messageNotifies(
+  async messages(
     @graphql.Parent() parent: Event,
     @graphql.Args() args: MessageFindManyArgs
   ): Promise<Message[]> {
-    const results = await this.service.findMessageNotifies(parent.id, args);
+    const results = await this.service.findMessages(parent.id, args);
 
     if (!results) {
       return [];

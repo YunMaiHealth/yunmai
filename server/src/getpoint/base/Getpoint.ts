@@ -11,13 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsString,
-  IsDate,
-  IsInt,
-  ValidateNested,
-  IsOptional,
-} from "class-validator";
+import { IsString, IsDate, ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { User } from "../../user/base/User";
 
@@ -37,23 +31,15 @@ class Getpoint {
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
-  getPointTime!: Date;
+  createdAt!: Date;
 
   @ApiProperty({
     required: true,
-    type: Number,
   })
-  @IsInt()
-  @Field(() => Number)
-  getPoint!: number;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  getPointType!: string;
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  updatedAt!: Date;
 
   @ApiProperty({
     required: false,

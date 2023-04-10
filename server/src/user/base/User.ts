@@ -11,10 +11,22 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsDate, IsOptional, IsJSON } from "class-validator";
+import {
+  IsString,
+  IsDate,
+  IsOptional,
+  IsJSON,
+  ValidateNested,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
+import { Hubitus } from "../../hubitus/base/Hubitus";
+import { Status } from "../../status/base/Status";
+import { Getpoint } from "../../getpoint/base/Getpoint";
+import { Usepoint } from "../../usepoint/base/Usepoint";
+import { Message } from "../../message/base/Message";
+import { Question } from "../../question/base/Question";
 
 @ObjectType()
 class User {
@@ -67,6 +79,60 @@ class User {
   @IsJSON()
   @Field(() => GraphQLJSON)
   roles!: JsonValue;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Hubitus],
+  })
+  @ValidateNested()
+  @Type(() => Hubitus)
+  @IsOptional()
+  hubituses?: Array<Hubitus>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Status],
+  })
+  @ValidateNested()
+  @Type(() => Status)
+  @IsOptional()
+  statuses?: Array<Status>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Getpoint],
+  })
+  @ValidateNested()
+  @Type(() => Getpoint)
+  @IsOptional()
+  getpoints?: Array<Getpoint>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Usepoint],
+  })
+  @ValidateNested()
+  @Type(() => Usepoint)
+  @IsOptional()
+  usepoints?: Array<Usepoint>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Message],
+  })
+  @ValidateNested()
+  @Type(() => Message)
+  @IsOptional()
+  messages?: Array<Message>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Question],
+  })
+  @ValidateNested()
+  @Type(() => Question)
+  @IsOptional()
+  questions?: Array<Question>;
 }
 
 export { User as User };

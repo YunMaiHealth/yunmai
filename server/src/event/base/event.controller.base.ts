@@ -54,11 +54,8 @@ export class EventControllerBase {
       data: data,
       select: {
         id: true,
-        eventTime: true,
-        eventType: true,
-        eventName: true,
-        eventParam: true,
-        relateUser: true,
+        createdAt: true,
+        updatedAt: true,
       },
     });
   }
@@ -81,11 +78,8 @@ export class EventControllerBase {
       ...args,
       select: {
         id: true,
-        eventTime: true,
-        eventType: true,
-        eventName: true,
-        eventParam: true,
-        relateUser: true,
+        createdAt: true,
+        updatedAt: true,
       },
     });
   }
@@ -109,11 +103,8 @@ export class EventControllerBase {
       where: params,
       select: {
         id: true,
-        eventTime: true,
-        eventType: true,
-        eventName: true,
-        eventParam: true,
-        relateUser: true,
+        createdAt: true,
+        updatedAt: true,
       },
     });
     if (result === null) {
@@ -146,11 +137,8 @@ export class EventControllerBase {
         data: data,
         select: {
           id: true,
-          eventTime: true,
-          eventType: true,
-          eventName: true,
-          eventParam: true,
-          relateUser: true,
+          createdAt: true,
+          updatedAt: true,
         },
       });
     } catch (error) {
@@ -182,11 +170,8 @@ export class EventControllerBase {
         where: params,
         select: {
           id: true,
-          eventTime: true,
-          eventType: true,
-          eventName: true,
-          eventParam: true,
-          relateUser: true,
+          createdAt: true,
+          updatedAt: true,
         },
       });
     } catch (error) {
@@ -200,35 +185,32 @@ export class EventControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/messageNotifies")
+  @common.Get("/:id/messages")
   @ApiNestedQuery(MessageFindManyArgs)
   @nestAccessControl.UseRoles({
     resource: "Message",
     action: "read",
     possession: "any",
   })
-  async findManyMessageNotifies(
+  async findManyMessages(
     @common.Req() request: Request,
     @common.Param() params: EventWhereUniqueInput
   ): Promise<Message[]> {
     const query = plainToClass(MessageFindManyArgs, request.query);
-    const results = await this.service.findMessageNotifies(params.id, {
+    const results = await this.service.findMessages(params.id, {
       ...query,
       select: {
         id: true,
-        sendTime: true,
-        isNew: true,
-        messageContent: true,
-        messageType: true,
-        messageSource: true,
+        createdAt: true,
+        updatedAt: true,
 
-        event: {
+        user: {
           select: {
             id: true,
           },
         },
 
-        user: {
+        event: {
           select: {
             id: true,
           },
@@ -243,18 +225,18 @@ export class EventControllerBase {
     return results;
   }
 
-  @common.Post("/:id/messageNotifies")
+  @common.Post("/:id/messages")
   @nestAccessControl.UseRoles({
     resource: "Event",
     action: "update",
     possession: "any",
   })
-  async connectMessageNotifies(
+  async connectMessages(
     @common.Param() params: EventWhereUniqueInput,
     @common.Body() body: MessageWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      messageNotifies: {
+      messages: {
         connect: body,
       },
     };
@@ -265,18 +247,18 @@ export class EventControllerBase {
     });
   }
 
-  @common.Patch("/:id/messageNotifies")
+  @common.Patch("/:id/messages")
   @nestAccessControl.UseRoles({
     resource: "Event",
     action: "update",
     possession: "any",
   })
-  async updateMessageNotifies(
+  async updateMessages(
     @common.Param() params: EventWhereUniqueInput,
     @common.Body() body: MessageWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      messageNotifies: {
+      messages: {
         set: body,
       },
     };
@@ -287,18 +269,18 @@ export class EventControllerBase {
     });
   }
 
-  @common.Delete("/:id/messageNotifies")
+  @common.Delete("/:id/messages")
   @nestAccessControl.UseRoles({
     resource: "Event",
     action: "update",
     possession: "any",
   })
-  async disconnectMessageNotifies(
+  async disconnectMessages(
     @common.Param() params: EventWhereUniqueInput,
     @common.Body() body: MessageWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      messageNotifies: {
+      messages: {
         disconnect: body,
       },
     };

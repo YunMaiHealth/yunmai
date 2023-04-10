@@ -11,64 +11,12 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsDate,
-  IsString,
-  IsJSON,
-  IsOptional,
-  ValidateNested,
-} from "class-validator";
-import { Type } from "class-transformer";
-import { GraphQLJSON } from "graphql-type-json";
-import { InputJsonValue } from "../../types";
 import { MessageCreateNestedManyWithoutEventsInput } from "./MessageCreateNestedManyWithoutEventsInput";
+import { ValidateNested, IsOptional } from "class-validator";
+import { Type } from "class-transformer";
 
 @InputType()
 class EventCreateInput {
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  eventTime!: Date;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  eventType!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  eventName!: string;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSON()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  eventParam?: InputJsonValue;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSON()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  relateUser?: InputJsonValue;
-
   @ApiProperty({
     required: false,
     type: () => MessageCreateNestedManyWithoutEventsInput,
@@ -79,7 +27,7 @@ class EventCreateInput {
   @Field(() => MessageCreateNestedManyWithoutEventsInput, {
     nullable: true,
   })
-  messageNotifies?: MessageCreateNestedManyWithoutEventsInput;
+  messages?: MessageCreateNestedManyWithoutEventsInput;
 }
 
 export { EventCreateInput as EventCreateInput };

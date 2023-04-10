@@ -51,17 +51,16 @@ export class HubitusControllerBase {
       data: {
         ...data,
 
-        user: {
-          connect: data.user,
-        },
+        user: data.user
+          ? {
+              connect: data.user,
+            }
+          : undefined,
       },
       select: {
         id: true,
-        currentHabitus: true,
-        testResult: true,
-        countResult: true,
-        suggest: true,
-        testTime: true,
+        createdAt: true,
+        updatedAt: true,
 
         user: {
           select: {
@@ -90,11 +89,8 @@ export class HubitusControllerBase {
       ...args,
       select: {
         id: true,
-        currentHabitus: true,
-        testResult: true,
-        countResult: true,
-        suggest: true,
-        testTime: true,
+        createdAt: true,
+        updatedAt: true,
 
         user: {
           select: {
@@ -124,11 +120,8 @@ export class HubitusControllerBase {
       where: params,
       select: {
         id: true,
-        currentHabitus: true,
-        testResult: true,
-        countResult: true,
-        suggest: true,
-        testTime: true,
+        createdAt: true,
+        updatedAt: true,
 
         user: {
           select: {
@@ -167,17 +160,16 @@ export class HubitusControllerBase {
         data: {
           ...data,
 
-          user: {
-            connect: data.user,
-          },
+          user: data.user
+            ? {
+                connect: data.user,
+              }
+            : undefined,
         },
         select: {
           id: true,
-          currentHabitus: true,
-          testResult: true,
-          countResult: true,
-          suggest: true,
-          testTime: true,
+          createdAt: true,
+          updatedAt: true,
 
           user: {
             select: {
@@ -215,11 +207,8 @@ export class HubitusControllerBase {
         where: params,
         select: {
           id: true,
-          currentHabitus: true,
-          testResult: true,
-          countResult: true,
-          suggest: true,
-          testTime: true,
+          createdAt: true,
+          updatedAt: true,
 
           user: {
             select: {

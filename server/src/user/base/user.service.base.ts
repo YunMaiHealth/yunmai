@@ -10,7 +10,16 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, User } from "@prisma/client";
+import {
+  Prisma,
+  User,
+  Hubitus,
+  Status,
+  Getpoint,
+  Usepoint,
+  Message,
+  Question,
+} from "@prisma/client";
 import { PasswordService } from "../../auth/password.service";
 import { transformStringFieldUpdateInput } from "../../prisma.util";
 
@@ -70,5 +79,71 @@ export class UserServiceBase {
     args: Prisma.SelectSubset<T, Prisma.UserDeleteArgs>
   ): Promise<User> {
     return this.prisma.user.delete(args);
+  }
+
+  async findHubituses(
+    parentId: string,
+    args: Prisma.HubitusFindManyArgs
+  ): Promise<Hubitus[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .hubituses(args);
+  }
+
+  async findStatuses(
+    parentId: string,
+    args: Prisma.StatusFindManyArgs
+  ): Promise<Status[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .statuses(args);
+  }
+
+  async findGetpoints(
+    parentId: string,
+    args: Prisma.GetpointFindManyArgs
+  ): Promise<Getpoint[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .getpoints(args);
+  }
+
+  async findUsepoints(
+    parentId: string,
+    args: Prisma.UsepointFindManyArgs
+  ): Promise<Usepoint[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .usepoints(args);
+  }
+
+  async findMessages(
+    parentId: string,
+    args: Prisma.MessageFindManyArgs
+  ): Promise<Message[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .messages(args);
+  }
+
+  async findQuestions(
+    parentId: string,
+    args: Prisma.QuestionFindManyArgs
+  ): Promise<Question[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .questions(args);
   }
 }

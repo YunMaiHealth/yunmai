@@ -47,7 +47,7 @@ export class EventServiceBase {
     return this.prisma.event.delete(args);
   }
 
-  async findMessageNotifies(
+  async findMessages(
     parentId: string,
     args: Prisma.MessageFindManyArgs
   ): Promise<Message[]> {
@@ -55,6 +55,6 @@ export class EventServiceBase {
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .messageNotifies(args);
+      .messages(args);
   }
 }

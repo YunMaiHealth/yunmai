@@ -20,33 +20,25 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   id: "exampleId",
-  sendTime: new Date(),
-  isNew: "true",
-  messageType: "exampleMessageType",
-  messageSource: "exampleMessageSource",
+  createdAt: new Date(),
+  updatedAt: new Date(),
 };
 const CREATE_RESULT = {
   id: "exampleId",
-  sendTime: new Date(),
-  isNew: "true",
-  messageType: "exampleMessageType",
-  messageSource: "exampleMessageSource",
+  createdAt: new Date(),
+  updatedAt: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
     id: "exampleId",
-    sendTime: new Date(),
-    isNew: "true",
-    messageType: "exampleMessageType",
-    messageSource: "exampleMessageSource",
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
   id: "exampleId",
-  sendTime: new Date(),
-  isNew: "true",
-  messageType: "exampleMessageType",
-  messageSource: "exampleMessageSource",
+  createdAt: new Date(),
+  updatedAt: new Date(),
 };
 
 const service = {
@@ -131,7 +123,8 @@ describe("Message", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        sendTime: CREATE_RESULT.sendTime.toISOString(),
+        createdAt: CREATE_RESULT.createdAt.toISOString(),
+        updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       });
   });
 
@@ -142,7 +135,8 @@ describe("Message", () => {
       .expect([
         {
           ...FIND_MANY_RESULT[0],
-          sendTime: FIND_MANY_RESULT[0].sendTime.toISOString(),
+          createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
+          updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
         },
       ]);
   });
@@ -164,7 +158,8 @@ describe("Message", () => {
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
-        sendTime: FIND_ONE_RESULT.sendTime.toISOString(),
+        createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
+        updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
       });
   });
 
@@ -176,7 +171,8 @@ describe("Message", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        sendTime: CREATE_RESULT.sendTime.toISOString(),
+        createdAt: CREATE_RESULT.createdAt.toISOString(),
+        updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       })
       .then(function () {
         agent

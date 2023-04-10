@@ -14,9 +14,6 @@ import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
-import { JsonFilter } from "../../util/JsonFilter";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
-import { DateTimeFilter } from "../../util/DateTimeFilter";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 
 @InputType()
@@ -31,61 +28,6 @@ class HubitusWhereInput {
     nullable: true,
   })
   id?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  currentHabitus?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: JsonFilter,
-  })
-  @Type(() => JsonFilter)
-  @IsOptional()
-  @Field(() => JsonFilter, {
-    nullable: true,
-  })
-  testResult?: JsonFilter;
-
-  @ApiProperty({
-    required: false,
-    type: JsonFilter,
-  })
-  @Type(() => JsonFilter)
-  @IsOptional()
-  @Field(() => JsonFilter, {
-    nullable: true,
-  })
-  countResult?: JsonFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  suggest?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: DateTimeFilter,
-  })
-  @Type(() => DateTimeFilter)
-  @IsOptional()
-  @Field(() => DateTimeFilter, {
-    nullable: true,
-  })
-  testTime?: DateTimeFilter;
 
   @ApiProperty({
     required: false,

@@ -11,15 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsString,
-  IsJSON,
-  IsOptional,
-  IsDate,
-  ValidateNested,
-} from "class-validator";
-import { GraphQLJSON } from "graphql-type-json";
-import { JsonValue } from "type-fest";
+import { IsString, IsDate, ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { User } from "../../user/base/User";
 
@@ -35,36 +27,11 @@ class Hubitus {
 
   @ApiProperty({
     required: true,
-    type: String,
   })
-  @IsString()
-  @Field(() => String)
-  currentHabitus!: string;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsJSON()
-  @Field(() => GraphQLJSON)
-  testResult!: JsonValue;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsJSON()
-  @Field(() => GraphQLJSON)
-  countResult!: JsonValue;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  suggest!: string | null;
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  createdAt!: Date;
 
   @ApiProperty({
     required: true,
@@ -72,15 +39,16 @@ class Hubitus {
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
-  testTime!: Date;
+  updatedAt!: Date;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: () => User,
   })
   @ValidateNested()
   @Type(() => User)
-  user?: User;
+  @IsOptional()
+  user?: User | null;
 }
 
 export { Hubitus as Hubitus };

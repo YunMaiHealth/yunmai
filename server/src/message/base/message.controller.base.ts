@@ -51,33 +51,30 @@ export class MessageControllerBase {
       data: {
         ...data,
 
-        event: data.event
-          ? {
-              connect: data.event,
-            }
-          : undefined,
-
         user: data.user
           ? {
               connect: data.user,
             }
           : undefined,
+
+        event: data.event
+          ? {
+              connect: data.event,
+            }
+          : undefined,
       },
       select: {
         id: true,
-        sendTime: true,
-        isNew: true,
-        messageContent: true,
-        messageType: true,
-        messageSource: true,
+        createdAt: true,
+        updatedAt: true,
 
-        event: {
+        user: {
           select: {
             id: true,
           },
         },
 
-        user: {
+        event: {
           select: {
             id: true,
           },
@@ -104,19 +101,16 @@ export class MessageControllerBase {
       ...args,
       select: {
         id: true,
-        sendTime: true,
-        isNew: true,
-        messageContent: true,
-        messageType: true,
-        messageSource: true,
+        createdAt: true,
+        updatedAt: true,
 
-        event: {
+        user: {
           select: {
             id: true,
           },
         },
 
-        user: {
+        event: {
           select: {
             id: true,
           },
@@ -144,19 +138,16 @@ export class MessageControllerBase {
       where: params,
       select: {
         id: true,
-        sendTime: true,
-        isNew: true,
-        messageContent: true,
-        messageType: true,
-        messageSource: true,
+        createdAt: true,
+        updatedAt: true,
 
-        event: {
+        user: {
           select: {
             id: true,
           },
         },
 
-        user: {
+        event: {
           select: {
             id: true,
           },
@@ -193,33 +184,30 @@ export class MessageControllerBase {
         data: {
           ...data,
 
-          event: data.event
-            ? {
-                connect: data.event,
-              }
-            : undefined,
-
           user: data.user
             ? {
                 connect: data.user,
               }
             : undefined,
+
+          event: data.event
+            ? {
+                connect: data.event,
+              }
+            : undefined,
         },
         select: {
           id: true,
-          sendTime: true,
-          isNew: true,
-          messageContent: true,
-          messageType: true,
-          messageSource: true,
+          createdAt: true,
+          updatedAt: true,
 
-          event: {
+          user: {
             select: {
               id: true,
             },
           },
 
-          user: {
+          event: {
             select: {
               id: true,
             },
@@ -255,19 +243,16 @@ export class MessageControllerBase {
         where: params,
         select: {
           id: true,
-          sendTime: true,
-          isNew: true,
-          messageContent: true,
-          messageType: true,
-          messageSource: true,
+          createdAt: true,
+          updatedAt: true,
 
-          event: {
+          user: {
             select: {
               id: true,
             },
           },
 
-          user: {
+          event: {
             select: {
               id: true,
             },

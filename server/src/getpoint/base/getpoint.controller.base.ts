@@ -59,9 +59,8 @@ export class GetpointControllerBase {
       },
       select: {
         id: true,
-        getPointTime: true,
-        getPoint: true,
-        getPointType: true,
+        createdAt: true,
+        updatedAt: true,
 
         user: {
           select: {
@@ -90,9 +89,8 @@ export class GetpointControllerBase {
       ...args,
       select: {
         id: true,
-        getPointTime: true,
-        getPoint: true,
-        getPointType: true,
+        createdAt: true,
+        updatedAt: true,
 
         user: {
           select: {
@@ -122,9 +120,8 @@ export class GetpointControllerBase {
       where: params,
       select: {
         id: true,
-        getPointTime: true,
-        getPoint: true,
-        getPointType: true,
+        createdAt: true,
+        updatedAt: true,
 
         user: {
           select: {
@@ -171,9 +168,8 @@ export class GetpointControllerBase {
         },
         select: {
           id: true,
-          getPointTime: true,
-          getPoint: true,
-          getPointType: true,
+          createdAt: true,
+          updatedAt: true,
 
           user: {
             select: {
@@ -211,9 +207,8 @@ export class GetpointControllerBase {
         where: params,
         select: {
           id: true,
-          getPointTime: true,
-          getPoint: true,
-          getPointType: true,
+          createdAt: true,
+          updatedAt: true,
 
           user: {
             select: {

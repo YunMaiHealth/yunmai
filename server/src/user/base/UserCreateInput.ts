@@ -11,10 +11,22 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsString, IsOptional, IsJSON } from "class-validator";
+import {
+  IsDate,
+  IsString,
+  IsOptional,
+  IsJSON,
+  ValidateNested,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
+import { HubitusCreateNestedManyWithoutUsersInput } from "./HubitusCreateNestedManyWithoutUsersInput";
+import { StatusCreateNestedManyWithoutUsersInput } from "./StatusCreateNestedManyWithoutUsersInput";
+import { GetpointCreateNestedManyWithoutUsersInput } from "./GetpointCreateNestedManyWithoutUsersInput";
+import { UsepointCreateNestedManyWithoutUsersInput } from "./UsepointCreateNestedManyWithoutUsersInput";
+import { MessageCreateNestedManyWithoutUsersInput } from "./MessageCreateNestedManyWithoutUsersInput";
+import { QuestionCreateNestedManyWithoutUsersInput } from "./QuestionCreateNestedManyWithoutUsersInput";
 
 @InputType()
 class UserCreateInput {
@@ -67,6 +79,78 @@ class UserCreateInput {
   @IsJSON()
   @Field(() => GraphQLJSON)
   roles!: InputJsonValue;
+
+  @ApiProperty({
+    required: false,
+    type: () => HubitusCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => HubitusCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => HubitusCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  hubituses?: HubitusCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => StatusCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => StatusCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => StatusCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  statuses?: StatusCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => GetpointCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => GetpointCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => GetpointCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  getpoints?: GetpointCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => UsepointCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => UsepointCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => UsepointCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  usepoints?: UsepointCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => MessageCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => MessageCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => MessageCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  messages?: MessageCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => QuestionCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => QuestionCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => QuestionCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  questions?: QuestionCreateNestedManyWithoutUsersInput;
 }
 
 export { UserCreateInput as UserCreateInput };

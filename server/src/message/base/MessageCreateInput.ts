@@ -11,60 +11,24 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsDate,
-  IsBoolean,
-  IsJSON,
-  IsString,
-  ValidateNested,
-  IsOptional,
-} from "class-validator";
-import { Type } from "class-transformer";
-import { GraphQLJSON } from "graphql-type-json";
-import { InputJsonValue } from "../../types";
-import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { ValidateNested, IsOptional } from "class-validator";
+import { Type } from "class-transformer";
+import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 
 @InputType()
 class MessageCreateInput {
   @ApiProperty({
-    required: true,
+    required: false,
+    type: () => UserWhereUniqueInput,
   })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  sendTime!: Date;
-
-  @ApiProperty({
-    required: true,
-    type: Boolean,
+  @ValidateNested()
+  @Type(() => UserWhereUniqueInput)
+  @IsOptional()
+  @Field(() => UserWhereUniqueInput, {
+    nullable: true,
   })
-  @IsBoolean()
-  @Field(() => Boolean)
-  isNew!: boolean;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsJSON()
-  @Field(() => GraphQLJSON)
-  messageContent!: InputJsonValue;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  messageType!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  messageSource!: string;
+  user?: UserWhereUniqueInput | null;
 
   @ApiProperty({
     required: false,
@@ -77,18 +41,6 @@ class MessageCreateInput {
     nullable: true,
   })
   event?: EventWhereUniqueInput | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => UserWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
-  @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
-    nullable: true,
-  })
-  user?: UserWhereUniqueInput | null;
 }
 
 export { MessageCreateInput as MessageCreateInput };
