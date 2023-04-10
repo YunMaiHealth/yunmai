@@ -25,7 +25,7 @@ class UserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  language?: SortOrder;
+  id?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -34,7 +34,16 @@ class UserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  creatTime?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  lastLoginTime?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -106,15 +115,6 @@ class UserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  trueName?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   inviterId?: SortOrder;
 
   @ApiProperty({
@@ -133,7 +133,7 @@ class UserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  province?: SortOrder;
+  trueName?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -178,15 +178,6 @@ class UserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  city?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   userIdCard?: SortOrder;
 
   @ApiProperty({
@@ -205,7 +196,7 @@ class UserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  creatTime?: SortOrder;
+  province?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -214,7 +205,16 @@ class UserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  lastLoginTime?: SortOrder;
+  city?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  language?: SortOrder;
 }
 
 export { UserOrderByInput as UserOrderByInput };

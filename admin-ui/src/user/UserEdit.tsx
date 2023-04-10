@@ -4,29 +4,30 @@ import {
   Edit,
   SimpleForm,
   EditProps,
+  DateTimeInput,
   TextInput,
   PasswordInput,
   SelectArrayInput,
   SelectInput,
   DateInput,
-  DateTimeInput,
   ReferenceArrayInput,
 } from "react-admin";
 
-import { UserStatusTitle } from "../userStatus/UserStatusTitle";
-import { HubitusCheckupTitle } from "../hubitusCheckup/HubitusCheckupTitle";
-import { MessageNotifyTitle } from "../messageNotify/MessageNotifyTitle";
-import { UserQuestionTitle } from "../userQuestion/UserQuestionTitle";
-import { ReplyQuestionTitle } from "../replyQuestion/ReplyQuestionTitle";
-import { UsePointTitle } from "../usePoint/UsePointTitle";
-import { GetPointTitle } from "../getPoint/GetPointTitle";
+import { HubitusTitle } from "../hubitus/HubitusTitle";
+import { StatusTitle } from "../status/StatusTitle";
+import { MessageTitle } from "../message/MessageTitle";
+import { QuestionTitle } from "../question/QuestionTitle";
+import { ReplyTitle } from "../reply/ReplyTitle";
+import { UsepointTitle } from "../usepoint/UsepointTitle";
+import { GetpointTitle } from "../getpoint/GetpointTitle";
 import { ROLES_OPTIONS } from "../user/RolesOptions";
 
 export const UserEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="语言" source="language" />
+        <DateTimeInput label="创建时间" source="creatTime" disabled />
+        <DateTimeInput label="最近一次登录时间" source="lastLoginTime" />
         <TextInput label="Username" source="username" />
         <PasswordInput label="Password" source="password" />
         <SelectArrayInput
@@ -39,10 +40,9 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
         <TextInput label="用户的唯一标识" source="openId" />
         <TextInput label="微信登录会话密钥" source="sessionKey" />
         <TextInput label="用户在微信开放平台的唯一标识符" source="unionId" />
-        <TextInput label="真实姓名" source="trueName" />
         <TextInput label="邀请人ID" source="inviterId" />
         <TextInput label="手机号码" source="phone" />
-        <TextInput label="省份" source="province" />
+        <TextInput label="真实姓名" source="trueName" />
         <TextInput label="用户昵称" source="nickName" />
         <TextInput label="用户头像" source="avatarUrl" />
         <SelectInput
@@ -58,66 +58,66 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
           optionValue="value"
         />
         <DateInput label="出生年月" source="birthday" />
-        <TextInput label="城市" source="city" />
         <TextInput label="用户身份证号" source="userIdCard" />
         <TextInput label="国家" source="country" />
-        <DateTimeInput label="创建时间" source="creatTime" disabled />
-        <DateTimeInput label="最近一次登录时间" source="lastLoginTime" />
+        <TextInput label="省份" source="province" />
+        <TextInput label="城市" source="city" />
+        <TextInput label="语言" source="language" />
         <ReferenceArrayInput
-          source="userStatuses"
-          reference="UserStatus"
+          source="hubituses"
+          reference="Hubitus"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={UserStatusTitle} />
+          <SelectArrayInput optionText={HubitusTitle} />
         </ReferenceArrayInput>
         <ReferenceArrayInput
-          source="hubitusCheckups"
-          reference="HubitusCheckup"
+          source="Statuses"
+          reference="Status"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={HubitusCheckupTitle} />
+          <SelectArrayInput optionText={StatusTitle} />
         </ReferenceArrayInput>
         <ReferenceArrayInput
-          source="messageNotifies"
-          reference="MessageNotify"
+          source="messages"
+          reference="Message"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={MessageNotifyTitle} />
+          <SelectArrayInput optionText={MessageTitle} />
         </ReferenceArrayInput>
         <ReferenceArrayInput
-          source="healthQuestions"
-          reference="UserQuestion"
+          source="questions"
+          reference="Question"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={UserQuestionTitle} />
+          <SelectArrayInput optionText={QuestionTitle} />
         </ReferenceArrayInput>
         <ReferenceArrayInput
-          source="replyQuestions"
-          reference="ReplyQuestion"
+          source="replys"
+          reference="Reply"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={ReplyQuestionTitle} />
+          <SelectArrayInput optionText={ReplyTitle} />
         </ReferenceArrayInput>
         <ReferenceArrayInput
-          source="usePoints"
-          reference="UsePoint"
+          source="usepoints"
+          reference="Usepoint"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={UsePointTitle} />
+          <SelectArrayInput optionText={UsepointTitle} />
         </ReferenceArrayInput>
         <ReferenceArrayInput
-          source="getPoints"
-          reference="GetPoint"
+          source="getpoints"
+          reference="Getpoint"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={GetPointTitle} />
+          <SelectArrayInput optionText={GetpointTitle} />
         </ReferenceArrayInput>
       </SimpleForm>
     </Edit>
