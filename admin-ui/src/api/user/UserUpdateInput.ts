@@ -1,5 +1,4 @@
 import { InputJsonValue } from "../../types";
-import { MessageNotifyUpdateManyWithoutUsersInput } from "./MessageNotifyUpdateManyWithoutUsersInput";
 
 export type UserUpdateInput = {
   firstName?: string | null;
@@ -7,5 +6,4 @@ export type UserUpdateInput = {
   username?: string;
   password?: string;
   roles?: InputJsonValue;
-  messageNotifies?: MessageNotifyUpdateManyWithoutUsersInput;
 };

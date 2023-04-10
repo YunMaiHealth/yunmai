@@ -25,8 +25,6 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
-import { MessageNotifyFindManyArgs } from "../../messageNotify/base/MessageNotifyFindManyArgs";
-import { MessageNotify } from "../../messageNotify/base/MessageNotify";
 import { UserService } from "../user.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => User)
@@ -135,25 +133,5 @@ export class UserResolverBase {
       }
       throw error;
     }
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [MessageNotify])
-  @nestAccessControl.UseRoles({
-    resource: "MessageNotify",
-    action: "read",
-    possession: "any",
-  })
-  async messageNotifies(
-    @graphql.Parent() parent: User,
-    @graphql.Args() args: MessageNotifyFindManyArgs
-  ): Promise<MessageNotify[]> {
-    const results = await this.service.findMessageNotifies(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
   }
 }
