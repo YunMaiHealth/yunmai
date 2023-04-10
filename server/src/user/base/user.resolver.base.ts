@@ -31,10 +31,6 @@ import { StatusFindManyArgs } from "../../status/base/StatusFindManyArgs";
 import { Status } from "../../status/base/Status";
 import { MessageFindManyArgs } from "../../message/base/MessageFindManyArgs";
 import { Message } from "../../message/base/Message";
-import { QuestionFindManyArgs } from "../../question/base/QuestionFindManyArgs";
-import { Question } from "../../question/base/Question";
-import { ReplyFindManyArgs } from "../../reply/base/ReplyFindManyArgs";
-import { Reply } from "../../reply/base/Reply";
 import { UsepointFindManyArgs } from "../../usepoint/base/UsepointFindManyArgs";
 import { Usepoint } from "../../usepoint/base/Usepoint";
 import { GetpointFindManyArgs } from "../../getpoint/base/GetpointFindManyArgs";
@@ -201,46 +197,6 @@ export class UserResolverBase {
     @graphql.Args() args: MessageFindManyArgs
   ): Promise<Message[]> {
     const results = await this.service.findMessages(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Question])
-  @nestAccessControl.UseRoles({
-    resource: "Question",
-    action: "read",
-    possession: "any",
-  })
-  async questions(
-    @graphql.Parent() parent: User,
-    @graphql.Args() args: QuestionFindManyArgs
-  ): Promise<Question[]> {
-    const results = await this.service.findQuestions(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Reply])
-  @nestAccessControl.UseRoles({
-    resource: "Reply",
-    action: "read",
-    possession: "any",
-  })
-  async replys(
-    @graphql.Parent() parent: User,
-    @graphql.Args() args: ReplyFindManyArgs
-  ): Promise<Reply[]> {
-    const results = await this.service.findReplys(parent.id, args);
 
     if (!results) {
       return [];

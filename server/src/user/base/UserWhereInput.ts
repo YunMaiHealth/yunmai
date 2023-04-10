@@ -20,8 +20,6 @@ import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { HubitusListRelationFilter } from "../../hubitus/base/HubitusListRelationFilter";
 import { StatusListRelationFilter } from "../../status/base/StatusListRelationFilter";
 import { MessageListRelationFilter } from "../../message/base/MessageListRelationFilter";
-import { QuestionListRelationFilter } from "../../question/base/QuestionListRelationFilter";
-import { ReplyListRelationFilter } from "../../reply/base/ReplyListRelationFilter";
 import { UsepointListRelationFilter } from "../../usepoint/base/UsepointListRelationFilter";
 import { GetpointListRelationFilter } from "../../getpoint/base/GetpointListRelationFilter";
 
@@ -260,30 +258,6 @@ class UserWhereInput {
     nullable: true,
   })
   messages?: MessageListRelationFilter;
-
-  @ApiProperty({
-    required: false,
-    type: () => QuestionListRelationFilter,
-  })
-  @ValidateNested()
-  @Type(() => QuestionListRelationFilter)
-  @IsOptional()
-  @Field(() => QuestionListRelationFilter, {
-    nullable: true,
-  })
-  questions?: QuestionListRelationFilter;
-
-  @ApiProperty({
-    required: false,
-    type: () => ReplyListRelationFilter,
-  })
-  @ValidateNested()
-  @Type(() => ReplyListRelationFilter)
-  @IsOptional()
-  @Field(() => ReplyListRelationFilter, {
-    nullable: true,
-  })
-  replys?: ReplyListRelationFilter;
 
   @ApiProperty({
     required: false,

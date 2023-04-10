@@ -2,8 +2,6 @@ import { InputJsonValue } from "../../types";
 import { HubitusUpdateManyWithoutUsersInput } from "./HubitusUpdateManyWithoutUsersInput";
 import { StatusUpdateManyWithoutUsersInput } from "./StatusUpdateManyWithoutUsersInput";
 import { MessageUpdateManyWithoutUsersInput } from "./MessageUpdateManyWithoutUsersInput";
-import { QuestionUpdateManyWithoutUsersInput } from "./QuestionUpdateManyWithoutUsersInput";
-import { ReplyUpdateManyWithoutUsersInput } from "./ReplyUpdateManyWithoutUsersInput";
 import { UsepointUpdateManyWithoutUsersInput } from "./UsepointUpdateManyWithoutUsersInput";
 import { GetpointUpdateManyWithoutUsersInput } from "./GetpointUpdateManyWithoutUsersInput";
 
@@ -32,8 +30,6 @@ export type UserUpdateInput = {
   hubituses?: HubitusUpdateManyWithoutUsersInput;
   Statuses?: StatusUpdateManyWithoutUsersInput;
   messages?: MessageUpdateManyWithoutUsersInput;
-  questions?: QuestionUpdateManyWithoutUsersInput;
-  replys?: ReplyUpdateManyWithoutUsersInput;
   usepoints?: UsepointUpdateManyWithoutUsersInput;
   getpoints?: GetpointUpdateManyWithoutUsersInput;
 };

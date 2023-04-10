@@ -26,8 +26,6 @@ import { EnumUserGender } from "./EnumUserGender";
 import { Hubitus } from "../../hubitus/base/Hubitus";
 import { Status } from "../../status/base/Status";
 import { Message } from "../../message/base/Message";
-import { Question } from "../../question/base/Question";
-import { Reply } from "../../reply/base/Reply";
 import { Usepoint } from "../../usepoint/base/Usepoint";
 import { Getpoint } from "../../getpoint/base/Getpoint";
 
@@ -265,24 +263,6 @@ class User {
   @Type(() => Message)
   @IsOptional()
   messages?: Array<Message>;
-
-  @ApiProperty({
-    required: false,
-    type: () => [Question],
-  })
-  @ValidateNested()
-  @Type(() => Question)
-  @IsOptional()
-  questions?: Array<Question>;
-
-  @ApiProperty({
-    required: false,
-    type: () => [Reply],
-  })
-  @ValidateNested()
-  @Type(() => Reply)
-  @IsOptional()
-  replys?: Array<Reply>;
 
   @ApiProperty({
     required: false,

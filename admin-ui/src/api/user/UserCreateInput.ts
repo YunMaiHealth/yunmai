@@ -2,8 +2,6 @@ import { InputJsonValue } from "../../types";
 import { HubitusCreateNestedManyWithoutUsersInput } from "./HubitusCreateNestedManyWithoutUsersInput";
 import { StatusCreateNestedManyWithoutUsersInput } from "./StatusCreateNestedManyWithoutUsersInput";
 import { MessageCreateNestedManyWithoutUsersInput } from "./MessageCreateNestedManyWithoutUsersInput";
-import { QuestionCreateNestedManyWithoutUsersInput } from "./QuestionCreateNestedManyWithoutUsersInput";
-import { ReplyCreateNestedManyWithoutUsersInput } from "./ReplyCreateNestedManyWithoutUsersInput";
 import { UsepointCreateNestedManyWithoutUsersInput } from "./UsepointCreateNestedManyWithoutUsersInput";
 import { GetpointCreateNestedManyWithoutUsersInput } from "./GetpointCreateNestedManyWithoutUsersInput";
 
@@ -32,8 +30,6 @@ export type UserCreateInput = {
   hubituses?: HubitusCreateNestedManyWithoutUsersInput;
   Statuses?: StatusCreateNestedManyWithoutUsersInput;
   messages?: MessageCreateNestedManyWithoutUsersInput;
-  questions?: QuestionCreateNestedManyWithoutUsersInput;
-  replys?: ReplyCreateNestedManyWithoutUsersInput;
   usepoints?: UsepointCreateNestedManyWithoutUsersInput;
   getpoints?: GetpointCreateNestedManyWithoutUsersInput;
 };

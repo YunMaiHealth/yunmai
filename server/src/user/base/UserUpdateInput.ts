@@ -26,8 +26,6 @@ import { EnumUserGender } from "./EnumUserGender";
 import { HubitusUpdateManyWithoutUsersInput } from "./HubitusUpdateManyWithoutUsersInput";
 import { StatusUpdateManyWithoutUsersInput } from "./StatusUpdateManyWithoutUsersInput";
 import { MessageUpdateManyWithoutUsersInput } from "./MessageUpdateManyWithoutUsersInput";
-import { QuestionUpdateManyWithoutUsersInput } from "./QuestionUpdateManyWithoutUsersInput";
-import { ReplyUpdateManyWithoutUsersInput } from "./ReplyUpdateManyWithoutUsersInput";
 import { UsepointUpdateManyWithoutUsersInput } from "./UsepointUpdateManyWithoutUsersInput";
 import { GetpointUpdateManyWithoutUsersInput } from "./GetpointUpdateManyWithoutUsersInput";
 
@@ -298,30 +296,6 @@ class UserUpdateInput {
     nullable: true,
   })
   messages?: MessageUpdateManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => QuestionUpdateManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => QuestionUpdateManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => QuestionUpdateManyWithoutUsersInput, {
-    nullable: true,
-  })
-  questions?: QuestionUpdateManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => ReplyUpdateManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => ReplyUpdateManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => ReplyUpdateManyWithoutUsersInput, {
-    nullable: true,
-  })
-  replys?: ReplyUpdateManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,

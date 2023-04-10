@@ -2,8 +2,6 @@ import { JsonValue } from "type-fest";
 import { Hubitus } from "../hubitus/Hubitus";
 import { Status } from "../status/Status";
 import { Message } from "../message/Message";
-import { Question } from "../question/Question";
-import { Reply } from "../reply/Reply";
 import { Usepoint } from "../usepoint/Usepoint";
 import { Getpoint } from "../getpoint/Getpoint";
 
@@ -32,8 +30,6 @@ export type User = {
   hubituses?: Array<Hubitus>;
   Statuses?: Array<Status>;
   messages?: Array<Message>;
-  questions?: Array<Question>;
-  replys?: Array<Reply>;
   usepoints?: Array<Usepoint>;
   getpoints?: Array<Getpoint>;
 };

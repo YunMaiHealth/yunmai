@@ -25,14 +25,6 @@ import { EventList } from "./event/EventList";
 import { EventCreate } from "./event/EventCreate";
 import { EventEdit } from "./event/EventEdit";
 import { EventShow } from "./event/EventShow";
-import { QuestionList } from "./question/QuestionList";
-import { QuestionCreate } from "./question/QuestionCreate";
-import { QuestionEdit } from "./question/QuestionEdit";
-import { QuestionShow } from "./question/QuestionShow";
-import { ReplyList } from "./reply/ReplyList";
-import { ReplyCreate } from "./reply/ReplyCreate";
-import { ReplyEdit } from "./reply/ReplyEdit";
-import { ReplyShow } from "./reply/ReplyShow";
 import { UsepointList } from "./usepoint/UsepointList";
 import { UsepointCreate } from "./usepoint/UsepointCreate";
 import { UsepointEdit } from "./usepoint/UsepointEdit";
@@ -101,20 +93,6 @@ const App = (): React.ReactElement => {
           edit={EventEdit}
           create={EventCreate}
           show={EventShow}
-        />
-        <Resource
-          name="Question"
-          list={QuestionList}
-          edit={QuestionEdit}
-          create={QuestionCreate}
-          show={QuestionShow}
-        />
-        <Resource
-          name="Reply"
-          list={ReplyList}
-          edit={ReplyEdit}
-          create={ReplyCreate}
-          show={ReplyShow}
         />
         <Resource
           name="Usepoint"
