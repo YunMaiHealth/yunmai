@@ -15,16 +15,15 @@ export const UsePointList = (props: ListProps): React.ReactElement => {
     <List
       {...props}
       bulkActionButtons={false}
-      title={"UsePoints"}
+      title={"usePoints"}
       perPage={50}
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
         <TextField label="ID" source="id" />
-        <DateField source="usePointTime" label="元气使用时间" />
-        <TextField label="元气使用值" source="usePoint" />
-        <TextField label="元气使用类型" source="usePointType" />
-        <ReferenceField label="用户" source="user.id" reference="User">
+        <DateField source="createdAt" label="Created At" />
+        <DateField source="updatedAt" label="Updated At" />
+        <ReferenceField label="user" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>
       </Datagrid>

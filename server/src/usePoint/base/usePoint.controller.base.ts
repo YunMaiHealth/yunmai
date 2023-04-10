@@ -59,9 +59,8 @@ export class UsePointControllerBase {
       },
       select: {
         id: true,
-        usePointTime: true,
-        usePoint: true,
-        usePointType: true,
+        createdAt: true,
+        updatedAt: true,
 
         user: {
           select: {
@@ -90,9 +89,8 @@ export class UsePointControllerBase {
       ...args,
       select: {
         id: true,
-        usePointTime: true,
-        usePoint: true,
-        usePointType: true,
+        createdAt: true,
+        updatedAt: true,
 
         user: {
           select: {
@@ -122,9 +120,8 @@ export class UsePointControllerBase {
       where: params,
       select: {
         id: true,
-        usePointTime: true,
-        usePoint: true,
-        usePointType: true,
+        createdAt: true,
+        updatedAt: true,
 
         user: {
           select: {
@@ -171,9 +168,8 @@ export class UsePointControllerBase {
         },
         select: {
           id: true,
-          usePointTime: true,
-          usePoint: true,
-          usePointType: true,
+          createdAt: true,
+          updatedAt: true,
 
           user: {
             select: {
@@ -211,9 +207,8 @@ export class UsePointControllerBase {
         where: params,
         select: {
           id: true,
-          usePointTime: true,
-          usePoint: true,
-          usePointType: true,
+          createdAt: true,
+          updatedAt: true,
 
           user: {
             select: {

@@ -1,4 +1,6 @@
 import { InputJsonValue } from "../../types";
+import { UsePointCreateNestedManyWithoutUsersInput } from "./UsePointCreateNestedManyWithoutUsersInput";
+import { GetPointCreateNestedManyWithoutUsersInput } from "./GetPointCreateNestedManyWithoutUsersInput";
 
 export type UserCreateInput = {
   firstName?: string | null;
@@ -6,4 +8,6 @@ export type UserCreateInput = {
   username: string;
   password: string;
   roles: InputJsonValue;
+  usePoints?: UsePointCreateNestedManyWithoutUsersInput;
+  getPoints?: GetPointCreateNestedManyWithoutUsersInput;
 };

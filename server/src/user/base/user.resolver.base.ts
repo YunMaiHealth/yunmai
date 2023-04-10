@@ -25,6 +25,10 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
+import { UsePointFindManyArgs } from "../../usePoint/base/UsePointFindManyArgs";
+import { UsePoint } from "../../usePoint/base/UsePoint";
+import { GetPointFindManyArgs } from "../../getPoint/base/GetPointFindManyArgs";
+import { GetPoint } from "../../getPoint/base/GetPoint";
 import { UserService } from "../user.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => User)
@@ -133,5 +137,45 @@ export class UserResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [UsePoint])
+  @nestAccessControl.UseRoles({
+    resource: "UsePoint",
+    action: "read",
+    possession: "any",
+  })
+  async usePoints(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: UsePointFindManyArgs
+  ): Promise<UsePoint[]> {
+    const results = await this.service.findUsePoints(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [GetPoint])
+  @nestAccessControl.UseRoles({
+    resource: "GetPoint",
+    action: "read",
+    possession: "any",
+  })
+  async getPoints(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: GetPointFindManyArgs
+  ): Promise<GetPoint[]> {
+    const results = await this.service.findGetPoints(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
   }
 }

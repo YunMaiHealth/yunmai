@@ -13,8 +13,10 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
-import { IsOptional } from "class-validator";
+import { IsOptional, ValidateNested } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { UsePointListRelationFilter } from "../../usePoint/base/UsePointListRelationFilter";
+import { GetPointListRelationFilter } from "../../getPoint/base/GetPointListRelationFilter";
 
 @InputType()
 class UserWhereInput {
@@ -61,6 +63,30 @@ class UserWhereInput {
     nullable: true,
   })
   username?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => UsePointListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => UsePointListRelationFilter)
+  @IsOptional()
+  @Field(() => UsePointListRelationFilter, {
+    nullable: true,
+  })
+  usePoints?: UsePointListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => GetPointListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => GetPointListRelationFilter)
+  @IsOptional()
+  @Field(() => GetPointListRelationFilter, {
+    nullable: true,
+  })
+  getPoints?: GetPointListRelationFilter;
 }
 
 export { UserWhereInput as UserWhereInput };

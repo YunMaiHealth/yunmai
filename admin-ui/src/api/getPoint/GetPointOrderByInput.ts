@@ -2,8 +2,7 @@ import { SortOrder } from "../../util/SortOrder";
 
 export type GetPointOrderByInput = {
   id?: SortOrder;
-  getPointTime?: SortOrder;
-  getPoint?: SortOrder;
-  getPointType?: SortOrder;
+  createdAt?: SortOrder;
+  updatedAt?: SortOrder;
   userId?: SortOrder;
 };

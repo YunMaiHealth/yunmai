@@ -11,9 +11,12 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsJSON } from "class-validator";
+import { IsString, IsOptional, IsJSON, ValidateNested } from "class-validator";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
+import { UsePointCreateNestedManyWithoutUsersInput } from "./UsePointCreateNestedManyWithoutUsersInput";
+import { Type } from "class-transformer";
+import { GetPointCreateNestedManyWithoutUsersInput } from "./GetPointCreateNestedManyWithoutUsersInput";
 
 @InputType()
 class UserCreateInput {
@@ -61,6 +64,30 @@ class UserCreateInput {
   @IsJSON()
   @Field(() => GraphQLJSON)
   roles!: InputJsonValue;
+
+  @ApiProperty({
+    required: false,
+    type: () => UsePointCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => UsePointCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => UsePointCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  usePoints?: UsePointCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => GetPointCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => GetPointCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => GetPointCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  getPoints?: GetPointCreateNestedManyWithoutUsersInput;
 }
 
 export { UserCreateInput as UserCreateInput };

@@ -1,7 +1,7 @@
 import { GetPoint as TGetPoint } from "../api/getPoint/GetPoint";
 
-export const GETPOINT_TITLE_FIELD = "getPointType";
+export const GETPOINT_TITLE_FIELD = "id";
 
 export const GetPointTitle = (record: TGetPoint): string => {
-  return record.getPointType || String(record.id);
+  return record.id || String(record.id);
 };
