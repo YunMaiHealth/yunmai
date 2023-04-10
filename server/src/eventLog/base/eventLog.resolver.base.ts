@@ -25,7 +25,6 @@ import { DeleteEventLogArgs } from "./DeleteEventLogArgs";
 import { EventLogFindManyArgs } from "./EventLogFindManyArgs";
 import { EventLogFindUniqueArgs } from "./EventLogFindUniqueArgs";
 import { EventLog } from "./EventLog";
-import { MessageNotifyFindManyArgs } from "../../messageNotify/base/MessageNotifyFindManyArgs";
 import { MessageNotify } from "../../messageNotify/base/MessageNotify";
 import { EventLogService } from "../eventLog.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
@@ -97,7 +96,15 @@ export class EventLogResolverBase {
   ): Promise<EventLog> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        messageNotifies: args.data.messageNotifies
+          ? {
+              connect: args.data.messageNotifies,
+            }
+          : undefined,
+      },
     });
   }
 
@@ -114,7 +121,15 @@ export class EventLogResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          messageNotifies: args.data.messageNotifies
+            ? {
+                connect: args.data.messageNotifies,
+              }
+            : undefined,
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -148,22 +163,20 @@ export class EventLogResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [MessageNotify])
+  @graphql.ResolveField(() => MessageNotify, { nullable: true })
   @nestAccessControl.UseRoles({
     resource: "MessageNotify",
     action: "read",
     possession: "any",
   })
   async messageNotifies(
-    @graphql.Parent() parent: EventLog,
-    @graphql.Args() args: MessageNotifyFindManyArgs
-  ): Promise<MessageNotify[]> {
-    const results = await this.service.findMessageNotifies(parent.id, args);
+    @graphql.Parent() parent: EventLog
+  ): Promise<MessageNotify | null> {
+    const result = await this.service.getMessageNotifies(parent.id);
 
-    if (!results) {
-      return [];
+    if (!result) {
+      return null;
     }
-
-    return results;
+    return result;
   }
 }

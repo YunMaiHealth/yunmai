@@ -1,12 +1,9 @@
-import { EventLogWhereUniqueInput } from "../eventLog/EventLogWhereUniqueInput";
 import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
+import { EventLogUpdateManyWithoutMessageNotifiesInput } from "./EventLogUpdateManyWithoutMessageNotifiesInput";
 
 export type MessageNotifyUpdateInput = {
-  messageSource?: string;
   sendTime?: Date;
-  isNew?: boolean;
-  messageContent?: string;
-  messageType?: string;
-  event?: EventLogWhereUniqueInput | null;
+  messageSource?: string | null;
   user?: UserWhereUniqueInput | null;
+  eventLogs?: EventLogUpdateManyWithoutMessageNotifiesInput;
 };

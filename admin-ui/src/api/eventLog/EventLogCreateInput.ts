@@ -1,11 +1,6 @@
-import { InputJsonValue } from "../../types";
-import { MessageNotifyCreateNestedManyWithoutEventLogsInput } from "./MessageNotifyCreateNestedManyWithoutEventLogsInput";
+import { MessageNotifyWhereUniqueInput } from "../messageNotify/MessageNotifyWhereUniqueInput";
 
 export type EventLogCreateInput = {
   eventTime: Date;
-  eventType: string;
-  eventName?: string | null;
-  eventParam?: InputJsonValue;
-  relateUser?: InputJsonValue;
-  messageNotifies?: MessageNotifyCreateNestedManyWithoutEventLogsInput;
+  messageNotifies?: MessageNotifyWhereUniqueInput | null;
 };

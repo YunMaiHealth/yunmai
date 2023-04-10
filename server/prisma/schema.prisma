@@ -8,12 +8,30 @@ generator client {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  firstName String?
-  lastName  String?
-  username  String   @unique
-  password  String
-  roles     Json
+  id              String          @id @default(cuid())
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  firstName       String?
+  lastName        String?
+  username        String          @unique
+  password        String
+  roles           Json
+  messageNotifies MessageNotify[]
+}
+
+model MessageNotify {
+  id            String     @id @default(cuid())
+  sendTime      DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  messageSource String?
+  user          User?      @relation(fields: [userId], references: [id])
+  userId        String?
+  eventLogs     EventLog[]
+}
+
+model EventLog {
+  id                String         @id @default(cuid())
+  eventTime         DateTime       @default(now())
+  messageNotifies   MessageNotify? @relation(fields: [messageNotifiesId], references: [id])
+  messageNotifiesId String?
 }

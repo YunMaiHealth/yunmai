@@ -6,33 +6,42 @@ import {
   ShowProps,
   TextField,
   DateField,
-  BooleanField,
   ReferenceField,
+  ReferenceManyField,
+  Datagrid,
 } from "react-admin";
 
-import { EVENTLOG_TITLE_FIELD } from "../eventLog/EventLogTitle";
+import { MESSAGENOTIFY_TITLE_FIELD } from "./MessageNotifyTitle";
 import { USER_TITLE_FIELD } from "../user/UserTitle";
 
 export const MessageNotifyShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <TextField label="消息来源" source="messageSource" />
         <TextField label="ID" source="id" />
-        <DateField source="sendTime" label="消息发送时间" />
-        <BooleanField label="是否已读" source="isNew" />
-        <TextField label="消息内容" source="messageContent" />
-        <TextField label="消息类别" source="messageType" />
-        <ReferenceField
-          label="事件日志"
-          source="eventlog.id"
-          reference="EventLog"
-        >
-          <TextField source={EVENTLOG_TITLE_FIELD} />
-        </ReferenceField>
-        <ReferenceField label="用户" source="user.id" reference="User">
+        <DateField source="sendTime" label="sendTime" />
+        <DateField source="updatedAt" label="Updated At" />
+        <TextField label="messageSource" source="messageSource" />
+        <ReferenceField label="user" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>
+        <ReferenceManyField
+          reference="EventLog"
+          target="MessageNotifyId"
+          label="eventLogs"
+        >
+          <Datagrid rowClick="show">
+            <TextField label="ID" source="id" />
+            <DateField source="eventTime" label="eventTime" />
+            <ReferenceField
+              label="messageNotifies"
+              source="messagenotify.id"
+              reference="MessageNotify"
+            >
+              <TextField source={MESSAGENOTIFY_TITLE_FIELD} />
+            </ReferenceField>
+          </Datagrid>
+        </ReferenceManyField>
       </SimpleShowLayout>
     </Show>
   );

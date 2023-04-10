@@ -14,23 +14,12 @@ import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
-import { BooleanFilter } from "../../util/BooleanFilter";
-import { EventLogWhereUniqueInput } from "../../eventLog/base/EventLogWhereUniqueInput";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { EventLogListRelationFilter } from "../../eventLog/base/EventLogListRelationFilter";
 
 @InputType()
 class MessageNotifyWhereInput {
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  messageSource?: StringFilter;
-
   @ApiProperty({
     required: false,
     type: StringFilter,
@@ -44,48 +33,14 @@ class MessageNotifyWhereInput {
 
   @ApiProperty({
     required: false,
-    type: BooleanFilter,
+    type: StringNullableFilter,
   })
-  @Type(() => BooleanFilter)
+  @Type(() => StringNullableFilter)
   @IsOptional()
-  @Field(() => BooleanFilter, {
+  @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  isNew?: BooleanFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  messageContent?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  messageType?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: () => EventLogWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => EventLogWhereUniqueInput)
-  @IsOptional()
-  @Field(() => EventLogWhereUniqueInput, {
-    nullable: true,
-  })
-  event?: EventLogWhereUniqueInput;
+  messageSource?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -98,6 +53,18 @@ class MessageNotifyWhereInput {
     nullable: true,
   })
   user?: UserWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => EventLogListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => EventLogListRelationFilter)
+  @IsOptional()
+  @Field(() => EventLogListRelationFilter, {
+    nullable: true,
+  })
+  eventLogs?: EventLogListRelationFilter;
 }
 
 export { MessageNotifyWhereInput as MessageNotifyWhereInput };

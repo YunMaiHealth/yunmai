@@ -14,9 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
-import { JsonFilter } from "../../util/JsonFilter";
-import { MessageNotifyListRelationFilter } from "../../messageNotify/base/MessageNotifyListRelationFilter";
+import { MessageNotifyWhereUniqueInput } from "../../messageNotify/base/MessageNotifyWhereUniqueInput";
 
 @InputType()
 class EventLogWhereInput {
@@ -33,59 +31,15 @@ class EventLogWhereInput {
 
   @ApiProperty({
     required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  eventType?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  eventName?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: JsonFilter,
-  })
-  @Type(() => JsonFilter)
-  @IsOptional()
-  @Field(() => JsonFilter, {
-    nullable: true,
-  })
-  eventParam?: JsonFilter;
-
-  @ApiProperty({
-    required: false,
-    type: JsonFilter,
-  })
-  @Type(() => JsonFilter)
-  @IsOptional()
-  @Field(() => JsonFilter, {
-    nullable: true,
-  })
-  relateUser?: JsonFilter;
-
-  @ApiProperty({
-    required: false,
-    type: () => MessageNotifyListRelationFilter,
+    type: () => MessageNotifyWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => MessageNotifyListRelationFilter)
+  @Type(() => MessageNotifyWhereUniqueInput)
   @IsOptional()
-  @Field(() => MessageNotifyListRelationFilter, {
+  @Field(() => MessageNotifyWhereUniqueInput, {
     nullable: true,
   })
-  messageNotifies?: MessageNotifyListRelationFilter;
+  messageNotifies?: MessageNotifyWhereUniqueInput;
 }
 
 export { EventLogWhereInput as EventLogWhereInput };

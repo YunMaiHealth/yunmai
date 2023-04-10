@@ -4,35 +4,34 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  TextInput,
   DateTimeInput,
-  BooleanInput,
+  TextInput,
   ReferenceInput,
   SelectInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
 } from "react-admin";
 
-import { EventLogTitle } from "../eventLog/EventLogTitle";
 import { UserTitle } from "../user/UserTitle";
+import { EventLogTitle } from "../eventLog/EventLogTitle";
 
 export const MessageNotifyEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="消息来源" source="messageSource" />
-        <DateTimeInput label="消息发送时间" source="sendTime" disabled />
-        <BooleanInput label="是否已读" source="isNew" />
-        <TextInput label="消息内容" source="messageContent" />
-        <TextInput label="消息类别" source="messageType" />
-        <ReferenceInput
-          source="eventlog.id"
-          reference="EventLog"
-          label="事件日志"
-        >
-          <SelectInput optionText={EventLogTitle} />
-        </ReferenceInput>
-        <ReferenceInput source="user.id" reference="User" label="用户">
+        <DateTimeInput label="sendTime" source="sendTime" disabled />
+        <TextInput label="messageSource" source="messageSource" />
+        <ReferenceInput source="user.id" reference="User" label="user">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>
+        <ReferenceArrayInput
+          source="eventLogs"
+          reference="EventLog"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={EventLogTitle} />
+        </ReferenceArrayInput>
       </SimpleForm>
     </Edit>
   );

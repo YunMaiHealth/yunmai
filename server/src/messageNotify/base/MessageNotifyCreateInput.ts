@@ -11,27 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsString,
-  IsDate,
-  IsBoolean,
-  ValidateNested,
-  IsOptional,
-} from "class-validator";
+import { IsDate, IsString, IsOptional, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
-import { EventLogWhereUniqueInput } from "../../eventLog/base/EventLogWhereUniqueInput";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { EventLogCreateNestedManyWithoutMessageNotifiesInput } from "./EventLogCreateNestedManyWithoutMessageNotifiesInput";
 
 @InputType()
 class MessageNotifyCreateInput {
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  messageSource!: string;
-
   @ApiProperty({
     required: true,
   })
@@ -41,40 +27,15 @@ class MessageNotifyCreateInput {
   sendTime!: Date;
 
   @ApiProperty({
-    required: true,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @Field(() => Boolean)
-  isNew!: boolean;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  messageContent!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  messageType!: string;
-
-  @ApiProperty({
     required: false,
-    type: () => EventLogWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => EventLogWhereUniqueInput)
+  @IsString()
   @IsOptional()
-  @Field(() => EventLogWhereUniqueInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  event?: EventLogWhereUniqueInput | null;
+  messageSource?: string | null;
 
   @ApiProperty({
     required: false,
@@ -87,6 +48,18 @@ class MessageNotifyCreateInput {
     nullable: true,
   })
   user?: UserWhereUniqueInput | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => EventLogCreateNestedManyWithoutMessageNotifiesInput,
+  })
+  @ValidateNested()
+  @Type(() => EventLogCreateNestedManyWithoutMessageNotifiesInput)
+  @IsOptional()
+  @Field(() => EventLogCreateNestedManyWithoutMessageNotifiesInput, {
+    nullable: true,
+  })
+  eventLogs?: EventLogCreateNestedManyWithoutMessageNotifiesInput;
 }
 
 export { MessageNotifyCreateInput as MessageNotifyCreateInput };

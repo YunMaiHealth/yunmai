@@ -1,13 +1,11 @@
-import { EventLog } from "../eventLog/EventLog";
 import { User } from "../user/User";
+import { EventLog } from "../eventLog/EventLog";
 
 export type MessageNotify = {
-  messageSource: string;
   id: string;
   sendTime: Date;
-  isNew: boolean;
-  messageContent: string;
-  messageType: string;
-  event?: EventLog | null;
+  updatedAt: Date;
+  messageSource: string | null;
   user?: User | null;
+  eventLogs?: Array<EventLog>;
 };
