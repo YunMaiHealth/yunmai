@@ -16,7 +16,6 @@ import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
-import { ReplyQuestionListRelationFilter } from "../../replyQuestion/base/ReplyQuestionListRelationFilter";
 
 @InputType()
 class UserQuestionWhereInput {
@@ -33,14 +32,14 @@ class UserQuestionWhereInput {
 
   @ApiProperty({
     required: false,
-    type: StringFilter,
+    type: StringNullableFilter,
   })
-  @Type(() => StringFilter)
+  @Type(() => StringNullableFilter)
   @IsOptional()
-  @Field(() => StringFilter, {
+  @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  questionTitle?: StringFilter;
+  questionTitle?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -55,14 +54,14 @@ class UserQuestionWhereInput {
 
   @ApiProperty({
     required: false,
-    type: StringFilter,
+    type: StringNullableFilter,
   })
-  @Type(() => StringFilter)
+  @Type(() => StringNullableFilter)
   @IsOptional()
-  @Field(() => StringFilter, {
+  @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  isPublic?: StringFilter;
+  isPublic?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -75,18 +74,6 @@ class UserQuestionWhereInput {
     nullable: true,
   })
   user?: UserWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => ReplyQuestionListRelationFilter,
-  })
-  @ValidateNested()
-  @Type(() => ReplyQuestionListRelationFilter)
-  @IsOptional()
-  @Field(() => ReplyQuestionListRelationFilter, {
-    nullable: true,
-  })
-  replyQuestions?: ReplyQuestionListRelationFilter;
 }
 
 export { UserQuestionWhereInput as UserQuestionWhereInput };

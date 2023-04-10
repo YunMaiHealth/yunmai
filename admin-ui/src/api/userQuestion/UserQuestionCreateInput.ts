@@ -1,11 +1,9 @@
 import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
-import { ReplyQuestionCreateNestedManyWithoutUserQuestionsInput } from "./ReplyQuestionCreateNestedManyWithoutUserQuestionsInput";
 
 export type UserQuestionCreateInput = {
   questionTime: Date;
-  questionTitle: string;
+  questionTitle?: string | null;
   questionContent?: string | null;
-  isPublic: string;
+  isPublic?: string | null;
   user?: UserWhereUniqueInput | null;
-  replyQuestions?: ReplyQuestionCreateNestedManyWithoutUserQuestionsInput;
 };

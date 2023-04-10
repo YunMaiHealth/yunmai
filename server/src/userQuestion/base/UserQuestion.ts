@@ -14,7 +14,6 @@ import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsDate, IsOptional, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
 import { User } from "../../user/base/User";
-import { ReplyQuestion } from "../../replyQuestion/base/ReplyQuestion";
 
 @ObjectType()
 class UserQuestion {
@@ -35,12 +34,15 @@ class UserQuestion {
   questionTime!: Date;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: String,
   })
   @IsString()
-  @Field(() => String)
-  questionTitle!: string;
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  questionTitle!: string | null;
 
   @ApiProperty({
     required: false,
@@ -54,12 +56,15 @@ class UserQuestion {
   questionContent!: string | null;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: String,
   })
   @IsString()
-  @Field(() => String)
-  isPublic!: string;
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  isPublic!: string | null;
 
   @ApiProperty({
     required: false,
@@ -69,15 +74,6 @@ class UserQuestion {
   @Type(() => User)
   @IsOptional()
   user?: User | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => [ReplyQuestion],
-  })
-  @ValidateNested()
-  @Type(() => ReplyQuestion)
-  @IsOptional()
-  replyQuestions?: Array<ReplyQuestion>;
 }
 
 export { UserQuestion as UserQuestion };

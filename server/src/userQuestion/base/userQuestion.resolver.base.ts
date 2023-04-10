@@ -25,8 +25,6 @@ import { DeleteUserQuestionArgs } from "./DeleteUserQuestionArgs";
 import { UserQuestionFindManyArgs } from "./UserQuestionFindManyArgs";
 import { UserQuestionFindUniqueArgs } from "./UserQuestionFindUniqueArgs";
 import { UserQuestion } from "./UserQuestion";
-import { ReplyQuestionFindManyArgs } from "../../replyQuestion/base/ReplyQuestionFindManyArgs";
-import { ReplyQuestion } from "../../replyQuestion/base/ReplyQuestion";
 import { User } from "../../user/base/User";
 import { UserQuestionService } from "../userQuestion.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
@@ -162,26 +160,6 @@ export class UserQuestionResolverBase {
       }
       throw error;
     }
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [ReplyQuestion])
-  @nestAccessControl.UseRoles({
-    resource: "ReplyQuestion",
-    action: "read",
-    possession: "any",
-  })
-  async replyQuestions(
-    @graphql.Parent() parent: UserQuestion,
-    @graphql.Args() args: ReplyQuestionFindManyArgs
-  ): Promise<ReplyQuestion[]> {
-    const results = await this.service.findReplyQuestions(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)

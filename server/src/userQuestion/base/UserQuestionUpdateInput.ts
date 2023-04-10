@@ -14,7 +14,6 @@ import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsOptional, IsString, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
-import { ReplyQuestionUpdateManyWithoutUserQuestionsInput } from "./ReplyQuestionUpdateManyWithoutUserQuestionsInput";
 
 @InputType()
 class UserQuestionUpdateInput {
@@ -38,7 +37,7 @@ class UserQuestionUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  questionTitle?: string;
+  questionTitle?: string | null;
 
   @ApiProperty({
     required: false,
@@ -60,7 +59,7 @@ class UserQuestionUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  isPublic?: string;
+  isPublic?: string | null;
 
   @ApiProperty({
     required: false,
@@ -73,18 +72,6 @@ class UserQuestionUpdateInput {
     nullable: true,
   })
   user?: UserWhereUniqueInput | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => ReplyQuestionUpdateManyWithoutUserQuestionsInput,
-  })
-  @ValidateNested()
-  @Type(() => ReplyQuestionUpdateManyWithoutUserQuestionsInput)
-  @IsOptional()
-  @Field(() => ReplyQuestionUpdateManyWithoutUserQuestionsInput, {
-    nullable: true,
-  })
-  replyQuestions?: ReplyQuestionUpdateManyWithoutUserQuestionsInput;
 }
 
 export { UserQuestionUpdateInput as UserQuestionUpdateInput };
