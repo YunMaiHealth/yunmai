@@ -99,9 +99,11 @@ export class HubitusCheckupResolverBase {
       data: {
         ...args.data,
 
-        user: {
-          connect: args.data.user,
-        },
+        user: args.data.user
+          ? {
+              connect: args.data.user,
+            }
+          : undefined,
       },
     });
   }
@@ -122,9 +124,11 @@ export class HubitusCheckupResolverBase {
         data: {
           ...args.data,
 
-          user: {
-            connect: args.data.user,
-          },
+          user: args.data.user
+            ? {
+                connect: args.data.user,
+              }
+            : undefined,
         },
       });
     } catch (error) {

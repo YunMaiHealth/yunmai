@@ -34,6 +34,15 @@ class HubitusCheckupOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  testTime?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   currentHabitus?: SortOrder;
 
   @ApiProperty({
@@ -62,15 +71,6 @@ class HubitusCheckupOrderByInput {
     nullable: true,
   })
   suggest?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  testTime?: SortOrder;
 
   @ApiProperty({
     required: false,

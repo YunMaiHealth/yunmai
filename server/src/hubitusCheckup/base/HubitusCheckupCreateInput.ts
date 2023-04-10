@@ -11,12 +11,20 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsDate, ValidateNested } from "class-validator";
+import { IsDate, IsString, IsOptional, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 
 @InputType()
 class HubitusCheckupCreateInput {
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  testTime!: Date;
+
   @ApiProperty({
     required: false,
     type: String,
@@ -62,21 +70,16 @@ class HubitusCheckupCreateInput {
   suggest?: string | null;
 
   @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  testTime!: Date;
-
-  @ApiProperty({
-    required: true,
+    required: false,
     type: () => UserWhereUniqueInput,
   })
   @ValidateNested()
   @Type(() => UserWhereUniqueInput)
-  @Field(() => UserWhereUniqueInput)
-  user!: UserWhereUniqueInput;
+  @IsOptional()
+  @Field(() => UserWhereUniqueInput, {
+    nullable: true,
+  })
+  user?: UserWhereUniqueInput | null;
 }
 
 export { HubitusCheckupCreateInput as HubitusCheckupCreateInput };
