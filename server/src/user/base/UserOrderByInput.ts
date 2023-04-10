@@ -34,7 +34,7 @@ class UserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  createdAt?: SortOrder;
+  creatTime?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -43,7 +43,7 @@ class UserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  updatedAt?: SortOrder;
+  lastLoginTime?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -52,16 +52,7 @@ class UserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  firstName?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  lastName?: SortOrder;
+  trueName?: SortOrder;
 
   @ApiProperty({
     required: false,
