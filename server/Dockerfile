@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package.json ./
 
-RUN npm install
+RUN npm install --registry=https://registry.npm.taobao.org
 
 COPY prisma/schema.prisma ./prisma/
 ENV PRISMA_BINARIES_MIRROR http://prisma-builds.s3-eu-west-1.amazonaws.com
