@@ -27,6 +27,7 @@ pipeline {
       steps {
         sshCommand remote: getServer("${deploy_host}"), command: "rm -Rf ${JOB_NAME}" ,failOnError:false      
         sshCommand remote: getServer("${deploy_host}"), command: "mkdir ${JOB_NAME}"  
+        sshCommand remote: getServer("${deploy_host}"), command: "docker builder prune"
       }
     }
     stage("启动服务端") {
