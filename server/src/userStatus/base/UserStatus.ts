@@ -11,19 +11,9 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsString,
-  IsOptional,
-  IsInt,
-  IsNumber,
-  IsDate,
-  IsJSON,
-  ValidateNested,
-} from "class-validator";
+import { IsString, IsDate, IsEnum, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { GraphQLJSON } from "graphql-type-json";
-import { JsonValue } from "type-fest";
-import { User } from "../../user/base/User";
+import { EnumUserStatusStatus } from "./EnumUserStatusStatus";
 
 @ObjectType()
 class UserStatus {
@@ -36,80 +26,12 @@ class UserStatus {
   id!: string;
 
   @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  status!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsInt()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  intValue!: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  doubleValue!: number | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  stringValue!: string | null;
-
-  @ApiProperty({
-    required: false,
+    required: true,
   })
   @IsDate()
   @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  dateValue!: Date | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSON()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  jsonValue!: JsonValue;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  blobValue!: string | null;
+  @Field(() => Date)
+  createdAt!: Date;
 
   @ApiProperty({
     required: true,
@@ -117,27 +39,18 @@ class UserStatus {
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
-  updateTime!: Date;
+  updatedAt!: Date;
 
   @ApiProperty({
     required: false,
-    type: String,
+    enum: EnumUserStatusStatus,
   })
-  @IsString()
+  @IsEnum(EnumUserStatusStatus)
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => EnumUserStatusStatus, {
     nullable: true,
   })
-  streamId!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => User,
-  })
-  @ValidateNested()
-  @Type(() => User)
-  @IsOptional()
-  user?: User | null;
+  status?: "Option1" | null;
 }
 
 export { UserStatus as UserStatus };

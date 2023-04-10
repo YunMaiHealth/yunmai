@@ -1,34 +1,18 @@
 import * as React from "react";
-
-import {
-  Edit,
-  SimpleForm,
-  EditProps,
-  TextInput,
-  NumberInput,
-  DateTimeInput,
-  ReferenceInput,
-  SelectInput,
-} from "react-admin";
-
-import { UserTitle } from "../user/UserTitle";
+import { Edit, SimpleForm, EditProps, SelectInput } from "react-admin";
 
 export const UserStatusEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <TextInput label="状态名" source="status" />
-        <NumberInput step={1} label="数值型" source="intValue" />
-        <NumberInput label="浮点型" source="doubleValue" />
-        <TextInput label="字符型" source="stringValue" />
-        <DateTimeInput label="日期型" source="dateValue" />
-        <div />
-        <TextInput label="二进制文件" multiline source="blobValue" />
-        <DateTimeInput label="状态变化时间" source="updateTime" disabled />
-        <TextInput label="业务流水号" source="streamId" />
-        <ReferenceInput source="user.id" reference="User" label="user">
-          <SelectInput optionText={UserTitle} />
-        </ReferenceInput>
+        <SelectInput
+          source="status"
+          label="status"
+          choices={[{ label: "Option 1", value: "Option1" }]}
+          optionText="label"
+          allowEmpty
+          optionValue="value"
+        />
       </SimpleForm>
     </Edit>
   );
