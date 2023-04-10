@@ -25,7 +25,6 @@ import { DeleteUserStatusArgs } from "./DeleteUserStatusArgs";
 import { UserStatusFindManyArgs } from "./UserStatusFindManyArgs";
 import { UserStatusFindUniqueArgs } from "./UserStatusFindUniqueArgs";
 import { UserStatus } from "./UserStatus";
-import { User } from "../../user/base/User";
 import { UserStatusService } from "../userStatus.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => UserStatus)
@@ -96,15 +95,7 @@ export class UserStatusResolverBase {
   ): Promise<UserStatus> {
     return await this.service.create({
       ...args,
-      data: {
-        ...args.data,
-
-        user: args.data.user
-          ? {
-              connect: args.data.user,
-            }
-          : undefined,
-      },
+      data: args.data,
     });
   }
 
@@ -121,15 +112,7 @@ export class UserStatusResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: {
-          ...args.data,
-
-          user: args.data.user
-            ? {
-                connect: args.data.user,
-              }
-            : undefined,
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -160,21 +143,5 @@ export class UserStatusResolverBase {
       }
       throw error;
     }
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => User, { nullable: true })
-  @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "read",
-    possession: "any",
-  })
-  async user(@graphql.Parent() parent: UserStatus): Promise<User | null> {
-    const result = await this.service.getUser(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
   }
 }

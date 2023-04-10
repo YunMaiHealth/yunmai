@@ -50,32 +50,12 @@ export class UserStatusControllerBase {
     @common.Body() data: UserStatusCreateInput
   ): Promise<UserStatus> {
     return await this.service.create({
-      data: {
-        ...data,
-
-        user: data.user
-          ? {
-              connect: data.user,
-            }
-          : undefined,
-      },
+      data: data,
       select: {
         id: true,
+        createdAt: true,
+        updatedAt: true,
         status: true,
-        intValue: true,
-        doubleValue: true,
-        stringValue: true,
-        dateValue: true,
-        jsonValue: true,
-        blobValue: true,
-        updateTime: true,
-        streamId: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
   }
@@ -98,21 +78,9 @@ export class UserStatusControllerBase {
       ...args,
       select: {
         id: true,
+        createdAt: true,
+        updatedAt: true,
         status: true,
-        intValue: true,
-        doubleValue: true,
-        stringValue: true,
-        dateValue: true,
-        jsonValue: true,
-        blobValue: true,
-        updateTime: true,
-        streamId: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
   }
@@ -136,21 +104,9 @@ export class UserStatusControllerBase {
       where: params,
       select: {
         id: true,
+        createdAt: true,
+        updatedAt: true,
         status: true,
-        intValue: true,
-        doubleValue: true,
-        stringValue: true,
-        dateValue: true,
-        jsonValue: true,
-        blobValue: true,
-        updateTime: true,
-        streamId: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
     if (result === null) {
@@ -180,32 +136,12 @@ export class UserStatusControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: {
-          ...data,
-
-          user: data.user
-            ? {
-                connect: data.user,
-              }
-            : undefined,
-        },
+        data: data,
         select: {
           id: true,
+          createdAt: true,
+          updatedAt: true,
           status: true,
-          intValue: true,
-          doubleValue: true,
-          stringValue: true,
-          dateValue: true,
-          jsonValue: true,
-          blobValue: true,
-          updateTime: true,
-          streamId: true,
-
-          user: {
-            select: {
-              id: true,
-            },
-          },
         },
       });
     } catch (error) {
@@ -237,21 +173,9 @@ export class UserStatusControllerBase {
         where: params,
         select: {
           id: true,
+          createdAt: true,
+          updatedAt: true,
           status: true,
-          intValue: true,
-          doubleValue: true,
-          stringValue: true,
-          dateValue: true,
-          jsonValue: true,
-          blobValue: true,
-          updateTime: true,
-          streamId: true,
-
-          user: {
-            select: {
-              id: true,
-            },
-          },
         },
       });
     } catch (error) {
