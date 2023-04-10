@@ -8,30 +8,12 @@ generator client {
 }
 
 model User {
-  id            String         @id @default(cuid())
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  firstName     String?
-  lastName      String?
-  username      String         @unique
-  password      String
-  roles         Json
-  userQuestions UserQuestion[]
-}
-
-model UserQuestion {
-  id             String          @id @default(cuid())
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
-  user           User?           @relation(fields: [userId], references: [id])
-  userId         String?
-  replyQuestions ReplyQuestion[]
-}
-
-model ReplyQuestion {
-  id             String        @id @default(cuid())
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
-  userQuestion   UserQuestion? @relation(fields: [userQuestionId], references: [id])
-  userQuestionId String?
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  firstName String?
+  lastName  String?
+  username  String   @unique
+  password  String
+  roles     Json
 }
