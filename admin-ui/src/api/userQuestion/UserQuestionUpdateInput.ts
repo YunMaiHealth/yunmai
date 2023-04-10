@@ -1,11 +1,9 @@
 import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
-import { ReplyQuestionUpdateManyWithoutUserQuestionsInput } from "./ReplyQuestionUpdateManyWithoutUserQuestionsInput";
 
 export type UserQuestionUpdateInput = {
   questionTime?: Date;
-  questionTitle?: string;
+  questionTitle?: string | null;
   questionContent?: string | null;
-  isPublic?: string;
+  isPublic?: string | null;
   user?: UserWhereUniqueInput | null;
-  replyQuestions?: ReplyQuestionUpdateManyWithoutUserQuestionsInput;
 };

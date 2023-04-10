@@ -8,103 +8,23 @@ generator client {
 }
 
 model User {
-  id            String          @id @default(cuid())
-  creatTime     DateTime        @default(now())
-  lastLoginTime DateTime
-  username      String          @unique
+  id            String         @id @default(cuid())
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  firstName     String?
+  lastName      String?
+  username      String         @unique
   password      String
   roles         Json
-  oauthType     String
-  openId        String
-  sessionKey    String?
-  unionId       String
-  inviterId     String?
-  phone         String?
-  trueName      String?
-  nickName      String?
-  avatarUrl     String?
-  gender        EnumUserGender?
-  birthday      DateTime?
-  userIdCard    String?
-  country       String?
-  province      String?
-  city          String?
-  language      String?
-  hubituses     Hubitus[]
-  Statuses      Status[]
-  messages      Message[]
-  usepoints     Usepoint[]
-  getpoints     Getpoint[]
+  userQuestions UserQuestion[]
 }
 
-model Hubitus {
-  id             String   @id @default(cuid())
-  currentHabitus String
-  testResult     Json
-  countResult    Json
-  suggest        String?
-  testTime       DateTime
-  user           User     @relation(fields: [userId], references: [id])
-  userId         String
-}
-
-model Status {
-  id          String    @id @default(cuid())
-  updateTime  DateTime  @updatedAt
-  status      String
-  intValue    Int?
-  doubleValue Float?
-  stringValue String?
-  dateValue   DateTime?
-  jsonValue   Json?
-  streamId    String?
-  user        User?     @relation(fields: [userId], references: [id])
-  userId      String?
-}
-
-model Message {
-  id             String   @id @default(cuid())
-  sendTime       DateTime @default(now())
-  isNew          Boolean
-  messageContent Json
-  messageType    String
-  messageSource  String
-  event          Event?   @relation(fields: [eventId], references: [id])
-  eventId        String?
-  user           User?    @relation(fields: [userId], references: [id])
-  userId         String?
-}
-
-model Event {
-  id              String    @id @default(cuid())
-  eventTime       DateTime  @default(now())
-  eventType       String
-  eventName       String
-  eventParam      Json?
-  relateUser      Json?
-  messageNotifies Message[]
-}
-
-model Usepoint {
-  id           String   @id @default(cuid())
-  usePointTime DateTime @default(now())
-  usePoint     Int
-  usePointType String
-  user         User?    @relation(fields: [userId], references: [id])
-  userId       String?
-}
-
-model Getpoint {
-  id           String   @id @default(cuid())
-  getPointTime DateTime @default(now())
-  getPoint     Int
-  getPointType String
-  user         User?    @relation(fields: [userId], references: [id])
-  userId       String?
-}
-
-enum EnumUserGender {
-  Unknown
-  Male
-  Female
+model UserQuestion {
+  id              String   @id @default(cuid())
+  questionTime    DateTime @default(now())
+  questionTitle   String?
+  questionContent String?
+  isPublic        String?
+  user            User?    @relation(fields: [userId], references: [id])
+  userId          String?
 }

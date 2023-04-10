@@ -14,7 +14,6 @@ import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsString, IsOptional, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
-import { ReplyQuestionCreateNestedManyWithoutUserQuestionsInput } from "./ReplyQuestionCreateNestedManyWithoutUserQuestionsInput";
 
 @InputType()
 class UserQuestionCreateInput {
@@ -27,12 +26,15 @@ class UserQuestionCreateInput {
   questionTime!: Date;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: String,
   })
   @IsString()
-  @Field(() => String)
-  questionTitle!: string;
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  questionTitle?: string | null;
 
   @ApiProperty({
     required: false,
@@ -46,12 +48,15 @@ class UserQuestionCreateInput {
   questionContent?: string | null;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: String,
   })
   @IsString()
-  @Field(() => String)
-  isPublic!: string;
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  isPublic?: string | null;
 
   @ApiProperty({
     required: false,
@@ -64,18 +69,6 @@ class UserQuestionCreateInput {
     nullable: true,
   })
   user?: UserWhereUniqueInput | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => ReplyQuestionCreateNestedManyWithoutUserQuestionsInput,
-  })
-  @ValidateNested()
-  @Type(() => ReplyQuestionCreateNestedManyWithoutUserQuestionsInput)
-  @IsOptional()
-  @Field(() => ReplyQuestionCreateNestedManyWithoutUserQuestionsInput, {
-    nullable: true,
-  })
-  replyQuestions?: ReplyQuestionCreateNestedManyWithoutUserQuestionsInput;
 }
 
 export { UserQuestionCreateInput as UserQuestionCreateInput };

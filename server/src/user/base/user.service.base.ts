@@ -10,15 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import {
-  Prisma,
-  User,
-  Hubitus,
-  Status,
-  Message,
-  Usepoint,
-  Getpoint,
-} from "@prisma/client";
+import { Prisma, User, UserQuestion } from "@prisma/client";
 import { PasswordService } from "../../auth/password.service";
 import { transformStringFieldUpdateInput } from "../../prisma.util";
 
@@ -80,58 +72,14 @@ export class UserServiceBase {
     return this.prisma.user.delete(args);
   }
 
-  async findHubituses(
+  async findUserQuestions(
     parentId: string,
-    args: Prisma.HubitusFindManyArgs
-  ): Promise<Hubitus[]> {
+    args: Prisma.UserQuestionFindManyArgs
+  ): Promise<UserQuestion[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .hubituses(args);
-  }
-
-  async findStatuses(
-    parentId: string,
-    args: Prisma.StatusFindManyArgs
-  ): Promise<Status[]> {
-    return this.prisma.user
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .Statuses(args);
-  }
-
-  async findMessages(
-    parentId: string,
-    args: Prisma.MessageFindManyArgs
-  ): Promise<Message[]> {
-    return this.prisma.user
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .messages(args);
-  }
-
-  async findUsepoints(
-    parentId: string,
-    args: Prisma.UsepointFindManyArgs
-  ): Promise<Usepoint[]> {
-    return this.prisma.user
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .usepoints(args);
-  }
-
-  async findGetpoints(
-    parentId: string,
-    args: Prisma.GetpointFindManyArgs
-  ): Promise<Getpoint[]> {
-    return this.prisma.user
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .getpoints(args);
+      .userQuestions(args);
   }
 }

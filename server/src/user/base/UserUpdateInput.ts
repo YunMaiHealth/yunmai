@@ -11,47 +11,35 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsDate,
-  IsOptional,
-  IsString,
-  IsJSON,
-  IsEnum,
-  ValidateNested,
-} from "class-validator";
-import { Type } from "class-transformer";
+import { IsString, IsOptional, IsJSON, ValidateNested } from "class-validator";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
-import { EnumUserGender } from "./EnumUserGender";
-import { HubitusUpdateManyWithoutUsersInput } from "./HubitusUpdateManyWithoutUsersInput";
-import { StatusUpdateManyWithoutUsersInput } from "./StatusUpdateManyWithoutUsersInput";
-import { MessageUpdateManyWithoutUsersInput } from "./MessageUpdateManyWithoutUsersInput";
-import { UsepointUpdateManyWithoutUsersInput } from "./UsepointUpdateManyWithoutUsersInput";
-import { GetpointUpdateManyWithoutUsersInput } from "./GetpointUpdateManyWithoutUsersInput";
+import { UserQuestionUpdateManyWithoutUsersInput } from "./UserQuestionUpdateManyWithoutUsersInput";
+import { Type } from "class-transformer";
 
 @InputType()
 class UserUpdateInput {
   @ApiProperty({
     required: false,
+    type: String,
   })
-  @IsDate()
-  @Type(() => Date)
+  @IsString()
   @IsOptional()
-  @Field(() => Date, {
+  @Field(() => String, {
     nullable: true,
   })
-  creatTime?: Date;
+  firstName?: string | null;
 
   @ApiProperty({
     required: false,
+    type: String,
   })
-  @IsDate()
-  @Type(() => Date)
+  @IsString()
   @IsOptional()
-  @Field(() => Date, {
+  @Field(() => String, {
     nullable: true,
   })
-  lastLoginTime?: Date;
+  lastName?: string | null;
 
   @ApiProperty({
     required: false,
@@ -87,239 +75,15 @@ class UserUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  oauthType?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  openId?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  sessionKey?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  unionId?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  inviterId?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  phone?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  trueName?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  nickName?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  avatarUrl?: string | null;
-
-  @ApiProperty({
-    required: false,
-    enum: EnumUserGender,
-  })
-  @IsEnum(EnumUserGender)
-  @IsOptional()
-  @Field(() => EnumUserGender, {
-    nullable: true,
-  })
-  gender?: "Unknown" | "Male" | "Female" | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  birthday?: Date | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  userIdCard?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  country?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  province?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  city?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  language?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => HubitusUpdateManyWithoutUsersInput,
+    type: () => UserQuestionUpdateManyWithoutUsersInput,
   })
   @ValidateNested()
-  @Type(() => HubitusUpdateManyWithoutUsersInput)
+  @Type(() => UserQuestionUpdateManyWithoutUsersInput)
   @IsOptional()
-  @Field(() => HubitusUpdateManyWithoutUsersInput, {
+  @Field(() => UserQuestionUpdateManyWithoutUsersInput, {
     nullable: true,
   })
-  hubituses?: HubitusUpdateManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => StatusUpdateManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => StatusUpdateManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => StatusUpdateManyWithoutUsersInput, {
-    nullable: true,
-  })
-  Statuses?: StatusUpdateManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => MessageUpdateManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => MessageUpdateManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => MessageUpdateManyWithoutUsersInput, {
-    nullable: true,
-  })
-  messages?: MessageUpdateManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => UsepointUpdateManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => UsepointUpdateManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => UsepointUpdateManyWithoutUsersInput, {
-    nullable: true,
-  })
-  usepoints?: UsepointUpdateManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => GetpointUpdateManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => GetpointUpdateManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => GetpointUpdateManyWithoutUsersInput, {
-    nullable: true,
-  })
-  getpoints?: GetpointUpdateManyWithoutUsersInput;
+  userQuestions?: UserQuestionUpdateManyWithoutUsersInput;
 }
 
 export { UserUpdateInput as UserUpdateInput };

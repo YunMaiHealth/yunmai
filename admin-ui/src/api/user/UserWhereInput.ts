@@ -1,34 +1,11 @@
 import { StringFilter } from "../../util/StringFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
-import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
-import { HubitusListRelationFilter } from "../hubitus/HubitusListRelationFilter";
-import { StatusListRelationFilter } from "../status/StatusListRelationFilter";
-import { MessageListRelationFilter } from "../message/MessageListRelationFilter";
-import { UsepointListRelationFilter } from "../usepoint/UsepointListRelationFilter";
-import { GetpointListRelationFilter } from "../getpoint/GetpointListRelationFilter";
+import { UserQuestionListRelationFilter } from "../userQuestion/UserQuestionListRelationFilter";
 
 export type UserWhereInput = {
   id?: StringFilter;
+  firstName?: StringNullableFilter;
+  lastName?: StringNullableFilter;
   username?: StringFilter;
-  oauthType?: StringFilter;
-  openId?: StringFilter;
-  sessionKey?: StringNullableFilter;
-  unionId?: StringFilter;
-  inviterId?: StringNullableFilter;
-  phone?: StringNullableFilter;
-  trueName?: StringNullableFilter;
-  nickName?: StringNullableFilter;
-  avatarUrl?: StringNullableFilter;
-  gender?: "Unknown" | "Male" | "Female";
-  birthday?: DateTimeNullableFilter;
-  userIdCard?: StringNullableFilter;
-  country?: StringNullableFilter;
-  province?: StringNullableFilter;
-  city?: StringNullableFilter;
-  language?: StringNullableFilter;
-  hubituses?: HubitusListRelationFilter;
-  Statuses?: StatusListRelationFilter;
-  messages?: MessageListRelationFilter;
-  usepoints?: UsepointListRelationFilter;
-  getpoints?: GetpointListRelationFilter;
+  userQuestions?: UserQuestionListRelationFilter;
 };

@@ -2,12 +2,7 @@ import { Module, Scope } from "@nestjs/common";
 import { APP_INTERCEPTOR } from "@nestjs/core";
 import { MorganInterceptor, MorganModule } from "nest-morgan";
 import { UserModule } from "./user/user.module";
-import { HubitusModule } from "./hubitus/hubitus.module";
-import { StatusModule } from "./status/status.module";
-import { MessageModule } from "./message/message.module";
-import { EventModule } from "./event/event.module";
-import { UsepointModule } from "./usepoint/usepoint.module";
-import { GetpointModule } from "./getpoint/getpoint.module";
+import { UserQuestionModule } from "./userQuestion/userQuestion.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -25,12 +20,7 @@ import { AuthModule } from "./auth/auth.module";
     ACLModule,
     AuthModule,
     UserModule,
-    HubitusModule,
-    StatusModule,
-    MessageModule,
-    EventModule,
-    UsepointModule,
-    GetpointModule,
+    UserQuestionModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,
