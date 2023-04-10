@@ -53,10 +53,6 @@ export class ReplyQuestionControllerBase {
       data: {
         ...data,
 
-        replyUser: {
-          connect: data.replyUser,
-        },
-
         userQuestion: data.userQuestion
           ? {
               connect: data.userQuestion,
@@ -65,15 +61,8 @@ export class ReplyQuestionControllerBase {
       },
       select: {
         id: true,
-        replyTime: true,
-        questionReply: true,
-        isPublic: true,
-
-        replyUser: {
-          select: {
-            id: true,
-          },
-        },
+        createdAt: true,
+        updatedAt: true,
 
         userQuestion: {
           select: {
@@ -102,15 +91,8 @@ export class ReplyQuestionControllerBase {
       ...args,
       select: {
         id: true,
-        replyTime: true,
-        questionReply: true,
-        isPublic: true,
-
-        replyUser: {
-          select: {
-            id: true,
-          },
-        },
+        createdAt: true,
+        updatedAt: true,
 
         userQuestion: {
           select: {
@@ -140,15 +122,8 @@ export class ReplyQuestionControllerBase {
       where: params,
       select: {
         id: true,
-        replyTime: true,
-        questionReply: true,
-        isPublic: true,
-
-        replyUser: {
-          select: {
-            id: true,
-          },
-        },
+        createdAt: true,
+        updatedAt: true,
 
         userQuestion: {
           select: {
@@ -187,10 +162,6 @@ export class ReplyQuestionControllerBase {
         data: {
           ...data,
 
-          replyUser: {
-            connect: data.replyUser,
-          },
-
           userQuestion: data.userQuestion
             ? {
                 connect: data.userQuestion,
@@ -199,15 +170,8 @@ export class ReplyQuestionControllerBase {
         },
         select: {
           id: true,
-          replyTime: true,
-          questionReply: true,
-          isPublic: true,
-
-          replyUser: {
-            select: {
-              id: true,
-            },
-          },
+          createdAt: true,
+          updatedAt: true,
 
           userQuestion: {
             select: {
@@ -245,15 +209,8 @@ export class ReplyQuestionControllerBase {
         where: params,
         select: {
           id: true,
-          replyTime: true,
-          questionReply: true,
-          isPublic: true,
-
-          replyUser: {
-            select: {
-              id: true,
-            },
-          },
+          createdAt: true,
+          updatedAt: true,
 
           userQuestion: {
             select: {
