@@ -2,14 +2,14 @@ import { Module, Scope } from "@nestjs/common";
 import { APP_INTERCEPTOR } from "@nestjs/core";
 import { MorganInterceptor, MorganModule } from "nest-morgan";
 import { UserModule } from "./user/user.module";
-import { HubitusCheckupModule } from "./hubitusCheckup/hubitusCheckup.module";
-import { UserStatusModule } from "./userStatus/userStatus.module";
-import { MessageNotifyModule } from "./messageNotify/messageNotify.module";
-import { EventLogModule } from "./eventLog/eventLog.module";
-import { UserQuestionModule } from "./userQuestion/userQuestion.module";
-import { ReplyQuestionModule } from "./replyQuestion/replyQuestion.module";
-import { UsePointModule } from "./usePoint/usePoint.module";
-import { GetPointModule } from "./getPoint/getPoint.module";
+import { HubitusModule } from "./hubitus/hubitus.module";
+import { StatusModule } from "./status/status.module";
+import { MessageModule } from "./message/message.module";
+import { EventModule } from "./event/event.module";
+import { QuestionModule } from "./question/question.module";
+import { ReplyModule } from "./reply/reply.module";
+import { UsepointModule } from "./usepoint/usepoint.module";
+import { GetpointModule } from "./getpoint/getpoint.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -27,14 +27,14 @@ import { AuthModule } from "./auth/auth.module";
     ACLModule,
     AuthModule,
     UserModule,
-    HubitusCheckupModule,
-    UserStatusModule,
-    MessageNotifyModule,
-    EventLogModule,
-    UserQuestionModule,
-    ReplyQuestionModule,
-    UsePointModule,
-    GetPointModule,
+    HubitusModule,
+    StatusModule,
+    MessageModule,
+    EventModule,
+    QuestionModule,
+    ReplyModule,
+    UsepointModule,
+    GetpointModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,

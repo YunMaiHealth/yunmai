@@ -14,13 +14,13 @@ import { PrismaService } from "../../prisma/prisma.service";
 import {
   Prisma,
   User,
-  UserStatus,
-  HubitusCheckup,
-  MessageNotify,
-  UserQuestion,
-  ReplyQuestion,
-  UsePoint,
-  GetPoint,
+  Hubitus,
+  Status,
+  Message,
+  Question,
+  Reply,
+  Usepoint,
+  Getpoint,
 } from "@prisma/client";
 
 import { PasswordService } from "../../auth/password.service";
@@ -84,80 +84,80 @@ export class UserServiceBase {
     return this.prisma.user.delete(args);
   }
 
-  async findUserStatuses(
+  async findHubituses(
     parentId: string,
-    args: Prisma.UserStatusFindManyArgs
-  ): Promise<UserStatus[]> {
+    args: Prisma.HubitusFindManyArgs
+  ): Promise<Hubitus[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .userStatuses(args);
+      .hubituses(args);
   }
 
-  async findHubitusCheckups(
+  async findStatuses(
     parentId: string,
-    args: Prisma.HubitusCheckupFindManyArgs
-  ): Promise<HubitusCheckup[]> {
+    args: Prisma.StatusFindManyArgs
+  ): Promise<Status[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .hubitusCheckups(args);
+      .Statuses(args);
   }
 
-  async findMessageNotifies(
+  async findMessages(
     parentId: string,
-    args: Prisma.MessageNotifyFindManyArgs
-  ): Promise<MessageNotify[]> {
+    args: Prisma.MessageFindManyArgs
+  ): Promise<Message[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .messageNotifies(args);
+      .messages(args);
   }
 
-  async findHealthQuestions(
+  async findQuestions(
     parentId: string,
-    args: Prisma.UserQuestionFindManyArgs
-  ): Promise<UserQuestion[]> {
+    args: Prisma.QuestionFindManyArgs
+  ): Promise<Question[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .healthQuestions(args);
+      .questions(args);
   }
 
-  async findReplyQuestions(
+  async findReplys(
     parentId: string,
-    args: Prisma.ReplyQuestionFindManyArgs
-  ): Promise<ReplyQuestion[]> {
+    args: Prisma.ReplyFindManyArgs
+  ): Promise<Reply[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .replyQuestions(args);
+      .replys(args);
   }
 
-  async findUsePoints(
+  async findUsepoints(
     parentId: string,
-    args: Prisma.UsePointFindManyArgs
-  ): Promise<UsePoint[]> {
+    args: Prisma.UsepointFindManyArgs
+  ): Promise<Usepoint[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .usePoints(args);
+      .usepoints(args);
   }
 
-  async findGetPoints(
+  async findGetpoints(
     parentId: string,
-    args: Prisma.GetPointFindManyArgs
-  ): Promise<GetPoint[]> {
+    args: Prisma.GetpointFindManyArgs
+  ): Promise<Getpoint[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .getPoints(args);
+      .getpoints(args);
   }
 }

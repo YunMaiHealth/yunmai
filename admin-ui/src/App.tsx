@@ -9,38 +9,38 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { HubitusCheckupList } from "./hubitusCheckup/HubitusCheckupList";
-import { HubitusCheckupCreate } from "./hubitusCheckup/HubitusCheckupCreate";
-import { HubitusCheckupEdit } from "./hubitusCheckup/HubitusCheckupEdit";
-import { HubitusCheckupShow } from "./hubitusCheckup/HubitusCheckupShow";
-import { UserStatusList } from "./userStatus/UserStatusList";
-import { UserStatusCreate } from "./userStatus/UserStatusCreate";
-import { UserStatusEdit } from "./userStatus/UserStatusEdit";
-import { UserStatusShow } from "./userStatus/UserStatusShow";
-import { MessageNotifyList } from "./messageNotify/MessageNotifyList";
-import { MessageNotifyCreate } from "./messageNotify/MessageNotifyCreate";
-import { MessageNotifyEdit } from "./messageNotify/MessageNotifyEdit";
-import { MessageNotifyShow } from "./messageNotify/MessageNotifyShow";
-import { EventLogList } from "./eventLog/EventLogList";
-import { EventLogCreate } from "./eventLog/EventLogCreate";
-import { EventLogEdit } from "./eventLog/EventLogEdit";
-import { EventLogShow } from "./eventLog/EventLogShow";
-import { UserQuestionList } from "./userQuestion/UserQuestionList";
-import { UserQuestionCreate } from "./userQuestion/UserQuestionCreate";
-import { UserQuestionEdit } from "./userQuestion/UserQuestionEdit";
-import { UserQuestionShow } from "./userQuestion/UserQuestionShow";
-import { ReplyQuestionList } from "./replyQuestion/ReplyQuestionList";
-import { ReplyQuestionCreate } from "./replyQuestion/ReplyQuestionCreate";
-import { ReplyQuestionEdit } from "./replyQuestion/ReplyQuestionEdit";
-import { ReplyQuestionShow } from "./replyQuestion/ReplyQuestionShow";
-import { UsePointList } from "./usePoint/UsePointList";
-import { UsePointCreate } from "./usePoint/UsePointCreate";
-import { UsePointEdit } from "./usePoint/UsePointEdit";
-import { UsePointShow } from "./usePoint/UsePointShow";
-import { GetPointList } from "./getPoint/GetPointList";
-import { GetPointCreate } from "./getPoint/GetPointCreate";
-import { GetPointEdit } from "./getPoint/GetPointEdit";
-import { GetPointShow } from "./getPoint/GetPointShow";
+import { HubitusList } from "./hubitus/HubitusList";
+import { HubitusCreate } from "./hubitus/HubitusCreate";
+import { HubitusEdit } from "./hubitus/HubitusEdit";
+import { HubitusShow } from "./hubitus/HubitusShow";
+import { StatusList } from "./status/StatusList";
+import { StatusCreate } from "./status/StatusCreate";
+import { StatusEdit } from "./status/StatusEdit";
+import { StatusShow } from "./status/StatusShow";
+import { MessageList } from "./message/MessageList";
+import { MessageCreate } from "./message/MessageCreate";
+import { MessageEdit } from "./message/MessageEdit";
+import { MessageShow } from "./message/MessageShow";
+import { EventList } from "./event/EventList";
+import { EventCreate } from "./event/EventCreate";
+import { EventEdit } from "./event/EventEdit";
+import { EventShow } from "./event/EventShow";
+import { QuestionList } from "./question/QuestionList";
+import { QuestionCreate } from "./question/QuestionCreate";
+import { QuestionEdit } from "./question/QuestionEdit";
+import { QuestionShow } from "./question/QuestionShow";
+import { ReplyList } from "./reply/ReplyList";
+import { ReplyCreate } from "./reply/ReplyCreate";
+import { ReplyEdit } from "./reply/ReplyEdit";
+import { ReplyShow } from "./reply/ReplyShow";
+import { UsepointList } from "./usepoint/UsepointList";
+import { UsepointCreate } from "./usepoint/UsepointCreate";
+import { UsepointEdit } from "./usepoint/UsepointEdit";
+import { UsepointShow } from "./usepoint/UsepointShow";
+import { GetpointList } from "./getpoint/GetpointList";
+import { GetpointCreate } from "./getpoint/GetpointCreate";
+import { GetpointEdit } from "./getpoint/GetpointEdit";
+import { GetpointShow } from "./getpoint/GetpointShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -75,60 +75,60 @@ const App = (): React.ReactElement => {
           show={UserShow}
         />
         <Resource
-          name="HubitusCheckup"
-          list={HubitusCheckupList}
-          edit={HubitusCheckupEdit}
-          create={HubitusCheckupCreate}
-          show={HubitusCheckupShow}
+          name="Hubitus"
+          list={HubitusList}
+          edit={HubitusEdit}
+          create={HubitusCreate}
+          show={HubitusShow}
         />
         <Resource
-          name="UserStatus"
-          list={UserStatusList}
-          edit={UserStatusEdit}
-          create={UserStatusCreate}
-          show={UserStatusShow}
+          name="Status"
+          list={StatusList}
+          edit={StatusEdit}
+          create={StatusCreate}
+          show={StatusShow}
         />
         <Resource
-          name="MessageNotify"
-          list={MessageNotifyList}
-          edit={MessageNotifyEdit}
-          create={MessageNotifyCreate}
-          show={MessageNotifyShow}
+          name="Message"
+          list={MessageList}
+          edit={MessageEdit}
+          create={MessageCreate}
+          show={MessageShow}
         />
         <Resource
-          name="EventLog"
-          list={EventLogList}
-          edit={EventLogEdit}
-          create={EventLogCreate}
-          show={EventLogShow}
+          name="Event"
+          list={EventList}
+          edit={EventEdit}
+          create={EventCreate}
+          show={EventShow}
         />
         <Resource
-          name="UserQuestion"
-          list={UserQuestionList}
-          edit={UserQuestionEdit}
-          create={UserQuestionCreate}
-          show={UserQuestionShow}
+          name="Question"
+          list={QuestionList}
+          edit={QuestionEdit}
+          create={QuestionCreate}
+          show={QuestionShow}
         />
         <Resource
-          name="ReplyQuestion"
-          list={ReplyQuestionList}
-          edit={ReplyQuestionEdit}
-          create={ReplyQuestionCreate}
-          show={ReplyQuestionShow}
+          name="Reply"
+          list={ReplyList}
+          edit={ReplyEdit}
+          create={ReplyCreate}
+          show={ReplyShow}
         />
         <Resource
-          name="UsePoint"
-          list={UsePointList}
-          edit={UsePointEdit}
-          create={UsePointCreate}
-          show={UsePointShow}
+          name="Usepoint"
+          list={UsepointList}
+          edit={UsepointEdit}
+          create={UsepointCreate}
+          show={UsepointShow}
         />
         <Resource
-          name="GetPoint"
-          list={GetPointList}
-          edit={GetPointEdit}
-          create={GetPointCreate}
-          show={GetPointShow}
+          name="Getpoint"
+          list={GetpointList}
+          edit={GetpointEdit}
+          create={GetpointCreate}
+          show={GetpointShow}
         />
       </Admin>
     </div>

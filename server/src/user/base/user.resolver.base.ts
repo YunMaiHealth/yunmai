@@ -25,20 +25,20 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
-import { UserStatusFindManyArgs } from "../../userStatus/base/UserStatusFindManyArgs";
-import { UserStatus } from "../../userStatus/base/UserStatus";
-import { HubitusCheckupFindManyArgs } from "../../hubitusCheckup/base/HubitusCheckupFindManyArgs";
-import { HubitusCheckup } from "../../hubitusCheckup/base/HubitusCheckup";
-import { MessageNotifyFindManyArgs } from "../../messageNotify/base/MessageNotifyFindManyArgs";
-import { MessageNotify } from "../../messageNotify/base/MessageNotify";
-import { UserQuestionFindManyArgs } from "../../userQuestion/base/UserQuestionFindManyArgs";
-import { UserQuestion } from "../../userQuestion/base/UserQuestion";
-import { ReplyQuestionFindManyArgs } from "../../replyQuestion/base/ReplyQuestionFindManyArgs";
-import { ReplyQuestion } from "../../replyQuestion/base/ReplyQuestion";
-import { UsePointFindManyArgs } from "../../usePoint/base/UsePointFindManyArgs";
-import { UsePoint } from "../../usePoint/base/UsePoint";
-import { GetPointFindManyArgs } from "../../getPoint/base/GetPointFindManyArgs";
-import { GetPoint } from "../../getPoint/base/GetPoint";
+import { HubitusFindManyArgs } from "../../hubitus/base/HubitusFindManyArgs";
+import { Hubitus } from "../../hubitus/base/Hubitus";
+import { StatusFindManyArgs } from "../../status/base/StatusFindManyArgs";
+import { Status } from "../../status/base/Status";
+import { MessageFindManyArgs } from "../../message/base/MessageFindManyArgs";
+import { Message } from "../../message/base/Message";
+import { QuestionFindManyArgs } from "../../question/base/QuestionFindManyArgs";
+import { Question } from "../../question/base/Question";
+import { ReplyFindManyArgs } from "../../reply/base/ReplyFindManyArgs";
+import { Reply } from "../../reply/base/Reply";
+import { UsepointFindManyArgs } from "../../usepoint/base/UsepointFindManyArgs";
+import { Usepoint } from "../../usepoint/base/Usepoint";
+import { GetpointFindManyArgs } from "../../getpoint/base/GetpointFindManyArgs";
+import { Getpoint } from "../../getpoint/base/Getpoint";
 import { UserService } from "../user.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => User)
@@ -150,17 +150,17 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [UserStatus])
+  @graphql.ResolveField(() => [Hubitus])
   @nestAccessControl.UseRoles({
-    resource: "UserStatus",
+    resource: "Hubitus",
     action: "read",
     possession: "any",
   })
-  async userStatuses(
+  async hubituses(
     @graphql.Parent() parent: User,
-    @graphql.Args() args: UserStatusFindManyArgs
-  ): Promise<UserStatus[]> {
-    const results = await this.service.findUserStatuses(parent.id, args);
+    @graphql.Args() args: HubitusFindManyArgs
+  ): Promise<Hubitus[]> {
+    const results = await this.service.findHubituses(parent.id, args);
 
     if (!results) {
       return [];
@@ -170,17 +170,17 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [HubitusCheckup])
+  @graphql.ResolveField(() => [Status])
   @nestAccessControl.UseRoles({
-    resource: "HubitusCheckup",
+    resource: "Status",
     action: "read",
     possession: "any",
   })
-  async hubitusCheckups(
+  async statuses(
     @graphql.Parent() parent: User,
-    @graphql.Args() args: HubitusCheckupFindManyArgs
-  ): Promise<HubitusCheckup[]> {
-    const results = await this.service.findHubitusCheckups(parent.id, args);
+    @graphql.Args() args: StatusFindManyArgs
+  ): Promise<Status[]> {
+    const results = await this.service.findStatuses(parent.id, args);
 
     if (!results) {
       return [];
@@ -190,17 +190,17 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [MessageNotify])
+  @graphql.ResolveField(() => [Message])
   @nestAccessControl.UseRoles({
-    resource: "MessageNotify",
+    resource: "Message",
     action: "read",
     possession: "any",
   })
-  async messageNotifies(
+  async messages(
     @graphql.Parent() parent: User,
-    @graphql.Args() args: MessageNotifyFindManyArgs
-  ): Promise<MessageNotify[]> {
-    const results = await this.service.findMessageNotifies(parent.id, args);
+    @graphql.Args() args: MessageFindManyArgs
+  ): Promise<Message[]> {
+    const results = await this.service.findMessages(parent.id, args);
 
     if (!results) {
       return [];
@@ -210,17 +210,17 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [UserQuestion])
+  @graphql.ResolveField(() => [Question])
   @nestAccessControl.UseRoles({
-    resource: "UserQuestion",
+    resource: "Question",
     action: "read",
     possession: "any",
   })
-  async healthQuestions(
+  async questions(
     @graphql.Parent() parent: User,
-    @graphql.Args() args: UserQuestionFindManyArgs
-  ): Promise<UserQuestion[]> {
-    const results = await this.service.findHealthQuestions(parent.id, args);
+    @graphql.Args() args: QuestionFindManyArgs
+  ): Promise<Question[]> {
+    const results = await this.service.findQuestions(parent.id, args);
 
     if (!results) {
       return [];
@@ -230,17 +230,17 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [ReplyQuestion])
+  @graphql.ResolveField(() => [Reply])
   @nestAccessControl.UseRoles({
-    resource: "ReplyQuestion",
+    resource: "Reply",
     action: "read",
     possession: "any",
   })
-  async replyQuestions(
+  async replys(
     @graphql.Parent() parent: User,
-    @graphql.Args() args: ReplyQuestionFindManyArgs
-  ): Promise<ReplyQuestion[]> {
-    const results = await this.service.findReplyQuestions(parent.id, args);
+    @graphql.Args() args: ReplyFindManyArgs
+  ): Promise<Reply[]> {
+    const results = await this.service.findReplys(parent.id, args);
 
     if (!results) {
       return [];
@@ -250,17 +250,17 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [UsePoint])
+  @graphql.ResolveField(() => [Usepoint])
   @nestAccessControl.UseRoles({
-    resource: "UsePoint",
+    resource: "Usepoint",
     action: "read",
     possession: "any",
   })
-  async usePoints(
+  async usepoints(
     @graphql.Parent() parent: User,
-    @graphql.Args() args: UsePointFindManyArgs
-  ): Promise<UsePoint[]> {
-    const results = await this.service.findUsePoints(parent.id, args);
+    @graphql.Args() args: UsepointFindManyArgs
+  ): Promise<Usepoint[]> {
+    const results = await this.service.findUsepoints(parent.id, args);
 
     if (!results) {
       return [];
@@ -270,17 +270,17 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [GetPoint])
+  @graphql.ResolveField(() => [Getpoint])
   @nestAccessControl.UseRoles({
-    resource: "GetPoint",
+    resource: "Getpoint",
     action: "read",
     possession: "any",
   })
-  async getPoints(
+  async getpoints(
     @graphql.Parent() parent: User,
-    @graphql.Args() args: GetPointFindManyArgs
-  ): Promise<GetPoint[]> {
-    const results = await this.service.findGetPoints(parent.id, args);
+    @graphql.Args() args: GetpointFindManyArgs
+  ): Promise<Getpoint[]> {
+    const results = await this.service.findGetpoints(parent.id, args);
 
     if (!results) {
       return [];
