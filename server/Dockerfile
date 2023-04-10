@@ -7,6 +7,7 @@ COPY package.json ./
 RUN npm install
 
 COPY prisma/schema.prisma ./prisma/
+ENV PRISMA_BINARIES_MIRROR http://prisma-builds.s3-eu-west-1.amazonaws.com
 
 RUN npm run prisma:generate
 
