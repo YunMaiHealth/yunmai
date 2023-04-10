@@ -7,7 +7,6 @@ import {
   DateField,
   ReferenceField,
 } from "react-admin";
-import { USER_TITLE_FIELD } from "../user/UserTitle";
 import { USERQUESTION_TITLE_FIELD } from "../userQuestion/UserQuestionTitle";
 
 export const ReplyQuestionShow = (props: ShowProps): React.ReactElement => {
@@ -15,14 +14,10 @@ export const ReplyQuestionShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="ID" source="id" />
-        <DateField source="replyTime" label="答复时间" />
-        <TextField label="问题答复" source="questionReply" />
-        <TextField label="是否公开" source="isPublic" />
-        <ReferenceField label="答复人" source="user.id" reference="User">
-          <TextField source={USER_TITLE_FIELD} />
-        </ReferenceField>
+        <DateField source="createdAt" label="Created At" />
+        <DateField source="updatedAt" label="Updated At" />
         <ReferenceField
-          label="问题记录"
+          label="userQuestion"
           source="userquestion.id"
           reference="UserQuestion"
         >

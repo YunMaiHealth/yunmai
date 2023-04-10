@@ -25,7 +25,6 @@ import { DeleteReplyQuestionArgs } from "./DeleteReplyQuestionArgs";
 import { ReplyQuestionFindManyArgs } from "./ReplyQuestionFindManyArgs";
 import { ReplyQuestionFindUniqueArgs } from "./ReplyQuestionFindUniqueArgs";
 import { ReplyQuestion } from "./ReplyQuestion";
-import { User } from "../../user/base/User";
 import { UserQuestion } from "../../userQuestion/base/UserQuestion";
 import { ReplyQuestionService } from "../replyQuestion.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
@@ -100,10 +99,6 @@ export class ReplyQuestionResolverBase {
       data: {
         ...args.data,
 
-        replyUser: {
-          connect: args.data.replyUser,
-        },
-
         userQuestion: args.data.userQuestion
           ? {
               connect: args.data.userQuestion,
@@ -128,10 +123,6 @@ export class ReplyQuestionResolverBase {
         ...args,
         data: {
           ...args.data,
-
-          replyUser: {
-            connect: args.data.replyUser,
-          },
 
           userQuestion: args.data.userQuestion
             ? {
@@ -169,24 +160,6 @@ export class ReplyQuestionResolverBase {
       }
       throw error;
     }
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => User, { nullable: true })
-  @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "read",
-    possession: "any",
-  })
-  async replyUser(
-    @graphql.Parent() parent: ReplyQuestion
-  ): Promise<User | null> {
-    const result = await this.service.getReplyUser(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)

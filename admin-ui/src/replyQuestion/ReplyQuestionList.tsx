@@ -8,7 +8,6 @@ import {
   ReferenceField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
-import { USER_TITLE_FIELD } from "../user/UserTitle";
 import { USERQUESTION_TITLE_FIELD } from "../userQuestion/UserQuestionTitle";
 
 export const ReplyQuestionList = (props: ListProps): React.ReactElement => {
@@ -16,20 +15,16 @@ export const ReplyQuestionList = (props: ListProps): React.ReactElement => {
     <List
       {...props}
       bulkActionButtons={false}
-      title={"ReplyQuestions"}
+      title={"replyQuestions"}
       perPage={50}
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
         <TextField label="ID" source="id" />
-        <DateField source="replyTime" label="答复时间" />
-        <TextField label="问题答复" source="questionReply" />
-        <TextField label="是否公开" source="isPublic" />
-        <ReferenceField label="答复人" source="user.id" reference="User">
-          <TextField source={USER_TITLE_FIELD} />
-        </ReferenceField>
+        <DateField source="createdAt" label="Created At" />
+        <DateField source="updatedAt" label="Updated At" />
         <ReferenceField
-          label="问题记录"
+          label="userQuestion"
           source="userquestion.id"
           reference="UserQuestion"
         >

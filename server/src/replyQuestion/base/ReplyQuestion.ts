@@ -13,7 +13,6 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsDate, ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { User } from "../../user/base/User";
 import { UserQuestion } from "../../userQuestion/base/UserQuestion";
 
 @ObjectType()
@@ -32,31 +31,15 @@ class ReplyQuestion {
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
-  replyTime!: Date;
+  createdAt!: Date;
 
   @ApiProperty({
     required: true,
-    type: String,
   })
-  @IsString()
-  @Field(() => String)
-  questionReply!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  isPublic!: string;
-
-  @ApiProperty({
-    required: true,
-    type: () => User,
-  })
-  @ValidateNested()
-  @Type(() => User)
-  replyUser?: User;
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  updatedAt!: Date;
 
   @ApiProperty({
     required: false,
