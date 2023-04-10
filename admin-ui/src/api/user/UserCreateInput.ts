@@ -1,5 +1,4 @@
 import { InputJsonValue } from "../../types";
-import { UserQuestionCreateNestedManyWithoutUsersInput } from "./UserQuestionCreateNestedManyWithoutUsersInput";
 
 export type UserCreateInput = {
   firstName?: string | null;
@@ -7,5 +6,4 @@ export type UserCreateInput = {
   username: string;
   password: string;
   roles: InputJsonValue;
-  userQuestions?: UserQuestionCreateNestedManyWithoutUsersInput;
 };
