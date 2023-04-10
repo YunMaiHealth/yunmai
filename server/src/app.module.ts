@@ -6,8 +6,6 @@ import { HubitusModule } from "./hubitus/hubitus.module";
 import { StatusModule } from "./status/status.module";
 import { MessageModule } from "./message/message.module";
 import { EventModule } from "./event/event.module";
-import { QuestionModule } from "./question/question.module";
-import { ReplyModule } from "./reply/reply.module";
 import { UsepointModule } from "./usepoint/usepoint.module";
 import { GetpointModule } from "./getpoint/getpoint.module";
 import { HealthModule } from "./health/health.module";
@@ -31,8 +29,6 @@ import { AuthModule } from "./auth/auth.module";
     StatusModule,
     MessageModule,
     EventModule,
-    QuestionModule,
-    ReplyModule,
     UsepointModule,
     GetpointModule,
     HealthModule,

@@ -33,8 +33,6 @@ model User {
   hubituses     Hubitus[]
   Statuses      Status[]
   messages      Message[]
-  questions     Question[]
-  replys        Reply[]
   usepoints     Usepoint[]
   getpoints     Getpoint[]
 }
@@ -85,27 +83,6 @@ model Event {
   eventParam      Json?
   relateUser      Json?
   messageNotifies Message[]
-}
-
-model Question {
-  id              String   @id @default(cuid())
-  questionTime    DateTime @default(now())
-  questionContent String
-  isPublic        Boolean
-  user            User?    @relation(fields: [userId], references: [id])
-  userId          String?
-  replyQuestions  Reply[]
-}
-
-model Reply {
-  id             String    @id @default(cuid())
-  replyTime      DateTime  @default(now())
-  questionReply  String
-  isPublic       Boolean
-  replyUser      User      @relation(fields: [replyUserId], references: [id])
-  replyUserId    String
-  userQuestion   Question? @relation(fields: [userQuestionId], references: [id])
-  userQuestionId String?
 }
 
 model Usepoint {

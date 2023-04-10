@@ -10,19 +10,15 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-
 import {
   Prisma,
   User,
   Hubitus,
   Status,
   Message,
-  Question,
-  Reply,
   Usepoint,
   Getpoint,
 } from "@prisma/client";
-
 import { PasswordService } from "../../auth/password.service";
 import { transformStringFieldUpdateInput } from "../../prisma.util";
 
@@ -115,28 +111,6 @@ export class UserServiceBase {
         where: { id: parentId },
       })
       .messages(args);
-  }
-
-  async findQuestions(
-    parentId: string,
-    args: Prisma.QuestionFindManyArgs
-  ): Promise<Question[]> {
-    return this.prisma.user
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .questions(args);
-  }
-
-  async findReplys(
-    parentId: string,
-    args: Prisma.ReplyFindManyArgs
-  ): Promise<Reply[]> {
-    return this.prisma.user
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .replys(args);
   }
 
   async findUsepoints(

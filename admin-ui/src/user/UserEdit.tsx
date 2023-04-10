@@ -16,8 +16,6 @@ import {
 import { HubitusTitle } from "../hubitus/HubitusTitle";
 import { StatusTitle } from "../status/StatusTitle";
 import { MessageTitle } from "../message/MessageTitle";
-import { QuestionTitle } from "../question/QuestionTitle";
-import { ReplyTitle } from "../reply/ReplyTitle";
 import { UsepointTitle } from "../usepoint/UsepointTitle";
 import { GetpointTitle } from "../getpoint/GetpointTitle";
 import { ROLES_OPTIONS } from "../user/RolesOptions";
@@ -86,22 +84,6 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
           <SelectArrayInput optionText={MessageTitle} />
-        </ReferenceArrayInput>
-        <ReferenceArrayInput
-          source="questions"
-          reference="Question"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={QuestionTitle} />
-        </ReferenceArrayInput>
-        <ReferenceArrayInput
-          source="replys"
-          reference="Reply"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={ReplyTitle} />
         </ReferenceArrayInput>
         <ReferenceArrayInput
           source="usepoints"

@@ -26,8 +26,6 @@ import { EnumUserGender } from "./EnumUserGender";
 import { HubitusCreateNestedManyWithoutUsersInput } from "./HubitusCreateNestedManyWithoutUsersInput";
 import { StatusCreateNestedManyWithoutUsersInput } from "./StatusCreateNestedManyWithoutUsersInput";
 import { MessageCreateNestedManyWithoutUsersInput } from "./MessageCreateNestedManyWithoutUsersInput";
-import { QuestionCreateNestedManyWithoutUsersInput } from "./QuestionCreateNestedManyWithoutUsersInput";
-import { ReplyCreateNestedManyWithoutUsersInput } from "./ReplyCreateNestedManyWithoutUsersInput";
 import { UsepointCreateNestedManyWithoutUsersInput } from "./UsepointCreateNestedManyWithoutUsersInput";
 import { GetpointCreateNestedManyWithoutUsersInput } from "./GetpointCreateNestedManyWithoutUsersInput";
 
@@ -274,30 +272,6 @@ class UserCreateInput {
     nullable: true,
   })
   messages?: MessageCreateNestedManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => QuestionCreateNestedManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => QuestionCreateNestedManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => QuestionCreateNestedManyWithoutUsersInput, {
-    nullable: true,
-  })
-  questions?: QuestionCreateNestedManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => ReplyCreateNestedManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => ReplyCreateNestedManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => ReplyCreateNestedManyWithoutUsersInput, {
-    nullable: true,
-  })
-  replys?: ReplyCreateNestedManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,

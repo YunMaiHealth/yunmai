@@ -4,8 +4,6 @@ import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { HubitusListRelationFilter } from "../hubitus/HubitusListRelationFilter";
 import { StatusListRelationFilter } from "../status/StatusListRelationFilter";
 import { MessageListRelationFilter } from "../message/MessageListRelationFilter";
-import { QuestionListRelationFilter } from "../question/QuestionListRelationFilter";
-import { ReplyListRelationFilter } from "../reply/ReplyListRelationFilter";
 import { UsepointListRelationFilter } from "../usepoint/UsepointListRelationFilter";
 import { GetpointListRelationFilter } from "../getpoint/GetpointListRelationFilter";
 
@@ -31,8 +29,6 @@ export type UserWhereInput = {
   hubituses?: HubitusListRelationFilter;
   Statuses?: StatusListRelationFilter;
   messages?: MessageListRelationFilter;
-  questions?: QuestionListRelationFilter;
-  replys?: ReplyListRelationFilter;
   usepoints?: UsepointListRelationFilter;
   getpoints?: GetpointListRelationFilter;
 };
