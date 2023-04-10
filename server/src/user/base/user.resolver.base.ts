@@ -25,8 +25,6 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
-import { HubitusCheckupFindManyArgs } from "../../hubitusCheckup/base/HubitusCheckupFindManyArgs";
-import { HubitusCheckup } from "../../hubitusCheckup/base/HubitusCheckup";
 import { UserService } from "../user.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => User)
@@ -135,25 +133,5 @@ export class UserResolverBase {
       }
       throw error;
     }
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [HubitusCheckup])
-  @nestAccessControl.UseRoles({
-    resource: "HubitusCheckup",
-    action: "read",
-    possession: "any",
-  })
-  async hubitusCheckups(
-    @graphql.Parent() parent: User,
-    @graphql.Args() args: HubitusCheckupFindManyArgs
-  ): Promise<HubitusCheckup[]> {
-    const results = await this.service.findHubitusCheckups(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
   }
 }

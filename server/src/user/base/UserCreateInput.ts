@@ -11,11 +11,9 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsJSON, ValidateNested } from "class-validator";
+import { IsString, IsOptional, IsJSON } from "class-validator";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
-import { HubitusCheckupCreateNestedManyWithoutUsersInput } from "./HubitusCheckupCreateNestedManyWithoutUsersInput";
-import { Type } from "class-transformer";
 
 @InputType()
 class UserCreateInput {
@@ -63,18 +61,6 @@ class UserCreateInput {
   @IsJSON()
   @Field(() => GraphQLJSON)
   roles!: InputJsonValue;
-
-  @ApiProperty({
-    required: false,
-    type: () => HubitusCheckupCreateNestedManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => HubitusCheckupCreateNestedManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => HubitusCheckupCreateNestedManyWithoutUsersInput, {
-    nullable: true,
-  })
-  hubitusCheckups?: HubitusCheckupCreateNestedManyWithoutUsersInput;
 }
 
 export { UserCreateInput as UserCreateInput };

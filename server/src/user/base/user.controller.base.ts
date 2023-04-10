@@ -27,9 +27,6 @@ import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserUpdateInput } from "./UserUpdateInput";
 import { User } from "./User";
-import { HubitusCheckupFindManyArgs } from "../../hubitusCheckup/base/HubitusCheckupFindManyArgs";
-import { HubitusCheckup } from "../../hubitusCheckup/base/HubitusCheckup";
-import { HubitusCheckupWhereUniqueInput } from "../../hubitusCheckup/base/HubitusCheckupWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -202,109 +199,5 @@ export class UserControllerBase {
       }
       throw error;
     }
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/hubitusCheckups")
-  @ApiNestedQuery(HubitusCheckupFindManyArgs)
-  @nestAccessControl.UseRoles({
-    resource: "HubitusCheckup",
-    action: "read",
-    possession: "any",
-  })
-  async findManyHubitusCheckups(
-    @common.Req() request: Request,
-    @common.Param() params: UserWhereUniqueInput
-  ): Promise<HubitusCheckup[]> {
-    const query = plainToClass(HubitusCheckupFindManyArgs, request.query);
-    const results = await this.service.findHubitusCheckups(params.id, {
-      ...query,
-      select: {
-        id: true,
-        testTime: true,
-        currentHabitus: true,
-        testResult: true,
-        countResult: true,
-        suggest: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results;
-  }
-
-  @common.Post("/:id/hubitusCheckups")
-  @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
-  })
-  async connectHubitusCheckups(
-    @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: HubitusCheckupWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      hubitusCheckups: {
-        connect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Patch("/:id/hubitusCheckups")
-  @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
-  })
-  async updateHubitusCheckups(
-    @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: HubitusCheckupWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      hubitusCheckups: {
-        set: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Delete("/:id/hubitusCheckups")
-  @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
-  })
-  async disconnectHubitusCheckups(
-    @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: HubitusCheckupWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      hubitusCheckups: {
-        disconnect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
   }
 }
