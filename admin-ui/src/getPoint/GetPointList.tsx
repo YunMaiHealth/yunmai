@@ -15,16 +15,15 @@ export const GetPointList = (props: ListProps): React.ReactElement => {
     <List
       {...props}
       bulkActionButtons={false}
-      title={"GetPoints"}
+      title={"getPoints"}
       perPage={50}
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
         <TextField label="ID" source="id" />
-        <DateField source="getPointTime" label="元气获取时间" />
-        <TextField label="获取元气值" source="getPoint" />
-        <TextField label="元气获取类型" source="getPointType" />
-        <ReferenceField label="用户" source="user.id" reference="User">
+        <DateField source="createdAt" label="Created At" />
+        <DateField source="updatedAt" label="Updated At" />
+        <ReferenceField label="user" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>
       </Datagrid>

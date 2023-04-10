@@ -27,6 +27,12 @@ import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserUpdateInput } from "./UserUpdateInput";
 import { User } from "./User";
+import { UsePointFindManyArgs } from "../../usePoint/base/UsePointFindManyArgs";
+import { UsePoint } from "../../usePoint/base/UsePoint";
+import { UsePointWhereUniqueInput } from "../../usePoint/base/UsePointWhereUniqueInput";
+import { GetPointFindManyArgs } from "../../getPoint/base/GetPointFindManyArgs";
+import { GetPoint } from "../../getPoint/base/GetPoint";
+import { GetPointWhereUniqueInput } from "../../getPoint/base/GetPointWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -199,5 +205,207 @@ export class UserControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/usePoints")
+  @ApiNestedQuery(UsePointFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "UsePoint",
+    action: "read",
+    possession: "any",
+  })
+  async findManyUsePoints(
+    @common.Req() request: Request,
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<UsePoint[]> {
+    const query = plainToClass(UsePointFindManyArgs, request.query);
+    const results = await this.service.findUsePoints(params.id, {
+      ...query,
+      select: {
+        id: true,
+        createdAt: true,
+        updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/usePoints")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async connectUsePoints(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: UsePointWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      usePoints: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/usePoints")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async updateUsePoints(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: UsePointWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      usePoints: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/usePoints")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectUsePoints(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: UsePointWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      usePoints: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/getPoints")
+  @ApiNestedQuery(GetPointFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "GetPoint",
+    action: "read",
+    possession: "any",
+  })
+  async findManyGetPoints(
+    @common.Req() request: Request,
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<GetPoint[]> {
+    const query = plainToClass(GetPointFindManyArgs, request.query);
+    const results = await this.service.findGetPoints(params.id, {
+      ...query,
+      select: {
+        id: true,
+        createdAt: true,
+        updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/getPoints")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async connectGetPoints(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: GetPointWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      getPoints: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/getPoints")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async updateGetPoints(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: GetPointWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      getPoints: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/getPoints")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectGetPoints(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: GetPointWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      getPoints: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 }
