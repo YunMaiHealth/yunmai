@@ -17,14 +17,3 @@ model User {
   password  String
   roles     Json
 }
-
-model UserStatus {
-  id        String                @id @default(cuid())
-  createdAt DateTime              @default(now())
-  updatedAt DateTime              @updatedAt
-  status    EnumUserStatusStatus?
-}
-
-enum EnumUserStatusStatus {
-  Option1
-}
