@@ -27,6 +27,9 @@ import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserUpdateInput } from "./UserUpdateInput";
 import { User } from "./User";
+import { MessageNotifyFindManyArgs } from "../../messageNotify/base/MessageNotifyFindManyArgs";
+import { MessageNotify } from "../../messageNotify/base/MessageNotify";
+import { MessageNotifyWhereUniqueInput } from "../../messageNotify/base/MessageNotifyWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -199,5 +202,107 @@ export class UserControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/messageNotifies")
+  @ApiNestedQuery(MessageNotifyFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "MessageNotify",
+    action: "read",
+    possession: "any",
+  })
+  async findManyMessageNotifies(
+    @common.Req() request: Request,
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<MessageNotify[]> {
+    const query = plainToClass(MessageNotifyFindManyArgs, request.query);
+    const results = await this.service.findMessageNotifies(params.id, {
+      ...query,
+      select: {
+        id: true,
+        sendTime: true,
+        updatedAt: true,
+        messageSource: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/messageNotifies")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async connectMessageNotifies(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: MessageNotifyWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      messageNotifies: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/messageNotifies")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async updateMessageNotifies(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: MessageNotifyWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      messageNotifies: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/messageNotifies")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectMessageNotifies(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: MessageNotifyWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      messageNotifies: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 }

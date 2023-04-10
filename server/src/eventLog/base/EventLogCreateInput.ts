@@ -11,17 +11,9 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsDate,
-  IsString,
-  IsOptional,
-  IsJSON,
-  ValidateNested,
-} from "class-validator";
+import { IsDate, ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { GraphQLJSON } from "graphql-type-json";
-import { InputJsonValue } from "../../types";
-import { MessageNotifyCreateNestedManyWithoutEventLogsInput } from "./MessageNotifyCreateNestedManyWithoutEventLogsInput";
+import { MessageNotifyWhereUniqueInput } from "../../messageNotify/base/MessageNotifyWhereUniqueInput";
 
 @InputType()
 class EventLogCreateInput {
@@ -34,55 +26,16 @@ class EventLogCreateInput {
   eventTime!: Date;
 
   @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  eventType!: string;
-
-  @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  eventName?: string | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSON()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  eventParam?: InputJsonValue;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSON()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  relateUser?: InputJsonValue;
-
-  @ApiProperty({
-    required: false,
-    type: () => MessageNotifyCreateNestedManyWithoutEventLogsInput,
+    type: () => MessageNotifyWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => MessageNotifyCreateNestedManyWithoutEventLogsInput)
+  @Type(() => MessageNotifyWhereUniqueInput)
   @IsOptional()
-  @Field(() => MessageNotifyCreateNestedManyWithoutEventLogsInput, {
+  @Field(() => MessageNotifyWhereUniqueInput, {
     nullable: true,
   })
-  messageNotifies?: MessageNotifyCreateNestedManyWithoutEventLogsInput;
+  messageNotifies?: MessageNotifyWhereUniqueInput | null;
 }
 
 export { EventLogCreateInput as EventLogCreateInput };

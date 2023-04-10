@@ -19,38 +19,30 @@ import { MessageNotifyService } from "../messageNotify.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
-  messageSource: "exampleMessageSource",
   id: "exampleId",
   sendTime: new Date(),
-  isNew: "true",
-  messageContent: "exampleMessageContent",
-  messageType: "exampleMessageType",
+  updatedAt: new Date(),
+  messageSource: "exampleMessageSource",
 };
 const CREATE_RESULT = {
-  messageSource: "exampleMessageSource",
   id: "exampleId",
   sendTime: new Date(),
-  isNew: "true",
-  messageContent: "exampleMessageContent",
-  messageType: "exampleMessageType",
+  updatedAt: new Date(),
+  messageSource: "exampleMessageSource",
 };
 const FIND_MANY_RESULT = [
   {
-    messageSource: "exampleMessageSource",
     id: "exampleId",
     sendTime: new Date(),
-    isNew: "true",
-    messageContent: "exampleMessageContent",
-    messageType: "exampleMessageType",
+    updatedAt: new Date(),
+    messageSource: "exampleMessageSource",
   },
 ];
 const FIND_ONE_RESULT = {
-  messageSource: "exampleMessageSource",
   id: "exampleId",
   sendTime: new Date(),
-  isNew: "true",
-  messageContent: "exampleMessageContent",
-  messageType: "exampleMessageType",
+  updatedAt: new Date(),
+  messageSource: "exampleMessageSource",
 };
 
 const service = {
@@ -136,6 +128,7 @@ describe("MessageNotify", () => {
       .expect({
         ...CREATE_RESULT,
         sendTime: CREATE_RESULT.sendTime.toISOString(),
+        updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       });
   });
 
@@ -147,6 +140,7 @@ describe("MessageNotify", () => {
         {
           ...FIND_MANY_RESULT[0],
           sendTime: FIND_MANY_RESULT[0].sendTime.toISOString(),
+          updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
         },
       ]);
   });
@@ -169,6 +163,7 @@ describe("MessageNotify", () => {
       .expect({
         ...FIND_ONE_RESULT,
         sendTime: FIND_ONE_RESULT.sendTime.toISOString(),
+        updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
       });
   });
 
@@ -181,6 +176,7 @@ describe("MessageNotify", () => {
       .expect({
         ...CREATE_RESULT,
         sendTime: CREATE_RESULT.sendTime.toISOString(),
+        updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       })
       .then(function () {
         agent

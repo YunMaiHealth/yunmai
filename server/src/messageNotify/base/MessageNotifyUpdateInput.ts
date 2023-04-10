@@ -11,30 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsString,
-  IsOptional,
-  IsDate,
-  IsBoolean,
-  ValidateNested,
-} from "class-validator";
+import { IsDate, IsOptional, IsString, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
-import { EventLogWhereUniqueInput } from "../../eventLog/base/EventLogWhereUniqueInput";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { EventLogUpdateManyWithoutMessageNotifiesInput } from "./EventLogUpdateManyWithoutMessageNotifiesInput";
 
 @InputType()
 class MessageNotifyUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  messageSource?: string;
-
   @ApiProperty({
     required: false,
   })
@@ -48,17 +31,6 @@ class MessageNotifyUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  isNew?: boolean;
-
-  @ApiProperty({
-    required: false,
     type: String,
   })
   @IsString()
@@ -66,30 +38,7 @@ class MessageNotifyUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  messageContent?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  messageType?: string;
-
-  @ApiProperty({
-    required: false,
-    type: () => EventLogWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => EventLogWhereUniqueInput)
-  @IsOptional()
-  @Field(() => EventLogWhereUniqueInput, {
-    nullable: true,
-  })
-  event?: EventLogWhereUniqueInput | null;
+  messageSource?: string | null;
 
   @ApiProperty({
     required: false,
@@ -102,6 +51,18 @@ class MessageNotifyUpdateInput {
     nullable: true,
   })
   user?: UserWhereUniqueInput | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => EventLogUpdateManyWithoutMessageNotifiesInput,
+  })
+  @ValidateNested()
+  @Type(() => EventLogUpdateManyWithoutMessageNotifiesInput)
+  @IsOptional()
+  @Field(() => EventLogUpdateManyWithoutMessageNotifiesInput, {
+    nullable: true,
+  })
+  eventLogs?: EventLogUpdateManyWithoutMessageNotifiesInput;
 }
 
 export { MessageNotifyUpdateInput as MessageNotifyUpdateInput };

@@ -1,23 +1,34 @@
 import * as React from "react";
-import { List, Datagrid, ListProps, TextField, DateField } from "react-admin";
+import {
+  List,
+  Datagrid,
+  ListProps,
+  TextField,
+  DateField,
+  ReferenceField,
+} from "react-admin";
 import Pagination from "../Components/Pagination";
+import { MESSAGENOTIFY_TITLE_FIELD } from "../messageNotify/MessageNotifyTitle";
 
 export const EventLogList = (props: ListProps): React.ReactElement => {
   return (
     <List
       {...props}
       bulkActionButtons={false}
-      title={"EventLogs"}
+      title={"eventLogs"}
       perPage={50}
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
         <TextField label="ID" source="id" />
-        <DateField source="eventTime" label="事件发生时间" />
-        <TextField label="事件类型" source="eventType" />
-        <TextField label="事件名称" source="eventName" />
-        <TextField label="事件参数" source="eventParam" />
-        <TextField label="事件干系人" source="relateUser" />
+        <DateField source="eventTime" label="eventTime" />
+        <ReferenceField
+          label="messageNotifies"
+          source="messagenotify.id"
+          reference="MessageNotify"
+        >
+          <TextField source={MESSAGENOTIFY_TITLE_FIELD} />
+        </ReferenceField>
       </Datagrid>
     </List>
   );

@@ -21,28 +21,20 @@ const existingId = "existingId";
 const CREATE_INPUT = {
   id: "exampleId",
   eventTime: new Date(),
-  eventType: "exampleEventType",
-  eventName: "exampleEventName",
 };
 const CREATE_RESULT = {
   id: "exampleId",
   eventTime: new Date(),
-  eventType: "exampleEventType",
-  eventName: "exampleEventName",
 };
 const FIND_MANY_RESULT = [
   {
     id: "exampleId",
     eventTime: new Date(),
-    eventType: "exampleEventType",
-    eventName: "exampleEventName",
   },
 ];
 const FIND_ONE_RESULT = {
   id: "exampleId",
   eventTime: new Date(),
-  eventType: "exampleEventType",
-  eventName: "exampleEventName",
 };
 
 const service = {

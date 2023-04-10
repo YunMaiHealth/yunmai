@@ -11,17 +11,9 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsDate,
-  IsOptional,
-  IsString,
-  IsJSON,
-  ValidateNested,
-} from "class-validator";
+import { IsDate, IsOptional, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
-import { GraphQLJSON } from "graphql-type-json";
-import { InputJsonValue } from "../../types";
-import { MessageNotifyUpdateManyWithoutEventLogsInput } from "./MessageNotifyUpdateManyWithoutEventLogsInput";
+import { MessageNotifyWhereUniqueInput } from "../../messageNotify/base/MessageNotifyWhereUniqueInput";
 
 @InputType()
 class EventLogUpdateInput {
@@ -38,57 +30,15 @@ class EventLogUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  eventType?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  eventName?: string | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSON()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  eventParam?: InputJsonValue;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSON()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  relateUser?: InputJsonValue;
-
-  @ApiProperty({
-    required: false,
-    type: () => MessageNotifyUpdateManyWithoutEventLogsInput,
+    type: () => MessageNotifyWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => MessageNotifyUpdateManyWithoutEventLogsInput)
+  @Type(() => MessageNotifyWhereUniqueInput)
   @IsOptional()
-  @Field(() => MessageNotifyUpdateManyWithoutEventLogsInput, {
+  @Field(() => MessageNotifyWhereUniqueInput, {
     nullable: true,
   })
-  messageNotifies?: MessageNotifyUpdateManyWithoutEventLogsInput;
+  messageNotifies?: MessageNotifyWhereUniqueInput | null;
 }
 
 export { EventLogUpdateInput as EventLogUpdateInput };

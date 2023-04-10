@@ -5,9 +5,8 @@ import {
   SimpleForm,
   CreateProps,
   DateTimeInput,
-  TextInput,
-  ReferenceArrayInput,
-  SelectArrayInput,
+  ReferenceInput,
+  SelectInput,
 } from "react-admin";
 
 import { MessageNotifyTitle } from "../messageNotify/MessageNotifyTitle";
@@ -16,19 +15,14 @@ export const EventLogCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <DateTimeInput label="事件发生时间" source="eventTime" disabled />
-        <TextInput label="事件类型" source="eventType" />
-        <TextInput label="事件名称" source="eventName" />
-        <div />
-        <div />
-        <ReferenceArrayInput
-          source="messageNotifies"
+        <DateTimeInput label="eventTime" source="eventTime" disabled />
+        <ReferenceInput
+          source="messagenotify.id"
           reference="MessageNotify"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
+          label="messageNotifies"
         >
-          <SelectArrayInput optionText={MessageNotifyTitle} />
-        </ReferenceArrayInput>
+          <SelectInput optionText={MessageNotifyTitle} />
+        </ReferenceInput>
       </SimpleForm>
     </Create>
   );

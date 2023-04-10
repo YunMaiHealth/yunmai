@@ -47,14 +47,11 @@ export class EventLogServiceBase {
     return this.prisma.eventLog.delete(args);
   }
 
-  async findMessageNotifies(
-    parentId: string,
-    args: Prisma.MessageNotifyFindManyArgs
-  ): Promise<MessageNotify[]> {
+  async getMessageNotifies(parentId: string): Promise<MessageNotify | null> {
     return this.prisma.eventLog
-      .findUniqueOrThrow({
+      .findUnique({
         where: { id: parentId },
       })
-      .messageNotifies(args);
+      .messageNotifies();
   }
 }

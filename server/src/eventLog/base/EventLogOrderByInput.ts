@@ -43,34 +43,7 @@ class EventLogOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  eventType?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  eventName?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  eventParam?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  relateUser?: SortOrder;
+  messageNotifiesId?: SortOrder;
 }
 
 export { EventLogOrderByInput as EventLogOrderByInput };

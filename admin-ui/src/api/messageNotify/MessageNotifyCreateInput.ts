@@ -1,12 +1,9 @@
-import { EventLogWhereUniqueInput } from "../eventLog/EventLogWhereUniqueInput";
 import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
+import { EventLogCreateNestedManyWithoutMessageNotifiesInput } from "./EventLogCreateNestedManyWithoutMessageNotifiesInput";
 
 export type MessageNotifyCreateInput = {
-  messageSource: string;
   sendTime: Date;
-  isNew: boolean;
-  messageContent: string;
-  messageType: string;
-  event?: EventLogWhereUniqueInput | null;
+  messageSource?: string | null;
   user?: UserWhereUniqueInput | null;
+  eventLogs?: EventLogCreateNestedManyWithoutMessageNotifiesInput;
 };

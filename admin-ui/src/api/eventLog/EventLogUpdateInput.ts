@@ -1,11 +1,6 @@
-import { InputJsonValue } from "../../types";
-import { MessageNotifyUpdateManyWithoutEventLogsInput } from "./MessageNotifyUpdateManyWithoutEventLogsInput";
+import { MessageNotifyWhereUniqueInput } from "../messageNotify/MessageNotifyWhereUniqueInput";
 
 export type EventLogUpdateInput = {
   eventTime?: Date;
-  eventType?: string;
-  eventName?: string | null;
-  eventParam?: InputJsonValue;
-  relateUser?: InputJsonValue;
-  messageNotifies?: MessageNotifyUpdateManyWithoutEventLogsInput;
+  messageNotifies?: MessageNotifyWhereUniqueInput | null;
 };

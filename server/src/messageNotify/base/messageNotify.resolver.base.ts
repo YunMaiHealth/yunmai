@@ -25,6 +25,7 @@ import { DeleteMessageNotifyArgs } from "./DeleteMessageNotifyArgs";
 import { MessageNotifyFindManyArgs } from "./MessageNotifyFindManyArgs";
 import { MessageNotifyFindUniqueArgs } from "./MessageNotifyFindUniqueArgs";
 import { MessageNotify } from "./MessageNotify";
+import { EventLogFindManyArgs } from "../../eventLog/base/EventLogFindManyArgs";
 import { EventLog } from "../../eventLog/base/EventLog";
 import { User } from "../../user/base/User";
 import { MessageNotifyService } from "../messageNotify.service";
@@ -100,12 +101,6 @@ export class MessageNotifyResolverBase {
       data: {
         ...args.data,
 
-        event: args.data.event
-          ? {
-              connect: args.data.event,
-            }
-          : undefined,
-
         user: args.data.user
           ? {
               connect: args.data.user,
@@ -130,12 +125,6 @@ export class MessageNotifyResolverBase {
         ...args,
         data: {
           ...args.data,
-
-          event: args.data.event
-            ? {
-                connect: args.data.event,
-              }
-            : undefined,
 
           user: args.data.user
             ? {
@@ -176,21 +165,23 @@ export class MessageNotifyResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => EventLog, { nullable: true })
+  @graphql.ResolveField(() => [EventLog])
   @nestAccessControl.UseRoles({
     resource: "EventLog",
     action: "read",
     possession: "any",
   })
-  async event(
-    @graphql.Parent() parent: MessageNotify
-  ): Promise<EventLog | null> {
-    const result = await this.service.getEvent(parent.id);
+  async eventLogs(
+    @graphql.Parent() parent: MessageNotify,
+    @graphql.Args() args: EventLogFindManyArgs
+  ): Promise<EventLog[]> {
+    const results = await this.service.findEventLogs(parent.id, args);
 
-    if (!result) {
-      return null;
+    if (!results) {
+      return [];
     }
-    return result;
+
+    return results;
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
