@@ -9,14 +9,6 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { UsePointList } from "./usePoint/UsePointList";
-import { UsePointCreate } from "./usePoint/UsePointCreate";
-import { UsePointEdit } from "./usePoint/UsePointEdit";
-import { UsePointShow } from "./usePoint/UsePointShow";
-import { GetPointList } from "./getPoint/GetPointList";
-import { GetPointCreate } from "./getPoint/GetPointCreate";
-import { GetPointEdit } from "./getPoint/GetPointEdit";
-import { GetPointShow } from "./getPoint/GetPointShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -49,20 +41,6 @@ const App = (): React.ReactElement => {
           edit={UserEdit}
           create={UserCreate}
           show={UserShow}
-        />
-        <Resource
-          name="UsePoint"
-          list={UsePointList}
-          edit={UsePointEdit}
-          create={UsePointCreate}
-          show={UsePointShow}
-        />
-        <Resource
-          name="GetPoint"
-          list={GetPointList}
-          edit={GetPointEdit}
-          create={GetPointCreate}
-          show={GetPointShow}
         />
       </Admin>
     </div>
