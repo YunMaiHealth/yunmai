@@ -34,7 +34,7 @@ class EventOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  eventTime?: SortOrder;
+  createdAt?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -43,34 +43,7 @@ class EventOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  eventType?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  eventName?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  eventParam?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  relateUser?: SortOrder;
+  updatedAt?: SortOrder;
 }
 
 export { EventOrderByInput as EventOrderByInput };

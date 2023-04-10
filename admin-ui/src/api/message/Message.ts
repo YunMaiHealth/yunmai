@@ -1,14 +1,10 @@
-import { JsonValue } from "type-fest";
-import { Event } from "../event/Event";
 import { User } from "../user/User";
+import { Event } from "../event/Event";
 
 export type Message = {
   id: string;
-  sendTime: Date;
-  isNew: boolean;
-  messageContent: JsonValue;
-  messageType: string;
-  messageSource: string;
-  event?: Event | null;
+  createdAt: Date;
+  updatedAt: Date;
   user?: User | null;
+  event?: Event | null;
 };

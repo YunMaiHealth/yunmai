@@ -34,7 +34,7 @@ class GetpointOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  getPointTime?: SortOrder;
+  createdAt?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -43,16 +43,7 @@ class GetpointOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  getPoint?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  getPointType?: SortOrder;
+  updatedAt?: SortOrder;
 
   @ApiProperty({
     required: false,

@@ -25,6 +25,18 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
+import { HubitusFindManyArgs } from "../../hubitus/base/HubitusFindManyArgs";
+import { Hubitus } from "../../hubitus/base/Hubitus";
+import { StatusFindManyArgs } from "../../status/base/StatusFindManyArgs";
+import { Status } from "../../status/base/Status";
+import { GetpointFindManyArgs } from "../../getpoint/base/GetpointFindManyArgs";
+import { Getpoint } from "../../getpoint/base/Getpoint";
+import { UsepointFindManyArgs } from "../../usepoint/base/UsepointFindManyArgs";
+import { Usepoint } from "../../usepoint/base/Usepoint";
+import { MessageFindManyArgs } from "../../message/base/MessageFindManyArgs";
+import { Message } from "../../message/base/Message";
+import { QuestionFindManyArgs } from "../../question/base/QuestionFindManyArgs";
+import { Question } from "../../question/base/Question";
 import { UserService } from "../user.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => User)
@@ -133,5 +145,125 @@ export class UserResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [Hubitus])
+  @nestAccessControl.UseRoles({
+    resource: "Hubitus",
+    action: "read",
+    possession: "any",
+  })
+  async hubituses(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: HubitusFindManyArgs
+  ): Promise<Hubitus[]> {
+    const results = await this.service.findHubituses(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [Status])
+  @nestAccessControl.UseRoles({
+    resource: "Status",
+    action: "read",
+    possession: "any",
+  })
+  async statuses(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: StatusFindManyArgs
+  ): Promise<Status[]> {
+    const results = await this.service.findStatuses(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [Getpoint])
+  @nestAccessControl.UseRoles({
+    resource: "Getpoint",
+    action: "read",
+    possession: "any",
+  })
+  async getpoints(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: GetpointFindManyArgs
+  ): Promise<Getpoint[]> {
+    const results = await this.service.findGetpoints(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [Usepoint])
+  @nestAccessControl.UseRoles({
+    resource: "Usepoint",
+    action: "read",
+    possession: "any",
+  })
+  async usepoints(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: UsepointFindManyArgs
+  ): Promise<Usepoint[]> {
+    const results = await this.service.findUsepoints(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [Message])
+  @nestAccessControl.UseRoles({
+    resource: "Message",
+    action: "read",
+    possession: "any",
+  })
+  async messages(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: MessageFindManyArgs
+  ): Promise<Message[]> {
+    const results = await this.service.findMessages(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [Question])
+  @nestAccessControl.UseRoles({
+    resource: "Question",
+    action: "read",
+    possession: "any",
+  })
+  async questions(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: QuestionFindManyArgs
+  ): Promise<Question[]> {
+    const results = await this.service.findQuestions(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
   }
 }

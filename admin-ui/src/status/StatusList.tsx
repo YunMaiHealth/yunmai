@@ -15,20 +15,14 @@ export const StatusList = (props: ListProps): React.ReactElement => {
     <List
       {...props}
       bulkActionButtons={false}
-      title={"Statuses"}
+      title={"statuses"}
       perPage={50}
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
         <TextField label="ID" source="id" />
-        <DateField source="updateTime" label="状态变化时间" />
-        <TextField label="状态名" source="status" />
-        <TextField label="数值型" source="intValue" />
-        <TextField label="浮点型" source="doubleValue" />
-        <TextField label="字符型" source="stringValue" />
-        <TextField label="日期型" source="dateValue" />
-        <TextField label="json格式" source="jsonValue" />
-        <TextField label="业务流水号" source="streamId" />
+        <DateField source="createdAt" label="Created At" />
+        <DateField source="updatedAt" label="Updated At" />
         <ReferenceField label="user" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>

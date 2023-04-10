@@ -11,75 +11,24 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsDate,
-  IsOptional,
-  IsBoolean,
-  IsJSON,
-  IsString,
-  ValidateNested,
-} from "class-validator";
-import { Type } from "class-transformer";
-import { GraphQLJSON } from "graphql-type-json";
-import { InputJsonValue } from "../../types";
-import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { ValidateNested, IsOptional } from "class-validator";
+import { Type } from "class-transformer";
+import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 
 @InputType()
 class MessageUpdateInput {
   @ApiProperty({
     required: false,
+    type: () => UserWhereUniqueInput,
   })
-  @IsDate()
-  @Type(() => Date)
+  @ValidateNested()
+  @Type(() => UserWhereUniqueInput)
   @IsOptional()
-  @Field(() => Date, {
+  @Field(() => UserWhereUniqueInput, {
     nullable: true,
   })
-  sendTime?: Date;
-
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  isNew?: boolean;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSON()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  messageContent?: InputJsonValue;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  messageType?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  messageSource?: string;
+  user?: UserWhereUniqueInput | null;
 
   @ApiProperty({
     required: false,
@@ -92,18 +41,6 @@ class MessageUpdateInput {
     nullable: true,
   })
   event?: EventWhereUniqueInput | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => UserWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
-  @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
-    nullable: true,
-  })
-  user?: UserWhereUniqueInput | null;
 }
 
 export { MessageUpdateInput as MessageUpdateInput };

@@ -14,10 +14,8 @@ import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
-import { BooleanFilter } from "../../util/BooleanFilter";
-import { JsonFilter } from "../../util/JsonFilter";
-import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 
 @InputType()
 class MessageWhereInput {
@@ -34,47 +32,15 @@ class MessageWhereInput {
 
   @ApiProperty({
     required: false,
-    type: BooleanFilter,
+    type: () => UserWhereUniqueInput,
   })
-  @Type(() => BooleanFilter)
+  @ValidateNested()
+  @Type(() => UserWhereUniqueInput)
   @IsOptional()
-  @Field(() => BooleanFilter, {
+  @Field(() => UserWhereUniqueInput, {
     nullable: true,
   })
-  isNew?: BooleanFilter;
-
-  @ApiProperty({
-    required: false,
-    type: JsonFilter,
-  })
-  @Type(() => JsonFilter)
-  @IsOptional()
-  @Field(() => JsonFilter, {
-    nullable: true,
-  })
-  messageContent?: JsonFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  messageType?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  messageSource?: StringFilter;
+  user?: UserWhereUniqueInput;
 
   @ApiProperty({
     required: false,
@@ -87,18 +53,6 @@ class MessageWhereInput {
     nullable: true,
   })
   event?: EventWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => UserWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
-  @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
-    nullable: true,
-  })
-  user?: UserWhereUniqueInput;
 }
 
 export { MessageWhereInput as MessageWhereInput };

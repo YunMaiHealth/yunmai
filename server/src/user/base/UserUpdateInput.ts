@@ -11,10 +11,22 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsOptional, IsString, IsJSON } from "class-validator";
+import {
+  IsDate,
+  IsOptional,
+  IsString,
+  IsJSON,
+  ValidateNested,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
+import { HubitusUpdateManyWithoutUsersInput } from "./HubitusUpdateManyWithoutUsersInput";
+import { StatusUpdateManyWithoutUsersInput } from "./StatusUpdateManyWithoutUsersInput";
+import { GetpointUpdateManyWithoutUsersInput } from "./GetpointUpdateManyWithoutUsersInput";
+import { UsepointUpdateManyWithoutUsersInput } from "./UsepointUpdateManyWithoutUsersInput";
+import { MessageUpdateManyWithoutUsersInput } from "./MessageUpdateManyWithoutUsersInput";
+import { QuestionUpdateManyWithoutUsersInput } from "./QuestionUpdateManyWithoutUsersInput";
 
 @InputType()
 class UserUpdateInput {
@@ -82,6 +94,78 @@ class UserUpdateInput {
     nullable: true,
   })
   roles?: InputJsonValue;
+
+  @ApiProperty({
+    required: false,
+    type: () => HubitusUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => HubitusUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => HubitusUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  hubituses?: HubitusUpdateManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => StatusUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => StatusUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => StatusUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  statuses?: StatusUpdateManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => GetpointUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => GetpointUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => GetpointUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  getpoints?: GetpointUpdateManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => UsepointUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => UsepointUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => UsepointUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  usepoints?: UsepointUpdateManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => MessageUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => MessageUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => MessageUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  messages?: MessageUpdateManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => QuestionUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => QuestionUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => QuestionUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  questions?: QuestionUpdateManyWithoutUsersInput;
 }
 
 export { UserUpdateInput as UserUpdateInput };

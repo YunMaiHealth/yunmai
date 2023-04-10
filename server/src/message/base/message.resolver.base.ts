@@ -25,8 +25,8 @@ import { DeleteMessageArgs } from "./DeleteMessageArgs";
 import { MessageFindManyArgs } from "./MessageFindManyArgs";
 import { MessageFindUniqueArgs } from "./MessageFindUniqueArgs";
 import { Message } from "./Message";
-import { Event } from "../../event/base/Event";
 import { User } from "../../user/base/User";
+import { Event } from "../../event/base/Event";
 import { MessageService } from "../message.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => Message)
@@ -100,15 +100,15 @@ export class MessageResolverBase {
       data: {
         ...args.data,
 
-        event: args.data.event
-          ? {
-              connect: args.data.event,
-            }
-          : undefined,
-
         user: args.data.user
           ? {
               connect: args.data.user,
+            }
+          : undefined,
+
+        event: args.data.event
+          ? {
+              connect: args.data.event,
             }
           : undefined,
       },
@@ -131,15 +131,15 @@ export class MessageResolverBase {
         data: {
           ...args.data,
 
-          event: args.data.event
-            ? {
-                connect: args.data.event,
-              }
-            : undefined,
-
           user: args.data.user
             ? {
                 connect: args.data.user,
+              }
+            : undefined,
+
+          event: args.data.event
+            ? {
+                connect: args.data.event,
               }
             : undefined,
         },
@@ -176,22 +176,6 @@ export class MessageResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => Event, { nullable: true })
-  @nestAccessControl.UseRoles({
-    resource: "Event",
-    action: "read",
-    possession: "any",
-  })
-  async event(@graphql.Parent() parent: Message): Promise<Event | null> {
-    const result = await this.service.getEvent(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.ResolveField(() => User, { nullable: true })
   @nestAccessControl.UseRoles({
     resource: "User",
@@ -200,6 +184,22 @@ export class MessageResolverBase {
   })
   async user(@graphql.Parent() parent: Message): Promise<User | null> {
     const result = await this.service.getUser(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => Event, { nullable: true })
+  @nestAccessControl.UseRoles({
+    resource: "Event",
+    action: "read",
+    possession: "any",
+  })
+  async event(@graphql.Parent() parent: Message): Promise<Event | null> {
+    const result = await this.service.getEvent(parent.id);
 
     if (!result) {
       return null;

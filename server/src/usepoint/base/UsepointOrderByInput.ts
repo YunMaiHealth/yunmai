@@ -34,7 +34,7 @@ class UsepointOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  usePointTime?: SortOrder;
+  createdAt?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -43,16 +43,7 @@ class UsepointOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  usePoint?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  usePointType?: SortOrder;
+  updatedAt?: SortOrder;
 
   @ApiProperty({
     required: false,

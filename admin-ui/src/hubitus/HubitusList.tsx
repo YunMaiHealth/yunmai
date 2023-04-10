@@ -4,6 +4,7 @@ import {
   Datagrid,
   ListProps,
   TextField,
+  DateField,
   ReferenceField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
@@ -14,18 +15,15 @@ export const HubitusList = (props: ListProps): React.ReactElement => {
     <List
       {...props}
       bulkActionButtons={false}
-      title={"Hubituses"}
+      title={"hubituses"}
       perPage={50}
       pagination={<Pagination />}
     >
       <Datagrid rowClick="show">
         <TextField label="ID" source="id" />
-        <TextField label="当前体质" source="currentHabitus" />
-        <TextField label="测试结果" source="testResult" />
-        <TextField label="计算结果" source="countResult" />
-        <TextField label="检测建议" source="suggest" />
-        <TextField label="检测时间" source="testTime" />
-        <ReferenceField label="User" source="user.id" reference="User">
+        <DateField source="createdAt" label="Created At" />
+        <DateField source="updatedAt" label="Updated At" />
+        <ReferenceField label="user" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>
       </Datagrid>

@@ -14,7 +14,6 @@ import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
-import { JsonFilter } from "../../util/JsonFilter";
 import { MessageListRelationFilter } from "../../message/base/MessageListRelationFilter";
 
 @InputType()
@@ -32,50 +31,6 @@ class EventWhereInput {
 
   @ApiProperty({
     required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  eventType?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  eventName?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: JsonFilter,
-  })
-  @Type(() => JsonFilter)
-  @IsOptional()
-  @Field(() => JsonFilter, {
-    nullable: true,
-  })
-  eventParam?: JsonFilter;
-
-  @ApiProperty({
-    required: false,
-    type: JsonFilter,
-  })
-  @Type(() => JsonFilter)
-  @IsOptional()
-  @Field(() => JsonFilter, {
-    nullable: true,
-  })
-  relateUser?: JsonFilter;
-
-  @ApiProperty({
-    required: false,
     type: () => MessageListRelationFilter,
   })
   @ValidateNested()
@@ -84,7 +39,7 @@ class EventWhereInput {
   @Field(() => MessageListRelationFilter, {
     nullable: true,
   })
-  messageNotifies?: MessageListRelationFilter;
+  messages?: MessageListRelationFilter;
 }
 
 export { EventWhereInput as EventWhereInput };

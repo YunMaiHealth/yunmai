@@ -34,7 +34,7 @@ class StatusOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  updateTime?: SortOrder;
+  createdAt?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -43,61 +43,7 @@ class StatusOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  status?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  intValue?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  doubleValue?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  stringValue?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  dateValue?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  jsonValue?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  streamId?: SortOrder;
+  updatedAt?: SortOrder;
 
   @ApiProperty({
     required: false,

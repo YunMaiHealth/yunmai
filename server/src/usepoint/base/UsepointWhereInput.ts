@@ -14,7 +14,6 @@ import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
-import { IntFilter } from "../../util/IntFilter";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 
 @InputType()
@@ -29,28 +28,6 @@ class UsepointWhereInput {
     nullable: true,
   })
   id?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: IntFilter,
-  })
-  @Type(() => IntFilter)
-  @IsOptional()
-  @Field(() => IntFilter, {
-    nullable: true,
-  })
-  usePoint?: IntFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  usePointType?: StringFilter;
 
   @ApiProperty({
     required: false,

@@ -11,16 +11,8 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsString,
-  IsDate,
-  IsJSON,
-  IsOptional,
-  ValidateNested,
-} from "class-validator";
+import { IsString, IsDate, ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { GraphQLJSON } from "graphql-type-json";
-import { JsonValue } from "type-fest";
 import { Message } from "../../message/base/Message";
 
 @ObjectType()
@@ -39,43 +31,15 @@ class Event {
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
-  eventTime!: Date;
+  createdAt!: Date;
 
   @ApiProperty({
     required: true,
-    type: String,
   })
-  @IsString()
-  @Field(() => String)
-  eventType!: string;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  eventName!: string;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSON()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  eventParam!: JsonValue;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsJSON()
-  @IsOptional()
-  @Field(() => GraphQLJSON, {
-    nullable: true,
-  })
-  relateUser!: JsonValue;
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  updatedAt!: Date;
 
   @ApiProperty({
     required: false,
@@ -84,7 +48,7 @@ class Event {
   @ValidateNested()
   @Type(() => Message)
   @IsOptional()
-  messageNotifies?: Array<Message>;
+  messages?: Array<Message>;
 }
 
 export { Event as Event };
