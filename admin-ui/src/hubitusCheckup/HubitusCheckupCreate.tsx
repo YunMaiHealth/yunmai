@@ -4,8 +4,8 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  TextInput,
   DateTimeInput,
+  TextInput,
   ReferenceInput,
   SelectInput,
 } from "react-admin";
@@ -18,12 +18,12 @@ export const HubitusCheckupCreate = (
   return (
     <Create {...props}>
       <SimpleForm>
-        <TextInput label="当前体质" source="currentHabitus" />
-        <TextInput label="测试结果" source="testResult" />
-        <TextInput label="计算结果" source="countResult" />
-        <TextInput label="检测建议" source="suggest" />
-        <DateTimeInput label="检测时间" source="testTime" />
-        <ReferenceInput source="user.id" reference="User" label="User">
+        <DateTimeInput label="testTime" source="testTime" disabled />
+        <TextInput label="currentHabitus" source="currentHabitus" />
+        <TextInput label="testResult" source="testResult" />
+        <TextInput label="countResult" source="countResult" />
+        <TextInput label="suggest" source="suggest" />
+        <ReferenceInput source="user.id" reference="User" label="user">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>
       </SimpleForm>

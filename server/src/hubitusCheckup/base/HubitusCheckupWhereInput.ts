@@ -15,7 +15,6 @@ import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
-import { DateTimeFilter } from "../../util/DateTimeFilter";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 
 @InputType()
@@ -74,17 +73,6 @@ class HubitusCheckupWhereInput {
     nullable: true,
   })
   suggest?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: DateTimeFilter,
-  })
-  @Type(() => DateTimeFilter)
-  @IsOptional()
-  @Field(() => DateTimeFilter, {
-    nullable: true,
-  })
-  testTime?: DateTimeFilter;
 
   @ApiProperty({
     required: false,

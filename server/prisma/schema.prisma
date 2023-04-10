@@ -8,12 +8,24 @@ generator client {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  firstName String?
-  lastName  String?
-  username  String   @unique
-  password  String
-  roles     Json
+  id              String           @id @default(cuid())
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  firstName       String?
+  lastName        String?
+  username        String           @unique
+  password        String
+  roles           Json
+  hubitusCheckups HubitusCheckup[]
+}
+
+model HubitusCheckup {
+  id             String   @id @default(cuid())
+  testTime       DateTime @default(now())
+  currentHabitus String?
+  testResult     String?
+  countResult    String?
+  suggest        String?
+  user           User?    @relation(fields: [userId], references: [id])
+  userId         String?
 }

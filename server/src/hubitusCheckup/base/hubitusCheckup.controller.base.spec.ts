@@ -20,37 +20,37 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   id: "exampleId",
+  testTime: new Date(),
   currentHabitus: "exampleCurrentHabitus",
   testResult: "exampleTestResult",
   countResult: "exampleCountResult",
   suggest: "exampleSuggest",
-  testTime: new Date(),
 };
 const CREATE_RESULT = {
   id: "exampleId",
+  testTime: new Date(),
   currentHabitus: "exampleCurrentHabitus",
   testResult: "exampleTestResult",
   countResult: "exampleCountResult",
   suggest: "exampleSuggest",
-  testTime: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
     id: "exampleId",
+    testTime: new Date(),
     currentHabitus: "exampleCurrentHabitus",
     testResult: "exampleTestResult",
     countResult: "exampleCountResult",
     suggest: "exampleSuggest",
-    testTime: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
   id: "exampleId",
+  testTime: new Date(),
   currentHabitus: "exampleCurrentHabitus",
   testResult: "exampleTestResult",
   countResult: "exampleCountResult",
   suggest: "exampleSuggest",
-  testTime: new Date(),
 };
 
 const service = {

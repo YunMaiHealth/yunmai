@@ -53,17 +53,19 @@ export class HubitusCheckupControllerBase {
       data: {
         ...data,
 
-        user: {
-          connect: data.user,
-        },
+        user: data.user
+          ? {
+              connect: data.user,
+            }
+          : undefined,
       },
       select: {
         id: true,
+        testTime: true,
         currentHabitus: true,
         testResult: true,
         countResult: true,
         suggest: true,
-        testTime: true,
 
         user: {
           select: {
@@ -92,11 +94,11 @@ export class HubitusCheckupControllerBase {
       ...args,
       select: {
         id: true,
+        testTime: true,
         currentHabitus: true,
         testResult: true,
         countResult: true,
         suggest: true,
-        testTime: true,
 
         user: {
           select: {
@@ -126,11 +128,11 @@ export class HubitusCheckupControllerBase {
       where: params,
       select: {
         id: true,
+        testTime: true,
         currentHabitus: true,
         testResult: true,
         countResult: true,
         suggest: true,
-        testTime: true,
 
         user: {
           select: {
@@ -169,17 +171,19 @@ export class HubitusCheckupControllerBase {
         data: {
           ...data,
 
-          user: {
-            connect: data.user,
-          },
+          user: data.user
+            ? {
+                connect: data.user,
+              }
+            : undefined,
         },
         select: {
           id: true,
+          testTime: true,
           currentHabitus: true,
           testResult: true,
           countResult: true,
           suggest: true,
-          testTime: true,
 
           user: {
             select: {
@@ -217,11 +221,11 @@ export class HubitusCheckupControllerBase {
         where: params,
         select: {
           id: true,
+          testTime: true,
           currentHabitus: true,
           testResult: true,
           countResult: true,
           suggest: true,
-          testTime: true,
 
           user: {
             select: {

@@ -13,8 +13,9 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
-import { IsOptional } from "class-validator";
+import { IsOptional, ValidateNested } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { HubitusCheckupListRelationFilter } from "../../hubitusCheckup/base/HubitusCheckupListRelationFilter";
 
 @InputType()
 class UserWhereInput {
@@ -61,6 +62,18 @@ class UserWhereInput {
     nullable: true,
   })
   username?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => HubitusCheckupListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => HubitusCheckupListRelationFilter)
+  @IsOptional()
+  @Field(() => HubitusCheckupListRelationFilter, {
+    nullable: true,
+  })
+  hubitusCheckups?: HubitusCheckupListRelationFilter;
 }
 
 export { UserWhereInput as UserWhereInput };
