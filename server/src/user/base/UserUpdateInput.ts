@@ -11,12 +11,9 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsJSON, ValidateNested } from "class-validator";
+import { IsString, IsOptional, IsJSON } from "class-validator";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
-import { UsePointUpdateManyWithoutUsersInput } from "./UsePointUpdateManyWithoutUsersInput";
-import { Type } from "class-transformer";
-import { GetPointUpdateManyWithoutUsersInput } from "./GetPointUpdateManyWithoutUsersInput";
 
 @InputType()
 class UserUpdateInput {
@@ -73,30 +70,6 @@ class UserUpdateInput {
     nullable: true,
   })
   roles?: InputJsonValue;
-
-  @ApiProperty({
-    required: false,
-    type: () => UsePointUpdateManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => UsePointUpdateManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => UsePointUpdateManyWithoutUsersInput, {
-    nullable: true,
-  })
-  usePoints?: UsePointUpdateManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => GetPointUpdateManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => GetPointUpdateManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => GetPointUpdateManyWithoutUsersInput, {
-    nullable: true,
-  })
-  getPoints?: GetPointUpdateManyWithoutUsersInput;
 }
 
 export { UserUpdateInput as UserUpdateInput };

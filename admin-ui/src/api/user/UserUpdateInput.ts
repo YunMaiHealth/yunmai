@@ -1,6 +1,4 @@
 import { InputJsonValue } from "../../types";
-import { UsePointUpdateManyWithoutUsersInput } from "./UsePointUpdateManyWithoutUsersInput";
-import { GetPointUpdateManyWithoutUsersInput } from "./GetPointUpdateManyWithoutUsersInput";
 
 export type UserUpdateInput = {
   firstName?: string | null;
@@ -8,6 +6,4 @@ export type UserUpdateInput = {
   username?: string;
   password?: string;
   roles?: InputJsonValue;
-  usePoints?: UsePointUpdateManyWithoutUsersInput;
-  getPoints?: GetPointUpdateManyWithoutUsersInput;
 };
