@@ -32,7 +32,7 @@ class User {
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
-  createdAt!: Date;
+  creatTime!: Date;
 
   @ApiProperty({
     required: true,
@@ -40,7 +40,7 @@ class User {
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
-  updatedAt!: Date;
+  lastLoginTime!: Date;
 
   @ApiProperty({
     required: false,
@@ -51,18 +51,7 @@ class User {
   @Field(() => String, {
     nullable: true,
   })
-  firstName!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  lastName!: string | null;
+  trueName!: string | null;
 
   @ApiProperty({
     required: true,
