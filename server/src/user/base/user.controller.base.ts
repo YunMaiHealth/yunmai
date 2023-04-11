@@ -306,14 +306,18 @@ export class UserControllerBase {
       ...query,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        testTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        currentHabitus: true,
+        testResult: true,
+        countResult: true,
+        suggest: true,
       },
     });
     if (results === null) {
@@ -407,14 +411,21 @@ export class UserControllerBase {
       ...query,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        updateTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        status: true,
+        intValue: true,
+        doubleValue: true,
+        stringValue: true,
+        dateValue: true,
+        jsonValue: true,
+        streamId: true,
       },
     });
     if (results === null) {
@@ -710,8 +721,7 @@ export class UserControllerBase {
       ...query,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        sendTime: true,
 
         user: {
           select: {
@@ -724,6 +734,11 @@ export class UserControllerBase {
             id: true,
           },
         },
+
+        isNew: true,
+        messageContent: true,
+        messageType: true,
+        messageSource: true,
       },
     });
     if (results === null) {

@@ -1,8 +1,12 @@
 import { Message } from "../message/Message";
+import { JsonValue } from "type-fest";
 
 export type Event = {
   id: string;
-  createdAt: Date;
-  updatedAt: Date;
+  eventTime: Date;
   messages?: Array<Message>;
+  eventType: string;
+  eventName: string;
+  eventParam: JsonValue;
+  relateUser: JsonValue;
 };

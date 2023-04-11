@@ -16,6 +16,8 @@ import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
+import { BooleanFilter } from "../../util/BooleanFilter";
+import { JsonFilter } from "../../util/JsonFilter";
 
 @InputType()
 class MessageWhereInput {
@@ -53,6 +55,50 @@ class MessageWhereInput {
     nullable: true,
   })
   event?: EventWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: BooleanFilter,
+  })
+  @Type(() => BooleanFilter)
+  @IsOptional()
+  @Field(() => BooleanFilter, {
+    nullable: true,
+  })
+  isNew?: BooleanFilter;
+
+  @ApiProperty({
+    required: false,
+    type: JsonFilter,
+  })
+  @Type(() => JsonFilter)
+  @IsOptional()
+  @Field(() => JsonFilter, {
+    nullable: true,
+  })
+  messageContent?: JsonFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  messageType?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  messageSource?: StringFilter;
 }
 
 export { MessageWhereInput as MessageWhereInput };

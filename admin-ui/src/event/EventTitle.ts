@@ -1,7 +1,7 @@
 import { Event as TEvent } from "../api/event/Event";
 
-export const EVENT_TITLE_FIELD = "id";
+export const EVENT_TITLE_FIELD = "eventName";
 
 export const EventTitle = (record: TEvent): string => {
-  return record.id || String(record.id);
+  return record.eventName || String(record.id);
 };

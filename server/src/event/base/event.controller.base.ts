@@ -54,8 +54,11 @@ export class EventControllerBase {
       data: data,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        eventTime: true,
+        eventType: true,
+        eventName: true,
+        eventParam: true,
+        relateUser: true,
       },
     });
   }
@@ -78,8 +81,11 @@ export class EventControllerBase {
       ...args,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        eventTime: true,
+        eventType: true,
+        eventName: true,
+        eventParam: true,
+        relateUser: true,
       },
     });
   }
@@ -103,8 +109,11 @@ export class EventControllerBase {
       where: params,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        eventTime: true,
+        eventType: true,
+        eventName: true,
+        eventParam: true,
+        relateUser: true,
       },
     });
     if (result === null) {
@@ -137,8 +146,11 @@ export class EventControllerBase {
         data: data,
         select: {
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          eventTime: true,
+          eventType: true,
+          eventName: true,
+          eventParam: true,
+          relateUser: true,
         },
       });
     } catch (error) {
@@ -170,8 +182,11 @@ export class EventControllerBase {
         where: params,
         select: {
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          eventTime: true,
+          eventType: true,
+          eventName: true,
+          eventParam: true,
+          relateUser: true,
         },
       });
     } catch (error) {
@@ -201,8 +216,7 @@ export class EventControllerBase {
       ...query,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        sendTime: true,
 
         user: {
           select: {
@@ -215,6 +229,11 @@ export class EventControllerBase {
             id: true,
           },
         },
+
+        isNew: true,
+        messageContent: true,
+        messageType: true,
+        messageSource: true,
       },
     });
     if (results === null) {

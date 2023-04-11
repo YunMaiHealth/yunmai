@@ -20,25 +20,29 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   id: "exampleId",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  eventTime: new Date(),
+  eventType: "exampleEventType",
+  eventName: "exampleEventName",
 };
 const CREATE_RESULT = {
   id: "exampleId",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  eventTime: new Date(),
+  eventType: "exampleEventType",
+  eventName: "exampleEventName",
 };
 const FIND_MANY_RESULT = [
   {
     id: "exampleId",
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    eventTime: new Date(),
+    eventType: "exampleEventType",
+    eventName: "exampleEventName",
   },
 ];
 const FIND_ONE_RESULT = {
   id: "exampleId",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  eventTime: new Date(),
+  eventType: "exampleEventType",
+  eventName: "exampleEventName",
 };
 
 const service = {
@@ -123,8 +127,7 @@ describe("Event", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        createdAt: CREATE_RESULT.createdAt.toISOString(),
-        updatedAt: CREATE_RESULT.updatedAt.toISOString(),
+        eventTime: CREATE_RESULT.eventTime.toISOString(),
       });
   });
 
@@ -135,8 +138,7 @@ describe("Event", () => {
       .expect([
         {
           ...FIND_MANY_RESULT[0],
-          createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
-          updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
+          eventTime: FIND_MANY_RESULT[0].eventTime.toISOString(),
         },
       ]);
   });
@@ -158,8 +160,7 @@ describe("Event", () => {
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
-        createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
-        updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
+        eventTime: FIND_ONE_RESULT.eventTime.toISOString(),
       });
   });
 
@@ -171,8 +172,7 @@ describe("Event", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        createdAt: CREATE_RESULT.createdAt.toISOString(),
-        updatedAt: CREATE_RESULT.updatedAt.toISOString(),
+        eventTime: CREATE_RESULT.eventTime.toISOString(),
       })
       .then(function () {
         agent

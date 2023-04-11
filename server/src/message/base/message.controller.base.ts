@@ -65,8 +65,7 @@ export class MessageControllerBase {
       },
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        sendTime: true,
 
         user: {
           select: {
@@ -79,6 +78,11 @@ export class MessageControllerBase {
             id: true,
           },
         },
+
+        isNew: true,
+        messageContent: true,
+        messageType: true,
+        messageSource: true,
       },
     });
   }
@@ -101,8 +105,7 @@ export class MessageControllerBase {
       ...args,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        sendTime: true,
 
         user: {
           select: {
@@ -115,6 +118,11 @@ export class MessageControllerBase {
             id: true,
           },
         },
+
+        isNew: true,
+        messageContent: true,
+        messageType: true,
+        messageSource: true,
       },
     });
   }
@@ -138,8 +146,7 @@ export class MessageControllerBase {
       where: params,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        sendTime: true,
 
         user: {
           select: {
@@ -152,6 +159,11 @@ export class MessageControllerBase {
             id: true,
           },
         },
+
+        isNew: true,
+        messageContent: true,
+        messageType: true,
+        messageSource: true,
       },
     });
     if (result === null) {
@@ -198,8 +210,7 @@ export class MessageControllerBase {
         },
         select: {
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          sendTime: true,
 
           user: {
             select: {
@@ -212,6 +223,11 @@ export class MessageControllerBase {
               id: true,
             },
           },
+
+          isNew: true,
+          messageContent: true,
+          messageType: true,
+          messageSource: true,
         },
       });
     } catch (error) {
@@ -243,8 +259,7 @@ export class MessageControllerBase {
         where: params,
         select: {
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          sendTime: true,
 
           user: {
             select: {
@@ -257,6 +272,11 @@ export class MessageControllerBase {
               id: true,
             },
           },
+
+          isNew: true,
+          messageContent: true,
+          messageType: true,
+          messageSource: true,
         },
       });
     } catch (error) {

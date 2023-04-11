@@ -13,8 +13,11 @@ export const EventList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="ID" source="id" />
-        <DateField source="createdAt" label="Created At" />
-        <DateField source="updatedAt" label="Updated At" />
+        <DateField source="eventTime" label="eventTime" />
+        <TextField label="eventType" source="eventType" />
+        <TextField label="eventName" source="eventName" />
+        <TextField label="eventParam" source="eventParam" />
+        <TextField label="relateUser" source="relateUser" />
       </Datagrid>
     </List>
   );

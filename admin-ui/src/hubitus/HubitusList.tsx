@@ -21,11 +21,14 @@ export const HubitusList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="ID" source="id" />
-        <DateField source="createdAt" label="Created At" />
-        <DateField source="updatedAt" label="Updated At" />
+        <DateField source="testTime" label="testTime" />
         <ReferenceField label="user" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="currentHabitus" source="currentHabitus" />
+        <TextField label="testResult" source="testResult" />
+        <TextField label="countResult" source="countResult" />
+        <TextField label="suggest" source="suggest" />
       </Datagrid>
     </List>
   );
