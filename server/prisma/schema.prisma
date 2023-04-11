@@ -8,11 +8,11 @@ generator client {
 }
 
 model User {
-  id            String     @id @default(cuid())
-  creatTime     DateTime   @default(now())
-  lastLoginTime DateTime   @updatedAt
+  id            String          @id @default(cuid())
+  creatTime     DateTime        @default(now())
+  lastLoginTime DateTime        @updatedAt
   trueName      String?
-  username      String     @unique
+  username      String          @unique
   password      String
   roles         Json
   hubituses     Hubitus[]
@@ -21,6 +21,21 @@ model User {
   usepoints     Usepoint[]
   messages      Message[]
   questions     Question[]
+  oauthType     String
+  openId        String
+  sessionKey    String?
+  unionId       String
+  inviterId     String?
+  phone         String?
+  nickName      String?
+  avatarUrl     String?
+  gender        EnumUserGender?
+  birthday      DateTime?
+  userIdCard    String?
+  country       String?
+  province      String?
+  city          String?
+  language      String?
 }
 
 model Hubitus {
@@ -87,4 +102,10 @@ model Reply {
   updatedAt  DateTime  @updatedAt
   question   Question? @relation(fields: [questionId], references: [id])
   questionId String?
+}
+
+enum EnumUserGender {
+  Unknown
+  Male
+  Female
 }

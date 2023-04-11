@@ -9,6 +9,8 @@ import {
   PasswordInput,
   SelectArrayInput,
   ReferenceArrayInput,
+  SelectInput,
+  DateInput,
 } from "react-admin";
 
 import { HubitusTitle } from "../hubitus/HubitusTitle";
@@ -25,7 +27,7 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
       <SimpleForm>
         <DateTimeInput label="创建时间" source="creatTime" disabled />
         <DateTimeInput
-          label="最后一次修改时间"
+          label="最近一次登录时间"
           source="lastLoginTime"
           disabled
         />
@@ -86,6 +88,32 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={QuestionTitle} />
         </ReferenceArrayInput>
+        <TextInput label="oauthType" source="oauthType" />
+        <TextInput label="openID" source="openId" />
+        <TextInput label="sessionKey" source="sessionKey" />
+        <TextInput label="unionID" source="unionId" />
+        <TextInput label="InviterID" source="inviterId" />
+        <TextInput label="phone" source="phone" />
+        <TextInput label="nickName" source="nickName" />
+        <TextInput label="avatarUrl" source="avatarUrl" />
+        <SelectInput
+          source="gender"
+          label="gender"
+          choices={[
+            { label: "unknown", value: "Unknown" },
+            { label: "male", value: "Male" },
+            { label: "female", value: "Female" },
+          ]}
+          optionText="label"
+          allowEmpty
+          optionValue="value"
+        />
+        <DateInput label="birthday" source="birthday" />
+        <TextInput label="userIDCard" source="userIdCard" />
+        <TextInput label="country" source="country" />
+        <TextInput label="province" source="province" />
+        <TextInput label="city" source="city" />
+        <TextInput label="language" source="language" />
       </SimpleForm>
     </Create>
   );
