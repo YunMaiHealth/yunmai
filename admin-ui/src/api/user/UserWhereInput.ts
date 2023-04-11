@@ -6,6 +6,7 @@ import { GetpointListRelationFilter } from "../getpoint/GetpointListRelationFilt
 import { UsepointListRelationFilter } from "../usepoint/UsepointListRelationFilter";
 import { MessageListRelationFilter } from "../message/MessageListRelationFilter";
 import { QuestionListRelationFilter } from "../question/QuestionListRelationFilter";
+import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 
 export type UserWhereInput = {
   id?: StringFilter;
@@ -17,4 +18,19 @@ export type UserWhereInput = {
   usepoints?: UsepointListRelationFilter;
   messages?: MessageListRelationFilter;
   questions?: QuestionListRelationFilter;
+  oauthType?: StringFilter;
+  openId?: StringFilter;
+  sessionKey?: StringNullableFilter;
+  unionId?: StringFilter;
+  inviterId?: StringNullableFilter;
+  phone?: StringNullableFilter;
+  nickName?: StringNullableFilter;
+  avatarUrl?: StringNullableFilter;
+  gender?: "Unknown" | "Male" | "Female";
+  birthday?: DateTimeNullableFilter;
+  userIdCard?: StringNullableFilter;
+  country?: StringNullableFilter;
+  province?: StringNullableFilter;
+  city?: StringNullableFilter;
+  language?: StringNullableFilter;
 };

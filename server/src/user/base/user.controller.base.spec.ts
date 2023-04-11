@@ -25,6 +25,20 @@ const CREATE_INPUT = {
   trueName: "exampleTrueName",
   username: "exampleUsername",
   password: "examplePassword",
+  oauthType: "exampleOauthType",
+  openId: "exampleOpenId",
+  sessionKey: "exampleSessionKey",
+  unionId: "exampleUnionId",
+  inviterId: "exampleInviterId",
+  phone: "examplePhone",
+  nickName: "exampleNickName",
+  avatarUrl: "exampleAvatarUrl",
+  birthday: new Date(),
+  userIdCard: "exampleUserIdCard",
+  country: "exampleCountry",
+  province: "exampleProvince",
+  city: "exampleCity",
+  language: "exampleLanguage",
 };
 const CREATE_RESULT = {
   id: "exampleId",
@@ -33,6 +47,20 @@ const CREATE_RESULT = {
   trueName: "exampleTrueName",
   username: "exampleUsername",
   password: "examplePassword",
+  oauthType: "exampleOauthType",
+  openId: "exampleOpenId",
+  sessionKey: "exampleSessionKey",
+  unionId: "exampleUnionId",
+  inviterId: "exampleInviterId",
+  phone: "examplePhone",
+  nickName: "exampleNickName",
+  avatarUrl: "exampleAvatarUrl",
+  birthday: new Date(),
+  userIdCard: "exampleUserIdCard",
+  country: "exampleCountry",
+  province: "exampleProvince",
+  city: "exampleCity",
+  language: "exampleLanguage",
 };
 const FIND_MANY_RESULT = [
   {
@@ -42,6 +70,20 @@ const FIND_MANY_RESULT = [
     trueName: "exampleTrueName",
     username: "exampleUsername",
     password: "examplePassword",
+    oauthType: "exampleOauthType",
+    openId: "exampleOpenId",
+    sessionKey: "exampleSessionKey",
+    unionId: "exampleUnionId",
+    inviterId: "exampleInviterId",
+    phone: "examplePhone",
+    nickName: "exampleNickName",
+    avatarUrl: "exampleAvatarUrl",
+    birthday: new Date(),
+    userIdCard: "exampleUserIdCard",
+    country: "exampleCountry",
+    province: "exampleProvince",
+    city: "exampleCity",
+    language: "exampleLanguage",
   },
 ];
 const FIND_ONE_RESULT = {
@@ -51,6 +93,20 @@ const FIND_ONE_RESULT = {
   trueName: "exampleTrueName",
   username: "exampleUsername",
   password: "examplePassword",
+  oauthType: "exampleOauthType",
+  openId: "exampleOpenId",
+  sessionKey: "exampleSessionKey",
+  unionId: "exampleUnionId",
+  inviterId: "exampleInviterId",
+  phone: "examplePhone",
+  nickName: "exampleNickName",
+  avatarUrl: "exampleAvatarUrl",
+  birthday: new Date(),
+  userIdCard: "exampleUserIdCard",
+  country: "exampleCountry",
+  province: "exampleProvince",
+  city: "exampleCity",
+  language: "exampleLanguage",
 };
 
 const service = {
@@ -137,6 +193,7 @@ describe("User", () => {
         ...CREATE_RESULT,
         creatTime: CREATE_RESULT.creatTime.toISOString(),
         lastLoginTime: CREATE_RESULT.lastLoginTime.toISOString(),
+        birthday: CREATE_RESULT.birthday.toISOString(),
       });
   });
 
@@ -149,6 +206,7 @@ describe("User", () => {
           ...FIND_MANY_RESULT[0],
           creatTime: FIND_MANY_RESULT[0].creatTime.toISOString(),
           lastLoginTime: FIND_MANY_RESULT[0].lastLoginTime.toISOString(),
+          birthday: FIND_MANY_RESULT[0].birthday.toISOString(),
         },
       ]);
   });
@@ -172,6 +230,7 @@ describe("User", () => {
         ...FIND_ONE_RESULT,
         creatTime: FIND_ONE_RESULT.creatTime.toISOString(),
         lastLoginTime: FIND_ONE_RESULT.lastLoginTime.toISOString(),
+        birthday: FIND_ONE_RESULT.birthday.toISOString(),
       });
   });
 
@@ -185,6 +244,7 @@ describe("User", () => {
         ...CREATE_RESULT,
         creatTime: CREATE_RESULT.creatTime.toISOString(),
         lastLoginTime: CREATE_RESULT.lastLoginTime.toISOString(),
+        birthday: CREATE_RESULT.birthday.toISOString(),
       })
       .then(function () {
         agent
