@@ -2,7 +2,8 @@ import { SortOrder } from "../../util/SortOrder";
 
 export type UsepointOrderByInput = {
   id?: SortOrder;
-  createdAt?: SortOrder;
-  updatedAt?: SortOrder;
+  usePointTime?: SortOrder;
   userId?: SortOrder;
+  points?: SortOrder;
+  usePointType?: SortOrder;
 };

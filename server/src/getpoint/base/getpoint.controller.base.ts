@@ -59,14 +59,16 @@ export class GetpointControllerBase {
       },
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        getPointTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        points: true,
+        getPointType: true,
       },
     });
   }
@@ -89,14 +91,16 @@ export class GetpointControllerBase {
       ...args,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        getPointTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        points: true,
+        getPointType: true,
       },
     });
   }
@@ -120,14 +124,16 @@ export class GetpointControllerBase {
       where: params,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        getPointTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        points: true,
+        getPointType: true,
       },
     });
     if (result === null) {
@@ -168,14 +174,16 @@ export class GetpointControllerBase {
         },
         select: {
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          getPointTime: true,
 
           user: {
             select: {
               id: true,
             },
           },
+
+          points: true,
+          getPointType: true,
         },
       });
     } catch (error) {
@@ -207,14 +215,16 @@ export class GetpointControllerBase {
         where: params,
         select: {
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          getPointTime: true,
 
           user: {
             select: {
               id: true,
             },
           },
+
+          points: true,
+          getPointType: true,
         },
       });
     } catch (error) {

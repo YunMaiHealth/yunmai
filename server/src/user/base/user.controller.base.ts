@@ -519,14 +519,16 @@ export class UserControllerBase {
       ...query,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        getPointTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        points: true,
+        getPointType: true,
       },
     });
     if (results === null) {
@@ -620,14 +622,16 @@ export class UserControllerBase {
       ...query,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        usePointTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        points: true,
+        usePointType: true,
       },
     });
     if (results === null) {
