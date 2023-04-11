@@ -59,14 +59,16 @@ export class UsepointControllerBase {
       },
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        usePointTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        points: true,
+        usePointType: true,
       },
     });
   }
@@ -89,14 +91,16 @@ export class UsepointControllerBase {
       ...args,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        usePointTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        points: true,
+        usePointType: true,
       },
     });
   }
@@ -120,14 +124,16 @@ export class UsepointControllerBase {
       where: params,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        usePointTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        points: true,
+        usePointType: true,
       },
     });
     if (result === null) {
@@ -168,14 +174,16 @@ export class UsepointControllerBase {
         },
         select: {
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          usePointTime: true,
 
           user: {
             select: {
               id: true,
             },
           },
+
+          points: true,
+          usePointType: true,
         },
       });
     } catch (error) {
@@ -207,14 +215,16 @@ export class UsepointControllerBase {
         where: params,
         select: {
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          usePointTime: true,
 
           user: {
             select: {
               id: true,
             },
           },
+
+          points: true,
+          usePointType: true,
         },
       });
     } catch (error) {

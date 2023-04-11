@@ -80,11 +80,12 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
         >
           <Datagrid rowClick="show">
             <TextField label="ID" source="id" />
-            <DateField source="createdAt" label="Created At" />
-            <DateField source="updatedAt" label="Updated At" />
+            <DateField source="getPointTime" label="getPointTime" />
             <ReferenceField label="user" source="user.id" reference="User">
               <TextField source={USER_TITLE_FIELD} />
             </ReferenceField>
+            <TextField label="points" source="points" />
+            <TextField label="getPointType" source="getPointType" />
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField
@@ -94,11 +95,12 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
         >
           <Datagrid rowClick="show">
             <TextField label="ID" source="id" />
-            <DateField source="createdAt" label="Created At" />
-            <DateField source="updatedAt" label="Updated At" />
+            <DateField source="usePointTime" label="usePointTime" />
             <ReferenceField label="user" source="user.id" reference="User">
               <TextField source={USER_TITLE_FIELD} />
             </ReferenceField>
+            <TextField label="points" source="points" />
+            <TextField label="usePointType" source="usePointType" />
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField

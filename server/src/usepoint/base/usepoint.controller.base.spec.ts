@@ -20,25 +20,29 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   id: "exampleId",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  usePointTime: new Date(),
+  points: 42,
+  usePointType: "exampleUsePointType",
 };
 const CREATE_RESULT = {
   id: "exampleId",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  usePointTime: new Date(),
+  points: 42,
+  usePointType: "exampleUsePointType",
 };
 const FIND_MANY_RESULT = [
   {
     id: "exampleId",
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    usePointTime: new Date(),
+    points: 42,
+    usePointType: "exampleUsePointType",
   },
 ];
 const FIND_ONE_RESULT = {
   id: "exampleId",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  usePointTime: new Date(),
+  points: 42,
+  usePointType: "exampleUsePointType",
 };
 
 const service = {
@@ -123,8 +127,7 @@ describe("Usepoint", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        createdAt: CREATE_RESULT.createdAt.toISOString(),
-        updatedAt: CREATE_RESULT.updatedAt.toISOString(),
+        usePointTime: CREATE_RESULT.usePointTime.toISOString(),
       });
   });
 
@@ -135,8 +138,7 @@ describe("Usepoint", () => {
       .expect([
         {
           ...FIND_MANY_RESULT[0],
-          createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
-          updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
+          usePointTime: FIND_MANY_RESULT[0].usePointTime.toISOString(),
         },
       ]);
   });
@@ -158,8 +160,7 @@ describe("Usepoint", () => {
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
-        createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
-        updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
+        usePointTime: FIND_ONE_RESULT.usePointTime.toISOString(),
       });
   });
 
@@ -171,8 +172,7 @@ describe("Usepoint", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        createdAt: CREATE_RESULT.createdAt.toISOString(),
-        updatedAt: CREATE_RESULT.updatedAt.toISOString(),
+        usePointTime: CREATE_RESULT.usePointTime.toISOString(),
       })
       .then(function () {
         agent

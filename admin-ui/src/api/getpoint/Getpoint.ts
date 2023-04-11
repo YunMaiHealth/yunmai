@@ -2,7 +2,8 @@ import { User } from "../user/User";
 
 export type Getpoint = {
   id: string;
-  createdAt: Date;
-  updatedAt: Date;
+  getPointTime: Date;
   user?: User | null;
+  points: number;
+  getPointType: string;
 };
