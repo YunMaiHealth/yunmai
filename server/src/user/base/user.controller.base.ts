@@ -832,14 +832,16 @@ export class UserControllerBase {
       ...query,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        questionTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        questionContent: true,
+        isPublic: true,
       },
     });
     if (results === null) {

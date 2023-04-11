@@ -3,8 +3,9 @@ import { Reply } from "../reply/Reply";
 
 export type Question = {
   id: string;
-  createdAt: Date;
-  updatedAt: Date;
+  questionTime: Date;
   user?: User | null;
   replies?: Array<Reply>;
+  questionContent: string;
+  isPublic: boolean;
 };

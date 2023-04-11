@@ -62,14 +62,16 @@ export class QuestionControllerBase {
       },
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        questionTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        questionContent: true,
+        isPublic: true,
       },
     });
   }
@@ -92,14 +94,16 @@ export class QuestionControllerBase {
       ...args,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        questionTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        questionContent: true,
+        isPublic: true,
       },
     });
   }
@@ -123,14 +127,16 @@ export class QuestionControllerBase {
       where: params,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        questionTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        questionContent: true,
+        isPublic: true,
       },
     });
     if (result === null) {
@@ -171,14 +177,16 @@ export class QuestionControllerBase {
         },
         select: {
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          questionTime: true,
 
           user: {
             select: {
               id: true,
             },
           },
+
+          questionContent: true,
+          isPublic: true,
         },
       });
     } catch (error) {
@@ -210,14 +218,16 @@ export class QuestionControllerBase {
         where: params,
         select: {
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          questionTime: true,
 
           user: {
             select: {
               id: true,
             },
           },
+
+          questionContent: true,
+          isPublic: true,
         },
       });
     } catch (error) {
@@ -247,14 +257,17 @@ export class QuestionControllerBase {
       ...query,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        replyTime: true,
 
         question: {
           select: {
             id: true,
           },
         },
+
+        questionReply: true,
+        replyUserId: true,
+        isPublic: true,
       },
     });
     if (results === null) {

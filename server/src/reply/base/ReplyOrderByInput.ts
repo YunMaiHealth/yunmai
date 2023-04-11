@@ -34,16 +34,7 @@ class ReplyOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  createdAt?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  updatedAt?: SortOrder;
+  replyTime?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -53,6 +44,33 @@ class ReplyOrderByInput {
     nullable: true,
   })
   questionId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  questionReply?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  replyUserId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  isPublic?: SortOrder;
 }
 
 export { ReplyOrderByInput as ReplyOrderByInput };

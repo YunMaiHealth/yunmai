@@ -95,11 +95,9 @@ export class ReplyResolverBase {
       data: {
         ...args.data,
 
-        question: args.data.question
-          ? {
-              connect: args.data.question,
-            }
-          : undefined,
+        question: {
+          connect: args.data.question,
+        },
       },
     });
   }
@@ -120,11 +118,9 @@ export class ReplyResolverBase {
         data: {
           ...args.data,
 
-          question: args.data.question
-            ? {
-                connect: args.data.question,
-              }
-            : undefined,
+          question: {
+            connect: args.data.question,
+          },
         },
       });
     } catch (error) {

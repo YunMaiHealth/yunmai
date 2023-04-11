@@ -2,7 +2,9 @@ import { Question } from "../question/Question";
 
 export type Reply = {
   id: string;
-  createdAt: Date;
-  updatedAt: Date;
-  question?: Question | null;
+  replyTime: Date;
+  question?: Question;
+  questionReply: string;
+  replyUserId: string | null;
+  isPublic: boolean;
 };

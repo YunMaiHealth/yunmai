@@ -4,10 +4,13 @@ import {
   Edit,
   SimpleForm,
   EditProps,
+  DateTimeInput,
   ReferenceInput,
   SelectInput,
   ReferenceArrayInput,
   SelectArrayInput,
+  TextInput,
+  BooleanInput,
 } from "react-admin";
 
 import { UserTitle } from "../user/UserTitle";
@@ -17,6 +20,7 @@ export const QuestionEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <DateTimeInput label="questionTime" source="questionTime" disabled />
         <ReferenceInput source="user.id" reference="User" label="user">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>
@@ -28,6 +32,8 @@ export const QuestionEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={ReplyTitle} />
         </ReferenceArrayInput>
+        <TextInput label="questionContent" multiline source="questionContent" />
+        <BooleanInput label="isPublic" source="isPublic" />
       </SimpleForm>
     </Edit>
   );

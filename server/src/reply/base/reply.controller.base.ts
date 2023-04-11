@@ -51,22 +51,23 @@ export class ReplyControllerBase {
       data: {
         ...data,
 
-        question: data.question
-          ? {
-              connect: data.question,
-            }
-          : undefined,
+        question: {
+          connect: data.question,
+        },
       },
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        replyTime: true,
 
         question: {
           select: {
             id: true,
           },
         },
+
+        questionReply: true,
+        replyUserId: true,
+        isPublic: true,
       },
     });
   }
@@ -89,14 +90,17 @@ export class ReplyControllerBase {
       ...args,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        replyTime: true,
 
         question: {
           select: {
             id: true,
           },
         },
+
+        questionReply: true,
+        replyUserId: true,
+        isPublic: true,
       },
     });
   }
@@ -120,14 +124,17 @@ export class ReplyControllerBase {
       where: params,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        replyTime: true,
 
         question: {
           select: {
             id: true,
           },
         },
+
+        questionReply: true,
+        replyUserId: true,
+        isPublic: true,
       },
     });
     if (result === null) {
@@ -160,22 +167,23 @@ export class ReplyControllerBase {
         data: {
           ...data,
 
-          question: data.question
-            ? {
-                connect: data.question,
-              }
-            : undefined,
+          question: {
+            connect: data.question,
+          },
         },
         select: {
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          replyTime: true,
 
           question: {
             select: {
               id: true,
             },
           },
+
+          questionReply: true,
+          replyUserId: true,
+          isPublic: true,
         },
       });
     } catch (error) {
@@ -207,14 +215,17 @@ export class ReplyControllerBase {
         where: params,
         select: {
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          replyTime: true,
 
           question: {
             select: {
               id: true,
             },
           },
+
+          questionReply: true,
+          replyUserId: true,
+          isPublic: true,
         },
       });
     } catch (error) {

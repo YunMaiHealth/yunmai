@@ -11,12 +11,29 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { QuestionWhereUniqueInput } from "../../question/base/QuestionWhereUniqueInput";
-import { ValidateNested, IsOptional } from "class-validator";
+import {
+  IsDate,
+  IsOptional,
+  ValidateNested,
+  IsString,
+  IsBoolean,
+} from "class-validator";
 import { Type } from "class-transformer";
+import { QuestionWhereUniqueInput } from "../../question/base/QuestionWhereUniqueInput";
 
 @InputType()
 class ReplyUpdateInput {
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  replyTime?: Date;
+
   @ApiProperty({
     required: false,
     type: () => QuestionWhereUniqueInput,
@@ -27,7 +44,40 @@ class ReplyUpdateInput {
   @Field(() => QuestionWhereUniqueInput, {
     nullable: true,
   })
-  question?: QuestionWhereUniqueInput | null;
+  question?: QuestionWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  questionReply?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  replyUserId?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  isPublic?: boolean;
 }
 
 export { ReplyUpdateInput as ReplyUpdateInput };

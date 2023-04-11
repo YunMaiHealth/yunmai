@@ -16,6 +16,7 @@ import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 import { ReplyListRelationFilter } from "../../reply/base/ReplyListRelationFilter";
+import { BooleanFilter } from "../../util/BooleanFilter";
 
 @InputType()
 class QuestionWhereInput {
@@ -53,6 +54,28 @@ class QuestionWhereInput {
     nullable: true,
   })
   replies?: ReplyListRelationFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  questionContent?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: BooleanFilter,
+  })
+  @Type(() => BooleanFilter)
+  @IsOptional()
+  @Field(() => BooleanFilter, {
+    nullable: true,
+  })
+  isPublic?: BooleanFilter;
 }
 
 export { QuestionWhereInput as QuestionWhereInput };
