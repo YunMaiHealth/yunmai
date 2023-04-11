@@ -20,25 +20,33 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   id: "exampleId",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  replyTime: new Date(),
+  questionReply: "exampleQuestionReply",
+  replyUserId: "exampleReplyUserId",
+  isPublic: "true",
 };
 const CREATE_RESULT = {
   id: "exampleId",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  replyTime: new Date(),
+  questionReply: "exampleQuestionReply",
+  replyUserId: "exampleReplyUserId",
+  isPublic: "true",
 };
 const FIND_MANY_RESULT = [
   {
     id: "exampleId",
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    replyTime: new Date(),
+    questionReply: "exampleQuestionReply",
+    replyUserId: "exampleReplyUserId",
+    isPublic: "true",
   },
 ];
 const FIND_ONE_RESULT = {
   id: "exampleId",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  replyTime: new Date(),
+  questionReply: "exampleQuestionReply",
+  replyUserId: "exampleReplyUserId",
+  isPublic: "true",
 };
 
 const service = {
@@ -123,8 +131,7 @@ describe("Reply", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        createdAt: CREATE_RESULT.createdAt.toISOString(),
-        updatedAt: CREATE_RESULT.updatedAt.toISOString(),
+        replyTime: CREATE_RESULT.replyTime.toISOString(),
       });
   });
 
@@ -135,8 +142,7 @@ describe("Reply", () => {
       .expect([
         {
           ...FIND_MANY_RESULT[0],
-          createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
-          updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
+          replyTime: FIND_MANY_RESULT[0].replyTime.toISOString(),
         },
       ]);
   });
@@ -158,8 +164,7 @@ describe("Reply", () => {
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
-        createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
-        updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
+        replyTime: FIND_ONE_RESULT.replyTime.toISOString(),
       });
   });
 
@@ -171,8 +176,7 @@ describe("Reply", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        createdAt: CREATE_RESULT.createdAt.toISOString(),
-        updatedAt: CREATE_RESULT.updatedAt.toISOString(),
+        replyTime: CREATE_RESULT.replyTime.toISOString(),
       })
       .then(function () {
         agent

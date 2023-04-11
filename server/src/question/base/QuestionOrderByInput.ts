@@ -34,16 +34,7 @@ class QuestionOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  createdAt?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  updatedAt?: SortOrder;
+  questionTime?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -53,6 +44,24 @@ class QuestionOrderByInput {
     nullable: true,
   })
   userId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  questionContent?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  isPublic?: SortOrder;
 }
 
 export { QuestionOrderByInput as QuestionOrderByInput };

@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import {
   Show,
   SimpleShowLayout,
@@ -6,7 +7,9 @@ import {
   TextField,
   DateField,
   ReferenceField,
+  BooleanField,
 } from "react-admin";
+
 import { QUESTION_TITLE_FIELD } from "../question/QuestionTitle";
 
 export const ReplyShow = (props: ShowProps): React.ReactElement => {
@@ -14,8 +17,7 @@ export const ReplyShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="ID" source="id" />
-        <DateField source="createdAt" label="Created At" />
-        <DateField source="updatedAt" label="Updated At" />
+        <DateField source="replyTime" label="replyTime" />
         <ReferenceField
           label="question"
           source="question.id"
@@ -23,6 +25,9 @@ export const ReplyShow = (props: ShowProps): React.ReactElement => {
         >
           <TextField source={QUESTION_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="questionReply" source="questionReply" />
+        <TextField label="replyUserID" source="replyUserId" />
+        <BooleanField label="isPublic" source="isPublic" />
       </SimpleShowLayout>
     </Show>
   );

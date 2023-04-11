@@ -1,5 +1,9 @@
 import { QuestionWhereUniqueInput } from "../question/QuestionWhereUniqueInput";
 
 export type ReplyCreateInput = {
-  question?: QuestionWhereUniqueInput | null;
+  replyTime: Date;
+  question: QuestionWhereUniqueInput;
+  questionReply: string;
+  replyUserId?: string | null;
+  isPublic: boolean;
 };

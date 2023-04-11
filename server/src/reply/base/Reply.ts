@@ -11,7 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsDate, ValidateNested, IsOptional } from "class-validator";
+import {
+  IsString,
+  IsDate,
+  ValidateNested,
+  IsOptional,
+  IsBoolean,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { Question } from "../../question/base/Question";
 
@@ -31,24 +37,42 @@ class Reply {
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
-  createdAt!: Date;
+  replyTime!: Date;
 
   @ApiProperty({
     required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  updatedAt!: Date;
-
-  @ApiProperty({
-    required: false,
     type: () => Question,
   })
   @ValidateNested()
   @Type(() => Question)
+  question?: Question;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  questionReply!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
   @IsOptional()
-  question?: Question | null;
+  @Field(() => String, {
+    nullable: true,
+  })
+  replyUserId!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @Field(() => Boolean)
+  isPublic!: boolean;
 }
 
 export { Reply as Reply };

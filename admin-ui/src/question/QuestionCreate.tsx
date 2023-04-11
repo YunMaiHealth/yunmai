@@ -4,10 +4,13 @@ import {
   Create,
   SimpleForm,
   CreateProps,
+  DateTimeInput,
   ReferenceInput,
   SelectInput,
   ReferenceArrayInput,
   SelectArrayInput,
+  TextInput,
+  BooleanInput,
 } from "react-admin";
 
 import { UserTitle } from "../user/UserTitle";
@@ -17,6 +20,7 @@ export const QuestionCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
+        <DateTimeInput label="questionTime" source="questionTime" disabled />
         <ReferenceInput source="user.id" reference="User" label="user">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>
@@ -28,6 +32,8 @@ export const QuestionCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={ReplyTitle} />
         </ReferenceArrayInput>
+        <TextInput label="questionContent" multiline source="questionContent" />
+        <BooleanInput label="isPublic" source="isPublic" />
       </SimpleForm>
     </Create>
   );

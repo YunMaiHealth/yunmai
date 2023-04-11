@@ -11,13 +11,30 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
-import { ValidateNested, IsOptional } from "class-validator";
+import {
+  IsDate,
+  IsOptional,
+  ValidateNested,
+  IsString,
+  IsBoolean,
+} from "class-validator";
 import { Type } from "class-transformer";
+import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 import { ReplyUpdateManyWithoutQuestionsInput } from "./ReplyUpdateManyWithoutQuestionsInput";
 
 @InputType()
 class QuestionUpdateInput {
+  @ApiProperty({
+    required: false,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  @Field(() => Date, {
+    nullable: true,
+  })
+  questionTime?: Date;
+
   @ApiProperty({
     required: false,
     type: () => UserWhereUniqueInput,
@@ -41,6 +58,28 @@ class QuestionUpdateInput {
     nullable: true,
   })
   replies?: ReplyUpdateManyWithoutQuestionsInput;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  questionContent?: string;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  isPublic?: boolean;
 }
 
 export { QuestionUpdateInput as QuestionUpdateInput };
