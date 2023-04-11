@@ -59,14 +59,18 @@ export class HubitusControllerBase {
       },
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        testTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        currentHabitus: true,
+        testResult: true,
+        countResult: true,
+        suggest: true,
       },
     });
   }
@@ -89,14 +93,18 @@ export class HubitusControllerBase {
       ...args,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        testTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        currentHabitus: true,
+        testResult: true,
+        countResult: true,
+        suggest: true,
       },
     });
   }
@@ -120,14 +128,18 @@ export class HubitusControllerBase {
       where: params,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        testTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        currentHabitus: true,
+        testResult: true,
+        countResult: true,
+        suggest: true,
       },
     });
     if (result === null) {
@@ -168,14 +180,18 @@ export class HubitusControllerBase {
         },
         select: {
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          testTime: true,
 
           user: {
             select: {
               id: true,
             },
           },
+
+          currentHabitus: true,
+          testResult: true,
+          countResult: true,
+          suggest: true,
         },
       });
     } catch (error) {
@@ -207,14 +223,18 @@ export class HubitusControllerBase {
         where: params,
         select: {
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          testTime: true,
 
           user: {
             select: {
               id: true,
             },
           },
+
+          currentHabitus: true,
+          testResult: true,
+          countResult: true,
+          suggest: true,
         },
       });
     } catch (error) {

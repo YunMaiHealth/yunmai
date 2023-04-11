@@ -9,6 +9,7 @@ import {
   ReferenceManyField,
   Datagrid,
   ReferenceField,
+  BooleanField,
 } from "react-admin";
 
 import { USER_TITLE_FIELD } from "./UserTitle";
@@ -46,21 +47,30 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
         >
           <Datagrid rowClick="show">
             <TextField label="ID" source="id" />
-            <DateField source="createdAt" label="Created At" />
-            <DateField source="updatedAt" label="Updated At" />
+            <DateField source="testTime" label="testTime" />
             <ReferenceField label="user" source="user.id" reference="User">
               <TextField source={USER_TITLE_FIELD} />
             </ReferenceField>
+            <TextField label="currentHabitus" source="currentHabitus" />
+            <TextField label="testResult" source="testResult" />
+            <TextField label="countResult" source="countResult" />
+            <TextField label="suggest" source="suggest" />
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField reference="Status" target="UserId" label="statuses">
           <Datagrid rowClick="show">
             <TextField label="ID" source="id" />
-            <DateField source="createdAt" label="Created At" />
-            <DateField source="updatedAt" label="Updated At" />
+            <DateField source="updateTime" label="updateTime" />
             <ReferenceField label="user" source="user.id" reference="User">
               <TextField source={USER_TITLE_FIELD} />
             </ReferenceField>
+            <TextField label="status" source="status" />
+            <TextField label="intValue" source="intValue" />
+            <TextField label="doubleValue" source="doubleValue" />
+            <TextField label="stringValue" source="stringValue" />
+            <TextField label="dateValue" source="dateValue" />
+            <TextField label="jsonValue" source="jsonValue" />
+            <TextField label="streamID" source="streamId" />
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField
@@ -98,14 +108,17 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
         >
           <Datagrid rowClick="show">
             <TextField label="ID" source="id" />
-            <DateField source="createdAt" label="Created At" />
-            <DateField source="updatedAt" label="Updated At" />
+            <DateField source="sendTime" label="sendTime" />
             <ReferenceField label="user" source="user.id" reference="User">
               <TextField source={USER_TITLE_FIELD} />
             </ReferenceField>
             <ReferenceField label="event" source="event.id" reference="Event">
               <TextField source={EVENT_TITLE_FIELD} />
             </ReferenceField>
+            <BooleanField label="isNew" source="isNew" />
+            <TextField label="messageContent" source="messageContent" />
+            <TextField label="messageType" source="messageType" />
+            <TextField label="messageSource" source="messageSource" />
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField

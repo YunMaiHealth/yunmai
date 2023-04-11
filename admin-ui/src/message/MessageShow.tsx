@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import {
   Show,
   SimpleShowLayout,
@@ -6,7 +7,9 @@ import {
   TextField,
   DateField,
   ReferenceField,
+  BooleanField,
 } from "react-admin";
+
 import { USER_TITLE_FIELD } from "../user/UserTitle";
 import { EVENT_TITLE_FIELD } from "../event/EventTitle";
 
@@ -15,14 +18,17 @@ export const MessageShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <TextField label="ID" source="id" />
-        <DateField source="createdAt" label="Created At" />
-        <DateField source="updatedAt" label="Updated At" />
+        <DateField source="sendTime" label="sendTime" />
         <ReferenceField label="user" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>
         <ReferenceField label="event" source="event.id" reference="Event">
           <TextField source={EVENT_TITLE_FIELD} />
         </ReferenceField>
+        <BooleanField label="isNew" source="isNew" />
+        <TextField label="messageContent" source="messageContent" />
+        <TextField label="messageType" source="messageType" />
+        <TextField label="messageSource" source="messageSource" />
       </SimpleShowLayout>
     </Show>
   );

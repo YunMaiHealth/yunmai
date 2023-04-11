@@ -20,25 +20,29 @@ const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
   id: "exampleId",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  testTime: new Date(),
+  currentHabitus: "exampleCurrentHabitus",
+  suggest: "exampleSuggest",
 };
 const CREATE_RESULT = {
   id: "exampleId",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  testTime: new Date(),
+  currentHabitus: "exampleCurrentHabitus",
+  suggest: "exampleSuggest",
 };
 const FIND_MANY_RESULT = [
   {
     id: "exampleId",
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    testTime: new Date(),
+    currentHabitus: "exampleCurrentHabitus",
+    suggest: "exampleSuggest",
   },
 ];
 const FIND_ONE_RESULT = {
   id: "exampleId",
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  testTime: new Date(),
+  currentHabitus: "exampleCurrentHabitus",
+  suggest: "exampleSuggest",
 };
 
 const service = {
@@ -123,8 +127,7 @@ describe("Hubitus", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        createdAt: CREATE_RESULT.createdAt.toISOString(),
-        updatedAt: CREATE_RESULT.updatedAt.toISOString(),
+        testTime: CREATE_RESULT.testTime.toISOString(),
       });
   });
 
@@ -135,8 +138,7 @@ describe("Hubitus", () => {
       .expect([
         {
           ...FIND_MANY_RESULT[0],
-          createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
-          updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
+          testTime: FIND_MANY_RESULT[0].testTime.toISOString(),
         },
       ]);
   });
@@ -158,8 +160,7 @@ describe("Hubitus", () => {
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
-        createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
-        updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
+        testTime: FIND_ONE_RESULT.testTime.toISOString(),
       });
   });
 
@@ -171,8 +172,7 @@ describe("Hubitus", () => {
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
-        createdAt: CREATE_RESULT.createdAt.toISOString(),
-        updatedAt: CREATE_RESULT.updatedAt.toISOString(),
+        testTime: CREATE_RESULT.testTime.toISOString(),
       })
       .then(function () {
         agent

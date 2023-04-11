@@ -51,22 +51,27 @@ export class StatusControllerBase {
       data: {
         ...data,
 
-        user: data.user
-          ? {
-              connect: data.user,
-            }
-          : undefined,
+        user: {
+          connect: data.user,
+        },
       },
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        updateTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        status: true,
+        intValue: true,
+        doubleValue: true,
+        stringValue: true,
+        dateValue: true,
+        jsonValue: true,
+        streamId: true,
       },
     });
   }
@@ -89,14 +94,21 @@ export class StatusControllerBase {
       ...args,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        updateTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        status: true,
+        intValue: true,
+        doubleValue: true,
+        stringValue: true,
+        dateValue: true,
+        jsonValue: true,
+        streamId: true,
       },
     });
   }
@@ -120,14 +132,21 @@ export class StatusControllerBase {
       where: params,
       select: {
         id: true,
-        createdAt: true,
-        updatedAt: true,
+        updateTime: true,
 
         user: {
           select: {
             id: true,
           },
         },
+
+        status: true,
+        intValue: true,
+        doubleValue: true,
+        stringValue: true,
+        dateValue: true,
+        jsonValue: true,
+        streamId: true,
       },
     });
     if (result === null) {
@@ -160,22 +179,27 @@ export class StatusControllerBase {
         data: {
           ...data,
 
-          user: data.user
-            ? {
-                connect: data.user,
-              }
-            : undefined,
+          user: {
+            connect: data.user,
+          },
         },
         select: {
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          updateTime: true,
 
           user: {
             select: {
               id: true,
             },
           },
+
+          status: true,
+          intValue: true,
+          doubleValue: true,
+          stringValue: true,
+          dateValue: true,
+          jsonValue: true,
+          streamId: true,
         },
       });
     } catch (error) {
@@ -207,14 +231,21 @@ export class StatusControllerBase {
         where: params,
         select: {
           id: true,
-          createdAt: true,
-          updatedAt: true,
+          updateTime: true,
 
           user: {
             select: {
               id: true,
             },
           },
+
+          status: true,
+          intValue: true,
+          doubleValue: true,
+          stringValue: true,
+          dateValue: true,
+          jsonValue: true,
+          streamId: true,
         },
       });
     } catch (error) {

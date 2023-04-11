@@ -1,17 +1,22 @@
 import * as React from "react";
+
 import {
   Edit,
   SimpleForm,
   EditProps,
+  DateTimeInput,
   ReferenceArrayInput,
   SelectArrayInput,
+  TextInput,
 } from "react-admin";
+
 import { MessageTitle } from "../message/MessageTitle";
 
 export const EventEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <DateTimeInput label="eventTime" source="eventTime" disabled />
         <ReferenceArrayInput
           source="messages"
           reference="Message"
@@ -20,6 +25,10 @@ export const EventEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={MessageTitle} />
         </ReferenceArrayInput>
+        <TextInput label="eventType" source="eventType" />
+        <TextInput label="eventName" source="eventName" />
+        <div />
+        <div />
       </SimpleForm>
     </Edit>
   );
