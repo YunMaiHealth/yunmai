@@ -8,34 +8,34 @@ generator client {
 }
 
 model User {
+  oauthType     String
+  nickName      String?
+  openId        String
+  sessionKey    String?
+  unionId       String
+  inviterId     String?
+  phone         String?
+  gender        EnumUserGender?
+  avatarUrl     String?
+  birthday      DateTime?
+  userIdCard    String?
+  country       String?
+  language      String?
+  province      String?
+  city          String?
   id            String          @id @default(cuid())
-  creatTime     DateTime        @default(now())
-  lastLoginTime DateTime        @updatedAt
-  trueName      String?
+  realName      String?
   username      String          @unique
   password      String
   roles         Json
+  creatTime     DateTime        @default(now())
+  lastLoginTime DateTime        @updatedAt
   hubituses     Hubitus[]
   statuses      Status[]
   getpoints     Getpoint[]
   usepoints     Usepoint[]
   messages      Message[]
   questions     Question[]
-  oauthType     String
-  openId        String
-  sessionKey    String?
-  unionId       String
-  inviterId     String?
-  phone         String?
-  nickName      String?
-  avatarUrl     String?
-  gender        EnumUserGender?
-  birthday      DateTime?
-  userIdCard    String?
-  country       String?
-  province      String?
-  city          String?
-  language      String?
 }
 
 model Hubitus {
