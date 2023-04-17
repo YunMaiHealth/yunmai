@@ -6,6 +6,8 @@ server/Dockerfile
 server/package.json
 admin-ui/.env
 admin-ui/Dockerfile
+#该文件解决添加、修改数据时权限不足问题，不能被覆盖
+server/src/interceptors/aclValidateRequest.interceptor.ts
 # 以下的通配符不知道是否起作用，这是为了防止在AMP中使用自定义的service目录而使用了通配符
 **/.env
 **/Dockerfile
