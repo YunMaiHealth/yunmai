@@ -28,6 +28,7 @@ import { Message } from "./Message";
 import { User } from "../../user/base/User";
 import { Event } from "../../event/base/Event";
 import { MessageService } from "../message.service";
+import { MessageInfo } from "./MessageInfo";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => Message)
 export class MessageResolverBase {
