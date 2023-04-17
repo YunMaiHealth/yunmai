@@ -29,7 +29,7 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
         <TextField label="gender" source="gender" />
         <TextField label="avatarUrl" source="avatarUrl" />
         <TextField label="birthday" source="birthday" />
-        <TextField label="userIDCard" source="userIdCard" />
+        <TextField label="identitycard" source="identitycard" />
         <TextField label="country" source="country" />
         <TextField label="language" source="language" />
         <TextField label="province" source="province" />

@@ -151,7 +151,7 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  userIdCard?: string | null;
+  identitycard?: string | null;
 
   @ApiProperty({
     required: false,
