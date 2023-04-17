@@ -17,6 +17,9 @@ export class AuthResolver {
   @Mutation(() => UserInfo)
   async login(@Args() args: LoginArgs): Promise<UserInfo> {
     return this.authService.login(args.credentials);
+  }
+  @Query(() => UserInfo)
+  @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 	
   async userInfo(@UserData() userInfo: UserInfo): Promise<UserInfo> {
     return userInfo;
