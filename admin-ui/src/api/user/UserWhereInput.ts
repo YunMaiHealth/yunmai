@@ -19,7 +19,7 @@ export type UserWhereInput = {
   gender?: "Unknown" | "Male" | "Female";
   avatarUrl?: StringNullableFilter;
   birthday?: DateTimeNullableFilter;
-  userIdCard?: StringNullableFilter;
+  identitycard?: StringNullableFilter;
   country?: StringNullableFilter;
   language?: StringNullableFilter;
   province?: StringNullableFilter;

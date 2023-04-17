@@ -115,7 +115,7 @@ class UserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  userIdCard?: SortOrder;
+  identitycard?: SortOrder;
 
   @ApiProperty({
     required: false,

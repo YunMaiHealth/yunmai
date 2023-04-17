@@ -11,7 +11,7 @@ export type UserOrderByInput = {
   gender?: SortOrder;
   avatarUrl?: SortOrder;
   birthday?: SortOrder;
-  userIdCard?: SortOrder;
+  identitycard?: SortOrder;
   country?: SortOrder;
   language?: SortOrder;
   province?: SortOrder;

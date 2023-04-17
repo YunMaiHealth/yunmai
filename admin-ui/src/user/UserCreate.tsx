@@ -46,7 +46,7 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
         />
         <TextInput label="avatarUrl" source="avatarUrl" />
         <DateInput label="birthday" source="birthday" />
-        <TextInput label="userIDCard" source="userIdCard" />
+        <TextInput label="identitycard" source="identitycard" />
         <TextInput label="country" source="country" />
         <TextInput label="language" source="language" />
         <TextInput label="province" source="province" />

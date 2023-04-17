@@ -17,7 +17,7 @@ export type UserUpdateInput = {
   gender?: "Unknown" | "Male" | "Female" | null;
   avatarUrl?: string | null;
   birthday?: Date | null;
-  userIdCard?: string | null;
+  identitycard?: string | null;
   country?: string | null;
   language?: string | null;
   province?: string | null;

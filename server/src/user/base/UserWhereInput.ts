@@ -145,7 +145,7 @@ class UserWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  userIdCard?: StringNullableFilter;
+  identitycard?: StringNullableFilter;
 
   @ApiProperty({
     required: false,

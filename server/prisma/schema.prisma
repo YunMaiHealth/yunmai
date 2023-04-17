@@ -18,7 +18,7 @@ model User {
   gender        EnumUserGender?
   avatarUrl     String?
   birthday      DateTime?
-  userIdCard    String?
+  identitycard  String?
   country       String?
   language      String?
   province      String?
