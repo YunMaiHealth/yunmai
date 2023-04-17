@@ -17,7 +17,7 @@ export class AuthResolver {
   @Mutation(() => UserInfo)
   async login(@Args() args: LoginArgs): Promise<UserInfo> {
     return this.authService.login(args.credentials);
-	@@ -20,4 +24,13 @@ export class AuthResolver {
+	
   async userInfo(@UserData() userInfo: UserInfo): Promise<UserInfo> {
     return userInfo;
   }
