@@ -8,8 +8,6 @@ admin-ui/.env
 admin-ui/Dockerfile
 #该文件解决添加、修改数据时权限不足问题，不能被覆盖
 server/src/interceptors/aclValidateRequest.interceptor.ts
-#该文件添加了查询消息信息方法getMessageInfo，不能被覆盖
-server/src/message/base/message.resolver.base.ts
 #该文件解决添加新增用户方法，不需要token也能新增用户的问题，不能被覆盖。
 server/src/auth/auth.resolver.ts
 # 以下的通配符不知道是否起作用，这是为了防止在AMP中使用自定义的service目录而使用了通配符
