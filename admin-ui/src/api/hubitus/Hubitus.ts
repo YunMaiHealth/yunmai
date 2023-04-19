@@ -8,5 +8,5 @@ export type Hubitus = {
   currentHabitus: string;
   testResult: JsonValue;
   countResult: JsonValue;
-  suggest: string | null;
+  suggest: JsonValue;
 };

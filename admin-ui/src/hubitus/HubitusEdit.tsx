@@ -23,7 +23,7 @@ export const HubitusEdit = (props: EditProps): React.ReactElement => {
         <TextInput label="currentHabitus" source="currentHabitus" />
         <div />
         <div />
-        <TextInput label="suggest" multiline source="suggest" />
+        <div />
       </SimpleForm>
     </Edit>
   );

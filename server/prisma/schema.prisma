@@ -46,7 +46,7 @@ model Hubitus {
   currentHabitus String
   testResult     Json
   countResult    Json
-  suggest        String?
+  suggest        Json?
 }
 
 model Status {

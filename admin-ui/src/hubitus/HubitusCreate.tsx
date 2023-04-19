@@ -23,7 +23,7 @@ export const HubitusCreate = (props: CreateProps): React.ReactElement => {
         <TextInput label="currentHabitus" source="currentHabitus" />
         <div />
         <div />
-        <TextInput label="suggest" multiline source="suggest" />
+        <div />
       </SimpleForm>
     </Create>
   );

@@ -81,14 +81,13 @@ class HubitusUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
   })
-  @IsString()
+  @IsJSON()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  suggest?: string | null;
+  suggest?: InputJsonValue;
 }
 
 export { HubitusUpdateInput as HubitusUpdateInput };

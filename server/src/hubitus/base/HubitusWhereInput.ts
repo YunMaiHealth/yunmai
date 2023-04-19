@@ -16,7 +16,6 @@ import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 import { JsonFilter } from "../../util/JsonFilter";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
 
 @InputType()
 class HubitusWhereInput {
@@ -78,14 +77,14 @@ class HubitusWhereInput {
 
   @ApiProperty({
     required: false,
-    type: StringNullableFilter,
+    type: JsonFilter,
   })
-  @Type(() => StringNullableFilter)
+  @Type(() => JsonFilter)
   @IsOptional()
-  @Field(() => StringNullableFilter, {
+  @Field(() => JsonFilter, {
     nullable: true,
   })
-  suggest?: StringNullableFilter;
+  suggest?: JsonFilter;
 }
 
 export { HubitusWhereInput as HubitusWhereInput };
