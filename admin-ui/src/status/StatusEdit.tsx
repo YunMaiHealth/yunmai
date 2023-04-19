@@ -17,7 +17,7 @@ export const StatusEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <DateTimeInput label="updateTime" source="updateTime" disabled />
+        <DateTimeInput label="updateTime" source="updateTime" />
         <ReferenceInput source="user.id" reference="User" label="user">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>
