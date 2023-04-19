@@ -17,7 +17,7 @@ export const StatusCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <DateTimeInput label="updateTime" source="updateTime" />
+        <DateTimeInput label="updateTime" source="updateTime" disabled />
         <ReferenceInput source="user.id" reference="User" label="user">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>
