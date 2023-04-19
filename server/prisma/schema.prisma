@@ -51,7 +51,7 @@ model Hubitus {
 
 model Status {
   id          String    @id @default(cuid())
-  updateTime  DateTime  @updatedAt
+  updateTime  DateTime
   user        User      @relation(fields: [userId], references: [id])
   userId      String
   status      String

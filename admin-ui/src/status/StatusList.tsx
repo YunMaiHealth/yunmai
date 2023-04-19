@@ -4,7 +4,6 @@ import {
   Datagrid,
   ListProps,
   TextField,
-  DateField,
   ReferenceField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
@@ -21,7 +20,7 @@ export const StatusList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <TextField label="ID" source="id" />
-        <DateField source="updateTime" label="updateTime" />
+        <TextField label="updateTime" source="updateTime" />
         <ReferenceField label="user" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>
