@@ -69,14 +69,13 @@ class HubitusCreateInput {
 
   @ApiProperty({
     required: false,
-    type: String,
   })
-  @IsString()
+  @IsJSON()
   @IsOptional()
-  @Field(() => String, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  suggest?: string | null;
+  suggest?: InputJsonValue;
 }
 
 export { HubitusCreateInput as HubitusCreateInput };

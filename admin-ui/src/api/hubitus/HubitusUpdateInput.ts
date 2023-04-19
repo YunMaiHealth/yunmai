@@ -7,5 +7,5 @@ export type HubitusUpdateInput = {
   currentHabitus?: string;
   testResult?: InputJsonValue;
   countResult?: InputJsonValue;
-  suggest?: string | null;
+  suggest?: InputJsonValue;
 };

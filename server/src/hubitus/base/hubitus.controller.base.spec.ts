@@ -22,27 +22,23 @@ const CREATE_INPUT = {
   id: "exampleId",
   testTime: new Date(),
   currentHabitus: "exampleCurrentHabitus",
-  suggest: "exampleSuggest",
 };
 const CREATE_RESULT = {
   id: "exampleId",
   testTime: new Date(),
   currentHabitus: "exampleCurrentHabitus",
-  suggest: "exampleSuggest",
 };
 const FIND_MANY_RESULT = [
   {
     id: "exampleId",
     testTime: new Date(),
     currentHabitus: "exampleCurrentHabitus",
-    suggest: "exampleSuggest",
   },
 ];
 const FIND_ONE_RESULT = {
   id: "exampleId",
   testTime: new Date(),
   currentHabitus: "exampleCurrentHabitus",
-  suggest: "exampleSuggest",
 };
 
 const service = {
