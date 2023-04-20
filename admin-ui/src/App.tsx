@@ -17,14 +17,14 @@ import { StatusList } from "./status/StatusList";
 import { StatusCreate } from "./status/StatusCreate";
 import { StatusEdit } from "./status/StatusEdit";
 import { StatusShow } from "./status/StatusShow";
-import { GetpointList } from "./getpoint/GetpointList";
-import { GetpointCreate } from "./getpoint/GetpointCreate";
-import { GetpointEdit } from "./getpoint/GetpointEdit";
-import { GetpointShow } from "./getpoint/GetpointShow";
-import { UsepointList } from "./usepoint/UsepointList";
-import { UsepointCreate } from "./usepoint/UsepointCreate";
-import { UsepointEdit } from "./usepoint/UsepointEdit";
-import { UsepointShow } from "./usepoint/UsepointShow";
+import { IncomeMataGasList } from "./incomeMataGas/IncomeMataGasList";
+import { IncomeMataGasCreate } from "./incomeMataGas/IncomeMataGasCreate";
+import { IncomeMataGasEdit } from "./incomeMataGas/IncomeMataGasEdit";
+import { IncomeMataGasShow } from "./incomeMataGas/IncomeMataGasShow";
+import { ExpenseMataGasList } from "./expenseMataGas/ExpenseMataGasList";
+import { ExpenseMataGasCreate } from "./expenseMataGas/ExpenseMataGasCreate";
+import { ExpenseMataGasEdit } from "./expenseMataGas/ExpenseMataGasEdit";
+import { ExpenseMataGasShow } from "./expenseMataGas/ExpenseMataGasShow";
 import { MessageList } from "./message/MessageList";
 import { MessageCreate } from "./message/MessageCreate";
 import { MessageEdit } from "./message/MessageEdit";
@@ -85,18 +85,18 @@ const App = (): React.ReactElement => {
           show={StatusShow}
         />
         <Resource
-          name="Getpoint"
-          list={GetpointList}
-          edit={GetpointEdit}
-          create={GetpointCreate}
-          show={GetpointShow}
+          name="IncomeMataGas"
+          list={IncomeMataGasList}
+          edit={IncomeMataGasEdit}
+          create={IncomeMataGasCreate}
+          show={IncomeMataGasShow}
         />
         <Resource
-          name="Usepoint"
-          list={UsepointList}
-          edit={UsepointEdit}
-          create={UsepointCreate}
-          show={UsepointShow}
+          name="ExpenseMataGas"
+          list={ExpenseMataGasList}
+          edit={ExpenseMataGasEdit}
+          create={ExpenseMataGasCreate}
+          show={ExpenseMataGasShow}
         />
         <Resource
           name="Message"

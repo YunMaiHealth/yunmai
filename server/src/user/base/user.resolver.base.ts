@@ -29,12 +29,12 @@ import { HubitusFindManyArgs } from "../../hubitus/base/HubitusFindManyArgs";
 import { Hubitus } from "../../hubitus/base/Hubitus";
 import { StatusFindManyArgs } from "../../status/base/StatusFindManyArgs";
 import { Status } from "../../status/base/Status";
-import { GetpointFindManyArgs } from "../../getpoint/base/GetpointFindManyArgs";
-import { Getpoint } from "../../getpoint/base/Getpoint";
-import { UsepointFindManyArgs } from "../../usepoint/base/UsepointFindManyArgs";
-import { Usepoint } from "../../usepoint/base/Usepoint";
+import { IncomeMataGasFindManyArgs } from "../../incomeMataGas/base/IncomeMataGasFindManyArgs";
+import { IncomeMataGas } from "../../incomeMataGas/base/IncomeMataGas";
 import { MessageFindManyArgs } from "../../message/base/MessageFindManyArgs";
 import { Message } from "../../message/base/Message";
+import { ExpenseMataGasFindManyArgs } from "../../expenseMataGas/base/ExpenseMataGasFindManyArgs";
+import { ExpenseMataGas } from "../../expenseMataGas/base/ExpenseMataGas";
 import { InquiryFindManyArgs } from "../../inquiry/base/InquiryFindManyArgs";
 import { Inquiry } from "../../inquiry/base/Inquiry";
 import { UserService } from "../user.service";
@@ -188,37 +188,17 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Getpoint])
+  @graphql.ResolveField(() => [IncomeMataGas])
   @nestAccessControl.UseRoles({
-    resource: "Getpoint",
+    resource: "IncomeMataGas",
     action: "read",
     possession: "any",
   })
-  async getpoints(
+  async incomeMataGases(
     @graphql.Parent() parent: User,
-    @graphql.Args() args: GetpointFindManyArgs
-  ): Promise<Getpoint[]> {
-    const results = await this.service.findGetpoints(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Usepoint])
-  @nestAccessControl.UseRoles({
-    resource: "Usepoint",
-    action: "read",
-    possession: "any",
-  })
-  async usepoints(
-    @graphql.Parent() parent: User,
-    @graphql.Args() args: UsepointFindManyArgs
-  ): Promise<Usepoint[]> {
-    const results = await this.service.findUsepoints(parent.id, args);
+    @graphql.Args() args: IncomeMataGasFindManyArgs
+  ): Promise<IncomeMataGas[]> {
+    const results = await this.service.findIncomeMataGases(parent.id, args);
 
     if (!results) {
       return [];
@@ -248,17 +228,37 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [ExpenseMataGas])
+  @nestAccessControl.UseRoles({
+    resource: "ExpenseMataGas",
+    action: "read",
+    possession: "any",
+  })
+  async expenseMataGases(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: ExpenseMataGasFindManyArgs
+  ): Promise<ExpenseMataGas[]> {
+    const results = await this.service.findExpenseMataGases(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.ResolveField(() => [Inquiry])
   @nestAccessControl.UseRoles({
     resource: "Inquiry",
     action: "read",
     possession: "any",
   })
-  async questions(
+  async inquirys(
     @graphql.Parent() parent: User,
     @graphql.Args() args: InquiryFindManyArgs
   ): Promise<Inquiry[]> {
-    const results = await this.service.findQuestions(parent.id, args);
+    const results = await this.service.findInquirys(parent.id, args);
 
     if (!results) {
       return [];

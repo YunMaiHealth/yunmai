@@ -25,9 +25,9 @@ import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
 import { HubitusUpdateManyWithoutUsersInput } from "./HubitusUpdateManyWithoutUsersInput";
 import { StatusUpdateManyWithoutUsersInput } from "./StatusUpdateManyWithoutUsersInput";
-import { GetpointUpdateManyWithoutUsersInput } from "./GetpointUpdateManyWithoutUsersInput";
-import { UsepointUpdateManyWithoutUsersInput } from "./UsepointUpdateManyWithoutUsersInput";
+import { IncomeMataGasUpdateManyWithoutUsersInput } from "./IncomeMataGasUpdateManyWithoutUsersInput";
 import { MessageUpdateManyWithoutUsersInput } from "./MessageUpdateManyWithoutUsersInput";
+import { ExpenseMataGasUpdateManyWithoutUsersInput } from "./ExpenseMataGasUpdateManyWithoutUsersInput";
 import { InquiryUpdateManyWithoutUsersInput } from "./InquiryUpdateManyWithoutUsersInput";
 
 @InputType()
@@ -288,27 +288,15 @@ class UserUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => GetpointUpdateManyWithoutUsersInput,
+    type: () => IncomeMataGasUpdateManyWithoutUsersInput,
   })
   @ValidateNested()
-  @Type(() => GetpointUpdateManyWithoutUsersInput)
+  @Type(() => IncomeMataGasUpdateManyWithoutUsersInput)
   @IsOptional()
-  @Field(() => GetpointUpdateManyWithoutUsersInput, {
+  @Field(() => IncomeMataGasUpdateManyWithoutUsersInput, {
     nullable: true,
   })
-  getpoints?: GetpointUpdateManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => UsepointUpdateManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => UsepointUpdateManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => UsepointUpdateManyWithoutUsersInput, {
-    nullable: true,
-  })
-  usepoints?: UsepointUpdateManyWithoutUsersInput;
+  incomeMataGases?: IncomeMataGasUpdateManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,
@@ -324,6 +312,18 @@ class UserUpdateInput {
 
   @ApiProperty({
     required: false,
+    type: () => ExpenseMataGasUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => ExpenseMataGasUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => ExpenseMataGasUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  expenseMataGases?: ExpenseMataGasUpdateManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
     type: () => InquiryUpdateManyWithoutUsersInput,
   })
   @ValidateNested()
@@ -332,7 +332,7 @@ class UserUpdateInput {
   @Field(() => InquiryUpdateManyWithoutUsersInput, {
     nullable: true,
   })
-  questions?: InquiryUpdateManyWithoutUsersInput;
+  inquirys?: InquiryUpdateManyWithoutUsersInput;
 }
 
 export { UserUpdateInput as UserUpdateInput };

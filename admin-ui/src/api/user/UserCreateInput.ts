@@ -1,9 +1,9 @@
 import { InputJsonValue } from "../../types";
 import { HubitusCreateNestedManyWithoutUsersInput } from "./HubitusCreateNestedManyWithoutUsersInput";
 import { StatusCreateNestedManyWithoutUsersInput } from "./StatusCreateNestedManyWithoutUsersInput";
-import { GetpointCreateNestedManyWithoutUsersInput } from "./GetpointCreateNestedManyWithoutUsersInput";
-import { UsepointCreateNestedManyWithoutUsersInput } from "./UsepointCreateNestedManyWithoutUsersInput";
+import { IncomeMataGasCreateNestedManyWithoutUsersInput } from "./IncomeMataGasCreateNestedManyWithoutUsersInput";
 import { MessageCreateNestedManyWithoutUsersInput } from "./MessageCreateNestedManyWithoutUsersInput";
+import { ExpenseMataGasCreateNestedManyWithoutUsersInput } from "./ExpenseMataGasCreateNestedManyWithoutUsersInput";
 import { InquiryCreateNestedManyWithoutUsersInput } from "./InquiryCreateNestedManyWithoutUsersInput";
 
 export type UserCreateInput = {
@@ -30,8 +30,8 @@ export type UserCreateInput = {
   lastLoginTime: Date;
   hubituses?: HubitusCreateNestedManyWithoutUsersInput;
   statuses?: StatusCreateNestedManyWithoutUsersInput;
-  getpoints?: GetpointCreateNestedManyWithoutUsersInput;
-  usepoints?: UsepointCreateNestedManyWithoutUsersInput;
+  incomeMataGases?: IncomeMataGasCreateNestedManyWithoutUsersInput;
   messages?: MessageCreateNestedManyWithoutUsersInput;
-  questions?: InquiryCreateNestedManyWithoutUsersInput;
+  expenseMataGases?: ExpenseMataGasCreateNestedManyWithoutUsersInput;
+  inquirys?: InquiryCreateNestedManyWithoutUsersInput;
 };

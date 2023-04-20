@@ -74,33 +74,18 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField
-          reference="Getpoint"
+          reference="IncomeMataGas"
           target="UserId"
-          label="getpoints"
+          label="IncomeMataGases"
         >
           <Datagrid rowClick="show">
             <TextField label="ID" source="id" />
-            <DateField source="getPointTime" label="getPointTime" />
+            <DateField source="income_date" label="income_date" />
             <ReferenceField label="user" source="user.id" reference="User">
               <TextField source={USER_TITLE_FIELD} />
             </ReferenceField>
-            <TextField label="points" source="points" />
-            <TextField label="getPointType" source="getPointType" />
-          </Datagrid>
-        </ReferenceManyField>
-        <ReferenceManyField
-          reference="Usepoint"
-          target="UserId"
-          label="usepoints"
-        >
-          <Datagrid rowClick="show">
-            <TextField label="ID" source="id" />
-            <DateField source="usePointTime" label="usePointTime" />
-            <ReferenceField label="user" source="user.id" reference="User">
-              <TextField source={USER_TITLE_FIELD} />
-            </ReferenceField>
-            <TextField label="points" source="points" />
-            <TextField label="usePointType" source="usePointType" />
+            <TextField label="amount" source="amount" />
+            <TextField label="category" source="category" />
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField
@@ -121,6 +106,21 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
             <TextField label="messageContent" source="messageContent" />
             <TextField label="messageType" source="messageType" />
             <TextField label="messageSource" source="messageSource" />
+          </Datagrid>
+        </ReferenceManyField>
+        <ReferenceManyField
+          reference="ExpenseMataGas"
+          target="UserId"
+          label="ExpenseMataGases"
+        >
+          <Datagrid rowClick="show">
+            <TextField label="ID" source="id" />
+            <DateField source="expense_date" label="expense_date" />
+            <ReferenceField label="user" source="user.id" reference="User">
+              <TextField source={USER_TITLE_FIELD} />
+            </ReferenceField>
+            <TextField label="amount" source="amount" />
+            <TextField label="category" source="category" />
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField

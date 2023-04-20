@@ -1,9 +1,9 @@
 import { InputJsonValue } from "../../types";
 import { HubitusUpdateManyWithoutUsersInput } from "./HubitusUpdateManyWithoutUsersInput";
 import { StatusUpdateManyWithoutUsersInput } from "./StatusUpdateManyWithoutUsersInput";
-import { GetpointUpdateManyWithoutUsersInput } from "./GetpointUpdateManyWithoutUsersInput";
-import { UsepointUpdateManyWithoutUsersInput } from "./UsepointUpdateManyWithoutUsersInput";
+import { IncomeMataGasUpdateManyWithoutUsersInput } from "./IncomeMataGasUpdateManyWithoutUsersInput";
 import { MessageUpdateManyWithoutUsersInput } from "./MessageUpdateManyWithoutUsersInput";
+import { ExpenseMataGasUpdateManyWithoutUsersInput } from "./ExpenseMataGasUpdateManyWithoutUsersInput";
 import { InquiryUpdateManyWithoutUsersInput } from "./InquiryUpdateManyWithoutUsersInput";
 
 export type UserUpdateInput = {
@@ -30,8 +30,8 @@ export type UserUpdateInput = {
   lastLoginTime?: Date;
   hubituses?: HubitusUpdateManyWithoutUsersInput;
   statuses?: StatusUpdateManyWithoutUsersInput;
-  getpoints?: GetpointUpdateManyWithoutUsersInput;
-  usepoints?: UsepointUpdateManyWithoutUsersInput;
+  incomeMataGases?: IncomeMataGasUpdateManyWithoutUsersInput;
   messages?: MessageUpdateManyWithoutUsersInput;
-  questions?: InquiryUpdateManyWithoutUsersInput;
+  expenseMataGases?: ExpenseMataGasUpdateManyWithoutUsersInput;
+  inquirys?: InquiryUpdateManyWithoutUsersInput;
 };
