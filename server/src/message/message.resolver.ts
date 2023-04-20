@@ -28,7 +28,7 @@ export class MessageResolver extends MessageResolverBase {
     action: "read",
     possession: "any",
   })
-  async getMessageInfo(
+  async messageCatalogs(
     @graphql.Args() args: MessageFindManyArgs
   ): Promise<MessageInfo[]> {
 
@@ -37,18 +37,18 @@ export class MessageResolver extends MessageResolverBase {
  const newMessageMap = new Map();
   for(let i=0;i<allMessages.length;i++){
        //获取每个类型最新消息信息
-       let object = allMessages[i]
+       let object = {...allMessages[i],newMessageNum:0}
        let type = object.messageType
         if(messageMap.has(type)){
           if(object.sendTime>messageMap.get(type).sendTime){
-            messageMap.set(type,allMessages[i])
+            messageMap.set(type,object)
           }
         }else{
-          messageMap.set(type,allMessages[i])
+          messageMap.set(type,object)
         }
-       //获取每个类型未读消息数量
+       //获取每个类型未读消息数量  false 未读 true 已读
        let isNew = object.isNew
-       if(isNew==true){
+       if(isNew==false){
           if(newMessageMap.has(type)){
             newMessageMap.set(type,newMessageMap.get(type)+1)
           }else{
