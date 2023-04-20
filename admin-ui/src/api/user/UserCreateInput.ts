@@ -4,7 +4,7 @@ import { StatusCreateNestedManyWithoutUsersInput } from "./StatusCreateNestedMan
 import { GetpointCreateNestedManyWithoutUsersInput } from "./GetpointCreateNestedManyWithoutUsersInput";
 import { UsepointCreateNestedManyWithoutUsersInput } from "./UsepointCreateNestedManyWithoutUsersInput";
 import { MessageCreateNestedManyWithoutUsersInput } from "./MessageCreateNestedManyWithoutUsersInput";
-import { QuestionCreateNestedManyWithoutUsersInput } from "./QuestionCreateNestedManyWithoutUsersInput";
+import { InquiryCreateNestedManyWithoutUsersInput } from "./InquiryCreateNestedManyWithoutUsersInput";
 
 export type UserCreateInput = {
   oauthType: string;
@@ -33,5 +33,5 @@ export type UserCreateInput = {
   getpoints?: GetpointCreateNestedManyWithoutUsersInput;
   usepoints?: UsepointCreateNestedManyWithoutUsersInput;
   messages?: MessageCreateNestedManyWithoutUsersInput;
-  questions?: QuestionCreateNestedManyWithoutUsersInput;
+  questions?: InquiryCreateNestedManyWithoutUsersInput;
 };

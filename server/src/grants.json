@@ -211,61 +211,31 @@
   },
   {
     "role": "user",
-    "resource": "Question",
+    "resource": "Inquiry",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Question",
+    "resource": "Inquiry",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Question",
+    "resource": "Inquiry",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Question",
+    "resource": "Inquiry",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Question",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Reply",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Reply",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Reply",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Reply",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Reply",
+    "resource": "Inquiry",
     "action": "read:any",
     "attributes": "*"
   }

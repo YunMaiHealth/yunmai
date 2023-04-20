@@ -6,7 +6,7 @@ import { StatusListRelationFilter } from "../status/StatusListRelationFilter";
 import { GetpointListRelationFilter } from "../getpoint/GetpointListRelationFilter";
 import { UsepointListRelationFilter } from "../usepoint/UsepointListRelationFilter";
 import { MessageListRelationFilter } from "../message/MessageListRelationFilter";
-import { QuestionListRelationFilter } from "../question/QuestionListRelationFilter";
+import { InquiryListRelationFilter } from "../inquiry/InquiryListRelationFilter";
 
 export type UserWhereInput = {
   oauthType?: StringFilter;
@@ -32,5 +32,5 @@ export type UserWhereInput = {
   getpoints?: GetpointListRelationFilter;
   usepoints?: UsepointListRelationFilter;
   messages?: MessageListRelationFilter;
-  questions?: QuestionListRelationFilter;
+  questions?: InquiryListRelationFilter;
 };

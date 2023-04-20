@@ -22,7 +22,7 @@ import { StatusListRelationFilter } from "../../status/base/StatusListRelationFi
 import { GetpointListRelationFilter } from "../../getpoint/base/GetpointListRelationFilter";
 import { UsepointListRelationFilter } from "../../usepoint/base/UsepointListRelationFilter";
 import { MessageListRelationFilter } from "../../message/base/MessageListRelationFilter";
-import { QuestionListRelationFilter } from "../../question/base/QuestionListRelationFilter";
+import { InquiryListRelationFilter } from "../../inquiry/base/InquiryListRelationFilter";
 
 @InputType()
 class UserWhereInput {
@@ -286,15 +286,15 @@ class UserWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => QuestionListRelationFilter,
+    type: () => InquiryListRelationFilter,
   })
   @ValidateNested()
-  @Type(() => QuestionListRelationFilter)
+  @Type(() => InquiryListRelationFilter)
   @IsOptional()
-  @Field(() => QuestionListRelationFilter, {
+  @Field(() => InquiryListRelationFilter, {
     nullable: true,
   })
-  questions?: QuestionListRelationFilter;
+  questions?: InquiryListRelationFilter;
 }
 
 export { UserWhereInput as UserWhereInput };

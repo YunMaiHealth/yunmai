@@ -18,7 +18,7 @@ import {
   Getpoint,
   Usepoint,
   Message,
-  Question,
+  Inquiry,
 } from "@prisma/client";
 import { PasswordService } from "../../auth/password.service";
 import { transformStringFieldUpdateInput } from "../../prisma.util";
@@ -138,8 +138,8 @@ export class UserServiceBase {
 
   async findQuestions(
     parentId: string,
-    args: Prisma.QuestionFindManyArgs
-  ): Promise<Question[]> {
+    args: Prisma.InquiryFindManyArgs
+  ): Promise<Inquiry[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },

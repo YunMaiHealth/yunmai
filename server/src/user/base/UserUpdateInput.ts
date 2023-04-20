@@ -28,7 +28,7 @@ import { StatusUpdateManyWithoutUsersInput } from "./StatusUpdateManyWithoutUser
 import { GetpointUpdateManyWithoutUsersInput } from "./GetpointUpdateManyWithoutUsersInput";
 import { UsepointUpdateManyWithoutUsersInput } from "./UsepointUpdateManyWithoutUsersInput";
 import { MessageUpdateManyWithoutUsersInput } from "./MessageUpdateManyWithoutUsersInput";
-import { QuestionUpdateManyWithoutUsersInput } from "./QuestionUpdateManyWithoutUsersInput";
+import { InquiryUpdateManyWithoutUsersInput } from "./InquiryUpdateManyWithoutUsersInput";
 
 @InputType()
 class UserUpdateInput {
@@ -324,15 +324,15 @@ class UserUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => QuestionUpdateManyWithoutUsersInput,
+    type: () => InquiryUpdateManyWithoutUsersInput,
   })
   @ValidateNested()
-  @Type(() => QuestionUpdateManyWithoutUsersInput)
+  @Type(() => InquiryUpdateManyWithoutUsersInput)
   @IsOptional()
-  @Field(() => QuestionUpdateManyWithoutUsersInput, {
+  @Field(() => InquiryUpdateManyWithoutUsersInput, {
     nullable: true,
   })
-  questions?: QuestionUpdateManyWithoutUsersInput;
+  questions?: InquiryUpdateManyWithoutUsersInput;
 }
 
 export { UserUpdateInput as UserUpdateInput };

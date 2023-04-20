@@ -18,7 +18,7 @@ import { StatusTitle } from "../status/StatusTitle";
 import { GetpointTitle } from "../getpoint/GetpointTitle";
 import { UsepointTitle } from "../usepoint/UsepointTitle";
 import { MessageTitle } from "../message/MessageTitle";
-import { QuestionTitle } from "../question/QuestionTitle";
+import { InquiryTitle } from "../inquiry/InquiryTitle";
 import { ROLES_OPTIONS } from "../user/RolesOptions";
 
 export const UserEdit = (props: EditProps): React.ReactElement => {
@@ -108,11 +108,11 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
         </ReferenceArrayInput>
         <ReferenceArrayInput
           source="questions"
-          reference="Question"
+          reference="Inquiry"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={QuestionTitle} />
+          <SelectArrayInput optionText={InquiryTitle} />
         </ReferenceArrayInput>
       </SimpleForm>
     </Edit>

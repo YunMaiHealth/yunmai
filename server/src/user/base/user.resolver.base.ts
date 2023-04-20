@@ -35,8 +35,8 @@ import { UsepointFindManyArgs } from "../../usepoint/base/UsepointFindManyArgs";
 import { Usepoint } from "../../usepoint/base/Usepoint";
 import { MessageFindManyArgs } from "../../message/base/MessageFindManyArgs";
 import { Message } from "../../message/base/Message";
-import { QuestionFindManyArgs } from "../../question/base/QuestionFindManyArgs";
-import { Question } from "../../question/base/Question";
+import { InquiryFindManyArgs } from "../../inquiry/base/InquiryFindManyArgs";
+import { Inquiry } from "../../inquiry/base/Inquiry";
 import { UserService } from "../user.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => User)
@@ -248,16 +248,16 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Question])
+  @graphql.ResolveField(() => [Inquiry])
   @nestAccessControl.UseRoles({
-    resource: "Question",
+    resource: "Inquiry",
     action: "read",
     possession: "any",
   })
   async questions(
     @graphql.Parent() parent: User,
-    @graphql.Args() args: QuestionFindManyArgs
-  ): Promise<Question[]> {
+    @graphql.Args() args: InquiryFindManyArgs
+  ): Promise<Inquiry[]> {
     const results = await this.service.findQuestions(parent.id, args);
 
     if (!results) {
