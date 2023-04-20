@@ -42,9 +42,9 @@ import { UsepointWhereUniqueInput } from "../../usepoint/base/UsepointWhereUniqu
 import { MessageFindManyArgs } from "../../message/base/MessageFindManyArgs";
 import { Message } from "../../message/base/Message";
 import { MessageWhereUniqueInput } from "../../message/base/MessageWhereUniqueInput";
-import { QuestionFindManyArgs } from "../../question/base/QuestionFindManyArgs";
-import { Question } from "../../question/base/Question";
-import { QuestionWhereUniqueInput } from "../../question/base/QuestionWhereUniqueInput";
+import { InquiryFindManyArgs } from "../../inquiry/base/InquiryFindManyArgs";
+import { Inquiry } from "../../inquiry/base/Inquiry";
+import { InquiryWhereUniqueInput } from "../../inquiry/base/InquiryWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -821,22 +821,22 @@ export class UserControllerBase {
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get("/:id/questions")
-  @ApiNestedQuery(QuestionFindManyArgs)
+  @ApiNestedQuery(InquiryFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "Question",
+    resource: "Inquiry",
     action: "read",
     possession: "any",
   })
   async findManyQuestions(
     @common.Req() request: Request,
     @common.Param() params: UserWhereUniqueInput
-  ): Promise<Question[]> {
-    const query = plainToClass(QuestionFindManyArgs, request.query);
+  ): Promise<Inquiry[]> {
+    const query = plainToClass(InquiryFindManyArgs, request.query);
     const results = await this.service.findQuestions(params.id, {
       ...query,
       select: {
         id: true,
-        questionTime: true,
+        inquiryTime: true,
 
         user: {
           select: {
@@ -844,8 +844,9 @@ export class UserControllerBase {
           },
         },
 
-        questionContent: true,
+        content: true,
         isPublic: true,
+        title: true,
       },
     });
     if (results === null) {
@@ -864,7 +865,7 @@ export class UserControllerBase {
   })
   async connectQuestions(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: QuestionWhereUniqueInput[]
+    @common.Body() body: InquiryWhereUniqueInput[]
   ): Promise<void> {
     const data = {
       questions: {
@@ -886,7 +887,7 @@ export class UserControllerBase {
   })
   async updateQuestions(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: QuestionWhereUniqueInput[]
+    @common.Body() body: InquiryWhereUniqueInput[]
   ): Promise<void> {
     const data = {
       questions: {
@@ -908,7 +909,7 @@ export class UserControllerBase {
   })
   async disconnectQuestions(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: QuestionWhereUniqueInput[]
+    @common.Body() body: InquiryWhereUniqueInput[]
   ): Promise<void> {
     const data = {
       questions: {

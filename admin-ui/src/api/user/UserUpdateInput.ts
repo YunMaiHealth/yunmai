@@ -4,7 +4,7 @@ import { StatusUpdateManyWithoutUsersInput } from "./StatusUpdateManyWithoutUser
 import { GetpointUpdateManyWithoutUsersInput } from "./GetpointUpdateManyWithoutUsersInput";
 import { UsepointUpdateManyWithoutUsersInput } from "./UsepointUpdateManyWithoutUsersInput";
 import { MessageUpdateManyWithoutUsersInput } from "./MessageUpdateManyWithoutUsersInput";
-import { QuestionUpdateManyWithoutUsersInput } from "./QuestionUpdateManyWithoutUsersInput";
+import { InquiryUpdateManyWithoutUsersInput } from "./InquiryUpdateManyWithoutUsersInput";
 
 export type UserUpdateInput = {
   oauthType?: string;
@@ -33,5 +33,5 @@ export type UserUpdateInput = {
   getpoints?: GetpointUpdateManyWithoutUsersInput;
   usepoints?: UsepointUpdateManyWithoutUsersInput;
   messages?: MessageUpdateManyWithoutUsersInput;
-  questions?: QuestionUpdateManyWithoutUsersInput;
+  questions?: InquiryUpdateManyWithoutUsersInput;
 };

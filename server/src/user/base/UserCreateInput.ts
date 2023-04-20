@@ -28,7 +28,7 @@ import { StatusCreateNestedManyWithoutUsersInput } from "./StatusCreateNestedMan
 import { GetpointCreateNestedManyWithoutUsersInput } from "./GetpointCreateNestedManyWithoutUsersInput";
 import { UsepointCreateNestedManyWithoutUsersInput } from "./UsepointCreateNestedManyWithoutUsersInput";
 import { MessageCreateNestedManyWithoutUsersInput } from "./MessageCreateNestedManyWithoutUsersInput";
-import { QuestionCreateNestedManyWithoutUsersInput } from "./QuestionCreateNestedManyWithoutUsersInput";
+import { InquiryCreateNestedManyWithoutUsersInput } from "./InquiryCreateNestedManyWithoutUsersInput";
 
 @InputType()
 class UserCreateInput {
@@ -300,15 +300,15 @@ class UserCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => QuestionCreateNestedManyWithoutUsersInput,
+    type: () => InquiryCreateNestedManyWithoutUsersInput,
   })
   @ValidateNested()
-  @Type(() => QuestionCreateNestedManyWithoutUsersInput)
+  @Type(() => InquiryCreateNestedManyWithoutUsersInput)
   @IsOptional()
-  @Field(() => QuestionCreateNestedManyWithoutUsersInput, {
+  @Field(() => InquiryCreateNestedManyWithoutUsersInput, {
     nullable: true,
   })
-  questions?: QuestionCreateNestedManyWithoutUsersInput;
+  questions?: InquiryCreateNestedManyWithoutUsersInput;
 }
 
 export { UserCreateInput as UserCreateInput };

@@ -4,7 +4,7 @@ import { Status } from "../status/Status";
 import { Getpoint } from "../getpoint/Getpoint";
 import { Usepoint } from "../usepoint/Usepoint";
 import { Message } from "../message/Message";
-import { Question } from "../question/Question";
+import { Inquiry } from "../inquiry/Inquiry";
 
 export type User = {
   oauthType: string;
@@ -33,5 +33,5 @@ export type User = {
   getpoints?: Array<Getpoint>;
   usepoints?: Array<Usepoint>;
   messages?: Array<Message>;
-  questions?: Array<Question>;
+  questions?: Array<Inquiry>;
 };

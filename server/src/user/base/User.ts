@@ -28,7 +28,7 @@ import { Status } from "../../status/base/Status";
 import { Getpoint } from "../../getpoint/base/Getpoint";
 import { Usepoint } from "../../usepoint/base/Usepoint";
 import { Message } from "../../message/base/Message";
-import { Question } from "../../question/base/Question";
+import { Inquiry } from "../../inquiry/base/Inquiry";
 
 @ObjectType()
 class User {
@@ -285,12 +285,12 @@ class User {
 
   @ApiProperty({
     required: false,
-    type: () => [Question],
+    type: () => [Inquiry],
   })
   @ValidateNested()
-  @Type(() => Question)
+  @Type(() => Inquiry)
   @IsOptional()
-  questions?: Array<Question>;
+  questions?: Array<Inquiry>;
 }
 
 export { User as User };

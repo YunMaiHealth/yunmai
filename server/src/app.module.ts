@@ -8,8 +8,7 @@ import { GetpointModule } from "./getpoint/getpoint.module";
 import { UsepointModule } from "./usepoint/usepoint.module";
 import { MessageModule } from "./message/message.module";
 import { EventModule } from "./event/event.module";
-import { QuestionModule } from "./question/question.module";
-import { ReplyModule } from "./reply/reply.module";
+import { InquiryModule } from "./inquiry/inquiry.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -33,8 +32,7 @@ import { AuthModule } from "./auth/auth.module";
     UsepointModule,
     MessageModule,
     EventModule,
-    QuestionModule,
-    ReplyModule,
+    InquiryModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,
