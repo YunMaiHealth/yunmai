@@ -41,9 +41,9 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
         <DateField source="creatTime" label="创建时间" />
         <DateField source="lastLoginTime" label="最近一次登录时间" />
         <ReferenceManyField
-          reference="Hubitus"
+          reference="Habitus"
           target="UserId"
-          label="hubituses"
+          label="habituses"
         >
           <Datagrid rowClick="show">
             <TextField label="ID" source="id" />
@@ -74,9 +74,9 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField
-          reference="IncomeMataGas"
+          reference="IncomeMetaGas"
           target="UserId"
-          label="IncomeMataGases"
+          label="IncomeMetaGases"
         >
           <Datagrid rowClick="show">
             <TextField label="ID" source="id" />
@@ -102,16 +102,16 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
             <ReferenceField label="event" source="event.id" reference="Event">
               <TextField source={EVENT_TITLE_FIELD} />
             </ReferenceField>
-            <BooleanField label="isNew" source="isNew" />
+            <BooleanField label="isRead" source="isRead" />
             <TextField label="messageContent" source="messageContent" />
             <TextField label="messageType" source="messageType" />
             <TextField label="messageSource" source="messageSource" />
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField
-          reference="ExpenseMataGas"
+          reference="ExpenseMetaGas"
           target="UserId"
-          label="ExpenseMataGases"
+          label="ExpenseMetaGases"
         >
           <Datagrid rowClick="show">
             <TextField label="ID" source="id" />

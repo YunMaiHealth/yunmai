@@ -39,7 +39,7 @@ export const EventShow = (props: ShowProps): React.ReactElement => {
             <ReferenceField label="event" source="event.id" reference="Event">
               <TextField source={EVENT_TITLE_FIELD} />
             </ReferenceField>
-            <BooleanField label="isNew" source="isNew" />
+            <BooleanField label="isRead" source="isRead" />
             <TextField label="messageContent" source="messageContent" />
             <TextField label="messageType" source="messageType" />
             <TextField label="messageSource" source="messageSource" />

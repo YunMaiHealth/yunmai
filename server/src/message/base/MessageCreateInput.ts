@@ -65,7 +65,7 @@ class MessageCreateInput {
   })
   @IsBoolean()
   @Field(() => Boolean)
-  isNew!: boolean;
+  isRead!: boolean;
 
   @ApiProperty({
     required: true,

@@ -30,15 +30,15 @@ model User {
   roles            Json
   creatTime        DateTime         @default(now())
   lastLoginTime    DateTime         @updatedAt
-  hubituses        Hubitus[]
+  habituses        Habitus[]
   statuses         Status[]
-  incomeMataGases  IncomeMataGas[]
+  incomeMetaGases  IncomeMetaGas[]
   messages         Message[]
-  expenseMataGases ExpenseMataGas[]
+  expenseMetaGases ExpenseMetaGas[]
   inquirys         Inquiry[]
 }
 
-model Hubitus {
+model Habitus {
   id             String   @id @default(cuid())
   testTime       DateTime @default(now())
   user           User?    @relation(fields: [userId], references: [id])
@@ -63,7 +63,7 @@ model Status {
   streamId    String?
 }
 
-model IncomeMataGas {
+model IncomeMetaGas {
   id          String   @id @default(cuid())
   income_date DateTime @default(now())
   user        User?    @relation(fields: [userId], references: [id])
@@ -72,7 +72,7 @@ model IncomeMataGas {
   category    String
 }
 
-model ExpenseMataGas {
+model ExpenseMetaGas {
   id           String   @id @default(cuid())
   expense_date DateTime @default(now())
   user         User?    @relation(fields: [userId], references: [id])
@@ -88,7 +88,7 @@ model Message {
   userId         String?
   event          Event?   @relation(fields: [eventId], references: [id])
   eventId        String?
-  isNew          Boolean
+  isRead         Boolean
   messageContent Json
   messageType    String
   messageSource  String

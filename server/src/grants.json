@@ -31,31 +31,31 @@
   },
   {
     "role": "user",
-    "resource": "Hubitus",
+    "resource": "Habitus",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Hubitus",
+    "resource": "Habitus",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Hubitus",
+    "resource": "Habitus",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Hubitus",
+    "resource": "Habitus",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Hubitus",
+    "resource": "Habitus",
     "action": "read:any",
     "attributes": "*"
   },
@@ -91,61 +91,61 @@
   },
   {
     "role": "user",
-    "resource": "IncomeMataGas",
+    "resource": "IncomeMetaGas",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "IncomeMataGas",
+    "resource": "IncomeMetaGas",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "IncomeMataGas",
+    "resource": "IncomeMetaGas",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "IncomeMataGas",
+    "resource": "IncomeMetaGas",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "IncomeMataGas",
+    "resource": "IncomeMetaGas",
     "action": "read:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "ExpenseMataGas",
+    "resource": "ExpenseMetaGas",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "ExpenseMataGas",
+    "resource": "ExpenseMetaGas",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "ExpenseMataGas",
+    "resource": "ExpenseMetaGas",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "ExpenseMataGas",
+    "resource": "ExpenseMetaGas",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "ExpenseMataGas",
+    "resource": "ExpenseMetaGas",
     "action": "read:any",
     "attributes": "*"
   },

@@ -1,9 +1,9 @@
 import { JsonValue } from "type-fest";
-import { Hubitus } from "../hubitus/Hubitus";
+import { Habitus } from "../habitus/Habitus";
 import { Status } from "../status/Status";
-import { IncomeMataGas } from "../incomeMataGas/IncomeMataGas";
+import { IncomeMetaGas } from "../incomeMetaGas/IncomeMetaGas";
 import { Message } from "../message/Message";
-import { ExpenseMataGas } from "../expenseMataGas/ExpenseMataGas";
+import { ExpenseMetaGas } from "../expenseMetaGas/ExpenseMetaGas";
 import { Inquiry } from "../inquiry/Inquiry";
 
 export type User = {
@@ -28,10 +28,10 @@ export type User = {
   roles: JsonValue;
   creatTime: Date;
   lastLoginTime: Date;
-  hubituses?: Array<Hubitus>;
+  habituses?: Array<Habitus>;
   statuses?: Array<Status>;
-  incomeMataGases?: Array<IncomeMataGas>;
+  incomeMetaGases?: Array<IncomeMetaGas>;
   messages?: Array<Message>;
-  expenseMataGases?: Array<ExpenseMataGas>;
+  expenseMetaGases?: Array<ExpenseMetaGas>;
   inquirys?: Array<Inquiry>;
 };

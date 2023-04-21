@@ -61,7 +61,7 @@ class MessageOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  isNew?: SortOrder;
+  isRead?: SortOrder;
 
   @ApiProperty({
     required: false,

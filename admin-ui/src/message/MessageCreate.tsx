@@ -25,7 +25,7 @@ export const MessageCreate = (props: CreateProps): React.ReactElement => {
         <ReferenceInput source="event.id" reference="Event" label="event">
           <SelectInput optionText={EventTitle} />
         </ReferenceInput>
-        <BooleanInput label="isNew" source="isNew" />
+        <BooleanInput label="isRead" source="isRead" />
         <div />
         <TextInput label="messageType" source="messageType" />
         <TextInput label="messageSource" source="messageSource" />
