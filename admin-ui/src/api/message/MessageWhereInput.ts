@@ -10,6 +10,12 @@ export type MessageWhereInput = {
   event?: EventWhereUniqueInput;
   isRead?: BooleanFilter;
   messageContent?: JsonFilter;
-  messageType?: StringFilter;
+  messageType?:
+    | "FollowFriend"
+    | "HealthCheck"
+    | "UpdateMetaGas"
+    | "RegisterNewUser"
+    | "ReferNewUser"
+    | "HealthInquiry";
   messageSource?: StringFilter;
 };

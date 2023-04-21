@@ -17,6 +17,7 @@ import {
   IsOptional,
   IsBoolean,
   IsJSON,
+  IsEnum,
   IsString,
 } from "class-validator";
 import { Type } from "class-transformer";
@@ -24,6 +25,7 @@ import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
+import { EnumMessageMessageType } from "./EnumMessageMessageType";
 
 @InputType()
 class MessageCreateInput {
@@ -76,11 +78,17 @@ class MessageCreateInput {
 
   @ApiProperty({
     required: true,
-    type: String,
+    enum: EnumMessageMessageType,
   })
-  @IsString()
-  @Field(() => String)
-  messageType!: string;
+  @IsEnum(EnumMessageMessageType)
+  @Field(() => EnumMessageMessageType)
+  messageType!:
+    | "FollowFriend"
+    | "HealthCheck"
+    | "UpdateMetaGas"
+    | "RegisterNewUser"
+    | "ReferNewUser"
+    | "HealthInquiry";
 
   @ApiProperty({
     required: true,
