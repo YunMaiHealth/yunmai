@@ -9,6 +9,12 @@ export type Message = {
   event?: Event | null;
   isRead: boolean;
   messageContent: JsonValue;
-  messageType: string;
+  messageType?:
+    | "FollowFriend"
+    | "HealthCheck"
+    | "UpdateMetaGas"
+    | "RegisterNewUser"
+    | "ReferNewUser"
+    | "HealthInquiry";
   messageSource: string;
 };

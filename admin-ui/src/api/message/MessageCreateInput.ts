@@ -8,6 +8,12 @@ export type MessageCreateInput = {
   event?: EventWhereUniqueInput | null;
   isRead: boolean;
   messageContent: InputJsonValue;
-  messageType: string;
+  messageType:
+    | "FollowFriend"
+    | "HealthCheck"
+    | "UpdateMetaGas"
+    | "RegisterNewUser"
+    | "ReferNewUser"
+    | "HealthInquiry";
   messageSource: string;
 };
