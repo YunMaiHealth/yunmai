@@ -25,10 +25,10 @@ import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
 import { Hubitus } from "../../hubitus/base/Hubitus";
 import { Status } from "../../status/base/Status";
-import { Getpoint } from "../../getpoint/base/Getpoint";
-import { Usepoint } from "../../usepoint/base/Usepoint";
+import { IncomeMataGas } from "../../incomeMataGas/base/IncomeMataGas";
 import { Message } from "../../message/base/Message";
-import { Question } from "../../question/base/Question";
+import { ExpenseMataGas } from "../../expenseMataGas/base/ExpenseMataGas";
+import { Inquiry } from "../../inquiry/base/Inquiry";
 
 @ObjectType()
 class User {
@@ -258,21 +258,12 @@ class User {
 
   @ApiProperty({
     required: false,
-    type: () => [Getpoint],
+    type: () => [IncomeMataGas],
   })
   @ValidateNested()
-  @Type(() => Getpoint)
+  @Type(() => IncomeMataGas)
   @IsOptional()
-  getpoints?: Array<Getpoint>;
-
-  @ApiProperty({
-    required: false,
-    type: () => [Usepoint],
-  })
-  @ValidateNested()
-  @Type(() => Usepoint)
-  @IsOptional()
-  usepoints?: Array<Usepoint>;
+  incomeMataGases?: Array<IncomeMataGas>;
 
   @ApiProperty({
     required: false,
@@ -285,12 +276,21 @@ class User {
 
   @ApiProperty({
     required: false,
-    type: () => [Question],
+    type: () => [ExpenseMataGas],
   })
   @ValidateNested()
-  @Type(() => Question)
+  @Type(() => ExpenseMataGas)
   @IsOptional()
-  questions?: Array<Question>;
+  expenseMataGases?: Array<ExpenseMataGas>;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Inquiry],
+  })
+  @ValidateNested()
+  @Type(() => Inquiry)
+  @IsOptional()
+  inquirys?: Array<Inquiry>;
 }
 
 export { User as User };

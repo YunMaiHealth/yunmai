@@ -25,10 +25,10 @@ import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
 import { HubitusCreateNestedManyWithoutUsersInput } from "./HubitusCreateNestedManyWithoutUsersInput";
 import { StatusCreateNestedManyWithoutUsersInput } from "./StatusCreateNestedManyWithoutUsersInput";
-import { GetpointCreateNestedManyWithoutUsersInput } from "./GetpointCreateNestedManyWithoutUsersInput";
-import { UsepointCreateNestedManyWithoutUsersInput } from "./UsepointCreateNestedManyWithoutUsersInput";
+import { IncomeMataGasCreateNestedManyWithoutUsersInput } from "./IncomeMataGasCreateNestedManyWithoutUsersInput";
 import { MessageCreateNestedManyWithoutUsersInput } from "./MessageCreateNestedManyWithoutUsersInput";
-import { QuestionCreateNestedManyWithoutUsersInput } from "./QuestionCreateNestedManyWithoutUsersInput";
+import { ExpenseMataGasCreateNestedManyWithoutUsersInput } from "./ExpenseMataGasCreateNestedManyWithoutUsersInput";
+import { InquiryCreateNestedManyWithoutUsersInput } from "./InquiryCreateNestedManyWithoutUsersInput";
 
 @InputType()
 class UserCreateInput {
@@ -264,27 +264,15 @@ class UserCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => GetpointCreateNestedManyWithoutUsersInput,
+    type: () => IncomeMataGasCreateNestedManyWithoutUsersInput,
   })
   @ValidateNested()
-  @Type(() => GetpointCreateNestedManyWithoutUsersInput)
+  @Type(() => IncomeMataGasCreateNestedManyWithoutUsersInput)
   @IsOptional()
-  @Field(() => GetpointCreateNestedManyWithoutUsersInput, {
+  @Field(() => IncomeMataGasCreateNestedManyWithoutUsersInput, {
     nullable: true,
   })
-  getpoints?: GetpointCreateNestedManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => UsepointCreateNestedManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => UsepointCreateNestedManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => UsepointCreateNestedManyWithoutUsersInput, {
-    nullable: true,
-  })
-  usepoints?: UsepointCreateNestedManyWithoutUsersInput;
+  incomeMataGases?: IncomeMataGasCreateNestedManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,
@@ -300,15 +288,27 @@ class UserCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => QuestionCreateNestedManyWithoutUsersInput,
+    type: () => ExpenseMataGasCreateNestedManyWithoutUsersInput,
   })
   @ValidateNested()
-  @Type(() => QuestionCreateNestedManyWithoutUsersInput)
+  @Type(() => ExpenseMataGasCreateNestedManyWithoutUsersInput)
   @IsOptional()
-  @Field(() => QuestionCreateNestedManyWithoutUsersInput, {
+  @Field(() => ExpenseMataGasCreateNestedManyWithoutUsersInput, {
     nullable: true,
   })
-  questions?: QuestionCreateNestedManyWithoutUsersInput;
+  expenseMataGases?: ExpenseMataGasCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => InquiryCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => InquiryCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => InquiryCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  inquirys?: InquiryCreateNestedManyWithoutUsersInput;
 }
 
 export { UserCreateInput as UserCreateInput };

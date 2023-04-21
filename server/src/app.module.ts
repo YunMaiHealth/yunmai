@@ -4,12 +4,11 @@ import { MorganInterceptor, MorganModule } from "nest-morgan";
 import { UserModule } from "./user/user.module";
 import { HubitusModule } from "./hubitus/hubitus.module";
 import { StatusModule } from "./status/status.module";
-import { GetpointModule } from "./getpoint/getpoint.module";
-import { UsepointModule } from "./usepoint/usepoint.module";
+import { IncomeMataGasModule } from "./incomeMataGas/incomeMataGas.module";
+import { ExpenseMataGasModule } from "./expenseMataGas/expenseMataGas.module";
 import { MessageModule } from "./message/message.module";
 import { EventModule } from "./event/event.module";
-import { QuestionModule } from "./question/question.module";
-import { ReplyModule } from "./reply/reply.module";
+import { InquiryModule } from "./inquiry/inquiry.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -29,12 +28,11 @@ import { AuthModule } from "./auth/auth.module";
     UserModule,
     HubitusModule,
     StatusModule,
-    GetpointModule,
-    UsepointModule,
+    IncomeMataGasModule,
+    ExpenseMataGasModule,
     MessageModule,
     EventModule,
-    QuestionModule,
-    ReplyModule,
+    InquiryModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,

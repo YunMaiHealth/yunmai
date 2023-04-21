@@ -3,10 +3,10 @@ import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { HubitusListRelationFilter } from "../hubitus/HubitusListRelationFilter";
 import { StatusListRelationFilter } from "../status/StatusListRelationFilter";
-import { GetpointListRelationFilter } from "../getpoint/GetpointListRelationFilter";
-import { UsepointListRelationFilter } from "../usepoint/UsepointListRelationFilter";
+import { IncomeMataGasListRelationFilter } from "../incomeMataGas/IncomeMataGasListRelationFilter";
 import { MessageListRelationFilter } from "../message/MessageListRelationFilter";
-import { QuestionListRelationFilter } from "../question/QuestionListRelationFilter";
+import { ExpenseMataGasListRelationFilter } from "../expenseMataGas/ExpenseMataGasListRelationFilter";
+import { InquiryListRelationFilter } from "../inquiry/InquiryListRelationFilter";
 
 export type UserWhereInput = {
   oauthType?: StringFilter;
@@ -29,8 +29,8 @@ export type UserWhereInput = {
   username?: StringFilter;
   hubituses?: HubitusListRelationFilter;
   statuses?: StatusListRelationFilter;
-  getpoints?: GetpointListRelationFilter;
-  usepoints?: UsepointListRelationFilter;
+  incomeMataGases?: IncomeMataGasListRelationFilter;
   messages?: MessageListRelationFilter;
-  questions?: QuestionListRelationFilter;
+  expenseMataGases?: ExpenseMataGasListRelationFilter;
+  inquirys?: InquiryListRelationFilter;
 };

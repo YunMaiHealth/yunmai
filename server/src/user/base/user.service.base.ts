@@ -10,16 +10,18 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
+
 import {
   Prisma,
   User,
   Hubitus,
   Status,
-  Getpoint,
-  Usepoint,
+  IncomeMataGas,
   Message,
-  Question,
+  ExpenseMataGas,
+  Inquiry,
 } from "@prisma/client";
+
 import { PasswordService } from "../../auth/password.service";
 import { transformStringFieldUpdateInput } from "../../prisma.util";
 
@@ -103,26 +105,15 @@ export class UserServiceBase {
       .statuses(args);
   }
 
-  async findGetpoints(
+  async findIncomeMataGases(
     parentId: string,
-    args: Prisma.GetpointFindManyArgs
-  ): Promise<Getpoint[]> {
+    args: Prisma.IncomeMataGasFindManyArgs
+  ): Promise<IncomeMataGas[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .getpoints(args);
-  }
-
-  async findUsepoints(
-    parentId: string,
-    args: Prisma.UsepointFindManyArgs
-  ): Promise<Usepoint[]> {
-    return this.prisma.user
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .usepoints(args);
+      .incomeMataGases(args);
   }
 
   async findMessages(
@@ -136,14 +127,25 @@ export class UserServiceBase {
       .messages(args);
   }
 
-  async findQuestions(
+  async findExpenseMataGases(
     parentId: string,
-    args: Prisma.QuestionFindManyArgs
-  ): Promise<Question[]> {
+    args: Prisma.ExpenseMataGasFindManyArgs
+  ): Promise<ExpenseMataGas[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .questions(args);
+      .expenseMataGases(args);
+  }
+
+  async findInquirys(
+    parentId: string,
+    args: Prisma.InquiryFindManyArgs
+  ): Promise<Inquiry[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .inquirys(args);
   }
 }

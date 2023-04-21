@@ -17,14 +17,14 @@ import { StatusList } from "./status/StatusList";
 import { StatusCreate } from "./status/StatusCreate";
 import { StatusEdit } from "./status/StatusEdit";
 import { StatusShow } from "./status/StatusShow";
-import { GetpointList } from "./getpoint/GetpointList";
-import { GetpointCreate } from "./getpoint/GetpointCreate";
-import { GetpointEdit } from "./getpoint/GetpointEdit";
-import { GetpointShow } from "./getpoint/GetpointShow";
-import { UsepointList } from "./usepoint/UsepointList";
-import { UsepointCreate } from "./usepoint/UsepointCreate";
-import { UsepointEdit } from "./usepoint/UsepointEdit";
-import { UsepointShow } from "./usepoint/UsepointShow";
+import { IncomeMataGasList } from "./incomeMataGas/IncomeMataGasList";
+import { IncomeMataGasCreate } from "./incomeMataGas/IncomeMataGasCreate";
+import { IncomeMataGasEdit } from "./incomeMataGas/IncomeMataGasEdit";
+import { IncomeMataGasShow } from "./incomeMataGas/IncomeMataGasShow";
+import { ExpenseMataGasList } from "./expenseMataGas/ExpenseMataGasList";
+import { ExpenseMataGasCreate } from "./expenseMataGas/ExpenseMataGasCreate";
+import { ExpenseMataGasEdit } from "./expenseMataGas/ExpenseMataGasEdit";
+import { ExpenseMataGasShow } from "./expenseMataGas/ExpenseMataGasShow";
 import { MessageList } from "./message/MessageList";
 import { MessageCreate } from "./message/MessageCreate";
 import { MessageEdit } from "./message/MessageEdit";
@@ -33,14 +33,10 @@ import { EventList } from "./event/EventList";
 import { EventCreate } from "./event/EventCreate";
 import { EventEdit } from "./event/EventEdit";
 import { EventShow } from "./event/EventShow";
-import { QuestionList } from "./question/QuestionList";
-import { QuestionCreate } from "./question/QuestionCreate";
-import { QuestionEdit } from "./question/QuestionEdit";
-import { QuestionShow } from "./question/QuestionShow";
-import { ReplyList } from "./reply/ReplyList";
-import { ReplyCreate } from "./reply/ReplyCreate";
-import { ReplyEdit } from "./reply/ReplyEdit";
-import { ReplyShow } from "./reply/ReplyShow";
+import { InquiryList } from "./inquiry/InquiryList";
+import { InquiryCreate } from "./inquiry/InquiryCreate";
+import { InquiryEdit } from "./inquiry/InquiryEdit";
+import { InquiryShow } from "./inquiry/InquiryShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -89,18 +85,18 @@ const App = (): React.ReactElement => {
           show={StatusShow}
         />
         <Resource
-          name="Getpoint"
-          list={GetpointList}
-          edit={GetpointEdit}
-          create={GetpointCreate}
-          show={GetpointShow}
+          name="IncomeMataGas"
+          list={IncomeMataGasList}
+          edit={IncomeMataGasEdit}
+          create={IncomeMataGasCreate}
+          show={IncomeMataGasShow}
         />
         <Resource
-          name="Usepoint"
-          list={UsepointList}
-          edit={UsepointEdit}
-          create={UsepointCreate}
-          show={UsepointShow}
+          name="ExpenseMataGas"
+          list={ExpenseMataGasList}
+          edit={ExpenseMataGasEdit}
+          create={ExpenseMataGasCreate}
+          show={ExpenseMataGasShow}
         />
         <Resource
           name="Message"
@@ -117,18 +113,11 @@ const App = (): React.ReactElement => {
           show={EventShow}
         />
         <Resource
-          name="Question"
-          list={QuestionList}
-          edit={QuestionEdit}
-          create={QuestionCreate}
-          show={QuestionShow}
-        />
-        <Resource
-          name="Reply"
-          list={ReplyList}
-          edit={ReplyEdit}
-          create={ReplyCreate}
-          show={ReplyShow}
+          name="Inquiry"
+          list={InquiryList}
+          edit={InquiryEdit}
+          create={InquiryCreate}
+          show={InquiryShow}
         />
       </Admin>
     </div>

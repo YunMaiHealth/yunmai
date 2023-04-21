@@ -33,18 +33,18 @@ import { HubitusWhereUniqueInput } from "../../hubitus/base/HubitusWhereUniqueIn
 import { StatusFindManyArgs } from "../../status/base/StatusFindManyArgs";
 import { Status } from "../../status/base/Status";
 import { StatusWhereUniqueInput } from "../../status/base/StatusWhereUniqueInput";
-import { GetpointFindManyArgs } from "../../getpoint/base/GetpointFindManyArgs";
-import { Getpoint } from "../../getpoint/base/Getpoint";
-import { GetpointWhereUniqueInput } from "../../getpoint/base/GetpointWhereUniqueInput";
-import { UsepointFindManyArgs } from "../../usepoint/base/UsepointFindManyArgs";
-import { Usepoint } from "../../usepoint/base/Usepoint";
-import { UsepointWhereUniqueInput } from "../../usepoint/base/UsepointWhereUniqueInput";
+import { IncomeMataGasFindManyArgs } from "../../incomeMataGas/base/IncomeMataGasFindManyArgs";
+import { IncomeMataGas } from "../../incomeMataGas/base/IncomeMataGas";
+import { IncomeMataGasWhereUniqueInput } from "../../incomeMataGas/base/IncomeMataGasWhereUniqueInput";
 import { MessageFindManyArgs } from "../../message/base/MessageFindManyArgs";
 import { Message } from "../../message/base/Message";
 import { MessageWhereUniqueInput } from "../../message/base/MessageWhereUniqueInput";
-import { QuestionFindManyArgs } from "../../question/base/QuestionFindManyArgs";
-import { Question } from "../../question/base/Question";
-import { QuestionWhereUniqueInput } from "../../question/base/QuestionWhereUniqueInput";
+import { ExpenseMataGasFindManyArgs } from "../../expenseMataGas/base/ExpenseMataGasFindManyArgs";
+import { ExpenseMataGas } from "../../expenseMataGas/base/ExpenseMataGas";
+import { ExpenseMataGasWhereUniqueInput } from "../../expenseMataGas/base/ExpenseMataGasWhereUniqueInput";
+import { InquiryFindManyArgs } from "../../inquiry/base/InquiryFindManyArgs";
+import { Inquiry } from "../../inquiry/base/Inquiry";
+import { InquiryWhereUniqueInput } from "../../inquiry/base/InquiryWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -503,23 +503,23 @@ export class UserControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/getpoints")
-  @ApiNestedQuery(GetpointFindManyArgs)
+  @common.Get("/:id/incomeMataGases")
+  @ApiNestedQuery(IncomeMataGasFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "Getpoint",
+    resource: "IncomeMataGas",
     action: "read",
     possession: "any",
   })
-  async findManyGetpoints(
+  async findManyIncomeMataGases(
     @common.Req() request: Request,
     @common.Param() params: UserWhereUniqueInput
-  ): Promise<Getpoint[]> {
-    const query = plainToClass(GetpointFindManyArgs, request.query);
-    const results = await this.service.findGetpoints(params.id, {
+  ): Promise<IncomeMataGas[]> {
+    const query = plainToClass(IncomeMataGasFindManyArgs, request.query);
+    const results = await this.service.findIncomeMataGases(params.id, {
       ...query,
       select: {
         id: true,
-        getPointTime: true,
+        income_date: true,
 
         user: {
           select: {
@@ -527,8 +527,8 @@ export class UserControllerBase {
           },
         },
 
-        points: true,
-        getPointType: true,
+        amount: true,
+        category: true,
       },
     });
     if (results === null) {
@@ -539,18 +539,18 @@ export class UserControllerBase {
     return results;
   }
 
-  @common.Post("/:id/getpoints")
+  @common.Post("/:id/incomeMataGases")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async connectGetpoints(
+  async connectIncomeMataGases(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: GetpointWhereUniqueInput[]
+    @common.Body() body: IncomeMataGasWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      getpoints: {
+      incomeMataGases: {
         connect: body,
       },
     };
@@ -561,18 +561,18 @@ export class UserControllerBase {
     });
   }
 
-  @common.Patch("/:id/getpoints")
+  @common.Patch("/:id/incomeMataGases")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async updateGetpoints(
+  async updateIncomeMataGases(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: GetpointWhereUniqueInput[]
+    @common.Body() body: IncomeMataGasWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      getpoints: {
+      incomeMataGases: {
         set: body,
       },
     };
@@ -583,121 +583,18 @@ export class UserControllerBase {
     });
   }
 
-  @common.Delete("/:id/getpoints")
+  @common.Delete("/:id/incomeMataGases")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async disconnectGetpoints(
+  async disconnectIncomeMataGases(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: GetpointWhereUniqueInput[]
+    @common.Body() body: IncomeMataGasWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      getpoints: {
-        disconnect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/usepoints")
-  @ApiNestedQuery(UsepointFindManyArgs)
-  @nestAccessControl.UseRoles({
-    resource: "Usepoint",
-    action: "read",
-    possession: "any",
-  })
-  async findManyUsepoints(
-    @common.Req() request: Request,
-    @common.Param() params: UserWhereUniqueInput
-  ): Promise<Usepoint[]> {
-    const query = plainToClass(UsepointFindManyArgs, request.query);
-    const results = await this.service.findUsepoints(params.id, {
-      ...query,
-      select: {
-        id: true,
-        usePointTime: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
-
-        points: true,
-        usePointType: true,
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results;
-  }
-
-  @common.Post("/:id/usepoints")
-  @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
-  })
-  async connectUsepoints(
-    @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: UsepointWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      usepoints: {
-        connect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Patch("/:id/usepoints")
-  @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
-  })
-  async updateUsepoints(
-    @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: UsepointWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      usepoints: {
-        set: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Delete("/:id/usepoints")
-  @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
-  })
-  async disconnectUsepoints(
-    @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: UsepointWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      usepoints: {
+      incomeMataGases: {
         disconnect: body,
       },
     };
@@ -820,23 +717,23 @@ export class UserControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/questions")
-  @ApiNestedQuery(QuestionFindManyArgs)
+  @common.Get("/:id/expenseMataGases")
+  @ApiNestedQuery(ExpenseMataGasFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "Question",
+    resource: "ExpenseMataGas",
     action: "read",
     possession: "any",
   })
-  async findManyQuestions(
+  async findManyExpenseMataGases(
     @common.Req() request: Request,
     @common.Param() params: UserWhereUniqueInput
-  ): Promise<Question[]> {
-    const query = plainToClass(QuestionFindManyArgs, request.query);
-    const results = await this.service.findQuestions(params.id, {
+  ): Promise<ExpenseMataGas[]> {
+    const query = plainToClass(ExpenseMataGasFindManyArgs, request.query);
+    const results = await this.service.findExpenseMataGases(params.id, {
       ...query,
       select: {
         id: true,
-        questionTime: true,
+        expense_date: true,
 
         user: {
           select: {
@@ -844,8 +741,8 @@ export class UserControllerBase {
           },
         },
 
-        questionContent: true,
-        isPublic: true,
+        amount: true,
+        category: true,
       },
     });
     if (results === null) {
@@ -856,18 +753,18 @@ export class UserControllerBase {
     return results;
   }
 
-  @common.Post("/:id/questions")
+  @common.Post("/:id/expenseMataGases")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async connectQuestions(
+  async connectExpenseMataGases(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: QuestionWhereUniqueInput[]
+    @common.Body() body: ExpenseMataGasWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      questions: {
+      expenseMataGases: {
         connect: body,
       },
     };
@@ -878,18 +775,18 @@ export class UserControllerBase {
     });
   }
 
-  @common.Patch("/:id/questions")
+  @common.Patch("/:id/expenseMataGases")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async updateQuestions(
+  async updateExpenseMataGases(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: QuestionWhereUniqueInput[]
+    @common.Body() body: ExpenseMataGasWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      questions: {
+      expenseMataGases: {
         set: body,
       },
     };
@@ -900,18 +797,122 @@ export class UserControllerBase {
     });
   }
 
-  @common.Delete("/:id/questions")
+  @common.Delete("/:id/expenseMataGases")
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "update",
     possession: "any",
   })
-  async disconnectQuestions(
+  async disconnectExpenseMataGases(
     @common.Param() params: UserWhereUniqueInput,
-    @common.Body() body: QuestionWhereUniqueInput[]
+    @common.Body() body: ExpenseMataGasWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      questions: {
+      expenseMataGases: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/inquirys")
+  @ApiNestedQuery(InquiryFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "Inquiry",
+    action: "read",
+    possession: "any",
+  })
+  async findManyInquirys(
+    @common.Req() request: Request,
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<Inquiry[]> {
+    const query = plainToClass(InquiryFindManyArgs, request.query);
+    const results = await this.service.findInquirys(params.id, {
+      ...query,
+      select: {
+        id: true,
+        inquiryTime: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+
+        content: true,
+        isPublic: true,
+        title: true,
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/inquirys")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async connectInquirys(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: InquiryWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      inquirys: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/inquirys")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async updateInquirys(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: InquiryWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      inquirys: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/inquirys")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectInquirys(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: InquiryWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      inquirys: {
         disconnect: body,
       },
     };
