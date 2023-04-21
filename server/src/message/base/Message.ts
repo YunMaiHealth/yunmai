@@ -18,12 +18,14 @@ import {
   IsOptional,
   IsBoolean,
   IsJSON,
+  IsEnum,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { User } from "../../user/base/User";
 import { Event } from "../../event/base/Event";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
+import { EnumMessageMessageType } from "./EnumMessageMessageType";
 
 @ObjectType()
 class Message {
@@ -78,11 +80,19 @@ class Message {
 
   @ApiProperty({
     required: true,
-    type: String,
+    enum: EnumMessageMessageType,
   })
-  @IsString()
-  @Field(() => String)
-  messageType!: string;
+  @IsEnum(EnumMessageMessageType)
+  @Field(() => EnumMessageMessageType, {
+    nullable: true,
+  })
+  messageType?:
+    | "FOLLOW_FRIEND"
+    | "HEALTH_CHECK"
+    | "UPDATE_METAGAS"
+    | "REGISTER_NEWUSER"
+    | "REFER_NEWUSER"
+    | "HEALTH_INQUIRY";
 
   @ApiProperty({
     required: true,

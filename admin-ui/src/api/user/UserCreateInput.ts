@@ -14,7 +14,7 @@ export type UserCreateInput = {
   unionId: string;
   inviterId?: string | null;
   phone?: string | null;
-  gender?: "Unknown" | "Male" | "Female" | null;
+  gender?: "UNKNOWN" | "MALE" | "FEMALE" | null;
   avatarUrl?: string | null;
   birthday?: Date | null;
   identitycard?: string | null;

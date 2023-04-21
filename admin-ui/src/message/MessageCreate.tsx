@@ -27,7 +27,20 @@ export const MessageCreate = (props: CreateProps): React.ReactElement => {
         </ReferenceInput>
         <BooleanInput label="isRead" source="isRead" />
         <div />
-        <TextInput label="messageType" source="messageType" />
+        <SelectInput
+          source="messageType"
+          label="messageType"
+          choices={[
+            { label: "FOLLOW_FRIEND", value: "FOLLOW_FRIEND" },
+            { label: "HEALTH_CHECK", value: "HEALTH_CHECK" },
+            { label: "UPDATE_METAGAS", value: "UPDATE_METAGAS" },
+            { label: "REGISTER_NEWUSER", value: "REGISTER_NEWUSER" },
+            { label: "REFER_NEWUSER", value: "REFER_NEWUSER" },
+            { label: "HEALTH_INQUIRY", value: "HEALTH_INQUIRY" },
+          ]}
+          optionText="label"
+          optionValue="value"
+        />
         <TextInput label="messageSource" source="messageSource" />
       </SimpleForm>
     </Create>
