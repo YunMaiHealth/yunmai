@@ -109,7 +109,7 @@ class User {
   @Field(() => EnumUserGender, {
     nullable: true,
   })
-  gender?: "Unknown" | "Male" | "Female" | null;
+  gender?: "UNKNOWN" | "MALE" | "FEMALE" | null;
 
   @ApiProperty({
     required: false,

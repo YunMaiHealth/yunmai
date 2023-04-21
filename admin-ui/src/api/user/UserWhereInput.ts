@@ -16,7 +16,7 @@ export type UserWhereInput = {
   unionId?: StringFilter;
   inviterId?: StringNullableFilter;
   phone?: StringNullableFilter;
-  gender?: "Unknown" | "Male" | "Female";
+  gender?: "UNKNOWN" | "MALE" | "FEMALE";
   avatarUrl?: StringNullableFilter;
   birthday?: DateTimeNullableFilter;
   identitycard?: StringNullableFilter;

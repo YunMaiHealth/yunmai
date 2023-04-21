@@ -82,15 +82,15 @@ model ExpenseMetaGas {
 }
 
 model Message {
-  id             String   @id @default(cuid())
-  sendTime       DateTime @default(now())
-  user           User?    @relation(fields: [userId], references: [id])
+  id             String                 @id @default(cuid())
+  sendTime       DateTime               @default(now())
+  user           User?                  @relation(fields: [userId], references: [id])
   userId         String?
-  event          Event?   @relation(fields: [eventId], references: [id])
+  event          Event?                 @relation(fields: [eventId], references: [id])
   eventId        String?
   isRead         Boolean
   messageContent Json
-  messageType    String
+  messageType    EnumMessageMessageType
   messageSource  String
 }
 
@@ -115,7 +115,16 @@ model Inquiry {
 }
 
 enum EnumUserGender {
-  Unknown
-  Male
-  Female
+  UNKNOWN
+  MALE
+  FEMALE
+}
+
+enum EnumMessageMessageType {
+  FOLLOW_FRIEND
+  HEALTH_CHECK
+  UPDATE_METAGAS
+  REGISTER_NEWUSER
+  REFER_NEWUSER
+  HEALTH_INQUIRY
 }

@@ -36,9 +36,9 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
           source="gender"
           label="gender"
           choices={[
-            { label: "unknown", value: "Unknown" },
-            { label: "male", value: "Male" },
-            { label: "female", value: "Female" },
+            { label: "UNKNOWN", value: "UNKNOWN" },
+            { label: "MALE", value: "MALE" },
+            { label: "FEMALE", value: "FEMALE" },
           ]}
           optionText="label"
           allowEmpty

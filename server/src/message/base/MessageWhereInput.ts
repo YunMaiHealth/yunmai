@@ -13,11 +13,12 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
-import { IsOptional, ValidateNested } from "class-validator";
+import { IsOptional, ValidateNested, IsEnum } from "class-validator";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 import { BooleanFilter } from "../../util/BooleanFilter";
 import { JsonFilter } from "../../util/JsonFilter";
+import { EnumMessageMessageType } from "./EnumMessageMessageType";
 
 @InputType()
 class MessageWhereInput {
@@ -80,14 +81,20 @@ class MessageWhereInput {
 
   @ApiProperty({
     required: false,
-    type: StringFilter,
+    enum: EnumMessageMessageType,
   })
-  @Type(() => StringFilter)
+  @IsEnum(EnumMessageMessageType)
   @IsOptional()
-  @Field(() => StringFilter, {
+  @Field(() => EnumMessageMessageType, {
     nullable: true,
   })
-  messageType?: StringFilter;
+  messageType?:
+    | "FOLLOW_FRIEND"
+    | "HEALTH_CHECK"
+    | "UPDATE_METAGAS"
+    | "REGISTER_NEWUSER"
+    | "REFER_NEWUSER"
+    | "HEALTH_INQUIRY";
 
   @ApiProperty({
     required: false,

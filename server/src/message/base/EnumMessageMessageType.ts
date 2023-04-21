@@ -11,12 +11,15 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { registerEnumType } from "@nestjs/graphql";
 
-export enum EnumUserGender {
-  Unknown = "UNKNOWN",
-  Male = "MALE",
-  Female = "FEMALE",
+export enum EnumMessageMessageType {
+  FollowFriend = "FOLLOW_FRIEND",
+  HealthCheck = "HEALTH_CHECK",
+  UpdateMetagas = "UPDATE_METAGAS",
+  RegisterNewuser = "REGISTER_NEWUSER",
+  ReferNewuser = "REFER_NEWUSER",
+  HealthInquiry = "HEALTH_INQUIRY",
 }
 
-registerEnumType(EnumUserGender, {
-  name: "EnumUserGender",
+registerEnumType(EnumMessageMessageType, {
+  name: "EnumMessageMessageType",
 });
