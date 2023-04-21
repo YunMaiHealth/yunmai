@@ -25,16 +25,16 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
-import { HubitusFindManyArgs } from "../../hubitus/base/HubitusFindManyArgs";
-import { Hubitus } from "../../hubitus/base/Hubitus";
+import { HabitusFindManyArgs } from "../../habitus/base/HabitusFindManyArgs";
+import { Habitus } from "../../habitus/base/Habitus";
 import { StatusFindManyArgs } from "../../status/base/StatusFindManyArgs";
 import { Status } from "../../status/base/Status";
-import { IncomeMataGasFindManyArgs } from "../../incomeMataGas/base/IncomeMataGasFindManyArgs";
-import { IncomeMataGas } from "../../incomeMataGas/base/IncomeMataGas";
+import { IncomeMetaGasFindManyArgs } from "../../incomeMetaGas/base/IncomeMetaGasFindManyArgs";
+import { IncomeMetaGas } from "../../incomeMetaGas/base/IncomeMetaGas";
 import { MessageFindManyArgs } from "../../message/base/MessageFindManyArgs";
 import { Message } from "../../message/base/Message";
-import { ExpenseMataGasFindManyArgs } from "../../expenseMataGas/base/ExpenseMataGasFindManyArgs";
-import { ExpenseMataGas } from "../../expenseMataGas/base/ExpenseMataGas";
+import { ExpenseMetaGasFindManyArgs } from "../../expenseMetaGas/base/ExpenseMetaGasFindManyArgs";
+import { ExpenseMetaGas } from "../../expenseMetaGas/base/ExpenseMetaGas";
 import { InquiryFindManyArgs } from "../../inquiry/base/InquiryFindManyArgs";
 import { Inquiry } from "../../inquiry/base/Inquiry";
 import { UserService } from "../user.service";
@@ -148,17 +148,17 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Hubitus])
+  @graphql.ResolveField(() => [Habitus])
   @nestAccessControl.UseRoles({
-    resource: "Hubitus",
+    resource: "Habitus",
     action: "read",
     possession: "any",
   })
-  async hubituses(
+  async habituses(
     @graphql.Parent() parent: User,
-    @graphql.Args() args: HubitusFindManyArgs
-  ): Promise<Hubitus[]> {
-    const results = await this.service.findHubituses(parent.id, args);
+    @graphql.Args() args: HabitusFindManyArgs
+  ): Promise<Habitus[]> {
+    const results = await this.service.findHabituses(parent.id, args);
 
     if (!results) {
       return [];
@@ -188,17 +188,17 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [IncomeMataGas])
+  @graphql.ResolveField(() => [IncomeMetaGas])
   @nestAccessControl.UseRoles({
-    resource: "IncomeMataGas",
+    resource: "IncomeMetaGas",
     action: "read",
     possession: "any",
   })
-  async incomeMataGases(
+  async incomeMetaGases(
     @graphql.Parent() parent: User,
-    @graphql.Args() args: IncomeMataGasFindManyArgs
-  ): Promise<IncomeMataGas[]> {
-    const results = await this.service.findIncomeMataGases(parent.id, args);
+    @graphql.Args() args: IncomeMetaGasFindManyArgs
+  ): Promise<IncomeMetaGas[]> {
+    const results = await this.service.findIncomeMetaGases(parent.id, args);
 
     if (!results) {
       return [];
@@ -228,17 +228,17 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [ExpenseMataGas])
+  @graphql.ResolveField(() => [ExpenseMetaGas])
   @nestAccessControl.UseRoles({
-    resource: "ExpenseMataGas",
+    resource: "ExpenseMetaGas",
     action: "read",
     possession: "any",
   })
-  async expenseMataGases(
+  async expenseMetaGases(
     @graphql.Parent() parent: User,
-    @graphql.Args() args: ExpenseMataGasFindManyArgs
-  ): Promise<ExpenseMataGas[]> {
-    const results = await this.service.findExpenseMataGases(parent.id, args);
+    @graphql.Args() args: ExpenseMetaGasFindManyArgs
+  ): Promise<ExpenseMetaGas[]> {
+    const results = await this.service.findExpenseMetaGases(parent.id, args);
 
     if (!results) {
       return [];

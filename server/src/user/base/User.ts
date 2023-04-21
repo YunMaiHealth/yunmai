@@ -23,11 +23,11 @@ import { EnumUserGender } from "./EnumUserGender";
 import { Type } from "class-transformer";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
-import { Hubitus } from "../../hubitus/base/Hubitus";
+import { Habitus } from "../../habitus/base/Habitus";
 import { Status } from "../../status/base/Status";
-import { IncomeMataGas } from "../../incomeMataGas/base/IncomeMataGas";
+import { IncomeMetaGas } from "../../incomeMetaGas/base/IncomeMetaGas";
 import { Message } from "../../message/base/Message";
-import { ExpenseMataGas } from "../../expenseMataGas/base/ExpenseMataGas";
+import { ExpenseMetaGas } from "../../expenseMetaGas/base/ExpenseMetaGas";
 import { Inquiry } from "../../inquiry/base/Inquiry";
 
 @ObjectType()
@@ -240,12 +240,12 @@ class User {
 
   @ApiProperty({
     required: false,
-    type: () => [Hubitus],
+    type: () => [Habitus],
   })
   @ValidateNested()
-  @Type(() => Hubitus)
+  @Type(() => Habitus)
   @IsOptional()
-  hubituses?: Array<Hubitus>;
+  habituses?: Array<Habitus>;
 
   @ApiProperty({
     required: false,
@@ -258,12 +258,12 @@ class User {
 
   @ApiProperty({
     required: false,
-    type: () => [IncomeMataGas],
+    type: () => [IncomeMetaGas],
   })
   @ValidateNested()
-  @Type(() => IncomeMataGas)
+  @Type(() => IncomeMetaGas)
   @IsOptional()
-  incomeMataGases?: Array<IncomeMataGas>;
+  incomeMetaGases?: Array<IncomeMetaGas>;
 
   @ApiProperty({
     required: false,
@@ -276,12 +276,12 @@ class User {
 
   @ApiProperty({
     required: false,
-    type: () => [ExpenseMataGas],
+    type: () => [ExpenseMetaGas],
   })
   @ValidateNested()
-  @Type(() => ExpenseMataGas)
+  @Type(() => ExpenseMetaGas)
   @IsOptional()
-  expenseMataGases?: Array<ExpenseMataGas>;
+  expenseMetaGases?: Array<ExpenseMetaGas>;
 
   @ApiProperty({
     required: false,

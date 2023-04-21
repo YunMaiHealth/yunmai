@@ -13,11 +13,11 @@ import {
   ReferenceArrayInput,
 } from "react-admin";
 
-import { HubitusTitle } from "../hubitus/HubitusTitle";
+import { HabitusTitle } from "../habitus/HabitusTitle";
 import { StatusTitle } from "../status/StatusTitle";
-import { IncomeMataGasTitle } from "../incomeMataGas/IncomeMataGasTitle";
+import { IncomeMetaGasTitle } from "../incomeMetaGas/IncomeMetaGasTitle";
 import { MessageTitle } from "../message/MessageTitle";
-import { ExpenseMataGasTitle } from "../expenseMataGas/ExpenseMataGasTitle";
+import { ExpenseMetaGasTitle } from "../expenseMetaGas/ExpenseMetaGasTitle";
 import { InquiryTitle } from "../inquiry/InquiryTitle";
 import { ROLES_OPTIONS } from "../user/RolesOptions";
 
@@ -67,12 +67,12 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
           disabled
         />
         <ReferenceArrayInput
-          source="hubituses"
-          reference="Hubitus"
+          source="habituses"
+          reference="Habitus"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={HubitusTitle} />
+          <SelectArrayInput optionText={HabitusTitle} />
         </ReferenceArrayInput>
         <ReferenceArrayInput
           source="statuses"
@@ -83,12 +83,12 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
           <SelectArrayInput optionText={StatusTitle} />
         </ReferenceArrayInput>
         <ReferenceArrayInput
-          source="incomeMataGases"
-          reference="IncomeMataGas"
+          source="incomeMetaGases"
+          reference="IncomeMetaGas"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={IncomeMataGasTitle} />
+          <SelectArrayInput optionText={IncomeMetaGasTitle} />
         </ReferenceArrayInput>
         <ReferenceArrayInput
           source="messages"
@@ -99,12 +99,12 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
           <SelectArrayInput optionText={MessageTitle} />
         </ReferenceArrayInput>
         <ReferenceArrayInput
-          source="expenseMataGases"
-          reference="ExpenseMataGas"
+          source="expenseMetaGases"
+          reference="ExpenseMetaGas"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={ExpenseMataGasTitle} />
+          <SelectArrayInput optionText={ExpenseMetaGasTitle} />
         </ReferenceArrayInput>
         <ReferenceArrayInput
           source="inquirys"

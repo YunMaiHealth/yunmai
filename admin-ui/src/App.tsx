@@ -9,22 +9,22 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { HubitusList } from "./hubitus/HubitusList";
-import { HubitusCreate } from "./hubitus/HubitusCreate";
-import { HubitusEdit } from "./hubitus/HubitusEdit";
-import { HubitusShow } from "./hubitus/HubitusShow";
+import { HabitusList } from "./habitus/HabitusList";
+import { HabitusCreate } from "./habitus/HabitusCreate";
+import { HabitusEdit } from "./habitus/HabitusEdit";
+import { HabitusShow } from "./habitus/HabitusShow";
 import { StatusList } from "./status/StatusList";
 import { StatusCreate } from "./status/StatusCreate";
 import { StatusEdit } from "./status/StatusEdit";
 import { StatusShow } from "./status/StatusShow";
-import { IncomeMataGasList } from "./incomeMataGas/IncomeMataGasList";
-import { IncomeMataGasCreate } from "./incomeMataGas/IncomeMataGasCreate";
-import { IncomeMataGasEdit } from "./incomeMataGas/IncomeMataGasEdit";
-import { IncomeMataGasShow } from "./incomeMataGas/IncomeMataGasShow";
-import { ExpenseMataGasList } from "./expenseMataGas/ExpenseMataGasList";
-import { ExpenseMataGasCreate } from "./expenseMataGas/ExpenseMataGasCreate";
-import { ExpenseMataGasEdit } from "./expenseMataGas/ExpenseMataGasEdit";
-import { ExpenseMataGasShow } from "./expenseMataGas/ExpenseMataGasShow";
+import { IncomeMetaGasList } from "./incomeMetaGas/IncomeMetaGasList";
+import { IncomeMetaGasCreate } from "./incomeMetaGas/IncomeMetaGasCreate";
+import { IncomeMetaGasEdit } from "./incomeMetaGas/IncomeMetaGasEdit";
+import { IncomeMetaGasShow } from "./incomeMetaGas/IncomeMetaGasShow";
+import { ExpenseMetaGasList } from "./expenseMetaGas/ExpenseMetaGasList";
+import { ExpenseMetaGasCreate } from "./expenseMetaGas/ExpenseMetaGasCreate";
+import { ExpenseMetaGasEdit } from "./expenseMetaGas/ExpenseMetaGasEdit";
+import { ExpenseMetaGasShow } from "./expenseMetaGas/ExpenseMetaGasShow";
 import { MessageList } from "./message/MessageList";
 import { MessageCreate } from "./message/MessageCreate";
 import { MessageEdit } from "./message/MessageEdit";
@@ -71,11 +71,11 @@ const App = (): React.ReactElement => {
           show={UserShow}
         />
         <Resource
-          name="Hubitus"
-          list={HubitusList}
-          edit={HubitusEdit}
-          create={HubitusCreate}
-          show={HubitusShow}
+          name="Habitus"
+          list={HabitusList}
+          edit={HabitusEdit}
+          create={HabitusCreate}
+          show={HabitusShow}
         />
         <Resource
           name="Status"
@@ -85,18 +85,18 @@ const App = (): React.ReactElement => {
           show={StatusShow}
         />
         <Resource
-          name="IncomeMataGas"
-          list={IncomeMataGasList}
-          edit={IncomeMataGasEdit}
-          create={IncomeMataGasCreate}
-          show={IncomeMataGasShow}
+          name="IncomeMetaGas"
+          list={IncomeMetaGasList}
+          edit={IncomeMetaGasEdit}
+          create={IncomeMetaGasCreate}
+          show={IncomeMetaGasShow}
         />
         <Resource
-          name="ExpenseMataGas"
-          list={ExpenseMataGasList}
-          edit={ExpenseMataGasEdit}
-          create={ExpenseMataGasCreate}
-          show={ExpenseMataGasShow}
+          name="ExpenseMetaGas"
+          list={ExpenseMetaGasList}
+          edit={ExpenseMetaGasEdit}
+          create={ExpenseMetaGasCreate}
+          show={ExpenseMetaGasShow}
         />
         <Resource
           name="Message"

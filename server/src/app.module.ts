@@ -2,10 +2,10 @@ import { Module, Scope } from "@nestjs/common";
 import { APP_INTERCEPTOR } from "@nestjs/core";
 import { MorganInterceptor, MorganModule } from "nest-morgan";
 import { UserModule } from "./user/user.module";
-import { HubitusModule } from "./hubitus/hubitus.module";
+import { HabitusModule } from "./habitus/habitus.module";
 import { StatusModule } from "./status/status.module";
-import { IncomeMataGasModule } from "./incomeMataGas/incomeMataGas.module";
-import { ExpenseMataGasModule } from "./expenseMataGas/expenseMataGas.module";
+import { IncomeMetaGasModule } from "./incomeMetaGas/incomeMetaGas.module";
+import { ExpenseMetaGasModule } from "./expenseMetaGas/expenseMetaGas.module";
 import { MessageModule } from "./message/message.module";
 import { EventModule } from "./event/event.module";
 import { InquiryModule } from "./inquiry/inquiry.module";
@@ -26,10 +26,10 @@ import { AuthModule } from "./auth/auth.module";
     ACLModule,
     AuthModule,
     UserModule,
-    HubitusModule,
+    HabitusModule,
     StatusModule,
-    IncomeMataGasModule,
-    ExpenseMataGasModule,
+    IncomeMetaGasModule,
+    ExpenseMetaGasModule,
     MessageModule,
     EventModule,
     InquiryModule,

@@ -5,7 +5,7 @@ export type MessageOrderByInput = {
   sendTime?: SortOrder;
   userId?: SortOrder;
   eventId?: SortOrder;
-  isNew?: SortOrder;
+  isRead?: SortOrder;
   messageContent?: SortOrder;
   messageType?: SortOrder;
   messageSource?: SortOrder;

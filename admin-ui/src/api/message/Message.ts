@@ -7,7 +7,7 @@ export type Message = {
   sendTime: Date;
   user?: User | null;
   event?: Event | null;
-  isNew: boolean;
+  isRead: boolean;
   messageContent: JsonValue;
   messageType: string;
   messageSource: string;

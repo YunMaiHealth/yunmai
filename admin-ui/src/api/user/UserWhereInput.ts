@@ -1,11 +1,11 @@
 import { StringFilter } from "../../util/StringFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
-import { HubitusListRelationFilter } from "../hubitus/HubitusListRelationFilter";
+import { HabitusListRelationFilter } from "../habitus/HabitusListRelationFilter";
 import { StatusListRelationFilter } from "../status/StatusListRelationFilter";
-import { IncomeMataGasListRelationFilter } from "../incomeMataGas/IncomeMataGasListRelationFilter";
+import { IncomeMetaGasListRelationFilter } from "../incomeMetaGas/IncomeMetaGasListRelationFilter";
 import { MessageListRelationFilter } from "../message/MessageListRelationFilter";
-import { ExpenseMataGasListRelationFilter } from "../expenseMataGas/ExpenseMataGasListRelationFilter";
+import { ExpenseMetaGasListRelationFilter } from "../expenseMetaGas/ExpenseMetaGasListRelationFilter";
 import { InquiryListRelationFilter } from "../inquiry/InquiryListRelationFilter";
 
 export type UserWhereInput = {
@@ -27,10 +27,10 @@ export type UserWhereInput = {
   id?: StringFilter;
   realName?: StringNullableFilter;
   username?: StringFilter;
-  hubituses?: HubitusListRelationFilter;
+  habituses?: HabitusListRelationFilter;
   statuses?: StatusListRelationFilter;
-  incomeMataGases?: IncomeMataGasListRelationFilter;
+  incomeMetaGases?: IncomeMetaGasListRelationFilter;
   messages?: MessageListRelationFilter;
-  expenseMataGases?: ExpenseMataGasListRelationFilter;
+  expenseMetaGases?: ExpenseMetaGasListRelationFilter;
   inquirys?: InquiryListRelationFilter;
 };

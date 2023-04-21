@@ -23,11 +23,11 @@ import { EnumUserGender } from "./EnumUserGender";
 import { Type } from "class-transformer";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
-import { HubitusUpdateManyWithoutUsersInput } from "./HubitusUpdateManyWithoutUsersInput";
+import { HabitusUpdateManyWithoutUsersInput } from "./HabitusUpdateManyWithoutUsersInput";
 import { StatusUpdateManyWithoutUsersInput } from "./StatusUpdateManyWithoutUsersInput";
-import { IncomeMataGasUpdateManyWithoutUsersInput } from "./IncomeMataGasUpdateManyWithoutUsersInput";
+import { IncomeMetaGasUpdateManyWithoutUsersInput } from "./IncomeMetaGasUpdateManyWithoutUsersInput";
 import { MessageUpdateManyWithoutUsersInput } from "./MessageUpdateManyWithoutUsersInput";
-import { ExpenseMataGasUpdateManyWithoutUsersInput } from "./ExpenseMataGasUpdateManyWithoutUsersInput";
+import { ExpenseMetaGasUpdateManyWithoutUsersInput } from "./ExpenseMetaGasUpdateManyWithoutUsersInput";
 import { InquiryUpdateManyWithoutUsersInput } from "./InquiryUpdateManyWithoutUsersInput";
 
 @InputType()
@@ -264,15 +264,15 @@ class UserUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => HubitusUpdateManyWithoutUsersInput,
+    type: () => HabitusUpdateManyWithoutUsersInput,
   })
   @ValidateNested()
-  @Type(() => HubitusUpdateManyWithoutUsersInput)
+  @Type(() => HabitusUpdateManyWithoutUsersInput)
   @IsOptional()
-  @Field(() => HubitusUpdateManyWithoutUsersInput, {
+  @Field(() => HabitusUpdateManyWithoutUsersInput, {
     nullable: true,
   })
-  hubituses?: HubitusUpdateManyWithoutUsersInput;
+  habituses?: HabitusUpdateManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,
@@ -288,15 +288,15 @@ class UserUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => IncomeMataGasUpdateManyWithoutUsersInput,
+    type: () => IncomeMetaGasUpdateManyWithoutUsersInput,
   })
   @ValidateNested()
-  @Type(() => IncomeMataGasUpdateManyWithoutUsersInput)
+  @Type(() => IncomeMetaGasUpdateManyWithoutUsersInput)
   @IsOptional()
-  @Field(() => IncomeMataGasUpdateManyWithoutUsersInput, {
+  @Field(() => IncomeMetaGasUpdateManyWithoutUsersInput, {
     nullable: true,
   })
-  incomeMataGases?: IncomeMataGasUpdateManyWithoutUsersInput;
+  incomeMetaGases?: IncomeMetaGasUpdateManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,
@@ -312,15 +312,15 @@ class UserUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => ExpenseMataGasUpdateManyWithoutUsersInput,
+    type: () => ExpenseMetaGasUpdateManyWithoutUsersInput,
   })
   @ValidateNested()
-  @Type(() => ExpenseMataGasUpdateManyWithoutUsersInput)
+  @Type(() => ExpenseMetaGasUpdateManyWithoutUsersInput)
   @IsOptional()
-  @Field(() => ExpenseMataGasUpdateManyWithoutUsersInput, {
+  @Field(() => ExpenseMetaGasUpdateManyWithoutUsersInput, {
     nullable: true,
   })
-  expenseMataGases?: ExpenseMataGasUpdateManyWithoutUsersInput;
+  expenseMetaGases?: ExpenseMetaGasUpdateManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,

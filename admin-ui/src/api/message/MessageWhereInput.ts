@@ -8,7 +8,7 @@ export type MessageWhereInput = {
   id?: StringFilter;
   user?: UserWhereUniqueInput;
   event?: EventWhereUniqueInput;
-  isNew?: BooleanFilter;
+  isRead?: BooleanFilter;
   messageContent?: JsonFilter;
   messageType?: StringFilter;
   messageSource?: StringFilter;

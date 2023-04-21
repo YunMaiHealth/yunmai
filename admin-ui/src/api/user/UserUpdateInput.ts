@@ -1,9 +1,9 @@
 import { InputJsonValue } from "../../types";
-import { HubitusUpdateManyWithoutUsersInput } from "./HubitusUpdateManyWithoutUsersInput";
+import { HabitusUpdateManyWithoutUsersInput } from "./HabitusUpdateManyWithoutUsersInput";
 import { StatusUpdateManyWithoutUsersInput } from "./StatusUpdateManyWithoutUsersInput";
-import { IncomeMataGasUpdateManyWithoutUsersInput } from "./IncomeMataGasUpdateManyWithoutUsersInput";
+import { IncomeMetaGasUpdateManyWithoutUsersInput } from "./IncomeMetaGasUpdateManyWithoutUsersInput";
 import { MessageUpdateManyWithoutUsersInput } from "./MessageUpdateManyWithoutUsersInput";
-import { ExpenseMataGasUpdateManyWithoutUsersInput } from "./ExpenseMataGasUpdateManyWithoutUsersInput";
+import { ExpenseMetaGasUpdateManyWithoutUsersInput } from "./ExpenseMetaGasUpdateManyWithoutUsersInput";
 import { InquiryUpdateManyWithoutUsersInput } from "./InquiryUpdateManyWithoutUsersInput";
 
 export type UserUpdateInput = {
@@ -28,10 +28,10 @@ export type UserUpdateInput = {
   roles?: InputJsonValue;
   creatTime?: Date;
   lastLoginTime?: Date;
-  hubituses?: HubitusUpdateManyWithoutUsersInput;
+  habituses?: HabitusUpdateManyWithoutUsersInput;
   statuses?: StatusUpdateManyWithoutUsersInput;
-  incomeMataGases?: IncomeMataGasUpdateManyWithoutUsersInput;
+  incomeMetaGases?: IncomeMetaGasUpdateManyWithoutUsersInput;
   messages?: MessageUpdateManyWithoutUsersInput;
-  expenseMataGases?: ExpenseMataGasUpdateManyWithoutUsersInput;
+  expenseMetaGases?: ExpenseMetaGasUpdateManyWithoutUsersInput;
   inquirys?: InquiryUpdateManyWithoutUsersInput;
 };

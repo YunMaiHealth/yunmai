@@ -65,7 +65,7 @@ class MessageWhereInput {
   @Field(() => BooleanFilter, {
     nullable: true,
   })
-  isNew?: BooleanFilter;
+  isRead?: BooleanFilter;
 
   @ApiProperty({
     required: false,

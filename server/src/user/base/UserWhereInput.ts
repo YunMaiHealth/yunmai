@@ -17,11 +17,11 @@ import { IsOptional, IsEnum, ValidateNested } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { EnumUserGender } from "./EnumUserGender";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
-import { HubitusListRelationFilter } from "../../hubitus/base/HubitusListRelationFilter";
+import { HabitusListRelationFilter } from "../../habitus/base/HabitusListRelationFilter";
 import { StatusListRelationFilter } from "../../status/base/StatusListRelationFilter";
-import { IncomeMataGasListRelationFilter } from "../../incomeMataGas/base/IncomeMataGasListRelationFilter";
+import { IncomeMetaGasListRelationFilter } from "../../incomeMetaGas/base/IncomeMetaGasListRelationFilter";
 import { MessageListRelationFilter } from "../../message/base/MessageListRelationFilter";
-import { ExpenseMataGasListRelationFilter } from "../../expenseMataGas/base/ExpenseMataGasListRelationFilter";
+import { ExpenseMetaGasListRelationFilter } from "../../expenseMetaGas/base/ExpenseMetaGasListRelationFilter";
 import { InquiryListRelationFilter } from "../../inquiry/base/InquiryListRelationFilter";
 
 @InputType()
@@ -226,15 +226,15 @@ class UserWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => HubitusListRelationFilter,
+    type: () => HabitusListRelationFilter,
   })
   @ValidateNested()
-  @Type(() => HubitusListRelationFilter)
+  @Type(() => HabitusListRelationFilter)
   @IsOptional()
-  @Field(() => HubitusListRelationFilter, {
+  @Field(() => HabitusListRelationFilter, {
     nullable: true,
   })
-  hubituses?: HubitusListRelationFilter;
+  habituses?: HabitusListRelationFilter;
 
   @ApiProperty({
     required: false,
@@ -250,15 +250,15 @@ class UserWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => IncomeMataGasListRelationFilter,
+    type: () => IncomeMetaGasListRelationFilter,
   })
   @ValidateNested()
-  @Type(() => IncomeMataGasListRelationFilter)
+  @Type(() => IncomeMetaGasListRelationFilter)
   @IsOptional()
-  @Field(() => IncomeMataGasListRelationFilter, {
+  @Field(() => IncomeMetaGasListRelationFilter, {
     nullable: true,
   })
-  incomeMataGases?: IncomeMataGasListRelationFilter;
+  incomeMetaGases?: IncomeMetaGasListRelationFilter;
 
   @ApiProperty({
     required: false,
@@ -274,15 +274,15 @@ class UserWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => ExpenseMataGasListRelationFilter,
+    type: () => ExpenseMetaGasListRelationFilter,
   })
   @ValidateNested()
-  @Type(() => ExpenseMataGasListRelationFilter)
+  @Type(() => ExpenseMetaGasListRelationFilter)
   @IsOptional()
-  @Field(() => ExpenseMataGasListRelationFilter, {
+  @Field(() => ExpenseMetaGasListRelationFilter, {
     nullable: true,
   })
-  expenseMataGases?: ExpenseMataGasListRelationFilter;
+  expenseMetaGases?: ExpenseMetaGasListRelationFilter;
 
   @ApiProperty({
     required: false,

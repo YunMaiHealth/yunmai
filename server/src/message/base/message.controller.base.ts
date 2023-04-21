@@ -79,7 +79,7 @@ export class MessageControllerBase {
           },
         },
 
-        isNew: true,
+        isRead: true,
         messageContent: true,
         messageType: true,
         messageSource: true,
@@ -119,7 +119,7 @@ export class MessageControllerBase {
           },
         },
 
-        isNew: true,
+        isRead: true,
         messageContent: true,
         messageType: true,
         messageSource: true,
@@ -160,7 +160,7 @@ export class MessageControllerBase {
           },
         },
 
-        isNew: true,
+        isRead: true,
         messageContent: true,
         messageType: true,
         messageSource: true,
@@ -224,7 +224,7 @@ export class MessageControllerBase {
             },
           },
 
-          isNew: true,
+          isRead: true,
           messageContent: true,
           messageType: true,
           messageSource: true,
@@ -273,7 +273,7 @@ export class MessageControllerBase {
             },
           },
 
-          isNew: true,
+          isRead: true,
           messageContent: true,
           messageType: true,
           messageSource: true,

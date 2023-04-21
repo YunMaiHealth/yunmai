@@ -71,7 +71,7 @@ class MessageUpdateInput {
   @Field(() => Boolean, {
     nullable: true,
   })
-  isNew?: boolean;
+  isRead?: boolean;
 
   @ApiProperty({
     required: false,

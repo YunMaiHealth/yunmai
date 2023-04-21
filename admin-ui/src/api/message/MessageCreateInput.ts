@@ -6,7 +6,7 @@ export type MessageCreateInput = {
   sendTime: Date;
   user?: UserWhereUniqueInput | null;
   event?: EventWhereUniqueInput | null;
-  isNew: boolean;
+  isRead: boolean;
   messageContent: InputJsonValue;
   messageType: string;
   messageSource: string;

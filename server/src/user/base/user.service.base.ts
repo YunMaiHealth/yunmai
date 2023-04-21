@@ -14,11 +14,11 @@ import { PrismaService } from "../../prisma/prisma.service";
 import {
   Prisma,
   User,
-  Hubitus,
+  Habitus,
   Status,
-  IncomeMataGas,
+  IncomeMetaGas,
   Message,
-  ExpenseMataGas,
+  ExpenseMetaGas,
   Inquiry,
 } from "@prisma/client";
 
@@ -83,15 +83,15 @@ export class UserServiceBase {
     return this.prisma.user.delete(args);
   }
 
-  async findHubituses(
+  async findHabituses(
     parentId: string,
-    args: Prisma.HubitusFindManyArgs
-  ): Promise<Hubitus[]> {
+    args: Prisma.HabitusFindManyArgs
+  ): Promise<Habitus[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .hubituses(args);
+      .habituses(args);
   }
 
   async findStatuses(
@@ -105,15 +105,15 @@ export class UserServiceBase {
       .statuses(args);
   }
 
-  async findIncomeMataGases(
+  async findIncomeMetaGases(
     parentId: string,
-    args: Prisma.IncomeMataGasFindManyArgs
-  ): Promise<IncomeMataGas[]> {
+    args: Prisma.IncomeMetaGasFindManyArgs
+  ): Promise<IncomeMetaGas[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .incomeMataGases(args);
+      .incomeMetaGases(args);
   }
 
   async findMessages(
@@ -127,15 +127,15 @@ export class UserServiceBase {
       .messages(args);
   }
 
-  async findExpenseMataGases(
+  async findExpenseMetaGases(
     parentId: string,
-    args: Prisma.ExpenseMataGasFindManyArgs
-  ): Promise<ExpenseMataGas[]> {
+    args: Prisma.ExpenseMetaGasFindManyArgs
+  ): Promise<ExpenseMetaGas[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .expenseMataGases(args);
+      .expenseMetaGases(args);
   }
 
   async findInquirys(

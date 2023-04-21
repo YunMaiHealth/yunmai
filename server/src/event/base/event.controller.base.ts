@@ -230,7 +230,7 @@ export class EventControllerBase {
           },
         },
 
-        isNew: true,
+        isRead: true,
         messageContent: true,
         messageType: true,
         messageSource: true,
