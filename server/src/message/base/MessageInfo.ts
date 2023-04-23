@@ -40,7 +40,7 @@ class MessageInfo {
   })
   @IsBoolean()
   @Field(() => Boolean)
-  isNew!: boolean;
+  isRead!: boolean;
 
   @ApiProperty({
     required: true,
@@ -85,7 +85,7 @@ class MessageInfo {
   
   @IsNumber()
   @Field(() => Number)
-  newMessageNum!:Number
+  numberOfUnread!:Number
 }
 
 export { MessageInfo as MessageInfo };

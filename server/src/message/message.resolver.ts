@@ -37,7 +37,7 @@ export class MessageResolver extends MessageResolverBase {
  const newMessageMap = new Map();
   for(let i=0;i<allMessages.length;i++){
        //获取每个类型最新消息信息
-       let object = {...allMessages[i],newMessageNum:0}
+       let object = {...allMessages[i],numberOfUnread:0}
        let type = object.messageType
         if(messageMap.has(type)){
           if(object.sendTime>messageMap.get(type).sendTime){
@@ -47,8 +47,8 @@ export class MessageResolver extends MessageResolverBase {
           messageMap.set(type,object)
         }
        //获取每个类型未读消息数量  false 未读 true 已读
-       let isNew = object.isNew
-       if(isNew==false){
+       let isRead = object.isRead
+       if(isRead==false){
           if(newMessageMap.has(type)){
             newMessageMap.set(type,newMessageMap.get(type)+1)
           }else{
@@ -60,7 +60,7 @@ export class MessageResolver extends MessageResolverBase {
   let MessageNotify :MessageInfo[] = []
   for (var value of messageMap.values()) {
     if(newMessageMap.has(value.messageType)){
-      value.newMessageNum = newMessageMap.get(value.messageType)
+      value.numberOfUnread = newMessageMap.get(value.messageType)
     }
     MessageNotify.push(value)
    }
