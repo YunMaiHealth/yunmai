@@ -13,7 +13,7 @@ export type MessageWhereInput = {
   messageType?:
     | "FOLLOW_FRIEND"
     | "HEALTH_CHECK"
-    | "UPDATE_METAGAS"
+    | "UPDATE_HEALTH"
     | "REGISTER_NEWUSER"
     | "REFER_NEWUSER"
     | "HEALTH_INQUIRY";
