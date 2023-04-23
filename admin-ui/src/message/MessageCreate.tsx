@@ -33,7 +33,7 @@ export const MessageCreate = (props: CreateProps): React.ReactElement => {
           choices={[
             { label: "FOLLOW_FRIEND", value: "FOLLOW_FRIEND" },
             { label: "HEALTH_CHECK", value: "HEALTH_CHECK" },
-            { label: "UPDATE_METAGAS", value: "UPDATE_METAGAS" },
+            { label: "UPDATE_HEALTH", value: "UPDATE_HEALTH" },
             { label: "REGISTER_NEWUSER", value: "REGISTER_NEWUSER" },
             { label: "REFER_NEWUSER", value: "REFER_NEWUSER" },
             { label: "HEALTH_INQUIRY", value: "HEALTH_INQUIRY" },
