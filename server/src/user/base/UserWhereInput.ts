@@ -11,10 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { StringFilter } from "../../util/StringFilter";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
 import { IsOptional, IsEnum, ValidateNested } from "class-validator";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { StringFilter } from "../../util/StringFilter";
 import { EnumUserGender } from "./EnumUserGender";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { HabitusListRelationFilter } from "../../habitus/base/HabitusListRelationFilter";
@@ -28,14 +28,14 @@ import { InquiryListRelationFilter } from "../../inquiry/base/InquiryListRelatio
 class UserWhereInput {
   @ApiProperty({
     required: false,
-    type: StringFilter,
+    type: StringNullableFilter,
   })
-  @Type(() => StringFilter)
+  @Type(() => StringNullableFilter)
   @IsOptional()
-  @Field(() => StringFilter, {
+  @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  oauthType?: StringFilter;
+  oauthType?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
@@ -57,29 +57,7 @@ class UserWhereInput {
   @Field(() => StringFilter, {
     nullable: true,
   })
-  openId?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  sessionKey?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  unionId?: StringFilter;
+  sessionKey?: StringFilter;
 
   @ApiProperty({
     required: false,
@@ -116,6 +94,17 @@ class UserWhereInput {
 
   @ApiProperty({
     required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  openId?: StringFilter;
+
+  @ApiProperty({
+    required: false,
     type: StringNullableFilter,
   })
   @Type(() => StringNullableFilter)
@@ -124,6 +113,17 @@ class UserWhereInput {
     nullable: true,
   })
   avatarUrl?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  unionId?: StringNullableFilter;
 
   @ApiProperty({
     required: false,

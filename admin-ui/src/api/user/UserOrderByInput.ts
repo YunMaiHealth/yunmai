@@ -3,13 +3,13 @@ import { SortOrder } from "../../util/SortOrder";
 export type UserOrderByInput = {
   oauthType?: SortOrder;
   nickName?: SortOrder;
-  openId?: SortOrder;
   sessionKey?: SortOrder;
-  unionId?: SortOrder;
   inviterId?: SortOrder;
   phone?: SortOrder;
   gender?: SortOrder;
+  openId?: SortOrder;
   avatarUrl?: SortOrder;
+  unionId?: SortOrder;
   birthday?: SortOrder;
   identitycard?: SortOrder;
   country?: SortOrder;

@@ -14,13 +14,13 @@ export const UserList = (props: ListProps): React.ReactElement => {
       <Datagrid rowClick="show">
         <TextField label="oauthType" source="oauthType" />
         <TextField label="nickName" source="nickName" />
-        <TextField label="openID" source="openId" />
         <TextField label="sessionKey" source="sessionKey" />
-        <TextField label="unionID" source="unionId" />
         <TextField label="InviterID" source="inviterId" />
         <TextField label="phone" source="phone" />
         <TextField label="gender" source="gender" />
+        <TextField label="openID" source="openId" />
         <TextField label="avatarUrl" source="avatarUrl" />
+        <TextField label="unionID" source="unionId" />
         <TextField label="birthday" source="birthday" />
         <TextField label="identitycard" source="identitycard" />
         <TextField label="country" source="country" />

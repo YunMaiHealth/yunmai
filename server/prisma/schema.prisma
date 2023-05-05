@@ -8,15 +8,15 @@ generator client {
 }
 
 model User {
-  oauthType        String
+  oauthType        String?
   nickName         String?
-  openId           String
-  sessionKey       String?
-  unionId          String
+  sessionKey       String
   inviterId        String?
   phone            String?
   gender           EnumUserGender?
+  openId           String
   avatarUrl        String?
+  unionId          String?
   birthday         DateTime?
   identitycard     String?
   country          String?
