@@ -7,15 +7,15 @@ import { ExpenseMetaGasCreateNestedManyWithoutUsersInput } from "./ExpenseMetaGa
 import { InquiryCreateNestedManyWithoutUsersInput } from "./InquiryCreateNestedManyWithoutUsersInput";
 
 export type UserCreateInput = {
-  oauthType: string;
+  oauthType?: string | null;
   nickName?: string | null;
-  openId: string;
-  sessionKey?: string | null;
-  unionId: string;
+  sessionKey: string;
   inviterId?: string | null;
   phone?: string | null;
   gender?: "UNKNOWN" | "MALE" | "FEMALE" | null;
+  openId: string;
   avatarUrl?: string | null;
+  unionId?: string | null;
   birthday?: Date | null;
   identitycard?: string | null;
   country?: string | null;

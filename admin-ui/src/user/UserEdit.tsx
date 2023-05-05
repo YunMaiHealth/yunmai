@@ -27,9 +27,7 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
       <SimpleForm>
         <TextInput label="oauthType" source="oauthType" />
         <TextInput label="nickName" source="nickName" />
-        <TextInput label="openID" source="openId" />
         <TextInput label="sessionKey" source="sessionKey" />
-        <TextInput label="unionID" source="unionId" />
         <TextInput label="InviterID" source="inviterId" />
         <TextInput label="phone" source="phone" />
         <SelectInput
@@ -44,7 +42,9 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
           allowEmpty
           optionValue="value"
         />
+        <TextInput label="openID" source="openId" />
         <TextInput label="avatarUrl" source="avatarUrl" />
+        <TextInput label="unionID" source="unionId" />
         <DateInput label="birthday" source="birthday" />
         <TextInput label="identitycard" source="identitycard" />
         <TextInput label="country" source="country" />

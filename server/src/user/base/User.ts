@@ -33,12 +33,15 @@ import { Inquiry } from "../../inquiry/base/Inquiry";
 @ObjectType()
 class User {
   @ApiProperty({
-    required: true,
+    required: false,
     type: String,
   })
   @IsString()
-  @Field(() => String)
-  oauthType!: string;
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  oauthType!: string | null;
 
   @ApiProperty({
     required: false,
@@ -57,26 +60,7 @@ class User {
   })
   @IsString()
   @Field(() => String)
-  openId!: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  sessionKey!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  unionId!: string;
+  sessionKey!: string;
 
   @ApiProperty({
     required: false,
@@ -112,6 +96,14 @@ class User {
   gender?: "UNKNOWN" | "MALE" | "FEMALE" | null;
 
   @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  openId!: string;
+
+  @ApiProperty({
     required: false,
     type: String,
   })
@@ -121,6 +113,17 @@ class User {
     nullable: true,
   })
   avatarUrl!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  unionId!: string | null;
 
   @ApiProperty({
     required: false,

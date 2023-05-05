@@ -1,5 +1,5 @@
-import { StringFilter } from "../../util/StringFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { StringFilter } from "../../util/StringFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { HabitusListRelationFilter } from "../habitus/HabitusListRelationFilter";
 import { StatusListRelationFilter } from "../status/StatusListRelationFilter";
@@ -9,15 +9,15 @@ import { ExpenseMetaGasListRelationFilter } from "../expenseMetaGas/ExpenseMetaG
 import { InquiryListRelationFilter } from "../inquiry/InquiryListRelationFilter";
 
 export type UserWhereInput = {
-  oauthType?: StringFilter;
+  oauthType?: StringNullableFilter;
   nickName?: StringNullableFilter;
-  openId?: StringFilter;
-  sessionKey?: StringNullableFilter;
-  unionId?: StringFilter;
+  sessionKey?: StringFilter;
   inviterId?: StringNullableFilter;
   phone?: StringNullableFilter;
   gender?: "UNKNOWN" | "MALE" | "FEMALE";
+  openId?: StringFilter;
   avatarUrl?: StringNullableFilter;
+  unionId?: StringNullableFilter;
   birthday?: DateTimeNullableFilter;
   identitycard?: StringNullableFilter;
   country?: StringNullableFilter;

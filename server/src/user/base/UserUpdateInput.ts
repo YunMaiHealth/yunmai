@@ -41,7 +41,7 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  oauthType?: string;
+  oauthType?: string | null;
 
   @ApiProperty({
     required: false,
@@ -63,29 +63,7 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  openId?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  sessionKey?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  unionId?: string;
+  sessionKey?: string;
 
   @ApiProperty({
     required: false,
@@ -129,7 +107,29 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  openId?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   avatarUrl?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  unionId?: string | null;
 
   @ApiProperty({
     required: false,
