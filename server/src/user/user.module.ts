@@ -8,6 +8,6 @@ import { UserResolver } from "./user.resolver";
   imports: [UserModuleBase],
   controllers: [UserController],
   providers: [UserService, UserResolver],
-  exports: [UserService],
+  exports: [UserService,UserResolver],
 })
 export class UserModule {}

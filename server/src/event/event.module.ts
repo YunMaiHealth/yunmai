@@ -8,6 +8,6 @@ import { EventResolver } from "./event.resolver";
   imports: [EventModuleBase],
   controllers: [EventController],
   providers: [EventService, EventResolver],
-  exports: [EventService],
+  exports: [EventService, EventResolver],
 })
 export class EventModule {}

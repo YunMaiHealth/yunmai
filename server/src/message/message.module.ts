@@ -8,6 +8,6 @@ import { MessageResolver } from "./message.resolver";
   imports: [MessageModuleBase],
   controllers: [MessageController],
   providers: [MessageService, MessageResolver],
-  exports: [MessageService],
+  exports: [MessageService, MessageResolver],
 })
 export class MessageModule {}

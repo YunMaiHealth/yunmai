@@ -16,13 +16,15 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { ServeStaticOptionsService } from "./serveStaticOptions.service";
 import { GraphQLModule } from "@nestjs/graphql";
-
+import { NftModule } from "./nft/nft.model";
 import { ACLModule } from "./auth/acl.module";
 import { AuthModule } from "./auth/auth.module";
+import { RegisterModule } from "./register/register.model";
 
 @Module({
   controllers: [],
   imports: [
+    RegisterModule,
     ACLModule,
     AuthModule,
     UserModule,
@@ -35,6 +37,7 @@ import { AuthModule } from "./auth/auth.module";
     InquiryModule,
     HealthModule,
     PrismaModule,
+    NftModule,
     SecretsManagerModule,
     MorganModule,
     ConfigModule.forRoot({ isGlobal: true }),

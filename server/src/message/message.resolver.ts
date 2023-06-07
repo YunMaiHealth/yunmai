@@ -35,6 +35,7 @@ export class MessageResolver extends MessageResolverBase {
  const allMessages =await this.service.findMany(args);
  const messageMap = new Map();
  const newMessageMap = new Map();
+
   for(let i=0;i<allMessages.length;i++){
        //获取每个类型最新消息信息
        let object = {...allMessages[i],numberOfUnread:0}
@@ -64,7 +65,6 @@ export class MessageResolver extends MessageResolverBase {
     }
     MessageNotify.push(value)
    }
-
     return MessageNotify;
   }
 
