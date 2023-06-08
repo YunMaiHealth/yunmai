@@ -50,15 +50,15 @@ export class NftResolver {
       let { name, description, image } = dataList[i].rawData.metadata
       // 获取attributes数组
       let attributes = dataList[i].rawData.metadata.attributes
-      let newMetada = [...attributes, { "trait_type": "类型", "value": "药材" }]  //nft 后台还未添加类型，业务需要暂时手动添加
+      // let newMetada = [...attributes, { "trait_type": "类型", "value": "药材" }]  //nft 后台还未添加类型，业务需要暂时手动添加
 
       let dataMap = new Map();
       let type = "";  // 类型 判断数据为药材  还是丹药
-      for (let i = 0; i < newMetada.length; i++) {
-        if (newMetada[i].trait_type == "类型") {
-          type = newMetada[i].value
+      for (let i = 0; i < attributes.length; i++) {
+        if (attributes[i].trait_type == "类型") {
+          type = attributes[i].value
         }
-        dataMap.set(newMetada[i].trait_type, newMetada[i].value)
+        dataMap.set(attributes[i].trait_type, attributes[i].value)
       }
 
     let map = Array.from(dataMap)
