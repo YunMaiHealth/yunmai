@@ -20,9 +20,10 @@ import { NftModule } from "./nft/nft.model";
 import { ACLModule } from "./auth/acl.module";
 import { AuthModule } from "./auth/auth.module";
 import { RegisterModule } from "./register/register.model";
+import { ConfigController } from "./config/config.controller";
 
 @Module({
-  controllers: [],
+  controllers: [ConfigController],
   imports: [
     RegisterModule,
     ACLModule,
