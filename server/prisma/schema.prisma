@@ -82,16 +82,17 @@ model ExpenseMetaGas {
 }
 
 model Message {
-  id             String                 @id @default(cuid())
-  sendTime       DateTime               @default(now())
-  user           User?                  @relation(fields: [userId], references: [id])
+  id             String                   @id @default(cuid())
+  sendTime       DateTime                 @default(now())
+  user           User?                    @relation(fields: [userId], references: [id])
   userId         String?
-  event          Event?                 @relation(fields: [eventId], references: [id])
+  event          Event?                   @relation(fields: [eventId], references: [id])
   eventId        String?
   isRead         Boolean
   messageContent Json
   messageType    EnumMessageMessageType
   messageSource  String
+  messageAction  EnumMessageMessageAction
 }
 
 model Event {
@@ -127,4 +128,10 @@ enum EnumMessageMessageType {
   REGISTER_NEWUSER
   REFER_NEWUSER
   HEALTH_INQUIRY
+}
+
+enum EnumMessageMessageAction {
+  METAGAS_CHANGE
+  FRIEND_HEALTH
+  HEALTH_REMIND
 }

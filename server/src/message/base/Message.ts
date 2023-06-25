@@ -26,6 +26,7 @@ import { Event } from "../../event/base/Event";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
 import { EnumMessageMessageType } from "./EnumMessageMessageType";
+import { EnumMessageMessageAction } from "./EnumMessageMessageAction";
 
 @ObjectType()
 class Message {
@@ -101,6 +102,16 @@ class Message {
   @IsString()
   @Field(() => String)
   messageSource!: string;
+
+  @ApiProperty({
+    required: true,
+    enum: EnumMessageMessageAction,
+  })
+  @IsEnum(EnumMessageMessageAction)
+  @Field(() => EnumMessageMessageAction, {
+    nullable: true,
+  })
+  messageAction?: "METAGAS_CHANGE" | "FRIEND_HEALTH" | "HEALTH_REMIND";
 }
 
 export { Message as Message };

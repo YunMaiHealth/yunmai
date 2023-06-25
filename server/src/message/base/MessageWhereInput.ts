@@ -19,6 +19,7 @@ import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 import { BooleanFilter } from "../../util/BooleanFilter";
 import { JsonFilter } from "../../util/JsonFilter";
 import { EnumMessageMessageType } from "./EnumMessageMessageType";
+import { EnumMessageMessageAction } from "./EnumMessageMessageAction";
 
 @InputType()
 class MessageWhereInput {
@@ -106,6 +107,17 @@ class MessageWhereInput {
     nullable: true,
   })
   messageSource?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumMessageMessageAction,
+  })
+  @IsEnum(EnumMessageMessageAction)
+  @IsOptional()
+  @Field(() => EnumMessageMessageAction, {
+    nullable: true,
+  })
+  messageAction?: "METAGAS_CHANGE" | "FRIEND_HEALTH" | "HEALTH_REMIND";
 }
 
 export { MessageWhereInput as MessageWhereInput };

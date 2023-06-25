@@ -43,6 +43,7 @@ export const EventShow = (props: ShowProps): React.ReactElement => {
             <TextField label="messageContent" source="messageContent" />
             <TextField label="messageType" source="messageType" />
             <TextField label="messageSource" source="messageSource" />
+            <TextField label="messageAction" source="messageAction" />
           </Datagrid>
         </ReferenceManyField>
       </SimpleShowLayout>

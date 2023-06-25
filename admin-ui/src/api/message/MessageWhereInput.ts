@@ -18,4 +18,5 @@ export type MessageWhereInput = {
     | "REFER_NEWUSER"
     | "HEALTH_INQUIRY";
   messageSource?: StringFilter;
+  messageAction?: "METAGAS_CHANGE" | "FRIEND_HEALTH" | "HEALTH_REMIND";
 };

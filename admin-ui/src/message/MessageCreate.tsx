@@ -42,6 +42,17 @@ export const MessageCreate = (props: CreateProps): React.ReactElement => {
           optionValue="value"
         />
         <TextInput label="messageSource" source="messageSource" />
+        <SelectInput
+          source="messageAction"
+          label="messageAction"
+          choices={[
+            { label: "METAGAS_CHANGE", value: "METAGAS_CHANGE" },
+            { label: "FRIEND_HEALTH", value: "FRIEND_HEALTH" },
+            { label: "HEALTH_REMIND", value: "HEALTH_REMIND" },
+          ]}
+          optionText="label"
+          optionValue="value"
+        />
       </SimpleForm>
     </Create>
   );
