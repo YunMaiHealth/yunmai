@@ -16,11 +16,7 @@ import * as errors from "../../errors";
 import { Request } from "express";
 import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
-import * as nestAccessControl from "nest-access-control";
-import * as defaultAuthGuard from "../../auth/defaultAuth.guard";
 import { ExpenseMetaGasService } from "../expenseMetaGas.service";
-import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
-import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { ExpenseMetaGasCreateInput } from "./ExpenseMetaGasCreateInput";
 import { ExpenseMetaGasWhereInput } from "./ExpenseMetaGasWhereInput";
 import { ExpenseMetaGasWhereUniqueInput } from "./ExpenseMetaGasWhereUniqueInput";
@@ -28,24 +24,10 @@ import { ExpenseMetaGasFindManyArgs } from "./ExpenseMetaGasFindManyArgs";
 import { ExpenseMetaGasUpdateInput } from "./ExpenseMetaGasUpdateInput";
 import { ExpenseMetaGas } from "./ExpenseMetaGas";
 
-@swagger.ApiBearerAuth()
-@common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
 export class ExpenseMetaGasControllerBase {
-  constructor(
-    protected readonly service: ExpenseMetaGasService,
-    protected readonly rolesBuilder: nestAccessControl.RolesBuilder
-  ) {}
-  @common.UseInterceptors(AclValidateRequestInterceptor)
+  constructor(protected readonly service: ExpenseMetaGasService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: ExpenseMetaGas })
-  @nestAccessControl.UseRoles({
-    resource: "ExpenseMetaGas",
-    action: "create",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async create(
     @common.Body() data: ExpenseMetaGasCreateInput
   ): Promise<ExpenseMetaGas> {
@@ -75,18 +57,9 @@ export class ExpenseMetaGasControllerBase {
     });
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get()
   @swagger.ApiOkResponse({ type: [ExpenseMetaGas] })
   @ApiNestedQuery(ExpenseMetaGasFindManyArgs)
-  @nestAccessControl.UseRoles({
-    resource: "ExpenseMetaGas",
-    action: "read",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async findMany(@common.Req() request: Request): Promise<ExpenseMetaGas[]> {
     const args = plainToClass(ExpenseMetaGasFindManyArgs, request.query);
     return this.service.findMany({
@@ -107,18 +80,9 @@ export class ExpenseMetaGasControllerBase {
     });
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: ExpenseMetaGas })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "ExpenseMetaGas",
-    action: "read",
-    possession: "own",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async findOne(
     @common.Param() params: ExpenseMetaGasWhereUniqueInput
   ): Promise<ExpenseMetaGas | null> {
@@ -146,18 +110,9 @@ export class ExpenseMetaGasControllerBase {
     return result;
   }
 
-  @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: ExpenseMetaGas })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "ExpenseMetaGas",
-    action: "update",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async update(
     @common.Param() params: ExpenseMetaGasWhereUniqueInput,
     @common.Body() data: ExpenseMetaGasUpdateInput
@@ -201,14 +156,6 @@ export class ExpenseMetaGasControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: ExpenseMetaGas })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "ExpenseMetaGas",
-    action: "delete",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async delete(
     @common.Param() params: ExpenseMetaGasWhereUniqueInput
   ): Promise<ExpenseMetaGas | null> {

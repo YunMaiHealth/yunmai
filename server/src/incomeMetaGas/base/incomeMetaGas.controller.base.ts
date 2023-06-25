@@ -16,11 +16,7 @@ import * as errors from "../../errors";
 import { Request } from "express";
 import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
-import * as nestAccessControl from "nest-access-control";
-import * as defaultAuthGuard from "../../auth/defaultAuth.guard";
 import { IncomeMetaGasService } from "../incomeMetaGas.service";
-import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
-import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { IncomeMetaGasCreateInput } from "./IncomeMetaGasCreateInput";
 import { IncomeMetaGasWhereInput } from "./IncomeMetaGasWhereInput";
 import { IncomeMetaGasWhereUniqueInput } from "./IncomeMetaGasWhereUniqueInput";
@@ -28,24 +24,10 @@ import { IncomeMetaGasFindManyArgs } from "./IncomeMetaGasFindManyArgs";
 import { IncomeMetaGasUpdateInput } from "./IncomeMetaGasUpdateInput";
 import { IncomeMetaGas } from "./IncomeMetaGas";
 
-@swagger.ApiBearerAuth()
-@common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
 export class IncomeMetaGasControllerBase {
-  constructor(
-    protected readonly service: IncomeMetaGasService,
-    protected readonly rolesBuilder: nestAccessControl.RolesBuilder
-  ) {}
-  @common.UseInterceptors(AclValidateRequestInterceptor)
+  constructor(protected readonly service: IncomeMetaGasService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: IncomeMetaGas })
-  @nestAccessControl.UseRoles({
-    resource: "IncomeMetaGas",
-    action: "create",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async create(
     @common.Body() data: IncomeMetaGasCreateInput
   ): Promise<IncomeMetaGas> {
@@ -75,18 +57,9 @@ export class IncomeMetaGasControllerBase {
     });
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get()
   @swagger.ApiOkResponse({ type: [IncomeMetaGas] })
   @ApiNestedQuery(IncomeMetaGasFindManyArgs)
-  @nestAccessControl.UseRoles({
-    resource: "IncomeMetaGas",
-    action: "read",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async findMany(@common.Req() request: Request): Promise<IncomeMetaGas[]> {
     const args = plainToClass(IncomeMetaGasFindManyArgs, request.query);
     return this.service.findMany({
@@ -107,18 +80,9 @@ export class IncomeMetaGasControllerBase {
     });
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: IncomeMetaGas })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "IncomeMetaGas",
-    action: "read",
-    possession: "own",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async findOne(
     @common.Param() params: IncomeMetaGasWhereUniqueInput
   ): Promise<IncomeMetaGas | null> {
@@ -146,18 +110,9 @@ export class IncomeMetaGasControllerBase {
     return result;
   }
 
-  @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: IncomeMetaGas })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "IncomeMetaGas",
-    action: "update",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async update(
     @common.Param() params: IncomeMetaGasWhereUniqueInput,
     @common.Body() data: IncomeMetaGasUpdateInput
@@ -201,14 +156,6 @@ export class IncomeMetaGasControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: IncomeMetaGas })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "IncomeMetaGas",
-    action: "delete",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async delete(
     @common.Param() params: IncomeMetaGasWhereUniqueInput
   ): Promise<IncomeMetaGas | null> {

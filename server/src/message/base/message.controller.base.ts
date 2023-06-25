@@ -16,11 +16,7 @@ import * as errors from "../../errors";
 import { Request } from "express";
 import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
-import * as nestAccessControl from "nest-access-control";
-import * as defaultAuthGuard from "../../auth/defaultAuth.guard";
 import { MessageService } from "../message.service";
-import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
-import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { MessageCreateInput } from "./MessageCreateInput";
 import { MessageWhereInput } from "./MessageWhereInput";
 import { MessageWhereUniqueInput } from "./MessageWhereUniqueInput";
@@ -28,24 +24,10 @@ import { MessageFindManyArgs } from "./MessageFindManyArgs";
 import { MessageUpdateInput } from "./MessageUpdateInput";
 import { Message } from "./Message";
 
-@swagger.ApiBearerAuth()
-@common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
 export class MessageControllerBase {
-  constructor(
-    protected readonly service: MessageService,
-    protected readonly rolesBuilder: nestAccessControl.RolesBuilder
-  ) {}
-  @common.UseInterceptors(AclValidateRequestInterceptor)
+  constructor(protected readonly service: MessageService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Message })
-  @nestAccessControl.UseRoles({
-    resource: "Message",
-    action: "create",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async create(@common.Body() data: MessageCreateInput): Promise<Message> {
     return await this.service.create({
       data: {
@@ -73,32 +55,25 @@ export class MessageControllerBase {
           },
         },
 
+        messageSource: true,
+        isRead: true,
+        messageContent: true,
+
         event: {
           select: {
             id: true,
           },
         },
 
-        isRead: true,
-        messageContent: true,
         messageType: true,
-        messageSource: true,
+        messageAction: true,
       },
     });
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get()
   @swagger.ApiOkResponse({ type: [Message] })
   @ApiNestedQuery(MessageFindManyArgs)
-  @nestAccessControl.UseRoles({
-    resource: "Message",
-    action: "read",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async findMany(@common.Req() request: Request): Promise<Message[]> {
     const args = plainToClass(MessageFindManyArgs, request.query);
     return this.service.findMany({
@@ -113,32 +88,25 @@ export class MessageControllerBase {
           },
         },
 
+        messageSource: true,
+        isRead: true,
+        messageContent: true,
+
         event: {
           select: {
             id: true,
           },
         },
 
-        isRead: true,
-        messageContent: true,
         messageType: true,
-        messageSource: true,
+        messageAction: true,
       },
     });
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Message })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "Message",
-    action: "read",
-    possession: "own",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async findOne(
     @common.Param() params: MessageWhereUniqueInput
   ): Promise<Message | null> {
@@ -154,16 +122,18 @@ export class MessageControllerBase {
           },
         },
 
+        messageSource: true,
+        isRead: true,
+        messageContent: true,
+
         event: {
           select: {
             id: true,
           },
         },
 
-        isRead: true,
-        messageContent: true,
         messageType: true,
-        messageSource: true,
+        messageAction: true,
       },
     });
     if (result === null) {
@@ -174,18 +144,9 @@ export class MessageControllerBase {
     return result;
   }
 
-  @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Message })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "Message",
-    action: "update",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async update(
     @common.Param() params: MessageWhereUniqueInput,
     @common.Body() data: MessageUpdateInput
@@ -218,16 +179,18 @@ export class MessageControllerBase {
             },
           },
 
+          messageSource: true,
+          isRead: true,
+          messageContent: true,
+
           event: {
             select: {
               id: true,
             },
           },
 
-          isRead: true,
-          messageContent: true,
           messageType: true,
-          messageSource: true,
+          messageAction: true,
         },
       });
     } catch (error) {
@@ -243,14 +206,6 @@ export class MessageControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Message })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "Message",
-    action: "delete",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async delete(
     @common.Param() params: MessageWhereUniqueInput
   ): Promise<Message | null> {
@@ -267,16 +222,18 @@ export class MessageControllerBase {
             },
           },
 
+          messageSource: true,
+          isRead: true,
+          messageContent: true,
+
           event: {
             select: {
               id: true,
             },
           },
 
-          isRead: true,
-          messageContent: true,
           messageType: true,
-          messageSource: true,
+          messageAction: true,
         },
       });
     } catch (error) {
