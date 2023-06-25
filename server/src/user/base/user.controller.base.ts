@@ -640,6 +640,7 @@ export class UserControllerBase {
         messageContent: true,
         messageType: true,
         messageSource: true,
+        action: true,
       },
     });
     if (results === null) {

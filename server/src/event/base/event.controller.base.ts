@@ -234,6 +234,7 @@ export class EventControllerBase {
         messageContent: true,
         messageType: true,
         messageSource: true,
+        action: true,
       },
     });
     if (results === null) {

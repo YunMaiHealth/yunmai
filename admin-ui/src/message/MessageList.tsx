@@ -36,6 +36,7 @@ export const MessageList = (props: ListProps): React.ReactElement => {
         <TextField label="messageContent" source="messageContent" />
         <TextField label="messageType" source="messageType" />
         <TextField label="messageSource" source="messageSource" />
+        <TextField label="action" source="action" />
       </Datagrid>
     </List>
   );
