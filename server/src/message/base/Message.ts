@@ -101,6 +101,14 @@ class Message {
   @IsString()
   @Field(() => String)
   messageSource!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  action!: string;
 }
 
 export { Message as Message };

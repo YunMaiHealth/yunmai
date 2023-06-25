@@ -106,6 +106,17 @@ class MessageWhereInput {
     nullable: true,
   })
   messageSource?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  action?: StringFilter;
 }
 
 export { MessageWhereInput as MessageWhereInput };

@@ -106,6 +106,7 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
             <TextField label="messageContent" source="messageContent" />
             <TextField label="messageType" source="messageType" />
             <TextField label="messageSource" source="messageSource" />
+            <TextField label="action" source="action" />
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField

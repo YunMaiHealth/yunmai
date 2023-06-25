@@ -92,6 +92,7 @@ model Message {
   messageContent Json
   messageType    EnumMessageMessageType
   messageSource  String
+  action         String
 }
 
 model Event {
