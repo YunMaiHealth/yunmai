@@ -10,18 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-
-import {
-  Prisma,
-  User,
-  Habitus,
-  Status,
-  IncomeMetaGas,
-  Message,
-  ExpenseMetaGas,
-  Inquiry,
-} from "@prisma/client";
-
+import { Prisma, User } from "@prisma/client";
 import { PasswordService } from "../../auth/password.service";
 import { transformStringFieldUpdateInput } from "../../prisma.util";
 
@@ -81,71 +70,5 @@ export class UserServiceBase {
     args: Prisma.SelectSubset<T, Prisma.UserDeleteArgs>
   ): Promise<User> {
     return this.prisma.user.delete(args);
-  }
-
-  async findHabituses(
-    parentId: string,
-    args: Prisma.HabitusFindManyArgs
-  ): Promise<Habitus[]> {
-    return this.prisma.user
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .habituses(args);
-  }
-
-  async findStatuses(
-    parentId: string,
-    args: Prisma.StatusFindManyArgs
-  ): Promise<Status[]> {
-    return this.prisma.user
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .statuses(args);
-  }
-
-  async findIncomeMetaGases(
-    parentId: string,
-    args: Prisma.IncomeMetaGasFindManyArgs
-  ): Promise<IncomeMetaGas[]> {
-    return this.prisma.user
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .incomeMetaGases(args);
-  }
-
-  async findMessages(
-    parentId: string,
-    args: Prisma.MessageFindManyArgs
-  ): Promise<Message[]> {
-    return this.prisma.user
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .messages(args);
-  }
-
-  async findExpenseMetaGases(
-    parentId: string,
-    args: Prisma.ExpenseMetaGasFindManyArgs
-  ): Promise<ExpenseMetaGas[]> {
-    return this.prisma.user
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .expenseMetaGases(args);
-  }
-
-  async findInquirys(
-    parentId: string,
-    args: Prisma.InquiryFindManyArgs
-  ): Promise<Inquiry[]> {
-    return this.prisma.user
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .inquirys(args);
   }
 }
