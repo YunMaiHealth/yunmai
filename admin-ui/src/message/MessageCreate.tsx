@@ -42,6 +42,7 @@ export const MessageCreate = (props: CreateProps): React.ReactElement => {
           optionValue="value"
         />
         <TextInput label="messageSource" source="messageSource" />
+        <TextInput label="action" source="action" />
       </SimpleForm>
     </Create>
   );

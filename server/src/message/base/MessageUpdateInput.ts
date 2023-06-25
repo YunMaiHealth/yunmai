@@ -112,6 +112,17 @@ class MessageUpdateInput {
     nullable: true,
   })
   messageSource?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  action?: string;
 }
 
 export { MessageUpdateInput as MessageUpdateInput };
