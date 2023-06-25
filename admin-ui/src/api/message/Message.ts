@@ -17,4 +17,5 @@ export type Message = {
     | "REFER_NEWUSER"
     | "HEALTH_INQUIRY";
   messageSource: string;
+  messageAction?: "METAGAS_CHANGE" | "FRIEND_HEALTH" | "HEALTH_REMIND";
 };

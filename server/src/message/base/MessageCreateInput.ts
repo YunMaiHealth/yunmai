@@ -26,6 +26,7 @@ import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
 import { EnumMessageMessageType } from "./EnumMessageMessageType";
+import { EnumMessageMessageAction } from "./EnumMessageMessageAction";
 
 @InputType()
 class MessageCreateInput {
@@ -97,6 +98,14 @@ class MessageCreateInput {
   @IsString()
   @Field(() => String)
   messageSource!: string;
+
+  @ApiProperty({
+    required: true,
+    enum: EnumMessageMessageAction,
+  })
+  @IsEnum(EnumMessageMessageAction)
+  @Field(() => EnumMessageMessageAction)
+  messageAction!: "METAGAS_CHANGE" | "FRIEND_HEALTH" | "HEALTH_REMIND";
 }
 
 export { MessageCreateInput as MessageCreateInput };
