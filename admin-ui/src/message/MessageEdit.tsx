@@ -42,6 +42,7 @@ export const MessageEdit = (props: EditProps): React.ReactElement => {
           optionValue="value"
         />
         <TextInput label="messageSource" source="messageSource" />
+        <TextInput label="action" source="action" />
       </SimpleForm>
     </Edit>
   );

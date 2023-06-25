@@ -97,6 +97,14 @@ class MessageCreateInput {
   @IsString()
   @Field(() => String)
   messageSource!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  action!: string;
 }
 
 export { MessageCreateInput as MessageCreateInput };

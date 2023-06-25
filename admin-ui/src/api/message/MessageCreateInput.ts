@@ -16,4 +16,5 @@ export type MessageCreateInput = {
     | "REFER_NEWUSER"
     | "HEALTH_INQUIRY";
   messageSource: string;
+  action: string;
 };

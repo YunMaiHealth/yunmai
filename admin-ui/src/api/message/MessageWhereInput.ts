@@ -18,4 +18,5 @@ export type MessageWhereInput = {
     | "REFER_NEWUSER"
     | "HEALTH_INQUIRY";
   messageSource?: StringFilter;
+  action?: StringFilter;
 };
