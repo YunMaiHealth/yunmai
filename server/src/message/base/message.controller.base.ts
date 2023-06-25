@@ -83,6 +83,7 @@ export class MessageControllerBase {
         messageContent: true,
         messageType: true,
         messageSource: true,
+        action: true,
       },
     });
   }
@@ -123,6 +124,7 @@ export class MessageControllerBase {
         messageContent: true,
         messageType: true,
         messageSource: true,
+        action: true,
       },
     });
   }
@@ -164,6 +166,7 @@ export class MessageControllerBase {
         messageContent: true,
         messageType: true,
         messageSource: true,
+        action: true,
       },
     });
     if (result === null) {
@@ -228,6 +231,7 @@ export class MessageControllerBase {
           messageContent: true,
           messageType: true,
           messageSource: true,
+          action: true,
         },
       });
     } catch (error) {
@@ -277,6 +281,7 @@ export class MessageControllerBase {
           messageContent: true,
           messageType: true,
           messageSource: true,
+          action: true,
         },
       });
     } catch (error) {
