@@ -11,186 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsString,
-  IsOptional,
-  IsEnum,
-  IsDate,
-  IsJSON,
-  ValidateNested,
-} from "class-validator";
-import { EnumUserGender } from "./EnumUserGender";
+import { IsString, IsDate, IsOptional, IsJSON } from "class-validator";
 import { Type } from "class-transformer";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
-import { Habitus } from "../../habitus/base/Habitus";
-import { Status } from "../../status/base/Status";
-import { IncomeMetaGas } from "../../incomeMetaGas/base/IncomeMetaGas";
-import { Message } from "../../message/base/Message";
-import { ExpenseMetaGas } from "../../expenseMetaGas/base/ExpenseMetaGas";
-import { Inquiry } from "../../inquiry/base/Inquiry";
 
 @ObjectType()
 class User {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  oauthType!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  nickName!: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  sessionKey!: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  inviterId!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  phone!: string | null;
-
-  @ApiProperty({
-    required: false,
-    enum: EnumUserGender,
-  })
-  @IsEnum(EnumUserGender)
-  @IsOptional()
-  @Field(() => EnumUserGender, {
-    nullable: true,
-  })
-  gender?: "UNKNOWN" | "MALE" | "FEMALE" | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  openId!: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  avatarUrl!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  unionId!: string | null;
-
-  @ApiProperty({
-    required: false,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @IsOptional()
-  @Field(() => Date, {
-    nullable: true,
-  })
-  birthday!: Date | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  identitycard!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  country!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  language!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  province!: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  city!: string | null;
-
   @ApiProperty({
     required: true,
     type: String,
@@ -200,6 +27,22 @@ class User {
   id!: string;
 
   @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  createdAt!: Date;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  updatedAt!: Date;
+
+  @ApiProperty({
     required: false,
     type: String,
   })
@@ -208,7 +51,18 @@ class User {
   @Field(() => String, {
     nullable: true,
   })
-  realName!: string | null;
+  firstName!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  lastName!: string | null;
 
   @ApiProperty({
     required: true,
@@ -224,76 +78,6 @@ class User {
   @IsJSON()
   @Field(() => GraphQLJSON)
   roles!: JsonValue;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  creatTime!: Date;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  lastLoginTime!: Date;
-
-  @ApiProperty({
-    required: false,
-    type: () => [Habitus],
-  })
-  @ValidateNested()
-  @Type(() => Habitus)
-  @IsOptional()
-  habituses?: Array<Habitus>;
-
-  @ApiProperty({
-    required: false,
-    type: () => [Status],
-  })
-  @ValidateNested()
-  @Type(() => Status)
-  @IsOptional()
-  statuses?: Array<Status>;
-
-  @ApiProperty({
-    required: false,
-    type: () => [IncomeMetaGas],
-  })
-  @ValidateNested()
-  @Type(() => IncomeMetaGas)
-  @IsOptional()
-  incomeMetaGases?: Array<IncomeMetaGas>;
-
-  @ApiProperty({
-    required: false,
-    type: () => [Message],
-  })
-  @ValidateNested()
-  @Type(() => Message)
-  @IsOptional()
-  messages?: Array<Message>;
-
-  @ApiProperty({
-    required: false,
-    type: () => [ExpenseMetaGas],
-  })
-  @ValidateNested()
-  @Type(() => ExpenseMetaGas)
-  @IsOptional()
-  expenseMetaGases?: Array<ExpenseMetaGas>;
-
-  @ApiProperty({
-    required: false,
-    type: () => [Inquiry],
-  })
-  @ValidateNested()
-  @Type(() => Inquiry)
-  @IsOptional()
-  inquirys?: Array<Inquiry>;
 }
 
 export { User as User };
