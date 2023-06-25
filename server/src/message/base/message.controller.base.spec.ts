@@ -23,12 +23,14 @@ const CREATE_INPUT = {
   sendTime: new Date(),
   isRead: "true",
   messageSource: "exampleMessageSource",
+  action: "exampleAction",
 };
 const CREATE_RESULT = {
   id: "exampleId",
   sendTime: new Date(),
   isRead: "true",
   messageSource: "exampleMessageSource",
+  action: "exampleAction",
 };
 const FIND_MANY_RESULT = [
   {
@@ -36,6 +38,7 @@ const FIND_MANY_RESULT = [
     sendTime: new Date(),
     isRead: "true",
     messageSource: "exampleMessageSource",
+    action: "exampleAction",
   },
 ];
 const FIND_ONE_RESULT = {
@@ -43,6 +46,7 @@ const FIND_ONE_RESULT = {
   sendTime: new Date(),
   isRead: "true",
   messageSource: "exampleMessageSource",
+  action: "exampleAction",
 };
 
 const service = {

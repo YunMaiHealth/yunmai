@@ -9,4 +9,5 @@ export type MessageOrderByInput = {
   messageContent?: SortOrder;
   messageType?: SortOrder;
   messageSource?: SortOrder;
+  action?: SortOrder;
 };
