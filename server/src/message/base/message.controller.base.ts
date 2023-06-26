@@ -73,16 +73,18 @@ export class MessageControllerBase {
           },
         },
 
+        messageSource: true,
+        isRead: true,
+        messageContent: true,
+
         event: {
           select: {
             id: true,
           },
         },
 
-        isRead: true,
-        messageContent: true,
         messageType: true,
-        messageSource: true,
+        messageAction: true,
       },
     });
   }
@@ -113,16 +115,18 @@ export class MessageControllerBase {
           },
         },
 
+        messageSource: true,
+        isRead: true,
+        messageContent: true,
+
         event: {
           select: {
             id: true,
           },
         },
 
-        isRead: true,
-        messageContent: true,
         messageType: true,
-        messageSource: true,
+        messageAction: true,
       },
     });
   }
@@ -154,16 +158,18 @@ export class MessageControllerBase {
           },
         },
 
+        messageSource: true,
+        isRead: true,
+        messageContent: true,
+
         event: {
           select: {
             id: true,
           },
         },
 
-        isRead: true,
-        messageContent: true,
         messageType: true,
-        messageSource: true,
+        messageAction: true,
       },
     });
     if (result === null) {
@@ -218,16 +224,18 @@ export class MessageControllerBase {
             },
           },
 
+          messageSource: true,
+          isRead: true,
+          messageContent: true,
+
           event: {
             select: {
               id: true,
             },
           },
 
-          isRead: true,
-          messageContent: true,
           messageType: true,
-          messageSource: true,
+          messageAction: true,
         },
       });
     } catch (error) {
@@ -267,16 +275,18 @@ export class MessageControllerBase {
             },
           },
 
+          messageSource: true,
+          isRead: true,
+          messageContent: true,
+
           event: {
             select: {
               id: true,
             },
           },
 
-          isRead: true,
-          messageContent: true,
           messageType: true,
-          messageSource: true,
+          messageAction: true,
         },
       });
     } catch (error) {
