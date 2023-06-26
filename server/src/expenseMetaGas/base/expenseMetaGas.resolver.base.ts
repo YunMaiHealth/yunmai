@@ -13,12 +13,6 @@ import * as graphql from "@nestjs/graphql";
 import * as apollo from "apollo-server-express";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import * as nestAccessControl from "nest-access-control";
-import * as gqlACGuard from "../../auth/gqlAC.guard";
-import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
-import * as common from "@nestjs/common";
-import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
-import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { CreateExpenseMetaGasArgs } from "./CreateExpenseMetaGasArgs";
 import { UpdateExpenseMetaGasArgs } from "./UpdateExpenseMetaGasArgs";
 import { DeleteExpenseMetaGasArgs } from "./DeleteExpenseMetaGasArgs";
@@ -27,20 +21,10 @@ import { ExpenseMetaGasFindUniqueArgs } from "./ExpenseMetaGasFindUniqueArgs";
 import { ExpenseMetaGas } from "./ExpenseMetaGas";
 import { User } from "../../user/base/User";
 import { ExpenseMetaGasService } from "../expenseMetaGas.service";
-@common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => ExpenseMetaGas)
 export class ExpenseMetaGasResolverBase {
-  constructor(
-    protected readonly service: ExpenseMetaGasService,
-    protected readonly rolesBuilder: nestAccessControl.RolesBuilder
-  ) {}
+  constructor(protected readonly service: ExpenseMetaGasService) {}
 
-  @graphql.Query(() => MetaQueryPayload)
-  @nestAccessControl.UseRoles({
-    resource: "ExpenseMetaGas",
-    action: "read",
-    possession: "any",
-  })
   async _expenseMetaGasesMeta(
     @graphql.Args() args: ExpenseMetaGasFindManyArgs
   ): Promise<MetaQueryPayload> {
@@ -54,26 +38,14 @@ export class ExpenseMetaGasResolverBase {
     };
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.Query(() => [ExpenseMetaGas])
-  @nestAccessControl.UseRoles({
-    resource: "ExpenseMetaGas",
-    action: "read",
-    possession: "any",
-  })
   async expenseMetaGases(
     @graphql.Args() args: ExpenseMetaGasFindManyArgs
   ): Promise<ExpenseMetaGas[]> {
     return this.service.findMany(args);
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.Query(() => ExpenseMetaGas, { nullable: true })
-  @nestAccessControl.UseRoles({
-    resource: "ExpenseMetaGas",
-    action: "read",
-    possession: "own",
-  })
   async expenseMetaGas(
     @graphql.Args() args: ExpenseMetaGasFindUniqueArgs
   ): Promise<ExpenseMetaGas | null> {
@@ -84,13 +56,7 @@ export class ExpenseMetaGasResolverBase {
     return result;
   }
 
-  @common.UseInterceptors(AclValidateRequestInterceptor)
   @graphql.Mutation(() => ExpenseMetaGas)
-  @nestAccessControl.UseRoles({
-    resource: "ExpenseMetaGas",
-    action: "create",
-    possession: "any",
-  })
   async createExpenseMetaGas(
     @graphql.Args() args: CreateExpenseMetaGasArgs
   ): Promise<ExpenseMetaGas> {
@@ -108,13 +74,7 @@ export class ExpenseMetaGasResolverBase {
     });
   }
 
-  @common.UseInterceptors(AclValidateRequestInterceptor)
   @graphql.Mutation(() => ExpenseMetaGas)
-  @nestAccessControl.UseRoles({
-    resource: "ExpenseMetaGas",
-    action: "update",
-    possession: "any",
-  })
   async updateExpenseMetaGas(
     @graphql.Args() args: UpdateExpenseMetaGasArgs
   ): Promise<ExpenseMetaGas | null> {
@@ -142,11 +102,6 @@ export class ExpenseMetaGasResolverBase {
   }
 
   @graphql.Mutation(() => ExpenseMetaGas)
-  @nestAccessControl.UseRoles({
-    resource: "ExpenseMetaGas",
-    action: "delete",
-    possession: "any",
-  })
   async deleteExpenseMetaGas(
     @graphql.Args() args: DeleteExpenseMetaGasArgs
   ): Promise<ExpenseMetaGas | null> {
@@ -162,13 +117,7 @@ export class ExpenseMetaGasResolverBase {
     }
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.ResolveField(() => User, { nullable: true })
-  @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "read",
-    possession: "any",
-  })
   async user(@graphql.Parent() parent: ExpenseMetaGas): Promise<User | null> {
     const result = await this.service.getUser(parent.id);
 

@@ -7,8 +7,8 @@ import {
   DateTimeInput,
   ReferenceInput,
   SelectInput,
-  BooleanInput,
   TextInput,
+  BooleanInput,
 } from "react-admin";
 
 import { UserTitle } from "../user/UserTitle";
@@ -22,11 +22,12 @@ export const MessageCreate = (props: CreateProps): React.ReactElement => {
         <ReferenceInput source="user.id" reference="User" label="user">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>
+        <TextInput label="messageSource" source="messageSource" />
+        <BooleanInput label="isRead" source="isRead" />
+        <div />
         <ReferenceInput source="event.id" reference="Event" label="event">
           <SelectInput optionText={EventTitle} />
         </ReferenceInput>
-        <BooleanInput label="isRead" source="isRead" />
-        <div />
         <SelectInput
           source="messageType"
           label="messageType"
@@ -41,7 +42,7 @@ export const MessageCreate = (props: CreateProps): React.ReactElement => {
           optionText="label"
           optionValue="value"
         />
-        <TextInput label="messageSource" source="messageSource" />
+        <TextInput label="messageAction" source="messageAction" />
       </SimpleForm>
     </Create>
   );
