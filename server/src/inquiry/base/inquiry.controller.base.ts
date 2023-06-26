@@ -16,11 +16,7 @@ import * as errors from "../../errors";
 import { Request } from "express";
 import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
-import * as nestAccessControl from "nest-access-control";
-import * as defaultAuthGuard from "../../auth/defaultAuth.guard";
 import { InquiryService } from "../inquiry.service";
-import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
-import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { InquiryCreateInput } from "./InquiryCreateInput";
 import { InquiryWhereInput } from "./InquiryWhereInput";
 import { InquiryWhereUniqueInput } from "./InquiryWhereUniqueInput";
@@ -28,24 +24,10 @@ import { InquiryFindManyArgs } from "./InquiryFindManyArgs";
 import { InquiryUpdateInput } from "./InquiryUpdateInput";
 import { Inquiry } from "./Inquiry";
 
-@swagger.ApiBearerAuth()
-@common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
 export class InquiryControllerBase {
-  constructor(
-    protected readonly service: InquiryService,
-    protected readonly rolesBuilder: nestAccessControl.RolesBuilder
-  ) {}
-  @common.UseInterceptors(AclValidateRequestInterceptor)
+  constructor(protected readonly service: InquiryService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Inquiry })
-  @nestAccessControl.UseRoles({
-    resource: "Inquiry",
-    action: "create",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async create(@common.Body() data: InquiryCreateInput): Promise<Inquiry> {
     return await this.service.create({
       data: {
@@ -74,18 +56,9 @@ export class InquiryControllerBase {
     });
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get()
   @swagger.ApiOkResponse({ type: [Inquiry] })
   @ApiNestedQuery(InquiryFindManyArgs)
-  @nestAccessControl.UseRoles({
-    resource: "Inquiry",
-    action: "read",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async findMany(@common.Req() request: Request): Promise<Inquiry[]> {
     const args = plainToClass(InquiryFindManyArgs, request.query);
     return this.service.findMany({
@@ -107,18 +80,9 @@ export class InquiryControllerBase {
     });
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Inquiry })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "Inquiry",
-    action: "read",
-    possession: "own",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async findOne(
     @common.Param() params: InquiryWhereUniqueInput
   ): Promise<Inquiry | null> {
@@ -147,18 +111,9 @@ export class InquiryControllerBase {
     return result;
   }
 
-  @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Inquiry })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "Inquiry",
-    action: "update",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async update(
     @common.Param() params: InquiryWhereUniqueInput,
     @common.Body() data: InquiryUpdateInput
@@ -203,14 +158,6 @@ export class InquiryControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Inquiry })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "Inquiry",
-    action: "delete",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async delete(
     @common.Param() params: InquiryWhereUniqueInput
   ): Promise<Inquiry | null> {
