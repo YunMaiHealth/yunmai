@@ -16,11 +16,7 @@ import * as errors from "../../errors";
 import { Request } from "express";
 import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
-import * as nestAccessControl from "nest-access-control";
-import * as defaultAuthGuard from "../../auth/defaultAuth.guard";
 import { HabitusService } from "../habitus.service";
-import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
-import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { HabitusCreateInput } from "./HabitusCreateInput";
 import { HabitusWhereInput } from "./HabitusWhereInput";
 import { HabitusWhereUniqueInput } from "./HabitusWhereUniqueInput";
@@ -28,24 +24,10 @@ import { HabitusFindManyArgs } from "./HabitusFindManyArgs";
 import { HabitusUpdateInput } from "./HabitusUpdateInput";
 import { Habitus } from "./Habitus";
 
-@swagger.ApiBearerAuth()
-@common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
 export class HabitusControllerBase {
-  constructor(
-    protected readonly service: HabitusService,
-    protected readonly rolesBuilder: nestAccessControl.RolesBuilder
-  ) {}
-  @common.UseInterceptors(AclValidateRequestInterceptor)
+  constructor(protected readonly service: HabitusService) {}
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Habitus })
-  @nestAccessControl.UseRoles({
-    resource: "Habitus",
-    action: "create",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async create(@common.Body() data: HabitusCreateInput): Promise<Habitus> {
     return await this.service.create({
       data: {
@@ -75,18 +57,9 @@ export class HabitusControllerBase {
     });
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get()
   @swagger.ApiOkResponse({ type: [Habitus] })
   @ApiNestedQuery(HabitusFindManyArgs)
-  @nestAccessControl.UseRoles({
-    resource: "Habitus",
-    action: "read",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async findMany(@common.Req() request: Request): Promise<Habitus[]> {
     const args = plainToClass(HabitusFindManyArgs, request.query);
     return this.service.findMany({
@@ -109,18 +82,9 @@ export class HabitusControllerBase {
     });
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Habitus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "Habitus",
-    action: "read",
-    possession: "own",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async findOne(
     @common.Param() params: HabitusWhereUniqueInput
   ): Promise<Habitus | null> {
@@ -150,18 +114,9 @@ export class HabitusControllerBase {
     return result;
   }
 
-  @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Habitus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "Habitus",
-    action: "update",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async update(
     @common.Param() params: HabitusWhereUniqueInput,
     @common.Body() data: HabitusUpdateInput
@@ -207,14 +162,6 @@ export class HabitusControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: Habitus })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
-  @nestAccessControl.UseRoles({
-    resource: "Habitus",
-    action: "delete",
-    possession: "any",
-  })
-  @swagger.ApiForbiddenResponse({
-    type: errors.ForbiddenException,
-  })
   async delete(
     @common.Param() params: HabitusWhereUniqueInput
   ): Promise<Habitus | null> {
