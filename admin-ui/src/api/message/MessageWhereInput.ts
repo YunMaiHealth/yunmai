@@ -1,15 +1,16 @@
 import { StringFilter } from "../../util/StringFilter";
 import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
-import { EventWhereUniqueInput } from "../event/EventWhereUniqueInput";
 import { BooleanFilter } from "../../util/BooleanFilter";
 import { JsonFilter } from "../../util/JsonFilter";
+import { EventWhereUniqueInput } from "../event/EventWhereUniqueInput";
 
 export type MessageWhereInput = {
   id?: StringFilter;
   user?: UserWhereUniqueInput;
-  event?: EventWhereUniqueInput;
+  messageSource?: StringFilter;
   isRead?: BooleanFilter;
   messageContent?: JsonFilter;
+  event?: EventWhereUniqueInput;
   messageType?:
     | "FOLLOW_FRIEND"
     | "HEALTH_CHECK"
@@ -17,5 +18,5 @@ export type MessageWhereInput = {
     | "REGISTER_NEWUSER"
     | "REFER_NEWUSER"
     | "HEALTH_INQUIRY";
-  messageSource?: StringFilter;
+  messageAction?: StringFilter;
 };

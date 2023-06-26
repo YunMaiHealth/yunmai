@@ -21,28 +21,32 @@ const existingId = "existingId";
 const CREATE_INPUT = {
   id: "exampleId",
   sendTime: new Date(),
-  isRead: "true",
   messageSource: "exampleMessageSource",
+  isRead: "true",
+  messageAction: "exampleMessageAction",
 };
 const CREATE_RESULT = {
   id: "exampleId",
   sendTime: new Date(),
-  isRead: "true",
   messageSource: "exampleMessageSource",
+  isRead: "true",
+  messageAction: "exampleMessageAction",
 };
 const FIND_MANY_RESULT = [
   {
     id: "exampleId",
     sendTime: new Date(),
-    isRead: "true",
     messageSource: "exampleMessageSource",
+    isRead: "true",
+    messageAction: "exampleMessageAction",
   },
 ];
 const FIND_ONE_RESULT = {
   id: "exampleId",
   sendTime: new Date(),
-  isRead: "true",
   messageSource: "exampleMessageSource",
+  isRead: "true",
+  messageAction: "exampleMessageAction",
 };
 
 const service = {

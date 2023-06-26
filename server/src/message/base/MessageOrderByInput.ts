@@ -52,7 +52,7 @@ class MessageOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  eventId?: SortOrder;
+  messageSource?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -79,6 +79,15 @@ class MessageOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  eventId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   messageType?: SortOrder;
 
   @ApiProperty({
@@ -88,7 +97,7 @@ class MessageOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  messageSource?: SortOrder;
+  messageAction?: SortOrder;
 }
 
 export { MessageOrderByInput as MessageOrderByInput };

@@ -224,16 +224,18 @@ export class EventControllerBase {
           },
         },
 
+        messageSource: true,
+        isRead: true,
+        messageContent: true,
+
         event: {
           select: {
             id: true,
           },
         },
 
-        isRead: true,
-        messageContent: true,
         messageType: true,
-        messageSource: true,
+        messageAction: true,
       },
     });
     if (results === null) {
