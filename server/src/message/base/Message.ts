@@ -22,9 +22,9 @@ import {
 } from "class-validator";
 import { Type } from "class-transformer";
 import { User } from "../../user/base/User";
-import { Event } from "../../event/base/Event";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
+import { Event } from "../../event/base/Event";
 import { EnumMessageMessageType } from "./EnumMessageMessageType";
 
 @ObjectType()
@@ -55,13 +55,12 @@ class Message {
   user?: User | null;
 
   @ApiProperty({
-    required: false,
-    type: () => Event,
+    required: true,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => Event)
-  @IsOptional()
-  event?: Event | null;
+  @IsString()
+  @Field(() => String)
+  messageSource!: string;
 
   @ApiProperty({
     required: true,
@@ -77,6 +76,15 @@ class Message {
   @IsJSON()
   @Field(() => GraphQLJSON)
   messageContent!: JsonValue;
+
+  @ApiProperty({
+    required: false,
+    type: () => Event,
+  })
+  @ValidateNested()
+  @Type(() => Event)
+  @IsOptional()
+  event?: Event | null;
 
   @ApiProperty({
     required: true,
@@ -100,7 +108,7 @@ class Message {
   })
   @IsString()
   @Field(() => String)
-  messageSource!: string;
+  messageAction!: string;
 }
 
 export { Message as Message };

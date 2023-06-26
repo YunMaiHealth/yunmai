@@ -13,12 +13,6 @@ import * as graphql from "@nestjs/graphql";
 import * as apollo from "apollo-server-express";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import * as nestAccessControl from "nest-access-control";
-import * as gqlACGuard from "../../auth/gqlAC.guard";
-import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
-import * as common from "@nestjs/common";
-import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
-import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { CreateInquiryArgs } from "./CreateInquiryArgs";
 import { UpdateInquiryArgs } from "./UpdateInquiryArgs";
 import { DeleteInquiryArgs } from "./DeleteInquiryArgs";
@@ -27,20 +21,10 @@ import { InquiryFindUniqueArgs } from "./InquiryFindUniqueArgs";
 import { Inquiry } from "./Inquiry";
 import { User } from "../../user/base/User";
 import { InquiryService } from "../inquiry.service";
-@common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => Inquiry)
 export class InquiryResolverBase {
-  constructor(
-    protected readonly service: InquiryService,
-    protected readonly rolesBuilder: nestAccessControl.RolesBuilder
-  ) {}
+  constructor(protected readonly service: InquiryService) {}
 
-  @graphql.Query(() => MetaQueryPayload)
-  @nestAccessControl.UseRoles({
-    resource: "Inquiry",
-    action: "read",
-    possession: "any",
-  })
   async _inquiriesMeta(
     @graphql.Args() args: InquiryFindManyArgs
   ): Promise<MetaQueryPayload> {
@@ -54,26 +38,14 @@ export class InquiryResolverBase {
     };
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.Query(() => [Inquiry])
-  @nestAccessControl.UseRoles({
-    resource: "Inquiry",
-    action: "read",
-    possession: "any",
-  })
   async inquiries(
     @graphql.Args() args: InquiryFindManyArgs
   ): Promise<Inquiry[]> {
     return this.service.findMany(args);
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.Query(() => Inquiry, { nullable: true })
-  @nestAccessControl.UseRoles({
-    resource: "Inquiry",
-    action: "read",
-    possession: "own",
-  })
   async inquiry(
     @graphql.Args() args: InquiryFindUniqueArgs
   ): Promise<Inquiry | null> {
@@ -84,13 +56,7 @@ export class InquiryResolverBase {
     return result;
   }
 
-  @common.UseInterceptors(AclValidateRequestInterceptor)
   @graphql.Mutation(() => Inquiry)
-  @nestAccessControl.UseRoles({
-    resource: "Inquiry",
-    action: "create",
-    possession: "any",
-  })
   async createInquiry(
     @graphql.Args() args: CreateInquiryArgs
   ): Promise<Inquiry> {
@@ -108,13 +74,7 @@ export class InquiryResolverBase {
     });
   }
 
-  @common.UseInterceptors(AclValidateRequestInterceptor)
   @graphql.Mutation(() => Inquiry)
-  @nestAccessControl.UseRoles({
-    resource: "Inquiry",
-    action: "update",
-    possession: "any",
-  })
   async updateInquiry(
     @graphql.Args() args: UpdateInquiryArgs
   ): Promise<Inquiry | null> {
@@ -142,11 +102,6 @@ export class InquiryResolverBase {
   }
 
   @graphql.Mutation(() => Inquiry)
-  @nestAccessControl.UseRoles({
-    resource: "Inquiry",
-    action: "delete",
-    possession: "any",
-  })
   async deleteInquiry(
     @graphql.Args() args: DeleteInquiryArgs
   ): Promise<Inquiry | null> {
@@ -162,13 +117,7 @@ export class InquiryResolverBase {
     }
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.ResolveField(() => User, { nullable: true })
-  @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "read",
-    possession: "any",
-  })
   async user(@graphql.Parent() parent: Inquiry): Promise<User | null> {
     const result = await this.service.getUser(parent.id);
 

@@ -15,16 +15,16 @@ import {
   IsDate,
   IsOptional,
   ValidateNested,
+  IsString,
   IsBoolean,
   IsJSON,
   IsEnum,
-  IsString,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
-import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
+import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 import { EnumMessageMessageType } from "./EnumMessageMessageType";
 
 @InputType()
@@ -54,15 +54,14 @@ class MessageUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => EventWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => EventWhereUniqueInput)
+  @IsString()
   @IsOptional()
-  @Field(() => EventWhereUniqueInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  event?: EventWhereUniqueInput | null;
+  messageSource?: string;
 
   @ApiProperty({
     required: false,
@@ -84,6 +83,18 @@ class MessageUpdateInput {
     nullable: true,
   })
   messageContent?: InputJsonValue;
+
+  @ApiProperty({
+    required: false,
+    type: () => EventWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => EventWhereUniqueInput)
+  @IsOptional()
+  @Field(() => EventWhereUniqueInput, {
+    nullable: true,
+  })
+  event?: EventWhereUniqueInput | null;
 
   @ApiProperty({
     required: false,
@@ -111,7 +122,7 @@ class MessageUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  messageSource?: string;
+  messageAction?: string;
 }
 
 export { MessageUpdateInput as MessageUpdateInput };
