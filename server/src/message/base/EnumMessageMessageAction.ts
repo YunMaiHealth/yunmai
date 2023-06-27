@@ -9,11 +9,14 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-import { Module } from "@nestjs/common";
-import { MorganModule } from "nest-morgan";
+import { registerEnumType } from "@nestjs/graphql";
 
-@Module({
-  imports: [MorganModule],
-  exports: [MorganModule],
-})
-export class HabitusModuleBase {}
+export enum EnumMessageMessageAction {
+  MetagasChange = "METAGAS_CHANGE",
+  FriendHealth = "FRIEND_HEALTH",
+  HealthRemind = "HEALTH_REMIND",
+}
+
+registerEnumType(EnumMessageMessageAction, {
+  name: "EnumMessageMessageAction",
+});

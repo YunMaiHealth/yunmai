@@ -2,7 +2,6 @@ import { ValidationPipe } from "@nestjs/common";
 import { HttpAdapterHost, NestFactory } from "@nestjs/core";
 import { OpenAPIObject, SwaggerModule } from "@nestjs/swagger";
 import { HttpExceptionFilter } from "./filters/HttpExceptions.filter";
-import { WsAdapter } from "@nestjs/platform-ws";
 // @ts-ignore
 // eslint-disable-next-line
 import { AppModule } from "./app.module";
@@ -44,7 +43,6 @@ async function main() {
 
   const { httpAdapter } = app.get(HttpAdapterHost);
   app.useGlobalFilters(new HttpExceptionFilter(httpAdapter));
-  app.useWebSocketAdapter(new WsAdapter(app));
 
   void app.listen(PORT);
 

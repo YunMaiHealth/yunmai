@@ -13,12 +13,6 @@ import * as graphql from "@nestjs/graphql";
 import * as apollo from "apollo-server-express";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import * as nestAccessControl from "nest-access-control";
-import * as gqlACGuard from "../../auth/gqlAC.guard";
-import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
-import * as common from "@nestjs/common";
-import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
-import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { CreateHabitusArgs } from "./CreateHabitusArgs";
 import { UpdateHabitusArgs } from "./UpdateHabitusArgs";
 import { DeleteHabitusArgs } from "./DeleteHabitusArgs";
@@ -27,20 +21,10 @@ import { HabitusFindUniqueArgs } from "./HabitusFindUniqueArgs";
 import { Habitus } from "./Habitus";
 import { User } from "../../user/base/User";
 import { HabitusService } from "../habitus.service";
-@common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => Habitus)
 export class HabitusResolverBase {
-  constructor(
-    protected readonly service: HabitusService,
-    protected readonly rolesBuilder: nestAccessControl.RolesBuilder
-  ) {}
+  constructor(protected readonly service: HabitusService) {}
 
-  @graphql.Query(() => MetaQueryPayload)
-  @nestAccessControl.UseRoles({
-    resource: "Habitus",
-    action: "read",
-    possession: "any",
-  })
   async _habitusesMeta(
     @graphql.Args() args: HabitusFindManyArgs
   ): Promise<MetaQueryPayload> {
@@ -54,26 +38,14 @@ export class HabitusResolverBase {
     };
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.Query(() => [Habitus])
-  @nestAccessControl.UseRoles({
-    resource: "Habitus",
-    action: "read",
-    possession: "any",
-  })
   async habituses(
     @graphql.Args() args: HabitusFindManyArgs
   ): Promise<Habitus[]> {
     return this.service.findMany(args);
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.Query(() => Habitus, { nullable: true })
-  @nestAccessControl.UseRoles({
-    resource: "Habitus",
-    action: "read",
-    possession: "own",
-  })
   async habitus(
     @graphql.Args() args: HabitusFindUniqueArgs
   ): Promise<Habitus | null> {
@@ -84,13 +56,7 @@ export class HabitusResolverBase {
     return result;
   }
 
-  @common.UseInterceptors(AclValidateRequestInterceptor)
   @graphql.Mutation(() => Habitus)
-  @nestAccessControl.UseRoles({
-    resource: "Habitus",
-    action: "create",
-    possession: "any",
-  })
   async createHabitus(
     @graphql.Args() args: CreateHabitusArgs
   ): Promise<Habitus> {
@@ -108,13 +74,7 @@ export class HabitusResolverBase {
     });
   }
 
-  @common.UseInterceptors(AclValidateRequestInterceptor)
   @graphql.Mutation(() => Habitus)
-  @nestAccessControl.UseRoles({
-    resource: "Habitus",
-    action: "update",
-    possession: "any",
-  })
   async updateHabitus(
     @graphql.Args() args: UpdateHabitusArgs
   ): Promise<Habitus | null> {
@@ -142,11 +102,6 @@ export class HabitusResolverBase {
   }
 
   @graphql.Mutation(() => Habitus)
-  @nestAccessControl.UseRoles({
-    resource: "Habitus",
-    action: "delete",
-    possession: "any",
-  })
   async deleteHabitus(
     @graphql.Args() args: DeleteHabitusArgs
   ): Promise<Habitus | null> {
@@ -162,13 +117,7 @@ export class HabitusResolverBase {
     }
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.ResolveField(() => User, { nullable: true })
-  @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "read",
-    possession: "any",
-  })
   async user(@graphql.Parent() parent: Habitus): Promise<User | null> {
     const result = await this.service.getUser(parent.id);
 

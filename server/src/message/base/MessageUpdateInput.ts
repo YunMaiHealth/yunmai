@@ -11,24 +11,36 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { EnumMessageMessageAction } from "./EnumMessageMessageAction";
 import {
-  IsDate,
+  IsEnum,
   IsOptional,
+  IsDate,
   ValidateNested,
+  IsString,
   IsBoolean,
   IsJSON,
-  IsEnum,
-  IsString,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
-import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
+import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 import { EnumMessageMessageType } from "./EnumMessageMessageType";
 
 @InputType()
 class MessageUpdateInput {
+  @ApiProperty({
+    required: false,
+    enum: EnumMessageMessageAction,
+  })
+  @IsEnum(EnumMessageMessageAction)
+  @IsOptional()
+  @Field(() => EnumMessageMessageAction, {
+    nullable: true,
+  })
+  messageAction?: "METAGAS_CHANGE" | "FRIEND_HEALTH" | "HEALTH_REMIND";
+
   @ApiProperty({
     required: false,
   })
@@ -54,15 +66,14 @@ class MessageUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => EventWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => EventWhereUniqueInput)
+  @IsString()
   @IsOptional()
-  @Field(() => EventWhereUniqueInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  event?: EventWhereUniqueInput | null;
+  messageSource?: string;
 
   @ApiProperty({
     required: false,
@@ -87,6 +98,18 @@ class MessageUpdateInput {
 
   @ApiProperty({
     required: false,
+    type: () => EventWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => EventWhereUniqueInput)
+  @IsOptional()
+  @Field(() => EventWhereUniqueInput, {
+    nullable: true,
+  })
+  event?: EventWhereUniqueInput | null;
+
+  @ApiProperty({
+    required: false,
     enum: EnumMessageMessageType,
   })
   @IsEnum(EnumMessageMessageType)
@@ -101,17 +124,6 @@ class MessageUpdateInput {
     | "REGISTER_NEWUSER"
     | "REFER_NEWUSER"
     | "HEALTH_INQUIRY";
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  messageSource?: string;
 }
 
 export { MessageUpdateInput as MessageUpdateInput };

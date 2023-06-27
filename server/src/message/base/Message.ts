@@ -11,24 +11,35 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { EnumMessageMessageAction } from "./EnumMessageMessageAction";
 import {
+  IsEnum,
   IsString,
   IsDate,
   ValidateNested,
   IsOptional,
   IsBoolean,
   IsJSON,
-  IsEnum,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { User } from "../../user/base/User";
-import { Event } from "../../event/base/Event";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
+import { Event } from "../../event/base/Event";
 import { EnumMessageMessageType } from "./EnumMessageMessageType";
 
 @ObjectType()
 class Message {
+  @ApiProperty({
+    required: true,
+    enum: EnumMessageMessageAction,
+  })
+  @IsEnum(EnumMessageMessageAction)
+  @Field(() => EnumMessageMessageAction, {
+    nullable: true,
+  })
+  messageAction?: "METAGAS_CHANGE" | "FRIEND_HEALTH" | "HEALTH_REMIND";
+
   @ApiProperty({
     required: true,
     type: String,
@@ -55,13 +66,12 @@ class Message {
   user?: User | null;
 
   @ApiProperty({
-    required: false,
-    type: () => Event,
+    required: true,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => Event)
-  @IsOptional()
-  event?: Event | null;
+  @IsString()
+  @Field(() => String)
+  messageSource!: string;
 
   @ApiProperty({
     required: true,
@@ -79,6 +89,15 @@ class Message {
   messageContent!: JsonValue;
 
   @ApiProperty({
+    required: false,
+    type: () => Event,
+  })
+  @ValidateNested()
+  @Type(() => Event)
+  @IsOptional()
+  event?: Event | null;
+
+  @ApiProperty({
     required: true,
     enum: EnumMessageMessageType,
   })
@@ -93,14 +112,6 @@ class Message {
     | "REGISTER_NEWUSER"
     | "REFER_NEWUSER"
     | "HEALTH_INQUIRY";
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  messageSource!: string;
 }
 
 export { Message as Message };
