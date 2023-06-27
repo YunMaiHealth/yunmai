@@ -11,17 +11,29 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { EnumMessageMessageAction } from "./EnumMessageMessageAction";
+import { IsEnum, IsOptional, ValidateNested } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
-import { IsOptional, ValidateNested, IsEnum } from "class-validator";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
-import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 import { BooleanFilter } from "../../util/BooleanFilter";
 import { JsonFilter } from "../../util/JsonFilter";
+import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 import { EnumMessageMessageType } from "./EnumMessageMessageType";
 
 @InputType()
 class MessageWhereInput {
+  @ApiProperty({
+    required: false,
+    enum: EnumMessageMessageAction,
+  })
+  @IsEnum(EnumMessageMessageAction)
+  @IsOptional()
+  @Field(() => EnumMessageMessageAction, {
+    nullable: true,
+  })
+  messageAction?: "METAGAS_CHANGE" | "FRIEND_HEALTH" | "HEALTH_REMIND";
+
   @ApiProperty({
     required: false,
     type: StringFilter,
@@ -47,15 +59,14 @@ class MessageWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => EventWhereUniqueInput,
+    type: StringFilter,
   })
-  @ValidateNested()
-  @Type(() => EventWhereUniqueInput)
+  @Type(() => StringFilter)
   @IsOptional()
-  @Field(() => EventWhereUniqueInput, {
+  @Field(() => StringFilter, {
     nullable: true,
   })
-  event?: EventWhereUniqueInput;
+  messageSource?: StringFilter;
 
   @ApiProperty({
     required: false,
@@ -81,6 +92,18 @@ class MessageWhereInput {
 
   @ApiProperty({
     required: false,
+    type: () => EventWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => EventWhereUniqueInput)
+  @IsOptional()
+  @Field(() => EventWhereUniqueInput, {
+    nullable: true,
+  })
+  event?: EventWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
     enum: EnumMessageMessageType,
   })
   @IsEnum(EnumMessageMessageType)
@@ -95,17 +118,6 @@ class MessageWhereInput {
     | "REGISTER_NEWUSER"
     | "REFER_NEWUSER"
     | "HEALTH_INQUIRY";
-
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  messageSource?: StringFilter;
 }
 
 export { MessageWhereInput as MessageWhereInput };

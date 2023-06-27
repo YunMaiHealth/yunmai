@@ -4,11 +4,11 @@ import {
   Create,
   SimpleForm,
   CreateProps,
+  SelectInput,
   DateTimeInput,
   ReferenceInput,
-  SelectInput,
-  BooleanInput,
   TextInput,
+  BooleanInput,
 } from "react-admin";
 
 import { UserTitle } from "../user/UserTitle";
@@ -18,15 +18,27 @@ export const MessageCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
+        <SelectInput
+          source="messageAction"
+          label="messageAction"
+          choices={[
+            { label: "METAGAS_CHANGE", value: "METAGAS_CHANGE" },
+            { label: "FRIEND_HEALTH", value: "FRIEND_HEALTH" },
+            { label: "HEALTH_REMIND", value: "HEALTH_REMIND" },
+          ]}
+          optionText="label"
+          optionValue="value"
+        />
         <DateTimeInput label="sendTime" source="sendTime" disabled />
         <ReferenceInput source="user.id" reference="User" label="user">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>
+        <TextInput label="messageSource" source="messageSource" />
+        <BooleanInput label="isRead" source="isRead" />
+        <div />
         <ReferenceInput source="event.id" reference="Event" label="event">
           <SelectInput optionText={EventTitle} />
         </ReferenceInput>
-        <BooleanInput label="isRead" source="isRead" />
-        <div />
         <SelectInput
           source="messageType"
           label="messageType"
@@ -41,7 +53,6 @@ export const MessageCreate = (props: CreateProps): React.ReactElement => {
           optionText="label"
           optionValue="value"
         />
-        <TextInput label="messageSource" source="messageSource" />
       </SimpleForm>
     </Create>
   );

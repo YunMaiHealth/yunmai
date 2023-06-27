@@ -11,24 +11,33 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { EnumMessageMessageAction } from "./EnumMessageMessageAction";
 import {
+  IsEnum,
   IsDate,
   ValidateNested,
   IsOptional,
+  IsString,
   IsBoolean,
   IsJSON,
-  IsEnum,
-  IsString,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
-import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
+import { EventWhereUniqueInput } from "../../event/base/EventWhereUniqueInput";
 import { EnumMessageMessageType } from "./EnumMessageMessageType";
 
 @InputType()
 class MessageCreateInput {
+  @ApiProperty({
+    required: true,
+    enum: EnumMessageMessageAction,
+  })
+  @IsEnum(EnumMessageMessageAction)
+  @Field(() => EnumMessageMessageAction)
+  messageAction!: "METAGAS_CHANGE" | "FRIEND_HEALTH" | "HEALTH_REMIND";
+
   @ApiProperty({
     required: true,
   })
@@ -50,16 +59,12 @@ class MessageCreateInput {
   user?: UserWhereUniqueInput | null;
 
   @ApiProperty({
-    required: false,
-    type: () => EventWhereUniqueInput,
+    required: true,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => EventWhereUniqueInput)
-  @IsOptional()
-  @Field(() => EventWhereUniqueInput, {
-    nullable: true,
-  })
-  event?: EventWhereUniqueInput | null;
+  @IsString()
+  @Field(() => String)
+  messageSource!: string;
 
   @ApiProperty({
     required: true,
@@ -77,6 +82,18 @@ class MessageCreateInput {
   messageContent!: InputJsonValue;
 
   @ApiProperty({
+    required: false,
+    type: () => EventWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => EventWhereUniqueInput)
+  @IsOptional()
+  @Field(() => EventWhereUniqueInput, {
+    nullable: true,
+  })
+  event?: EventWhereUniqueInput | null;
+
+  @ApiProperty({
     required: true,
     enum: EnumMessageMessageType,
   })
@@ -89,14 +106,6 @@ class MessageCreateInput {
     | "REGISTER_NEWUSER"
     | "REFER_NEWUSER"
     | "HEALTH_INQUIRY";
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  messageSource!: string;
 }
 
 export { MessageCreateInput as MessageCreateInput };

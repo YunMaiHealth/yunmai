@@ -9,12 +9,14 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-import { Module, forwardRef } from "@nestjs/common";
-import { MorganModule } from "nest-morgan";
-import { ACLModule } from "../../auth/acl.module";
-import { AuthModule } from "../../auth/auth.module";
-@Module({
-  imports: [ACLModule, forwardRef(() => AuthModule), MorganModule],
-  exports: [ACLModule, AuthModule, MorganModule],
-})
-export class MessageModuleBase {}
+import { registerEnumType } from "@nestjs/graphql";
+
+export enum EnumMessageMessageAction {
+  MetagasChange = "METAGAS_CHANGE",
+  FriendHealth = "FRIEND_HEALTH",
+  HealthRemind = "HEALTH_REMIND",
+}
+
+registerEnumType(EnumMessageMessageAction, {
+  name: "EnumMessageMessageAction",
+});

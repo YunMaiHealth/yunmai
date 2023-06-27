@@ -1,13 +1,15 @@
 import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
-import { EventWhereUniqueInput } from "../event/EventWhereUniqueInput";
 import { InputJsonValue } from "../../types";
+import { EventWhereUniqueInput } from "../event/EventWhereUniqueInput";
 
 export type MessageCreateInput = {
+  messageAction: "METAGAS_CHANGE" | "FRIEND_HEALTH" | "HEALTH_REMIND";
   sendTime: Date;
   user?: UserWhereUniqueInput | null;
-  event?: EventWhereUniqueInput | null;
+  messageSource: string;
   isRead: boolean;
   messageContent: InputJsonValue;
+  event?: EventWhereUniqueInput | null;
   messageType:
     | "FOLLOW_FRIEND"
     | "HEALTH_CHECK"
@@ -15,5 +17,4 @@ export type MessageCreateInput = {
     | "REGISTER_NEWUSER"
     | "REFER_NEWUSER"
     | "HEALTH_INQUIRY";
-  messageSource: string;
 };
