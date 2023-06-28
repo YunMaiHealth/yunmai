@@ -55,7 +55,8 @@ export class GatewatService {
           messageSource: clientId,
           messageType: messages.messageType,
           sendTime: new Date(),
-          user: userInput!
+          user: userInput!,
+          messageAction:messages.messageAction
         }
       }
       
@@ -257,7 +258,8 @@ export class GatewatService {
           messageSource: activityId,
           messageType: messageJson.messageType,
           sendTime: new Date(),
-          user: userInput!
+          user: userInput!,
+          messageAction:messageJson.messageAction
         }
       }
       //添加注册用户消息，此处给该推荐人发消息，提示注册用户关注了他，消息来源是注册用户，消息接收人是推荐人
@@ -268,7 +270,8 @@ export class GatewatService {
           messageSource: clientId,
           messageType: messageJson.messageType,
           sendTime: new Date(),
-          user: activityInput!
+          user: activityInput!,
+          messageAction: messageJson.messageAction
         }
       } 
 
@@ -401,7 +404,8 @@ export class GatewatService {
           messageSource: activityId,
           messageType: messageJson.messageType,
           sendTime: new Date(),
-          user: userInput!
+          user: userInput!,
+          messageAction: messageJson.messageAction
         }
       }
       //添加注册用户消息，此处给该好友发消息，提示登录用户关注了他，消息来源是登录用户，消息接收人是好友
@@ -412,7 +416,8 @@ export class GatewatService {
           messageSource: clientId,
           messageType: messageJson.messageType,
           sendTime: new Date(),
-          user: activityInput!
+          user: activityInput!,
+          messageAction: messageJson.messageAction
         }
       } 
 
@@ -487,7 +492,8 @@ export class GatewatService {
                 messageType: messages.messageType,
                 sendTime: new Date(),
                 user: friendInput!,
-                event: eventInput!
+                event: eventInput!,
+                messageAction: messages.messageAction
               }
           }
           //创建消息表数据

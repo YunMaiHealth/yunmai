@@ -23,9 +23,10 @@ export class AuthService {
       where: { username },
     });
     if (user && (await this.passwordService.compare(password, user.password))) {
-      const { id, roles } = user;
+      //新增昵称和头像属性
+      const { id, roles,nickName,avatarUrl,sessionKey } = user;
       const roleList = roles as string[];
-      return { id, username, roles: roleList };
+      return { id, username, roles: roleList ,nickName,avatarUrl,sessionKey};
     }
     return null;
   }

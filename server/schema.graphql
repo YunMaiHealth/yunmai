@@ -28,6 +28,12 @@ input DateTimeNullableFilter {
   notIn: [DateTime!]
 }
 
+enum EnumMessageMessageAction {
+  FriendHealth
+  HealthRemind
+  MetagasChange
+}
+
 enum EnumMessageMessageType {
   FollowFriend
   HealthCheck
@@ -388,6 +394,7 @@ type Message {
   event: Event
   id: String!
   isRead: Boolean!
+  messageAction: EnumMessageMessageAction
   messageContent: JSON!
   messageSource: String!
   messageType: EnumMessageMessageType
@@ -398,6 +405,7 @@ type Message {
 input MessageCreateInput {
   event: EventWhereUniqueInput
   isRead: Boolean!
+  messageAction: EnumMessageMessageAction!
   messageContent: JSON!
   messageSource: String!
   messageType: EnumMessageMessageType!
@@ -433,6 +441,7 @@ input MessageOrderByInput {
   eventId: SortOrder
   id: SortOrder
   isRead: SortOrder
+  messageAction: SortOrder
   messageContent: SortOrder
   messageSource: SortOrder
   messageType: SortOrder
@@ -443,6 +452,7 @@ input MessageOrderByInput {
 input MessageUpdateInput {
   event: EventWhereUniqueInput
   isRead: Boolean
+  messageAction: EnumMessageMessageAction
   messageContent: JSON
   messageSource: String
   messageType: EnumMessageMessageType
@@ -466,6 +476,7 @@ input MessageWhereInput {
   event: EventWhereUniqueInput
   id: StringFilter
   isRead: BooleanFilter
+  messageAction: EnumMessageMessageAction
   messageContent: JsonFilter
   messageSource: StringFilter
   messageType: EnumMessageMessageType
@@ -731,8 +742,11 @@ input UserCreateInput {
 
 type UserInfo {
   accessToken: String
+  avatarUrl: String
   id: String!
+  nickName: String
   roles: [String!]!
+  sessionKey: String!
   username: String!
 }
 

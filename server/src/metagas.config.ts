@@ -1,3 +1,4 @@
+import { EnumMessageMessageAction } from "./message/base/EnumMessageMessageAction";
 import { EnumMessageMessageType } from "./message/base/EnumMessageMessageType";
 
 interface Message {
@@ -13,7 +14,7 @@ interface MetagasConfig {
   };
   messageType: EnumMessageMessageType;
   amount: number;
-  action: string;
+  messageAction: EnumMessageMessageAction;
   status: string;
 }
 
@@ -29,7 +30,7 @@ export module MetagasConfigFile  {
         },
         "messageType": EnumMessageMessageType.RegisterNewuser,
         "amount": 20,
-        "action": "完成注册",
+        "messageAction": EnumMessageMessageAction.MetagasChange,
         "status": "当前元气值"
       }
     },
@@ -43,7 +44,7 @@ export module MetagasConfigFile  {
         },
         "messageType": EnumMessageMessageType.HealthCheck,
         "amount": 10,
-        "action": "完成体质检测",
+        "messageAction": EnumMessageMessageAction.MetagasChange,
         "status": "当前元气值"
       }
     },
@@ -57,7 +58,7 @@ export module MetagasConfigFile  {
         },
         "messageType": EnumMessageMessageType.ReferNewuser,
         "amount": 30,
-        "action": "推荐新用户",
+        "messageAction": EnumMessageMessageAction.MetagasChange,
         "status": "当前元气值"
       }
     },
@@ -71,7 +72,7 @@ export module MetagasConfigFile  {
         },
         "messageType": EnumMessageMessageType.FollowFriend,
         "amount": 0,//消息提醒，此处不需要元气值
-        "action": "关注好友",
+        "messageAction": EnumMessageMessageAction.FriendHealth,
         "status": "关注好友"
       }
     },
@@ -85,7 +86,7 @@ export module MetagasConfigFile  {
         },
         "messageType": EnumMessageMessageType.UpdateHealth,
         "amount": 0,//消息提醒，此处不需要元气值
-        "action": "更新健康信息",
+        "messageAction": EnumMessageMessageAction.FriendHealth,
         "status": ""//更新健康信息提醒，和状态无关
       }
     },
@@ -99,7 +100,7 @@ export module MetagasConfigFile  {
         },
         "messageType": EnumMessageMessageType.HealthInquiry,
         "amount": 0,//消息提醒，此处不需要元气值
-        "action": "健康问诊",
+        "messageAction": EnumMessageMessageAction.FriendHealth,
         "status": ""//健康问诊提醒，和状态无关
       }
     },
