@@ -25,6 +25,13 @@ import { User } from "../../user/base/User";
 @ObjectType()
 class MessageInfo {
 
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  messageAction!: string;
 
   @ApiProperty({
     required: true,

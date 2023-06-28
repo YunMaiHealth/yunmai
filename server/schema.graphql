@@ -424,6 +424,7 @@ input MessageCreateNestedManyWithoutUsersInput {
 type MessageInfo {
   id: String!
   isRead: Boolean!
+  messageAction: String!
   messageContent: String!
   messageSource: String!
   messageType: String!
